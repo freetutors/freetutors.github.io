@@ -39,7 +39,7 @@
         background-color: #113266ff
       }
       #signup-button {
-          background-color: #a32f80ff
+         background-color: #a32f80ff
       }
       /* Add styles for search bar */
       #search-bar {
@@ -66,6 +66,11 @@
       #search-bar:focus {
           outline: none;
       }
+      .rectangle {
+      height: 50px;
+      width: 100px;
+      background-color: #555;
+      }
     </style>
   </head>
   <body>
@@ -73,9 +78,10 @@
       <img id="logo" src="Logo.svg" alt="Logo">
       <!-- Add search bar -->
       <input type="search" id="search-bar" placeholder="Search..">
-      <button class="button" id="signup-button">Sign up</button>
       <button class="button" id="login-button">Log in</button>
+      <button class="button" id="signup-button">Sign up</button>
     </div>
+    <div class="rectangle"></div>
     <!-- Add rest of content here -->
   </body>
 </html>
