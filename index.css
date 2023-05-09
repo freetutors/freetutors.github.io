@@ -28,7 +28,7 @@ body {
     margin-left: 9px;
   }
   .button {
-    font-family: 'Lexend';
+    font-family: 'Lexend', sans-serif;
     background-color: #4CAF50;
     border: none;
     color: white;
@@ -52,7 +52,7 @@ body {
   #search-bar {
       font-family: 'Lexend';
       flex-grow: 1; /* Allow search bar to grow and fill available space */
-      margin-left: -10px; /* Add space between search bar and logo */
+      margin-left: 30px; /* Add space between search bar and logo */
       margin-right: 32.5px; /* Add space between search bar and login button */
       height:30.5px; /* Set height of search bar */
       background-color: #363636ff; /* Set background color of search bar to gray */
@@ -81,46 +81,48 @@ body {
     .important_box {
       height: 240px;
       width: 165px;
-      margin-top: 18px;
+      margin-top: -710px;
       margin-left: calc(100% - 185px);
       background-color: var(--secondary-color);
     }
 
     .text_box {
-      height: 100px;
+      height: 150px;
       margin-top: 20px;
-      margin-left: 190px; /* Adjusted margin-left to position the text box 10px left of the important box */
+      margin-left: 230px; /* Adjusted margin-left to position the text box 10px left of the important box */
       margin-right: 245px;
     }
 
-    #text_box_bar {
+    .question_header {
       color: white;
       padding-left: 7px;
       padding-top: 4px;
       height: 25px;
-      margin-top: -240px;
-      margin-left: 190px; /* Adjusted margin-left to position the text box 10px left of the important box */
+      margin-top: 10px;
+      margin-left: 230px; /* Adjusted margin-left to position the text box 10px left of the important box */
       margin-right: 215px;
       background-color: var(--text-box-bar-color);
       border: 1.5px solid var(--border-color);
   }
 
-
-    .menu {
+    .menu{
+        list-style-type: none;
         position: absolute;
         color: white;
-        font-family: 'Lexend';
         margin-top: 19px;
-        padding-right: 100px;
-        margin-left: 19px;
+    }
+    .menu_item {
+        font-size: 20px;
+        list-style-type: none;
+        padding-right: 60px;
+        margin-left: 5px;
         background-color:rgba(255, 255, 255, 0);
-        opacity: 1.0;
         padding-top:1px;
         padding-bottom:1px;
         padding-left:2px;
     }
 
-    .menu:hover {
+    .menu_item:hover {
         opacity: 1.0;
         background-color:rgba(255, 255, 255, 0.5);
     }
