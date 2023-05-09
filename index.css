@@ -78,16 +78,17 @@ body {
     background-color: var(--primary-color);
     border-radius: 22px;
   }
-  .important_box{
-    height: 240px;/*try using percentages as much as possible*/
-    width: 15%;
-    margin-top: 18px;
-    margin-left: 82%;
-    background-color: var(--secondary-color)
-  }
-  .text_box{
-    height: 100px;
-    width: 60%;
-    margin-top: -235px; /*we'll have to change this to creat a moving and scrolling list, for now this is just for demostration*/
-    margin-left: 20%;
-  }
+    .important_box {
+      height: 240px;
+      width: 160px;
+      margin-top: 18px;
+      margin-left: calc(100% - 180px);
+      background-color: var(--secondary-color);
+    }
+
+    .text_box {
+      height: 100px;
+      margin-top: -240px;
+      margin-left: 198px; /* Adjusted margin-left to position the text box 10px left of the important box */
+      margin-right: 198px;
+    }
