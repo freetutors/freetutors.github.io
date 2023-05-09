@@ -7,8 +7,6 @@
 
 }
 
-/* aaa */
-
 body {
     font-family: 'Lexend', sans-serif;
     background-color: var(--background-color);
@@ -74,21 +72,21 @@ body {
   #search-bar:focus {
       outline: none;
   }
-  .box{
+  .box {
     background-color: var(--primary-color);
     border-radius: 22px;
   }
     .important_box {
       height: 240px;
-      width: 160px;
+      width: 165px;
       margin-top: 18px;
-      margin-left: calc(100% - 180px);
+      margin-left: calc(100% - 185px);
       background-color: var(--secondary-color);
     }
 
     .text_box {
       height: 100px;
       margin-top: -240px;
-      margin-left: 198px; /* Adjusted margin-left to position the text box 10px left of the important box */
-      margin-right: 198px;
+      margin-left: 190px; /* Adjusted margin-left to position the text box 10px left of the important box */
+      margin-right: 215px;
     }
