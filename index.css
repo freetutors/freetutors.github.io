@@ -52,7 +52,7 @@ body {
   #search-bar {
       font-family: 'Lexend';
       flex-grow: 1; /* Allow search bar to grow and fill available space */
-      margin-left: 30px; /* Add space between search bar and logo */
+      margin-left: -10px; /* Add space between search bar and logo */
       margin-right: 32.5px; /* Add space between search bar and login button */
       height:30.5px; /* Set height of search bar */
       background-color: #363636ff; /* Set background color of search bar to gray */
@@ -81,15 +81,15 @@ body {
     .important_box {
       height: 240px;
       width: 165px;
-      margin-top: -710px;
+      margin-top: -593px;
       margin-left: calc(100% - 185px);
       background-color: var(--secondary-color);
     }
 
     .text_box {
-      height: 150px;
-      margin-top: 20px;
-      margin-left: 230px; /* Adjusted margin-left to position the text box 10px left of the important box */
+      height: 125px;
+      margin-top: 15px;
+      margin-left: 190px; /* Adjusted margin-left to position the text box 10px left of the important box */
       margin-right: 245px;
     }
 
@@ -98,8 +98,8 @@ body {
       padding-left: 7px;
       padding-top: 4px;
       height: 25px;
-      margin-top: 10px;
-      margin-left: 230px; /* Adjusted margin-left to position the text box 10px left of the important box */
+      margin-top: 15px;
+      margin-left: 190px; /* Adjusted margin-left to position the text box 10px left of the important box */
       margin-right: 215px;
       background-color: var(--text-box-bar-color);
       border: 1.5px solid var(--border-color);
@@ -109,17 +109,19 @@ body {
         list-style-type: none;
         position: absolute;
         color: white;
-        margin-top: 19px;
+        margin-top: 0px;
     }
     .menu_item {
-        font-size: 20px;
+        font-size: 19px;
         list-style-type: none;
-        padding-right: 60px;
-        margin-left: 5px;
+        padding-right: 15px;
+        margin-left: -13px;
         background-color:rgba(255, 255, 255, 0);
-        padding-top:1px;
-        padding-bottom:1px;
-        padding-left:2px;
+        padding-top:3px;
+        padding-bottom:3px;
+        padding-left:4px;
+        margin-top: 5px;
+        border-radius: 0 7px 7px 0;
     }
 
     .menu_item:hover {
@@ -127,10 +129,12 @@ body {
         background-color:rgba(255, 255, 255, 0.5);
     }
 
+
+
+
     .semicircle-button {
       height: 10rem;
       width: 10rem;
       border-radius: 1rem;
       background-color: #48abe0;
     }
-
