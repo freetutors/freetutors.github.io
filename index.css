@@ -6,6 +6,9 @@
     --text-color:white;
 
 }
+
+/* aaa */
+
 body {
     font-family: 'Lexend', sans-serif;
     background-color: var(--background-color);
@@ -50,12 +53,13 @@ body {
       font-family: 'Lexend';
       flex-grow: 1; /* Allow search bar to grow and fill available space */
       margin-left: -10px; /* Add space between search bar and logo */
-      margin-right: 30px; /* Add space between search bar and login button */
+      margin-right: 32.5px; /* Add space between search bar and login button */
       height:30.5px; /* Set height of search bar */
       background-color: #363636ff; /* Set background color of search bar to gray */
       border-radius: 6px;
       color: white;
       padding-left: 13px;
+      padding-right: 13px;
       border: 1.5px solid #474b4eff; /* Add white border around search bar */
   }
   #search-bar::placeholder {
@@ -71,9 +75,9 @@ body {
       outline: none;
   }
   .rectangle {
-  height: 50px;
-  width: 100px;
-  background-color: #555;
+  height: 240px;
+  width: 165px;
+  background-color: var(--secondary-color);
   margin-top: 18px;
   margin-left: 800px;
   }
