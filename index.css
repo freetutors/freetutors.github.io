@@ -2,7 +2,9 @@
     --primary-color:#113265ff;
     --background-color:#08162bff;
     --header-color:#242424ff;
+    --text-box-bar-color: #424242ff;
     --secondary-color:#a32f80ff;
+    --border-color: #474b4eff;
     --text-color:white;
 
 }
@@ -58,7 +60,7 @@ body {
       color: white;
       padding-left: 13px;
       padding-right: 13px;
-      border: 1.5px solid #474b4eff; /* Add white border around search bar */
+      border: 1.5px solid var(--border-color); /* Add white border around search bar */
   }
   #search-bar::placeholder {
     font-family: 'Lexend'; /* Set font of placeholder text to Lexend */
@@ -86,7 +88,47 @@ body {
 
     .text_box {
       height: 100px;
+      margin-top: 20px;
+      margin-left: 190px; /* Adjusted margin-left to position the text box 10px left of the important box */
+      margin-right: 245px;
+    }
+
+    #text_box_bar {
+      color: white;
+      padding-left: 7px;
+      padding-top: 4px;
+      height: 25px;
       margin-top: -240px;
       margin-left: 190px; /* Adjusted margin-left to position the text box 10px left of the important box */
       margin-right: 215px;
+      background-color: var(--text-box-bar-color);
+      border: 1.5px solid var(--border-color);
+  }
+
+
+    .menu {
+        position: absolute;
+        color: white;
+        font-family: 'Lexend';
+        margin-top: 19px;
+        padding-right: 100px;
+        margin-left: 19px;
+        background-color:rgba(255, 255, 255, 0);
+        opacity: 1.0;
+        padding-top:1px;
+        padding-bottom:1px;
+        padding-left:2px;
     }
+
+    .menu:hover {
+        opacity: 1.0;
+        background-color:rgba(255, 255, 255, 0.5);
+    }
+
+    .semicircle-button {
+      height: 10rem;
+      width: 10rem;
+      border-radius: 1rem;
+      background-color: #48abe0;
+    }
+
