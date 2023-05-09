@@ -74,10 +74,20 @@ body {
   #search-bar:focus {
       outline: none;
   }
-  .rectangle {
-  height: 240px;
-  width: 165px;
-  background-color: var(--secondary-color);
-  margin-top: 18px;
-  margin-left: 800px;
+  .box{
+    background-color: var(--primary-color);
+    border-radius: 22px;
+  }
+  .important_box{
+    height: 240px;/*try using percentages as much as possible*/
+    width: 15%;
+    margin-top: 18px;
+    margin-left: 82%;
+    background-color: var(--secondary-color)
+  }
+  .text_box{
+    height: 100px;
+    width: 60%;
+    margin-top: -235px; /*we'll have to change this to creat a moving and scrolling list, for now this is just for demostration*/
+    margin-left: 20%;
   }
