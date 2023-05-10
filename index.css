@@ -96,7 +96,7 @@ body {
     .questions_list {
        overflow-y: scroll;
        max-height: 570px;
-       margin-top: 10px; 
+       margin-top: 15px;
        margin-right: 215px;
     }
 
@@ -108,13 +108,14 @@ body {
        width: 12px; /* Set the width of the thumb to 12px */
        min-width: 12px; /* Ensure the minimum width of the thumb */
        background-color: var(--text-box-bar-color);
-       border-radius: 2px;
+       border-radius: 2px
+
     }
 
    .text_box {
-     width:clac(100%-185px);
+     width:calc(100%-185px);
      height: 125px;
-     margin-top: 15px;
+     margin-bottom: 15px;
      margin-left: 190px; /* Adjusted margin-left to position the text box 10px left of the important box */
      margin-right: 10px;
   }
@@ -153,13 +154,6 @@ body {
    .menu_item:hover {
        opacity: 1.0;
        background-color:rgba(255, 255, 255, 0.5);
-   }
-
-   .semicircle-button {
-     height: 10rem;
-     width: 10rem;
-     border-radius: 1rem;
-     background-color: #48abe0;
    }
 
 
