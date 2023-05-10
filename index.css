@@ -95,7 +95,7 @@ body {
 
     .questions_list {
        overflow-y: scroll;
-       max-height: 990px;
+       max-height: 570px;
     }
 
     .questions_list::-webkit-scrollbar {
