@@ -6,6 +6,7 @@
    --secondary-color:#a32f80ff;
    --border-color: #474b4eff;
    --text-color:white;
+   --chat-button: #2c74b3ff;
 
 
 }
@@ -170,6 +171,27 @@ body {
      background-color: #48abe0;
    }
 
+   .chat-prompt {
+       color: white;
+       text-align: center;
+       margin-top: 70px;
+       font-size: 50px;
+   }
 
-}
+    .chat-button {
+      font-family: 'Lexend';
+      color: white;
+      background-color: var(--chat-button);
+      border-radius: 10px;
+      font-size: 40px;
+      height: 70px;
+      width: 450px;
+      cursor: pointer;
+      border: none;
+      margin-top: 40px;
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+    }
+
 
