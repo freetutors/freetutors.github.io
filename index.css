@@ -1,143 +1,174 @@
 :root{
-    --primary-color:#113265ff;
-    --background-color:#08162bff;
-    --header-color:#242424ff;
-    --text-box-bar-color: #424242ff;
-    --secondary-color:#a32f80ff;
-    --border-color: #474b4eff;
-    --semicircle-button-border: #2e2e2eff;
-    --text-color:white;
+   --primary-color:#113265ff;
+   --background-color:#08162bff;
+   --header-color:#242424ff;
+   --text-box-bar-color: #424242ff;
+   --secondary-color:#a32f80ff;
+   --border-color: #474b4eff;
+   --text-color:white;
+
 
 }
 
+
 body {
-    font-family: 'Lexend', sans-serif;
-    background-color: var(--background-color);
-    margin: 0;
-    padding: 0;
-  }
-  #topbar {
-    background-color: var(--header-color);
-    width: 100%;
-    height: 43px;
-    display: flex; /* Use flexbox to position elements within #topbar */
-    align-items: center; /* Vertically center elements within #topbar */
-  }
-  #logo {
-    height: 115%;
-    margin-top: -1px;
-    margin-left: 9px;
-  }
-  .button {
-    font-family: 'Lexend', sans-serif;
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    padding: 6.5px 17px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 14px;
-    margin-right: 11px;
-    cursor: pointer;
-    border-radius: 6px;
-  }
-  #login-button {
-    margin-right: 11px;
-    background-color: var(--primary-color)
-  }
-  #signup-button {
-     background-color: var(--secondary-color)
-  }
-  /* Add styles for search bar */
-  #search-bar {
-      font-family: 'Lexend';
-      flex-grow: 1; /* Allow search bar to grow and fill available space */
-      margin-left: -10px; /* Add space between search bar and logo */
-      margin-right: 32.5px; /* Add space between search bar and login button */
-      height:30.5px; /* Set height of search bar */
-      background-color: #363636ff; /* Set background color of search bar to gray */
-      border-radius: 6px;
-      color: white;
-      padding-left: 13px;
-      padding-right: 13px;
-      border: 1.5px solid var(--border-color); /* Add white border around search bar */
-  }
-  #search-bar::placeholder {
-    font-family: 'Lexend'; /* Set font of placeholder text to Lexend */
-    color: white;
-  }
-  #search-bar::-webkit-search-cancel-button {
-    display: none;
-  }
+   overflow: hidden;
+   font-family: 'Lexend', sans-serif;
+   background-color: var(--background-color);
+   margin: 0;
+   padding: 0;
+ }
+ #topbar {
+   background-color: var(--header-color);
+   width: 100%;
+   height: 43px;
+   display: flex; /* Use flexbox to position elements within #topbar */
+   align-items: center; /* Vertically center elements within #topbar */
+ }
+ #logo {
+   height: 115%;
+   margin-top: -1px;
+   margin-left: 9px;
+ }
+ .button {
+   font-family: 'Lexend', sans-serif;
+   background-color: #4CAF50;
+   border: none;
+   color: white;
+   padding: 6.5px 17px;
+   text-align: center;
+   text-decoration: none;
+   display: inline-block;
+   font-size: 14px;
+   margin-right: 11px;
+   cursor: pointer;
+   border-radius: 6px;
+ }
+ #login-button {
+   margin-right: 11px;
+   background-color: var(--primary-color)
+ }
+ #signup-button {
+    background-color: var(--secondary-color)
+ }
+ /* Add styles for search bar */
+ #search-bar {
+     font-family: 'Lexend';
+     flex-grow: 1; /* Allow search bar to grow and fill available space */
+     margin-left: -10px; /* Add space between search bar and logo */
+     margin-right: 32.5px; /* Add space between search bar and login button */
+     height:30.5px; /* Set height of search bar */
+     background-color: #363636ff; /* Set background color of search bar to gray */
+     border-radius: 6px;
+     color: white;
+     padding-left: 13px;
+     padding-right: 13px;
+     border: 1.5px solid var(--border-color); /* Add white border around search bar */
+ }
+ #search-bar::placeholder {
+   font-family: 'Lexend'; /* Set font of placeholder text to Lexend */
+   color: white;
+ }
+ #search-bar::-webkit-search-cancel-button {
+   display: none;
+ }
 
-  /* Remove red border that appears when clicking on search bar */
-  #search-bar:focus {
-      outline: none;
-  }
-  .box {
-    background-color: var(--primary-color);
-    border-radius: 22px;
-  }
-    .important_box {
-      height: 240px;
-      width: 165px;
-      margin-top: -593px;
-      margin-left: calc(100% - 185px);
-      background-color: var(--secondary-color);
+
+ /* Remove red border that appears when clicking on search bar */
+ #search-bar:focus {
+     outline: none;
+ }
+ .box {
+   background-color: var(--primary-color);
+   border-radius: 22px;
+ }
+   .important_box {
+     position: absolute;
+     height: 240px;
+     width: 165px;
+     margin-top: -32px;
+     margin-left: calc(100% - 185px);
+     background-color: var(--secondary-color);
+   }
+
+
+   .questions_list {
+       overflow-y: scroll;
+       max-height: 990px;
+   }
+
+    .questions_list::-webkit-scrollbar {
+       width: 15px; /* Adjust the width as needed */
+       margin-right: -10px; /* Move the scrollbar 10px to the left */
     }
 
-    .text_box {
-      height: 125px;
-      margin-top: 15px;
-      margin-left: 190px; /* Adjusted margin-left to position the text box 10px left of the important box */
-      margin-right: 245px;
+    .questions_list::-webkit-scrollbar-thumb {
+       background-color: var(--text-box-bar-color);
+       border-radius: 5px;
     }
 
-    .question_header {
-      color: white;
-      padding-left: 7px;
-      padding-top: 4px;
-      height: 25px;
-      margin-top: 15px;
-      margin-left: 190px; /* Adjusted margin-left to position the text box 10px left of the important box */
-      margin-right: 215px;
-      background-color: var(--text-box-bar-color);
-      border: 1.5px solid var(--border-color);
-  }
-
-    .menu{
-        list-style-type: none;
-        position: absolute;
-        color: white;
-        margin-top: 0px;
-    }
-    .menu_item {
-        font-size: 19px;
-        list-style-type: none;
-        padding-right: 15px;
-        margin-left: -13px;
-        background-color:rgba(255, 255, 255, 0);
-        padding-top:3px;
-        padding-bottom:3px;
-        padding-left:4px;
-        margin-top: 5px;
-        border-radius: 0 7px 7px 0;
-    }
-
-    .menu_item:hover {
-        opacity: 1.0;
-        background-color:rgba(255, 255, 255, 0.5);
+    .questions_list::-webkit-scrollbar-track {
+       background-color: var(--primary-color); /* Adjust the color as needed */
+       border-radius: 5px;
     }
 
 
-    .semicircle-button {
-      height: 90px;
-      width: 45px;
-      border-radius: 0 45px 45px 0;
-      background-color: var(--semicircle-button-border);
-    }
 
-    #right-semicircle-button {
-    margin-left:
-    }
+
+   .text_box {
+     height: 125px;
+     margin-top: 15px;
+     margin-left: 190px; /* Adjusted margin-left to position the text box 10px left of the important box */
+     margin-right: 245px;
+   }
+
+
+   .question_header {
+     color: white;
+     padding-left: 7px;
+     padding-top: 4px;
+     height: 25px;
+     margin-top: 15px;
+     margin-left: 190px; /* Adjusted margin-left to position the text box 10px left of the important box */
+     margin-right: 215px;
+     background-color: var(--text-box-bar-color);
+     border: 1.5px solid var(--border-color);
+ }
+
+
+   .menu{
+       list-style-type: none;
+       position: absolute;
+       color: white;
+       margin-top: 0px;
+   }
+   .menu_item {
+       font-size: 19px;
+       list-style-type: none;
+       padding-right: 15px;
+       margin-left: -13px;
+       background-color:rgba(255, 255, 255, 0);
+       padding-top:3px;
+       padding-bottom:3px;
+       padding-left:4px;
+       margin-top: 5px;
+       border-radius: 0 7px 7px 0;
+   }
+
+
+   .menu_item:hover {
+       opacity: 1.0;
+       background-color:rgba(255, 255, 255, 0.5);
+   }
+
+
+   .semicircle-button {
+     height: 10rem;
+     width: 10rem;
+     border-radius: 1rem;
+     background-color: #48abe0;
+   }
+
+
+}
+
