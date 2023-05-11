@@ -116,8 +116,8 @@ body {
      height: 125px;
      margin-top: 15px;
      margin-left: 190px; /* Adjusted margin-left to position the text box 10px left of the important box */
-     margin-right: 10px;
-  }
+     margin-right: 10px; 
+    }
 
    .question_header {
      color: white;
