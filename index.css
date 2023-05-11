@@ -1,4 +1,4 @@
-:root{
+:root{ /*setting color variables incase we want to switch color scheme*/
    --primary-color:#113265ff;
    --background-color:#08162bff;
    --header-color:#242424ff;
@@ -10,7 +10,6 @@
 
 
 }
-
 
 body {
    overflow: hidden;
@@ -31,9 +30,8 @@ body {
    margin-top: -1px;
    margin-left: 9px;
  }
- .button {
+ .button {/*setting main button object*/
    font-family: 'Lexend', sans-serif;
-   background-color: #4CAF50;
    border: none;
    color: white;
    padding: 6.5px 17px;
@@ -45,7 +43,7 @@ body {
    cursor: pointer;
    border-radius: 6px;
  }
- #login-button {
+ #login-button {/*sub-class of button*/
    margin-right: 11px;
    background-color: var(--primary-color)
  }
@@ -74,16 +72,15 @@ body {
    display: none;
  }
 
-
  /* Remove red border that appears when clicking on search bar */
  #search-bar:focus {
      outline: none;
  }
- .box {
+ .box {/*setting generic box details*/
    background-color: var(--primary-color);
    border-radius: 22px;
  }
-   .important_box {
+   .important_box {/*sub class of box*/
      position: absolute;
      height: 240px;
      width: 165px;
@@ -92,19 +89,18 @@ body {
      background-color: var(--secondary-color);
    }
 
-
-    .questions_list {
+.questions_list {/*scroll area with questions. It is invisible*/
        overflow-y: scroll;
        max-height: 570px;
        margin-top: 15px;
        margin-right: 215px;
     }
 
-    .questions_list::-webkit-scrollbar {
+    .questions_list::-webkit-scrollbar {/*custom scroll bar width*/
        width: 13px; /* Adjust the width as needed */
     }
 
-    .questions_list::-webkit-scrollbar-thumb {
+    .questions_list::-webkit-scrollbar-thumb {/*custom scroll bar thumb(the scrolling thing)*/
        width: 12px; /* Set the width of the thumb to 12px */
        min-width: 12px; /* Ensure the minimum width of the thumb */
        background-color: var(--text-box-bar-color);
@@ -112,7 +108,7 @@ body {
 
     }
 
-   .text_box {
+   .text_box {/*question subclass of box*/
      width:calc(100%-185px);
      height: 125px;
      margin-bottom: 15px;
@@ -120,7 +116,7 @@ body {
      margin-right: 10px; 
     }
 
-   .question_header {
+   .question_header {/*divider based on subject*/
      color: white;
      padding-left: 7px;
      padding-top: 4px;
@@ -132,7 +128,7 @@ body {
      border: 1.5px solid var(--border-color);
  }
 
-   .menu{
+   .menu{/*page menu*/
        list-style-type: none;
        position: absolute;
        color: white;
@@ -148,7 +144,7 @@ body {
        padding-bottom:3px;
        padding-left:4px;
        margin-top: 5px;
-       border-radius: 0 7px 7px 0;
+       border-radius: 0 7px 7px 0;/*creating a staight edge for showing the selected area*/
    }
 
    .menu_item:hover {
