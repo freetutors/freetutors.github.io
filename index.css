@@ -169,4 +169,8 @@ body {
         margin-left: 65px;
    }
 
-
+@media only screen and (max-height: 700px) {
+  .semicircle-button {
+    display: none;
+  }
+}
