@@ -91,7 +91,7 @@ body {
 
 .questions_list {/*scroll area with questions. It is invisible*/
        overflow-y: scroll;
-       max-height: 500px; /* Make this some percent of the page width idk how */
+       max-height: 75vh; /* Make this some percent of the page width idk how */
        margin-top: 15px;
        margin-right: 215px;
     }
@@ -157,18 +157,17 @@ body {
        position: absolute;
        height: 127px;
        width: 127px;
+       top: 40vh;
    }
 
    #semicircle-right {
         margin-left: calc(100% - 225px);
-        margin-top: 220px
    }
 
    #semicircle-left {
         -webkit-transform: scaleX(-1);
         transform: scaleX(-1);
         margin-left: 65px;
-        margin-top: 220px
    }
 
 
