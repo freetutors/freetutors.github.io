@@ -1,0 +1,88 @@
+:root{ /*setting color variables incase we want to switch color scheme*/
+    --primary-color:#113265ff;
+    --background-color:#08162bff;
+    --header-color:#242424ff;
+    --text-box-bar-color: #424242ff;
+    --secondary-color:#a32f80ff;
+    --border-color: #474b4eff;
+    --text-color:white;
+    --chat-button: #2c74b3ff;
+ }
+ /* Creates a standard for an object being centered */
+ .center{
+     display: flex;
+     justify-content: center;
+     align-items: center;
+ }
+ 
+ 
+ body {
+    overflow: hidden;
+    font-family: 'Lexend', sans-serif;
+    background-color: var(--primary-color);
+    margin: 0;
+    padding: 0;
+  }
+
+/* Sign-up section */
+
+.signup-container{
+    width: 700px;
+    height: auto;
+    background-color: rgb(211, 211, 211);
+    opacity: 0.95;
+    margin: auto;
+    margin-top: 100px;
+    flex-direction: column;
+    border-radius: .5rem;
+    box-shadow: 0 1rem 3rem #000000;
+    padding: 20px;
+  
+  }
+  .input-group{
+    width: 90%;
+    display:flex;
+    flex-direction: column;
+    margin:1rem 0;
+    position: relative;
+  }
+  
+  .input-groups{
+    width: 80%; 
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .input-groups .input-group{
+    width: 48.5%;
+  }
+  
+  .input-group input,
+  .input-group textarea{
+    font-family: 'Lexend', sans-serif;
+    padding: 3rem 1rem 1rem 1rem ;
+    background-color: #ffffff;
+    border: .1rem solid var(--background-color);
+    font-size: 1.4rem;
+    color: var(--light-grey-color);
+    letter-spacing: .1rem;
+    border-radius: 0.5rem;
+    transition: border 0.3;
+  }
+  
+  .input-group input:focus,
+  .input-group textarea:focus{
+    border: .1rem solid #ccc;
+  }
+  
+  .input-group label{
+    font-size: 1.2rem;
+    color: black;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .1rem;
+    color: 150,150,150;
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+  }

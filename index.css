@@ -7,9 +7,14 @@
    --border-color: #474b4eff;
    --text-color:white;
    --chat-button: #2c74b3ff;
-
-
 }
+/* Creates a standard for an object being centered */
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 
 body {
    overflow: hidden;
@@ -43,15 +48,15 @@ body {
    cursor: pointer;
    border-radius: 6px;
  }
- #login-button {/*sub-class of button*/
+ .login-button {/*sub-class of button*/
    margin-right: 11px;
    background-color: var(--primary-color)
  }
- #signup-button {
+ .signup-button {
     background-color: var(--secondary-color)
  }
  /* Add styles for search bar */
- #search-bar {
+ .search-bar {
      font-family: 'Lexend';
      flex-grow: 1; /* Allow search bar to grow and fill available space */
      margin-left: -10px; /* Add space between search bar and logo */
@@ -64,16 +69,16 @@ body {
      padding-right: 13px;
      border: 1.5px solid var(--border-color); /* Add white border around search bar */
  }
- #search-bar::placeholder {
+ .search-bar::placeholder {
    font-family: 'Lexend'; /* Set font of placeholder text to Lexend */
    color: white;
  }
- #search-bar::-webkit-search-cancel-button {
+ .search-bar::-webkit-search-cancel-button {
    display: none;
  }
 
  /* Remove red border that appears when clicking on search bar */
- #search-bar:focus {
+ .search-bar:focus {
      outline: none;
  }
  .box {/*setting generic box details*/
@@ -151,7 +156,5 @@ body {
        opacity: 1.0;
        background-color:rgba(255, 255, 255, 0.5);
    }
-
-
 
 
