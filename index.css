@@ -96,7 +96,7 @@ body {
 
 .questions_list {/*scroll area with questions. It is invisible*/
        overflow-y: scroll;
-       max-height: 570px;
+       max-height: calc(100vh - 215px); /* Make this some percent of the page width idk how */
        margin-top: 15px;
        margin-right: 215px;
     }
@@ -110,12 +110,11 @@ body {
        min-width: 12px; /* Ensure the minimum width of the thumb */
        background-color: var(--text-box-bar-color);
        border-radius: 2px
-
     }
 
    .text_box {/*question subclass of box*/
      width:calc(100%-185px);
-     height: 125px;
+     height: 150px;
      margin-bottom: 15px;
      margin-left: 190px; /* Adjusted margin-left to position the text box 10px left of the important box */
      margin-right: 10px; 
@@ -158,3 +157,25 @@ body {
    }
 
 
+   .semicircle-button {
+       position: absolute;
+       height: 127px;
+       width: 127px;
+       top: 40vh;
+   }
+
+   #semicircle-right {
+        margin-left: calc(100% - 225px);
+   }
+
+   #semicircle-left {
+        -webkit-transform: scaleX(-1);
+        transform: scaleX(-1);
+        margin-left: 65px;
+   }
+
+@media only screen and (max-height: 700px) {
+  .semicircle-button {
+    display: none;
+  }
+}

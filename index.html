@@ -6,7 +6,7 @@
   </head>
   <body>
     <div id="topbar">
-      <img id="logo" src="Logo.svg" alt="Logo">
+      <img id="logo" src="Logo.svg" alt="Logo" onclick="location.href='index.html'">
       <!-- Add search bar -->
       <input type="search" class="search-bar" placeholder="Search..">
       <button class="button login-button">Log in</button>
@@ -14,17 +14,18 @@
     </div>
     <div class="menu"><!--navigation area-->
       <ul>
-        <li class="menu_item">Home</li>
-        <li class="menu_item">Our Team</li>
-        <li class="menu_item">Contact Us</li>
-        <li class="menu_item">Suggestions</li>
-        <li class="menu_item">Help</li>
+        <li class="menu_item" onclick="location.href='index.html'">Home</li>
+        <li class="menu_item" onclick="location.href='ourTeam.html'">Our Team</li>
+        <li class="menu_item" onclick="location.href='contactUs.html'">Contact Us</li>
+        <li class="menu_item" onclick="location.href='suggestions.html'">Suggestions</li>
+        <li class="menu_item" onclick="location.href='help.html'">Help</li>
       </ul>
     </div>
-
     <div class="question_header">Active Questions - Math</div>
     <div class="box important_box"><!--purple box on the left-->
     </div>
+    <img class="semicircle-button" id = "semicircle-right" src="semicircle-button.svg">
+    <img class="semicircle-button" id = "semicircle-left" src="semicircle-button.svg">
     <div class="questions_list"><!--invisible box surround the questions to allow from scrolling-->
       <div class="box text_box">
         <!--These are some sample questions, will implement later-->
