@@ -1,9 +1,39 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
     <head>
-
+        <link href='https://fonts.googleapis.com/css?family=Lexend' rel='stylesheet'>
+        <link rel="stylesheet" href="logins.css"/>
     </head>
     <body>
-        
+        <div id="topbar">
+          <img id="logo" src="Logo.svg" alt="Logo" onclick="location.href='index.html'">
+          <!-- Add search bar -->
+          <input type="search" class="search-bar" placeholder="Search..">
+          <button class="button login-button">Log in</button>
+          <button class="button signup-button">Sign up</button>
+        </div>
+        <div class = "box center signup-container">
+            <div class="input-group-new">
+                <label>Username</label>
+                <input type="text" id="username" class="username login-input"
+                placeholder="Enter Your Username">
+            </div>
+            <div class="input-group-new">
+                <label>Password</label>
+                <input type="text" id="password" class="password login-input"
+                placeholder="Enter Your Password ">
+            <!-- Copy Paste sections to add more -->
+            </div>
+        <button class="button login-button-on-login-page">Log in</button>
+        <div class="signup-options">
+            <button>Sign in with facebook placeholder</button>
+        </div>
+        <div class="signup-options">
+            <button>Sign in with google placeholder</button>
+        </div>
+        </div>
+
+    </body>
+</html>
     </body>
 </html>
