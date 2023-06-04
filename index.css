@@ -30,11 +30,14 @@ body {
    display: flex; /* Use flexbox to position elements within #topbar */
    align-items: center; /* Vertically center elements within #topbar */
  }
- #logo {
-   height: 115%;
-   margin-top: -1px;
-   margin-left: 9px;
- }
+#logo {
+  height: 115%;
+  margin-top: -1px;
+  margin-left: 9px;
+  cursor: pointer; /* Change the cursor to a pointing hand */
+}
+
+
  .button {/*setting main button object*/
    font-family: 'Lexend', sans-serif;
    border: none;
@@ -66,7 +69,7 @@ body {
      border-radius: 6px;
      color: white;
      padding-left: 13px;
-     padding-right: 13px;
+     padding-right: 140px;
      border: 1.5px solid var(--border-color); /* Add white border around search bar */
  }
  .search-bar::placeholder {
@@ -109,7 +112,7 @@ body {
 
 .questions_list {/*scroll area with questions. It is invisible*/
        overflow-y: scroll;
-       max-height: calc(100vh - 215px); /* Make this some percent of the page width idk how */
+       max-height: calc(100vh - 215px);
        margin-top: 15px;
        margin-right: 215px;
     }
@@ -122,12 +125,11 @@ body {
        width: 12px; /* Set the width of the thumb to 12px */
        min-width: 12px; /* Ensure the minimum width of the thumb */
        background-color: var(--text-box-bar-color);
-       border-radius: 2px
+       border-radius: 2px;
     }
 
    .text_box {/*question subclass of box*/
-     width:calc(100%-185px);
-     height: 150px;
+     height: 133px;
      margin-bottom: 15px;
      margin-left: 190px; /* Adjusted margin-left to position the text box 10px left of the important box */
      margin-right: 10px; 
@@ -151,6 +153,7 @@ body {
   position: absolute;
   color: white;
   margin-top: 0px;
+  cursor: pointer; /* Change the cursor to a pointing hand */
 }
 
 .menu_item {
@@ -200,7 +203,7 @@ body {
   padding-left: 10px;
   margin-top: 5px;
   border-radius: 0 7px 7px 0; /* creating a straight edge for showing the selected area */
-  background-color: rgba(163, 47, 128, 0.25);
+  background-color: rgba(163, 47, 128, 0.15);
   position: relative;
   overflow: hidden;
 }
