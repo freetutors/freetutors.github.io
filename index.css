@@ -6,7 +6,7 @@
    --secondary-color:#a32f80ff;
    --border-color: #474b4eff;
    --text-color:white;
-   --chat-button: #2c74b3ff;
+   --ask-question-button: #2c74b3ff;
 }
 /* Creates a standard for an object being centered */
 .center{
@@ -81,6 +81,19 @@ body {
  .search-bar:focus {
      outline: none;
  }
+
+.ask-question-button {
+  margin-left: calc(100vw - 345px);
+  height: 20px;
+  width: 124px;
+  background-color: var(--ask-question-button);
+  position: absolute;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
  .box {/*setting generic box details*/
    background-color: var(--primary-color);
    border-radius: 22px;
@@ -132,30 +145,89 @@ body {
      border: 1.5px solid var(--border-color);
  }
 
-   .menu{/*page menu*/
-       list-style-type: none;
-       position: absolute;
-       color: white;
-       margin-top: 0px;
-   }
-   .menu_item {
-       font-size: 19px;
-       list-style-type: none;
-       padding-right: 15px;
-       margin-left: -13px;
-       background-color:rgba(255, 255, 255, 0);
-       padding-top:3px;
-       padding-bottom:3px;
-       padding-left:4px;
-       margin-top: 5px;
-       border-radius: 0 7px 7px 0;/*creating a staight edge for showing the selected area*/
-   }
+.menu {
+  /* page menu */
+  list-style-type: none;
+  position: absolute;
+  color: white;
+  margin-top: 0px;
+}
 
-   .menu_item:hover {
-       opacity: 1.0;
-       background-color:rgba(255, 255, 255, 0.5);
-   }
+.menu_item {
+  font-size: 19px;
+  list-style-type: none;
+  padding-right: 15px;
+  margin-left: -13px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 10px;
+  margin-top: 5px;
+  border-radius: 0 7px 7px 0; /* creating a straight edge for showing the selected area */
+  background-color: transparent;
+  position: relative;
+  overflow: hidden;
+}
 
+.menu_item:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.menu_item:hover::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 5px;
+  background-color: white;
+}
+
+.menu {
+  /* page menu */
+  list-style-type: none;
+  position: absolute;
+  color: white;
+  margin-top: 0px;
+}
+
+.on-page {
+  font-size: 19px;
+  list-style-type: none;
+  padding-right: 15px;
+  margin-left: -13px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 10px;
+  margin-top: 5px;
+  border-radius: 0 7px 7px 0; /* creating a straight edge for showing the selected area */
+  background-color: rgba(163, 47, 128, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+.on-page::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 5px;
+  background-color: var(--secondary-color);
+}
+
+.on-page:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.on-page:hover::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 5px;
+  background-color: white;
+}
 
    .semicircle-button {
        position: absolute;
