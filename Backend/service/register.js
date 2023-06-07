@@ -1,12 +1,13 @@
-const AWS = require('aws-stk');
+const AWS = require('aws-sdk');
 AWS.config.update({
     region: 'us-west-1'
 })
 // getting region set-up and connection to AWS Lambda
 const dynamodb = new AWS.DynamoDB.DocumentClient();
-const userTable = 'freetutors-users' // connection to database and user table
+const userTable = 'freetutor-users' // connection to database and user table
+
 const util = require('../utils/util'); // every period shows how much higher you have to go on file levels. this has to periods because u have to go outside of the folder, one means that is in the same folder
-const bcrypt = require('bcrypt.js'); // this is for encrypting passwords in our database
+const bcrypt = require('bcryptjs'); // this is for encrypting passwords in our database
 
 async function register(userInfo) {
     const name = userInfo.name;
@@ -67,8 +68,8 @@ async function saveUser(user){ //saving new users to database
     return await dynamodb.put(params).promise().then(() => {
         return true;
     }, error =>{
-        console.error('There is an error saving user: ', error)}
-    )
+        console.error('There is an error saving user: ', error)
+    });
 }
 
 module.exports.register = register;

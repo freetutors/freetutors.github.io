@@ -1,13 +1,13 @@
-//setting login button to redirect
-document.querySelector(".login-button").
-addEventListener("click", () => {
-    window.location='login.html'
-}); 
-//setting signup button to redirect
-document.querySelector(".signup-button").
-addEventListener("click", () => {
-    window.location='signup.html'
-});
+// //setting login button to redirect
+// document.querySelector(".login-button").
+// addEventListener("click", () => {
+//     window.location='login.html'
+// }); 
+// //setting signup button to redirect
+// document.querySelector(".signup-button").
+// addEventListener("click", () => {
+//     window.location='signup.html'
+// });
 
 // serverside
 const healthPath = '/health';
@@ -20,8 +20,10 @@ const registerService = require('./service/register');
 const loginService = require('./service/login');
 const verifyService = require('./service/verify');
 const util = require('./utils/util');//this is for a common return function we can use from file to file
-// connecting to other codes, for giving each item a seperate function
-export const handler = async(event) => { 
+// connecting to other codes for giving each item a seperate function
+
+exports.handler = async(event) => { 
+    console.log(event.httpMethod , event.path)
     console.log('Request Event: ', event);
     let response;
     switch(true){ // Checking if it is a get or post method This is a giant if statement
@@ -31,16 +33,20 @@ export const handler = async(event) => {
           
         case event.httpMethod === 'POST' && event.path === registerPath:
             const registerBody = JSON.parse(event.body);
-            response = await registerService.register(registerBody); //register() defined in register.js
+            response = await registerService.register(registerBody); //register() defined in register.js all the other functions are done the same way in the service folder
             break;
             
         case event.httpMethod === 'POST' && event.path === loginPath:
-            response = util.buildResponse(200);
+            console.log("called login function")
+            const loginBody = JSON.parse(event.body);
+            response = await loginService.login(loginBody);
             break;  
             
-        case event.httpMethod === 'POST' && event.path === verifyPath:
-            response = util.buildResponse(200);
+        case event.httpMethod === 'POST' && event.path === verifyPath: //this checks if the client's token is valid
+            const verifyBody = JSON.parse(event.body);
+            response = verifyService.verify(verifyBody);
             break;
+        
         default:
             response = util.buildResponse(404, '404 Not Found')
     }
