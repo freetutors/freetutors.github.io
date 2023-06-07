@@ -28,7 +28,6 @@ function verifyToken(username, token) { //this is for checking the token
                 verified: false,
                 message: 'invalid user'
             }
-
         }
 
         return{

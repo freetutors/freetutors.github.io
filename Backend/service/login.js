@@ -53,5 +53,5 @@ async function getUser(username) { //getting user info to check if the user has 
         console.error('There is an error getting user: ', error)// in case of a error we'll know
     })
 }
-
+export function login();
 module.exports.login = login;
