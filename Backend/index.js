@@ -1,4 +1,3 @@
-
 // serverside
 const healthPath = '/health';
 const registerPath = '/register';

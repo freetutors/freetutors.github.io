@@ -14,6 +14,12 @@ addEventListener("click", () => { //pulling information on click
     // response = loginService.login(loginBody);
 
     console.log(user)
+    const loginRequest = new XMLHttpRequest();
+    request.open('POST', '/login', true)
+    console.log(opened)
+    request.setRequestHeader('Content-Type', 'application/json')
+
+    request.send(JSON.stringify(user));        
 
 
 });
