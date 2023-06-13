@@ -15,7 +15,6 @@
     align-items: center;
 }
 
-
 body {
    overflow: hidden;
    font-family: 'Lexend', sans-serif;
@@ -47,7 +46,6 @@ body {
    text-decoration: none;
    display: inline-block;
    font-size: 14px;
-   margin-right: 11px;
    cursor: pointer;
    border-radius: 6px;
  }

@@ -1,0 +1,53 @@
+/* this stuff will stay common from page to page */
+:root{ /*setting color variables incase we want to switch color scheme*/
+    --primary-color:#113265ff;
+    --background-color:#08162bff;
+    --header-color:#242424ff;
+    --text-box-bar-color: #424242ff;
+    --secondary-color:#a32f80ff;
+    --border-color: #474b4eff;
+    --text-color:white;
+    --ask-question-button: #2c74b3ff;
+ }
+ /* Creates a standard for an object being centered */
+ .center{
+     display: flex;
+     justify-content: center;
+     align-items: center;
+ }
+ 
+ body {
+    overflow: hidden;
+    font-family: 'Lexend', sans-serif;
+    background-color: var(--background-color);
+    margin: 0;
+    padding: 0;
+  }
+  #loginSignupArea{
+    height: 30.5px;
+    width: 170px;
+    margin-left: -10px; /* Add space between search bar and logo */
+    height:30.5px; /* Set height of search bar */
+    background-color: var(--primary-color); /* Set background color of search bar to gray */
+    border-radius: 6px;
+    color: white;
+    margin-right: 10px;
+  }
+  
+  .usernameOnProfileButton{
+    margin-left: 50px;
+    margin-top:-25px;
+    padding-bottom: 10px;
+    text-align: top;
+    color: var(--text-color);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap:none;
+  }
+  .profilePicHome{
+    margin-left: 10px;
+    width:25px;
+    height: 25px;
+    align-items: center;
+    border-radius: 6px;
+  }
