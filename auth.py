@@ -13,7 +13,7 @@ userToPwd = {}
 user = 'test_user_name'
 pwd = 'test_password'
 
-# store hashed pwd
+# store hashed user and pwd
 userToPwd[user] = sha1_hash(pwd)
 
 print(userToPwd)

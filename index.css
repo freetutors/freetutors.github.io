@@ -36,7 +36,6 @@ body {
   cursor: pointer; /* Change the cursor to a pointing hand */
 }
 
-
  .button {/*setting main button object*/
    font-family: 'Lexend', sans-serif;
    border: none;
@@ -127,10 +126,55 @@ body {
     }
 
    .text_box {/*question subclass of box*/
-     height: 133px;
+     height: 120px;
      margin-bottom: 15px;
      margin-left: 190px; /* Adjusted margin-left to position the text box 10px left of the important box */
-     margin-right: 10px; 
+     margin-right: 10px;
+     position: relative;
+    }
+
+    #text_box_pfp {
+      height: 50px;
+      margin-top: 15px;
+      margin-left: 15px;
+    }
+
+    #text_box_question_content {
+      position: absolute;
+      top: 15px;
+      left: 77px;
+      font-size: 20px;
+      color: white;
+    }
+
+    #asked_by_line {
+        position: absolute;
+        top: 47px;
+        left: 77px;
+        color: white;
+        font-size: 13px;
+    }
+
+    #answered_by_line {
+        color: white;
+        font-size: 14px;
+        margin-top: 13px;
+        margin-left: 25px;
+    }
+
+    #question_stats {
+        position: absolute;
+        color: white;
+        font-size: 17px;
+        right: 25px;
+        top: 15px;
+        text-align: right;
+    }
+
+    #question_stats br {
+        display: block;
+        margin: 10px 0;
+        content: " ";
     }
 
    .question_header {/*divider based on subject*/
@@ -139,7 +183,7 @@ body {
      padding-top: 4px;
      height: 25px;
      margin-top: 15px;
-     margin-left: 190px; /* Adjusted margin-left to position the text box 10px left of the important box */
+     margin-left: 190px;
      margin-right: 215px;
      background-color: var(--text-box-bar-color);
      border: 1.5px solid var(--border-color);
