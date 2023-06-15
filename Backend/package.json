@@ -3,6 +3,7 @@
     "author": "aarushp",
     "version": "1.0.0",
     "dependencies": {
+        "aws-amplify": "^5.2.7",
         "aws-sdk": "^2.1391.0",
         "bcrypt": "5.1.0",
         "bcryptjs": "^2.4.3",
