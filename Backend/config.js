@@ -1,4 +1,4 @@
-import Amplify from 'aws-amplify'
+const Amplify = require(aws-amplify);
 Amplify.configure({
     cognito: {
         userPoolId: 'us-west-1_p8Yc1jkno',
