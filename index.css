@@ -60,7 +60,7 @@ body {
      font-family: 'Lexend';
      flex-grow: 1; /* Allow search bar to grow and fill available space */
      margin-left: -10px; /* Add space between search bar and logo */
-     margin-right: 45px; /* Add space between search bar and login button */
+     margin-right: 37.5px; /* Add space between search bar and login button */
      height:30.5px; /* Set height of search bar */
      background-color: #363636ff; /* Set background color of search bar to gray */
      border-radius: 6px;
@@ -83,7 +83,7 @@ body {
  }
 
 .ask-question-button {
-  margin-left: calc(100vw - 345px);
+  margin-left: calc(100vw - 342.5px);
   height: 20px;
   width: 124px;
   background-color: var(--ask-question-button);
@@ -106,6 +106,37 @@ body {
      margin-left: calc(100% - 185px);
      background-color: var(--secondary-color);
    }
+
+   #important_box_nums {
+        font-size: 22px;
+        color: white;
+        position: relative;
+        text-align: center;
+        margin-top: 16px;
+   }
+
+  #important_box_text {
+        font-size: 12px;
+        color: white;
+        position: relative;
+        text-align: center;
+    }
+
+  #sign_up_as_tutor_button {
+    color: white;
+    font-family: Lexend;
+    background-color: black;
+    border: none;
+    height: 35px;
+    width: 140px;
+    border-radius: 7px;
+    position: absolute;
+    inset: 175px 0 0 0;
+    margin: auto;
+    cursor: pointer;
+  }
+
+
 
 .questions_list {/*scroll area with questions. It is invisible*/
        overflow-y: scroll;
@@ -323,3 +354,4 @@ body {
     margin-left: 40px;
   }
 }
+
