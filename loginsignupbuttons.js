@@ -1,6 +1,6 @@
 //This code will be used for changing the login and signup button area
 //to the profile area
-let loggedin = true //currently its hard coded but itll change with backend integration
+let loggedin = false //currently its hard coded but itll change with backend integration
 if (loggedin == true){ //if logged in it'll create a button that shows the username and goes to the profile
     document.getElementById("loginSignupArea").innerHTML +=
     `
