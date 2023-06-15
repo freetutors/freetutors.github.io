@@ -1,6 +1,6 @@
 
 // const loginService = require('./service/login'); // connection to 
-const Amplify = require('aws-amplify');
+// const Amplify = require('aws-amplify');
 Amplify.configure({
     Auth:{
         cognito: {
