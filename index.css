@@ -189,6 +189,11 @@ body {
       left: 77px;
       font-size: 20px;
       color: white;
+      cursor: pointer;
+    }
+
+    #text_box_question_content:hover {
+        text-decoration: underline;
     }
 
     #asked_by_line {
