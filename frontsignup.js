@@ -31,7 +31,7 @@ AWS.config.credentials.get(function() {
     });
   }
 
-  document.querySelector(".login-send"). // connecting to login button
+  document.querySelector(".signup-send"). // connecting to login button
   addEventListener("click", async() => { //pulling information on click
       const username = document.getElementById("username").value;
       const password = document.getElementById("password").value;
