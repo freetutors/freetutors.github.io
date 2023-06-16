@@ -15,7 +15,7 @@ AWS.config.credentials.get(function() {
 
   var cognito = new AWS.CognitoIdentityServiceProvider();
 
-  function signUpUser() {
+  function signUpUser(params) {
     var params = {
       ClientId: 'YOUR_CLIENT_ID', // Replace with your actual App Client ID
       Username: 'USERNAME', // Replace with the desired username
@@ -30,3 +30,19 @@ AWS.config.credentials.get(function() {
       }
     });
   }
+
+  document.querySelectordocument.querySelector(".login-send"). // connecting to login button
+  addEventListener("click", async() => { //pulling information on click
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+      const email = document.getElementById("email").value;
+      const name = document.getElementById("name").value;
+      const params = { //getting userinfo from 
+        ClientId: '70fja60algpc90okhqoru49592',
+        Username: username,
+        Password: password,
+        Email: email,
+        Name: name,
+      };
+      signUpUser(params);
+  })
