@@ -3,14 +3,14 @@ AWS.config.credentials = new AWS.CognitoIdentityCredentials({
   IdentityPoolId: 'us-west-1_p8Yc1jkno' // Replace with your actual Identity Pool ID
 });
 
-AWS.config.credentials.get(function() {
-  var cognitoParams = {
-    UserPoolId: 'us-west-1_p8Yc1jkno', // Replace with your actual User Pool ID
-    ClientId: '70fja60algpc90okhqoru49592' // Replace with your actual App Client ID
-  };
-  AWS.config.credentials = new AWS.CognitoIdentityCredentials(cognitoParams);
-  AWS.config.region = 'us-west-1'; // Replace with your actual region, e.g., 'us-west-2'
-});
+// AWS.config.credentials.get(function() {
+//   var cognitoParams = {
+//     UserPoolId: 'us-west-1_p8Yc1jkno', // Replace with your actual User Pool ID
+//     ClientId: '70fja60algpc90okhqoru49592' // Replace with your actual App Client ID
+//   };
+//   AWS.config.credentials = new AWS.CognitoIdentityCredentials(cognitoParams);
+//   AWS.config.region = 'us-west-1'; // Replace with your actual region, e.g., 'us-west-2'
+// });
 
   var cognito = new AWS.CognitoIdentityServiceProvider();
 
@@ -36,8 +36,18 @@ const username = document.getElementById("username").value;
     ClientId: '70fja60algpc90okhqoru49592',
     Username: username,
     Password: password,
-    Email: email,
-    Name: name,
+    // Email: email,
+    // Name: name,
+    UserAttributes: [
+      {
+        Name: 'email',
+        Value: email
+      },
+      {
+        Name: 'name',
+        Value: name
+      }
+    ]
     };
     console.log(params)
     signUpUser(params);
