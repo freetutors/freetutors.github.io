@@ -35,7 +35,7 @@ addEventListener("click", async() => { //pulling information on click
 
     // request.send(JSON.stringify(user));        
     try {
-        await Auth.confirmSignUp(username, password);
+        await Amplify.Auth.confirmSignUp(username, password);
         console.log("Confirmation successful");
         // Redirect to a different page or perform other actions
       } catch (error) {
