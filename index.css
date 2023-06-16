@@ -7,6 +7,8 @@
    --border-color: #474b4eff;
    --text-color:white;
    --ask-question-button: #2c74b3ff;
+   --question_list_width: 1000px;
+   --translate_len: -15px;
 }
 /* Creates a standard for an object being centered */
 .center{
@@ -110,8 +112,9 @@ body {
      height: 240px;
      width: 165px;
      margin-top: -32px;
-     margin-left: calc(100% - 185px);
+     left: calc(50% + var(--question_list_width)/2 + 35px);
      background-color: var(--secondary-color);
+     transform: translateX(calc(var(--translate_len) - 2px));
    }
 
    #important_box_nums {
@@ -149,8 +152,11 @@ body {
        overflow-y: scroll;
        overflow-x: hidden;
        max-height: calc(100vh - 215px);
-       margin-top: 15px;
        margin-right: 215px;
+       width: var(--question_list_width);
+       margin: auto;
+       margin-top: 15px;
+       transform: translateX(var(--translate_len));
     }
 
     .questions_list::-webkit-scrollbar {/*custom scroll bar width*/
@@ -167,7 +173,6 @@ body {
    .text_box {/*question subclass of box*/
      height: 120px;
      margin-bottom: 15px;
-     margin-left: 190px;
      margin-right: 10px;
      position: relative;
     }
@@ -215,16 +220,18 @@ body {
         margin-top: 10px;
     }
 
-   .question_header {/*divider based on subject*/
+   .question_header { /*divider based on subject*/
      color: white;
      padding-left: 7px;
      padding-top: 4px;
      height: 25px;
-     margin-top: 15px;
-     margin-left: 190px;
      margin-right: 215px;
      background-color: var(--text-box-bar-color);
      border: 1.5px solid var(--border-color);
+     width: calc(var(--question_list_width) - 10px);
+     margin: auto;
+     margin-top: 15px;
+     transform: translateX(var(--translate_len));
  }
 
 .menu {
@@ -232,8 +239,8 @@ body {
   list-style-type: none;
   position: absolute;
   color: white;
-  margin-top: 0px;
   cursor: pointer; /* Change the cursor to a pointing hand */
+  left: calc(50% - var(--question_list_width)/2 - 227.5px);
 }
 
 .menu_item {
@@ -270,7 +277,8 @@ body {
   list-style-type: none;
   position: absolute;
   color: white;
-  margin-top: 0px;
+  margin-top: -1px;
+  transform: translateX(calc(-1*var(--translate_len)));
 }
 
 .on-page {
@@ -320,45 +328,65 @@ body {
    }
 
    #semicircle-right {
-        margin-left: calc(100% - 225px);
+        left: calc(50% + var(--question_list_width)/2 - 15px);
+        transform: translateX(var(--translate_len));
    }
 
    #semicircle-left {
         -webkit-transform: scaleX(-1);
-        transform: scaleX(-1);
-        margin-left: 65px;
+        left: calc(50% - var(--question_list_width)/2 - 110px);
+        transform: scaleX(-1) translateX(calc(-1*var(--translate_len)));
    }
 
-@media only screen and (max-width: 1150px) {
+@media only screen and (max-width: 1400px) {
+
   .semicircle-button {
     display: none;
   }
 
-  .important_box {/*sub class of box*/
+  .important_box {
      display: none;
    }
 
-   .question_header {/*divider based on subject*/
-     margin-right: 40px;
+   .menu {
+     top: 43px;
+     left: -27px;
+   }
+
+   .question_header {
+        width: calc(100% - 235px);
+        margin-right: 20px;
  }
 
-  .questions_list {/*scroll area with questions. It is invisible*/
-       margin-right: 40px;
+  .questions_list {
+        width: calc(100% - 225px);
+        margin-right: 20px;
     }
 }
 
-@media only screen and (max-width: 1000px) {
+
+@media only screen and (max-width: 1200px) {
 
   .menu {
     display: none;
   }
 
- .question_header {/*divider based on subject*/
+ .question_header {
+     width: calc(100% - 60px);
      margin-left: 40px;
  }
 
-  .text_box {
+  .questions_list {
+    width: calc(100% - 50px);
     margin-left: 40px;
   }
 }
 
+
+@media only screen and (max-height: 750px) {
+
+  .semicircle-button {
+    display: none;
+  }
+
+}
