@@ -19,6 +19,7 @@ Amplify.configure({
 
 document.querySelector(".login-send"). // connecting to login button
 addEventListener("click", async() => { //pulling information on click
+    console.log("clocked");
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
     const user = { //getting userinfo from 
