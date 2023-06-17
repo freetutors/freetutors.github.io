@@ -40,29 +40,11 @@ const username = document.getElementById("username").value; //getting values
     const password = document.getElementById("password").value;
     const email = document.getElementById("email").value;
     const name = document.getElementById("name").value;
-    // const cognitoUser = new AmazonCognitoIdentity.CognitoUser({
-    //   Username: username,
-    //   Pool: cognitoUserPool
-    // });
-    // var secretHash = AmazonCognitoIdentity.CognitoIdentityServiceProvider.CognitoUser.prototype.calculateSecretHash(
-    //   clientId,
-    //   username,
-    //   clientSecret
-    // );
-
-    // var secretHash = CryptoJS.SHA256(username, clientId, clientSecret).toString(CryptoJS.enc.Base64);
-    // const secretHash = CryptoJS.HmacSHA256(clientId + username, clientSecret).toString(CryptoJS.enc.Base64);
-    // const secretHash = AWS.util.crypto.sha256(// hashing stuff
-    //   'AWS4-HMAC-SHA256',
-    //   clientSecret,
-    //   clientId + username,
-    //   'base64'
-    // );
     const params = { //organizing all of the data into one constant
     ClientId: clientId, 
     // var secretHash = AWS.util.crypto.sha256(clientId + username + clientSecret);
     // SecretHash: secretHash,
-    Username: username, //username and password are the only required ones by default the rest we'll add later
+    preffered_username: username, //username and password are the only required ones by default the rest we'll add later
     Password: password,
     // Email: email,
     // Name: name,
