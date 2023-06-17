@@ -36,7 +36,7 @@ const username = document.getElementById("username").value;
     const clientId = '70fja60algpc90okhqoru49592'
     const params = { //getting userinfo from 
     ClientId: '70fja60algpc90okhqoru49592',
-    SecretHash: AWS.util.crypto.hmac(
+    SecretHash: AWS.util.crypto.sha256(
       clientSecret,
       clientId + username,
       'base64',
