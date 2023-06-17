@@ -1,11 +1,11 @@
-const poolid ='us-west-1_p8Yc1jkno' //getting info from cognito
+const poolId ='us-west-1_p8Yc1jkno' //getting info from cognito
 const clientId = '70fja60algpc90okhqoru49592'
 const clientSecret = '10gdctfigpivprkpk74l1iqd00tdj3hku581c6i0h78qluf6r44s';
 const region = 'us-west-1'
 
 AWS.config.region = region; 
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-  IdentityPoolId: poolid 
+  IdentityPoolId: poolId 
 });
 
 // AWS.config.credentials.get(function() {
