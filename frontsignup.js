@@ -29,7 +29,10 @@ function signUpUser(params) { //function for signing up, this is already defined
     }
   });
 }
-
+const cognitoUserPool = new AmazonCognitoIdentity.CognitoUserPool({
+  UserPoolId: poolId,
+  ClientId: clientId
+});
 document.querySelector('.signup-send'). //finding signup button
 addEventListener("click", () => { //pulling and sending information on click
 console.log("clicked");  
