@@ -9,13 +9,13 @@ AWS.config.credentials = new AWS.CognitoIdentityCredentials({
   IdentityPoolId: poolId 
 });
 
-AWS.Amplify.configure({
-  Auth: {
-    region: region,
-    userPoolId: poolId,
-    userPoolWebClientId: clientId,
-  }
-});
+// AWS.Amplify.configure({
+//   Auth: {
+//     region: region,
+//     userPoolId: poolId,
+//     userPoolWebClientId: clientId,
+//   }
+// });
 // AWS.config.credentials.get(function() {
 //   var cognitoParams = {
 //     UserPoolId: 'us-west-1_p8Yc1jkno', // Replace with your actual User Pool ID
@@ -73,21 +73,21 @@ const username = document.getElementById("username").value; //getting values
     console.log(params)
     signUpUser(params); //calling signup function
 
-  try {
-    await Auth.signUp({
-      username,
-      password,
-      attributes: {
-        email,
-        name,
-        preferred_username: username // Assuming preferred-username is the login method
-      }
-    });
+  // try {
+  //   await Auth.signUp({
+  //     username,
+  //     password,
+  //     attributes: {
+  //       email,
+  //       name,
+  //       preferred_username: username // Assuming preferred-username is the login method
+  //     }
+  //   });
 
-    // Registration successful, navigate to a success page or perform any other actions
-    console.log("Registration successful");
-  } catch (error) {
-    // Registration failed, handle the error
-    console.error("Registration failed", error);
-  }
+  //   // Registration successful, navigate to a success page or perform any other actions
+  //   console.log("Registration successful");
+  // } catch (error) {
+  //   // Registration failed, handle the error
+  //   console.error("Registration failed", error);
+  // }
 });
