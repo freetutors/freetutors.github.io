@@ -47,7 +47,7 @@ const username = document.getElementById("username").value; //getting values
     const params = { //organizing all of the data into one constant
     ClientId: clientId, 
     // var secretHash = AWS.util.crypto.sha256(clientId + username + clientSecret);
-
+    SecretHash: secretHash,
     Username: username, //username and password are the only required ones by default the rest we'll add later
     Password: password,
     // Email: email,
@@ -61,10 +61,6 @@ const username = document.getElementById("username").value; //getting values
         Name: 'name',
         Value: name
       },
-      {
-        Name: 'secret_hash',
-        Value: secretHash
-      }
     ]
     };
     console.log(params)
