@@ -2,15 +2,14 @@ const poolId ='us-west-1_p8Yc1jkno' //getting info from cognito
 const clientId ='32971sl7929ifogd3f9nbot71q'
 const clientSecret = '10gdctfigpivprkpk74l1iqd00tdj3hku581c6i0h78qluf6r44s';
 const region = 'us-west-1'
-import Amplify from "aws-amplify";
-import {Auth} from 'aws-amplify';
+
 
 AWS.config.region = region; 
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
   IdentityPoolId: poolId 
 });
 
-Amplify.configure({
+amplify.configure({
   Auth: {
     region: region,
     userPoolId: poolId,
