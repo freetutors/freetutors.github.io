@@ -1,0 +1,195 @@
+:root{ /*setting color variables incase we want to switch color scheme*/
+   --primary-color:#113265ff;
+   --background-color:#08162bff;
+   --header-color:#242424ff;
+   --text-box-bar-color: #424242ff;
+   --secondary-color:#a32f80ff;
+   --border-color: #474b4eff;
+   --text-color:white;
+   --ask-question-button: #2c74b3ff;
+   --question_list_width: 1000px;
+   --translate_len: -15px;
+}
+/* Creates a standard for an object being centered */
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+body {
+   overflow: hidden;
+   font-family: 'Lexend', sans-serif;
+   background-color: var(--background-color);
+   margin: 0;
+   padding: 0;
+ }
+
+
+ #topbar {
+   background-color: var(--header-color);
+   width: 100%;
+   height: 43px;
+   display: flex; /* Use flexbox to position elements within #topbar */
+   align-items: center; /* Vertically center elements within #topbar */
+ }
+
+
+#logo {
+  height: 115%;
+  margin-top: -1px;
+  margin-left: 9px;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
+
+#logo:hover {
+    transform: scale(1.06);
+}
+
+ .button {/*setting main button object*/
+   font-family: 'Lexend', sans-serif;
+   border: none;
+   color: white;
+   padding: 6.5px 17px;
+   text-align: center;
+   text-decoration: none;
+   display: inline-block;
+   font-size: 14px;
+   cursor: pointer;
+   border-radius: 6px;
+ }
+
+ .login-button {/*sub-class of button*/
+   margin-right: 8px;
+   background-color: var(--primary-color);
+   transition: transform 0.3s ease-in-out;
+ }
+
+  .login-button:hover {
+    transform: scale(1.06);
+  }
+
+ .signup-button {
+    margin-right: 12px;
+    background-color: var(--secondary-color);
+    transition: transform 0.3s ease-in-out;
+ }
+
+ .signup-button:hover {
+    transform: scale(1.06);
+  }
+
+ /* Add styles for search bar */
+ .search-bar {
+     font-family: 'Lexend';
+     flex-grow: 1; /* Allow search bar to grow and fill available space */
+     margin-left: -10px; /* Add space between search bar and logo */
+     margin-right: 30px; /* Add space between search bar and login button */
+     height:30.5px; /* Set height of search bar */
+     background-color: #363636ff; /* Set background color of search bar to gray */
+     border-radius: 6px;
+     color: white;
+     padding-left: 13px;
+     padding-right: 140px;
+     border: 1.5px solid var(--border-color); /* Add white border around search bar */
+ }
+ .search-bar::placeholder {
+   font-family: 'Lexend'; /* Set font of placeholder text to Lexend */
+   color: white;
+ }
+ .search-bar::-webkit-search-cancel-button {
+   display: none;
+ }
+
+ /* Remove red border that appears when clicking on search bar */
+ .search-bar:focus {
+     outline: none;
+ }
+
+.ask-question-button {
+  margin-left: calc(100vw - 345px);
+  height: 20px;
+  width: 124px;
+  background-color: var(--ask-question-button);
+  position: absolute;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease-in-out;
+}
+
+.ask-question-button:hover {
+  transform: scale(1.06);
+}
+
+.our_team_text {
+    color: white;
+    font-size: 40px;
+    text-align: center;
+    margin-top: 40px;
+}
+
+
+details > summary {
+  font-size: 25px;
+  color: white;
+  padding: 4px;
+  border: none;
+  cursor: pointer;
+  display: block;
+  margin-top: 10px;
+}
+
+details > p {
+  padding: 4px;
+  margin: 0;
+  color: white;
+}
+
+
+summary::after {
+  margin-left: 1ch;
+  display: inline-block;
+  transition: 0.2s;
+  content: '\203A'; /* chevron */
+}
+
+details[open] summary::after {
+  transform: rotate(90deg);
+}
+
+.container{
+    width: 1000px;
+    height: auto;
+    background-color: var(--header-color);
+    opacity: 0.95;
+    margin: auto;
+    margin-top: 50px;
+    flex-direction: column;
+    border-radius: .5rem;
+    box-shadow: 0 1rem 2rem #000000;
+    padding: 20px;
+  }
+
+.sidenote {
+    color: white;
+    text-align: center;
+    margin-top: 40px;
+}
+
+hr.line {
+  border-top: 0.5px solid var(--secondary-color);
+  border-bottom: 0.5px solid var(--secondary-color);
+  border-right: 0.5px solid var(--secondary-color);
+  border-left: 0.5px solid var(--secondary-color);
+}
+
+@media only screen and (max-width: 1200px) {
+    .container {
+        width: calc(100% - 100px);
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+}
