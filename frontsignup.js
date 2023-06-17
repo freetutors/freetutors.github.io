@@ -44,7 +44,7 @@ const username = document.getElementById("username").value; //getting values
     ClientId: clientId, 
     // var secretHash = AWS.util.crypto.sha256(clientId + username + clientSecret);
     // SecretHash: secretHash,
-    preffered_username: username, //username and password are the only required ones by default the rest we'll add later
+    Username: username, //username and password are the only required ones by default the rest we'll add later
     Password: password,
     // Email: email,
     // Name: name,
@@ -52,6 +52,10 @@ const username = document.getElementById("username").value; //getting values
       {
         Name: 'email',
         Value: email
+      },
+      {
+        Name: 'preffered_username',
+        Value: username
       },
       {
         Name: 'name',
