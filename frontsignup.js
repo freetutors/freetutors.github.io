@@ -53,10 +53,10 @@ const username = document.getElementById("username").value; //getting values
         Name: 'email',
         Value: email
       },
-      {
-        Name: 'custom:preferred_username',
-        Value: username
-      },
+      // {
+      //   Name: 'custom:preferred_username',
+      //   Value: username
+      // },
       {
         Name: 'name',
         Value: name
