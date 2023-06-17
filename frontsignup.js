@@ -1,6 +1,11 @@
-AWS.config.region = 'us-west-1'; // Replace with your actual region, e.g., 'us-west-2'
+const poolid ='us-west-1_p8Yc1jkno' //getting info from cognito
+const clientId = '70fja60algpc90okhqoru49592'
+const clientSecret = '10gdctfigpivprkpk74l1iqd00tdj3hku581c6i0h78qluf6r44s';
+const region = 'us-west-1'
+
+AWS.config.region = region; 
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-  IdentityPoolId: 'us-west-1_p8Yc1jkno' // Replace with your actual Identity Pool ID
+  IdentityPoolId: poolid 
 });
 
 // AWS.config.credentials.get(function() {
@@ -12,41 +17,39 @@ AWS.config.credentials = new AWS.CognitoIdentityCredentials({
 //   AWS.config.region = 'us-west-1'; // Replace with your actual region, e.g., 'us-west-2'
 // });
 
-  var cognito = new AWS.CognitoIdentityServiceProvider();
+var cognito = new AWS.CognitoIdentityServiceProvider(); //connection to cognito identiy
 
-  function signUpUser(params) {
+function signUpUser(params) { //function for signing up, this is already defined
 
-    cognito.signUp(params, function(err, data) {
-      if (err) {
-        console.log(err, err.stack);
-      } else {
-        console.log(data);
-      }
-    });
-  }
+  cognito.signUp(params, function(err, data) {
+    if (err) {
+      console.log(err, err.stack);
+    } else {
+      console.log(data);
+    }
+  });
+}
 
-document.querySelector('.signup-send').
-addEventListener("click", () => { //pulling information on click
+document.querySelector('.signup-send'). //finding signup button
+addEventListener("click", () => { //pulling and sending information on click
 console.log("clicked");  
-const username = document.getElementById("username").value;
+const username = document.getElementById("username").value; //getting values
     const password = document.getElementById("password").value;
     const email = document.getElementById("email").value;
     const name = document.getElementById("name").value;
-    const clientSecret = '10gdctfigpivprkpk74l1iqd00tdj3hku581c6i0h78qluf6r44s';
-    const clientId = '70fja60algpc90okhqoru49592'
-    const params = { //getting userinfo from 
-    ClientId: '70fja60algpc90okhqoru49592',
-    SecretHash: AWS.util.crypto.sha256(
+    const params = { //organizing all of the data into one constant
+    ClientId: clientId, 
+    SecretHash: AWS.util.crypto.hmac( //getting the client secret and user data hashed out
       clientSecret,
       clientId + username,
       'base64',
-      'hex'
+      'base64'
     ),
-    Username: username,
+    Username: username, //username and password are the only required ones by default the rest we'll add later
     Password: password,
     // Email: email,
     // Name: name,
-    UserAttributes: [
+    UserAttributes: [ //these are the additional atributes we want
       {
         Name: 'email',
         Value: email
@@ -58,5 +61,5 @@ const username = document.getElementById("username").value;
     ]
     };
     console.log(params)
-    signUpUser(params);
+    signUpUser(params); //calling signup function
 })
