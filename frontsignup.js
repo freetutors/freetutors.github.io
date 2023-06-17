@@ -39,7 +39,7 @@ const username = document.getElementById("username").value; //getting values
     const name = document.getElementById("name").value;
     const params = { //organizing all of the data into one constant
     ClientId: clientId, 
-    SecretHash: AWS.util.crypto.hmac( //getting the client secret and user data hashed out
+    SecretHash: AWS.util.crypto.sha256( //getting the client secret and user data hashed out
       clientSecret,
       clientId + username,
       'base64',
