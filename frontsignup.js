@@ -64,7 +64,7 @@ console.log("clicked");
 //     };
 //     console.log(params)
 //     signUpUser(params); //calling signup function
-document.getElementById("registerForm").addEventListener("submit", async function(event) {
+document.querySelector("signup-send").addEventListener("submit", async function(event) {
   event.preventDefault(); // Prevent form submission
 
   const username = document.getElementById("username").value;
