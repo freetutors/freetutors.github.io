@@ -32,8 +32,15 @@ const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
     const email = document.getElementById("email").value;
     const name = document.getElementById("name").value;
+    const clientSecret = '10gdctfigpivprkpk74l1iqd00tdj3hku581c6i0h78qluf6r44s';
     const params = { //getting userinfo from 
     ClientId: '70fja60algpc90okhqoru49592',
+    SecretHash: AWS.util.crypto.hmac(
+      clientSecret,
+      clientId + username,
+      'base64',
+      'hex'
+    ),
     Username: username,
     Password: password,
     // Email: email,
