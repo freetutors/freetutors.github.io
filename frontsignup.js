@@ -9,7 +9,7 @@ AWS.config.credentials = new AWS.CognitoIdentityCredentials({
   IdentityPoolId: poolId 
 });
 
-AWS.amplify.configure({
+AWS.Amplify.configure({
   Auth: {
     region: region,
     userPoolId: poolId,
