@@ -1,5 +1,5 @@
 const poolId ='us-west-1_p8Yc1jkno' //getting info from cognito
-const clientId ='32971sl7929ifogd3f9nbot71q'
+const clientId ='19tml2007lmvdj4h6r96qa0c6k'
 const clientSecret = '10gdctfigpivprkpk74l1iqd00tdj3hku581c6i0h78qluf6r44s';
 const region = 'us-west-1'
 
@@ -69,9 +69,6 @@ const username = document.getElementById("username").value; //getting values
         Name: 'name',
         Value: name
       },
-    ],
-    
-    ConfirmedAttributes: [
       {
         Name: 'preferred_username',
         Value: preferredUsername
