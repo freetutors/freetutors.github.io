@@ -37,12 +37,14 @@ const username = document.getElementById("username").value; //getting values
     const password = document.getElementById("password").value;
     const email = document.getElementById("email").value;
     const name = document.getElementById("name").value;
-    const secretHash = AWS.util.crypto.hmac(// hashing stuff
-      'AWS4-HMAC-SHA256',
-      clientSecret,
-      clientId + username,
-      'hex'
-    );
+    var secretHash = CryptoJS.SHA256(clientId + username + clientSecret).toString(CryptoJS.enc.Hex);
+
+    // const secretHash = AWS.util.crypto.hmac(// hashing stuff
+    //   'AWS4-HMAC-SHA256',
+    //   clientSecret,
+    //   clientId + username,
+    //   'hex'
+    // );
     const params = { //organizing all of the data into one constant
     // ClientId: clientId, 
     // var secretHash = AWS.util.crypto.sha256(clientId + username + clientSecret);
