@@ -29,6 +29,12 @@ function signUpUser(params) { //function for signing up, this is already defined
     }
   });
 }
+function generateSecretHash(clientId, clientSecret, username) {
+  const hmac = crypto.createHmac('sha256', clientSecret);
+  hmac.update(clientId + username);
+  const digest = hmac.digest('base64');
+  return digest;
+}
 
 document.querySelector('.signup-send'). //finding signup button
 addEventListener("click", () => { //pulling and sending information on click
@@ -37,7 +43,8 @@ const username = document.getElementById("username").value; //getting values
     const password = document.getElementById("password").value;
     const email = document.getElementById("email").value;
     const name = document.getElementById("name").value;
-    var secretHash = CryptoJS.SHA256(username + clientId, clientSecret).toString(CryptoJS.enc.Base64);
+    // var secretHash = CryptoJS.SHA256(username, clientId, clientSecret).toString(CryptoJS.enc.Base64);
+    const secretHash = generateSecretHash(clientId, clientSecret, username)
     // const secretHash = AWS.util.crypto.sha256(// hashing stuff
     //   'AWS4-HMAC-SHA256',
     //   clientSecret,
