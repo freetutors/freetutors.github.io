@@ -38,7 +38,7 @@ const username = document.getElementById("username").value; //getting values
     const email = document.getElementById("email").value;
     const name = document.getElementById("name").value;
 
-    const secretHash = AWS.util.crypto.hmac(// hashing stuff
+    const secretHash = AWS.util.crypto.sha256(// hashing stuff
       'AWS4-HMAC-SHA256',
       clientSecret,
       clientId + username,
