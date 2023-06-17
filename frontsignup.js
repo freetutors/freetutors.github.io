@@ -30,6 +30,7 @@ var cognito = new AWS.CognitoIdentityServiceProvider(); //connection to cognito 
 function signUpUser(params) { //function for signing up, this is already defined
 
   cognito.signUp(params, function(err, data) {
+    
     if (err) {
       console.log(err, err.stack);
     } else {
@@ -68,8 +69,15 @@ const username = document.getElementById("username").value; //getting values
         Name: 'name',
         Value: name
       },
+    ],
+    
+    ConfirmedAttributes: [
+      {
+        Name: 'preferred_username',
+        Value: preferredUsername
+      },
     ]
-    };
+  }
     console.log(params)
     signUpUser(params); //calling signup function
 
