@@ -42,7 +42,10 @@ const username = document.getElementById("username").value; //getting values
       username,
       clientSecret
     );
-    
+    const cognitoUser = new AmazonCognitoIdentity.CognitoUser({
+      Username: username,
+      Pool: cognitoUserPool
+    });
     // var secretHash = CryptoJS.SHA256(username, clientId, clientSecret).toString(CryptoJS.enc.Base64);
     // const secretHash = CryptoJS.HmacSHA256(clientId + username, clientSecret).toString(CryptoJS.enc.Base64);
     // const secretHash = AWS.util.crypto.sha256(// hashing stuff
