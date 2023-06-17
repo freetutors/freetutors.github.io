@@ -34,7 +34,7 @@ const cognitoUserPool = new AmazonCognitoIdentity.CognitoUserPool({
   ClientId: clientId
 });
 document.querySelector('.signup-send'). //finding signup button
-addEventListener("click", () => { //pulling and sending information on click
+addEventListener("click", async () => { //pulling and sending information on click
 console.log("clicked");  
 // const username = document.getElementById("username").value; //getting values
 //     const password = document.getElementById("password").value;
@@ -64,8 +64,7 @@ console.log("clicked");
 //     };
 //     console.log(params)
 //     signUpUser(params); //calling signup function
-document.querySelector("signup-send").addEventListener("submit", async function(event) {
-  event.preventDefault(); // Prevent form submission
+
 
   const username = document.getElementById("username").value;
   const email = document.getElementById("email").value;
@@ -90,4 +89,3 @@ document.querySelector("signup-send").addEventListener("submit", async function(
     console.error("Registration failed", error);
   }
 });
-})
