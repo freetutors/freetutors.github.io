@@ -1,5 +1,5 @@
 const poolId ='us-west-1_p8Yc1jkno' //getting info from cognito
-const clientId = '70fja60algpc90okhqoru49592'
+const clientId ='32971sl7929ifogd3f9nbot71q'
 const clientSecret = '10gdctfigpivprkpk74l1iqd00tdj3hku581c6i0h78qluf6r44s';
 const region = 'us-west-1'
 
@@ -40,15 +40,15 @@ const username = document.getElementById("username").value; //getting values
     const password = document.getElementById("password").value;
     const email = document.getElementById("email").value;
     const name = document.getElementById("name").value;
-    const CognitoUser = new AmazonCognitoIdentity.CognitoUser({
-      Username: username,
-      Pool: cognitoUserPool
-    });
-    var secretHash = AmazonCognitoIdentity.CognitoIdentityServiceProvider.CognitoUser.prototype.calculateSecretHash(
-      clientId,
-      username,
-      clientSecret
-    );
+    // const cognitoUser = new AmazonCognitoIdentity.CognitoUser({
+    //   Username: username,
+    //   Pool: cognitoUserPool
+    // });
+    // var secretHash = AmazonCognitoIdentity.CognitoIdentityServiceProvider.CognitoUser.prototype.calculateSecretHash(
+    //   clientId,
+    //   username,
+    //   clientSecret
+    // );
 
     // var secretHash = CryptoJS.SHA256(username, clientId, clientSecret).toString(CryptoJS.enc.Base64);
     // const secretHash = CryptoJS.HmacSHA256(clientId + username, clientSecret).toString(CryptoJS.enc.Base64);
@@ -61,7 +61,7 @@ const username = document.getElementById("username").value; //getting values
     const params = { //organizing all of the data into one constant
     ClientId: clientId, 
     // var secretHash = AWS.util.crypto.sha256(clientId + username + clientSecret);
-    SecretHash: secretHash,
+    // SecretHash: secretHash,
     Username: username, //username and password are the only required ones by default the rest we'll add later
     Password: password,
     // Email: email,
