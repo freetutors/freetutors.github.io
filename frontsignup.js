@@ -37,14 +37,16 @@ const username = document.getElementById("username").value; //getting values
     const password = document.getElementById("password").value;
     const email = document.getElementById("email").value;
     const name = document.getElementById("name").value;
-    const params = { //organizing all of the data into one constant
-    ClientId: clientId, 
-    SecretHash: AWS.util.crypto.sha256( //getting the client secret and user data hashed out
+    const secretHash = AWS.util.crypto.hmac(// hashing stuff
+      'AWS4-HMAC-SHA256',
       clientSecret,
       clientId + username,
-      'base64',
-      'base64'
-    ),
+      'hex'
+    );
+    const params = { //organizing all of the data into one constant
+    // ClientId: clientId, 
+    // var secretHash = AWS.util.crypto.sha256(clientId + username + clientSecret);
+
     Username: username, //username and password are the only required ones by default the rest we'll add later
     Password: password,
     // Email: email,
@@ -57,6 +59,10 @@ const username = document.getElementById("username").value; //getting values
       {
         Name: 'name',
         Value: name
+      },
+      {
+        Name: 'secret_hash',
+        Value: secretHash
       }
     ]
     };
