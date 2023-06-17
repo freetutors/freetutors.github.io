@@ -133,9 +133,9 @@ body {
 
 
 details > summary {
-  font-size: 25px;
+  font-size: 23px;
   color: white;
-  padding: 4px;
+  padding: 9px;
   border: none;
   cursor: pointer;
   display: block;
