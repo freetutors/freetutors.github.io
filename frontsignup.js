@@ -9,7 +9,7 @@ AWS.config.credentials = new AWS.CognitoIdentityCredentials({
   IdentityPoolId: poolId 
 });
 
-amplify.configure({
+Amplify.configure({
   Auth: {
     region: region,
     userPoolId: poolId,
@@ -44,40 +44,34 @@ const cognitoUserPool = new AmazonCognitoIdentity.CognitoUserPool({
 document.querySelector('.signup-send'). //finding signup button
 addEventListener("click", async () => { //pulling and sending information on click
 console.log("clicked");  
-// const username = document.getElementById("username").value; //getting values
-//     const password = document.getElementById("password").value;
-//     const email = document.getElementById("email").value;
-//     const name = document.getElementById("name").value;
-//     const preferredUsername = 'desired_preferred_username';
-//     const params = { //organizing all of the data into one constant
-//     ClientId: clientId, 
-//     // var secretHash = AWS.util.crypto.sha256(clientId + username + clientSecret);
-//     // SecretHash: secretHash,
-//     Username: username, //username and password are the only required ones by default the rest we'll add later
-//     Password: password,
-//     UserAttributes: [ //these are the additional atributes we want
-//       {
-//         Name: 'email',
-//         Value: email
-//       },
-//       {
-//         Name: 'preferred_username',
-//         Value: preferredUsername
-//       },
-//       {
-//         Name: 'name',
-//         Value: name
-//       },
-//     ]
-//     };
-//     console.log(params)
-//     signUpUser(params); //calling signup function
-
-
-  const username = document.getElementById("username").value;
-  const email = document.getElementById("email").value;
-  const name = document.getElementById("name").value;
-  const password = document.getElementById("password").value;
+const username = document.getElementById("username").value; //getting values
+    const password = document.getElementById("password").value;
+    const email = document.getElementById("email").value;
+    const name = document.getElementById("name").value;
+    const preferredUsername = 'desired_preferred_username';
+    const params = { //organizing all of the data into one constant
+    ClientId: clientId, 
+    // var secretHash = AWS.util.crypto.sha256(clientId + username + clientSecret);
+    // SecretHash: secretHash,
+    Username: username, //username and password are the only required ones by default the rest we'll add later
+    Password: password,
+    UserAttributes: [ //these are the additional atributes we want
+      {
+        Name: 'email',
+        Value: email
+      },
+      {
+        Name: 'preferred_username',
+        Value: preferredUsername
+      },
+      {
+        Name: 'name',
+        Value: name
+      },
+    ]
+    };
+    console.log(params)
+    signUpUser(params); //calling signup function
 
   try {
     await Auth.signUp({
