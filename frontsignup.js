@@ -1,13 +1,21 @@
-const poolid ='us-west-1_p8Yc1jkno' //getting info from cognito
-const clientId = '70fja60algpc90okhqoru49592'
+const poolId ='us-west-1_p8Yc1jkno' //getting info from cognito
+const clientId ='19tml2007lmvdj4h6r96qa0c6k'
 const clientSecret = '10gdctfigpivprkpk74l1iqd00tdj3hku581c6i0h78qluf6r44s';
 const region = 'us-west-1'
 
+
 AWS.config.region = region; 
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-  IdentityPoolId: poolid 
+  IdentityPoolId: poolId 
 });
 
+// AWS.Amplify.configure({
+//   Auth: {
+//     region: region,
+//     userPoolId: poolId,
+//     userPoolWebClientId: clientId,
+//   }
+// });
 // AWS.config.credentials.get(function() {
 //   var cognitoParams = {
 //     UserPoolId: 'us-west-1_p8Yc1jkno', // Replace with your actual User Pool ID
@@ -22,6 +30,7 @@ var cognito = new AWS.CognitoIdentityServiceProvider(); //connection to cognito 
 function signUpUser(params) { //function for signing up, this is already defined
 
   cognito.signUp(params, function(err, data) {
+    
     if (err) {
       console.log(err, err.stack);
     } else {
@@ -29,43 +38,61 @@ function signUpUser(params) { //function for signing up, this is already defined
     }
   });
 }
-
+const cognitoUserPool = new AmazonCognitoIdentity.CognitoUserPool({
+  UserPoolId: poolId,
+  ClientId: clientId
+});
 document.querySelector('.signup-send'). //finding signup button
-addEventListener("click", () => { //pulling and sending information on click
+addEventListener("click", async () => { //pulling and sending information on click
 console.log("clicked");  
 const username = document.getElementById("username").value; //getting values
     const password = document.getElementById("password").value;
     const email = document.getElementById("email").value;
     const name = document.getElementById("name").value;
-    const secretHash = AWS.util.crypto.hmac(// hashing stuff
-      'AWS4-HMAC-SHA256',
-      clientSecret,
-      clientId + username,
-      'hex'
-    );
+    const preferredUsername = 'desired_preferred_username';
     const params = { //organizing all of the data into one constant
-    // ClientId: clientId, 
+    ClientId: clientId, 
     // var secretHash = AWS.util.crypto.sha256(clientId + username + clientSecret);
-
+    // SecretHash: secretHash,
     Username: username, //username and password are the only required ones by default the rest we'll add later
     Password: password,
-    // Email: email,
-    // Name: name,
     UserAttributes: [ //these are the additional atributes we want
       {
         Name: 'email',
         Value: email
       },
       {
+        Name: 'preferred_username',
+        Value: preferredUsername
+      },
+      {
         Name: 'name',
         Value: name
       },
       {
-        Name: 'secret_hash',
-        Value: secretHash
-      }
+        Name: 'preferred_username',
+        Value: preferredUsername
+      },
     ]
-    };
+  }
     console.log(params)
     signUpUser(params); //calling signup function
-})
+
+  // try {
+  //   await Auth.signUp({
+  //     username,
+  //     password,
+  //     attributes: {
+  //       email,
+  //       name,
+  //       preferred_username: username // Assuming preferred-username is the login method
+  //     }
+  //   });
+
+  //   // Registration successful, navigate to a success page or perform any other actions
+  //   console.log("Registration successful");
+  // } catch (error) {
+  //   // Registration failed, handle the error
+  //   console.error("Registration failed", error);
+  // }
+});
