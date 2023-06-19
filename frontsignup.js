@@ -19,10 +19,10 @@ function signUpUser(params) { //function for signing up, this is already defined
     
     if (err) {
       console.log(err, err.stack);
-      if (e instanceof UsernameExistsException) { //these are checks cognito already does, we will later add the duplicate email check because for some reason it isn't included
+      if (err.code === 'UsernameExistsException') { //these are checks cognito already does, we will later add the duplicate email check because for some reason it isn't included
         alert("A user with this username already exists.")
       }
-      else if(e instanceof InvalidPasswordException) {
+      else if(err.code === 'InvalidPasswordException') {
         alert("Password mut be at least 8 characters with at least one capital letter, one lowercase letter, and one special character")
       }
     } else {
