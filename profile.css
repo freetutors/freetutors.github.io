@@ -149,11 +149,14 @@ body {
 }
 
 .pfp_user {
+  position: absolute;
+  z-index: 6;
   width: 100%;
   height: 400px;
   display: flex;
   justify-content: center;
   text-align: center;
+  transform: translateX(110px);
 }
 
 #pfp_txt {
@@ -183,7 +186,7 @@ body {
   height: 100px;
   width: 100px;
   border-radius: 50%;
-  transform: scale(2.66) translateX(-40px);
+  transform: scale(2.66) translateX(-65px);
   z-index: 9;
   background-color: var(--secondary-color);
   margin-top: 130px;
@@ -212,5 +215,224 @@ hr.pfp_line {
     color: white;
     font-size: 80px;
     margin-top: 115px;
-    transform: translateX(10px);
+    transform: translateX(-47.5px);
 }
+
+
+/* for your questions part*/
+
+ .box {/*setting generic box details*/
+   background-color: var(--primary-color);
+   border-radius: 22px;
+ }
+
+#question_header {
+     color: white;
+     padding-left: 7px;
+     padding-top: 4px;
+     height: 25px;
+     background-color: var(--text-box-bar-color);
+     border: 1.5px solid var(--border-color);
+     width: 860px;
+     margin-top: 250px;
+     float: right;
+     margin-right: 322px;
+ }
+
+.questions_list {/*scroll area with questions. It is invisible*/
+       overflow-y: scroll;
+       overflow-x: hidden;
+       max-height: calc(100vh - 400px);
+       margin-right: 215px;
+       width: 850px;
+       margin: auto;
+       margin-top: 15px;
+       margin-right: 308px;
+       float: left;
+       margin-left: calc(50% - 320px);
+    }
+
+    .questions_list::-webkit-scrollbar {/*custom scroll bar width*/
+       width: 13px; /* Adjust the width as needed */
+    }
+
+    .questions_list::-webkit-scrollbar-thumb {/*custom scroll bar thumb(the scrolling thing)*/
+       width: 12px; /* Set the width of the thumb to 12px */
+       min-width: 12px; /* Ensure the minimum width of the thumb */
+       background-color: var(--text-box-bar-color);
+       border-radius: 2px;
+    }
+
+   .text_box {/*question subclass of box*/
+     height: 120px;
+     margin-bottom: 15px;
+     margin-right: 10px;
+     position: relative;
+    }
+
+    #text_box_pfp {
+      height: 50px;
+      margin-top: 15px;
+      margin-left: 15px;
+      cursor: pointer;
+    }
+
+    #text_box_question_content {
+      position: absolute;
+      top: 15px;
+      left: 77px;
+      font-size: 20px;
+      color: white;
+      cursor: pointer;
+    }
+
+    #text_box_question_content:hover {
+        text-decoration: underline;
+    }
+
+    #asked_by_line {
+        position: absolute;
+        top: 47px;
+        left: 77px;
+        color: white;
+        font-size: 13px;
+    }
+
+    #answered_by_line {
+        color: white;
+        font-size: 14px;
+        margin-top: 13px;
+        margin-left: 25px;
+    }
+
+    .question_stats {
+        position: absolute;
+        color: white;
+        font-size: 17px;
+        right: 25px;
+        top: 5px;
+        text-align: right;
+    }
+
+    #question_stats_items {
+        position: relative;
+        margin-top: 10px;
+    }
+
+   #question_header { /*divider based on subject*/
+     color: white;
+     padding-left: 7px;
+     padding-top: 4px;
+     width: 840px;
+     height: 25px;
+     background-color: var(--text-box-bar-color);
+     border: 1.5px solid var(--border-color);
+     margin-top: 262px;
+     float: left;
+     margin-left: calc(50% - 320px);
+     margin-right: 200px;
+ }
+
+ .user_stats {
+   color: white;
+ }
+
+
+/* stuff for information section*/
+
+.edit_icon {
+    position: absolute;
+    transform: scale(0.03);
+    cursor: pointer;
+    left: -75px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.edit_icon:hover {
+  transform: scale(0.037);
+}
+
+/* Sign-up section */
+.signup-container_profile{
+    position: absolute;
+    top: 383px;
+    left: calc(50% - 569px);
+    width: 170px;
+    height: 267px;
+    background-color: var(--header-color);
+    opacity: 0.95;
+    border-radius: .5rem;
+    box-shadow: 0 1rem 3rem #000000;
+    padding: 20px;
+  }
+
+.your_info_txt {
+    color: white;
+    font-size: 18px;
+    margin-top: 0px;
+    text-align: center;
+}
+
+.info-label {
+    color: white;
+    font-size: 13px;
+    margin-top: 10px;
+}
+
+.info_input_group {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid var(--secondary-color);
+    color: white;
+    margin-left: -2.5px;
+    transform: translateY(-12px);
+}
+
+.info_input_group:focus {
+    outline: none;
+}
+
+.banner {
+    position: absolute;
+    height: 230px;
+    width: 100%;
+}
+
+#arrow-right {
+  position: absolute;
+  top: 310px;
+  left: calc(50% + 512px);
+  border-top: 11px solid transparent;
+  border-bottom: 11px solid transparent;
+  border-left: 11px solid white;
+  transition: transform 0.3s ease-in-out;
+  z-index: 100;
+  cursor: pointer;
+}
+
+#arrow-right:hover {
+  transform: scale(1.1);
+}
+
+#arrow-left {
+   position: absolute;
+   top: 310px;
+   left: calc(50% + 491px);
+   border-top: 11px solid transparent;
+   border-bottom: 11px solid transparent;
+   border-right: 11px solid white;
+   transition: transform 0.3s ease-in-out;
+   z-index: 100;
+   cursor: pointer;
+}
+
+#arrow-left:hover {
+  transform: scale(1.08);
+}
+
+
+
+
+
+
+
