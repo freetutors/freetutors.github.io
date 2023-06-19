@@ -8,6 +8,7 @@ AWS.config.credentials = new AWS.CognitoIdentityCredentials({ //COnnecting to po
 });
 
 var cognito = new AWS.CognitoIdentityServiceProvider(); //connection to cognito identiy
+AWS_SDK_LOAD_CONFIG=1
 const cognitoUserPool = new AmazonCognitoIdentity.CognitoUserPool({
   UserPoolId: poolId,
   ClientId: clientId
