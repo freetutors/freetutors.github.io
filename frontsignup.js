@@ -44,6 +44,7 @@ function checkExistingUser(email) {
         reject(err);
       } else {
         resolve(data.Users.length > 0);
+        console.log('false')
       }
     });
   });
