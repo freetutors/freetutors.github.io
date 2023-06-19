@@ -1,31 +1,17 @@
 const poolId ='us-west-1_p8Yc1jkno' //getting info from cognito
 const clientId ='19tml2007lmvdj4h6r96qa0c6k'
-const clientSecret = '10gdctfigpivprkpk74l1iqd00tdj3hku581c6i0h78qluf6r44s';
 const region = 'us-west-1'
 
-
-AWS.config.region = region; 
-AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+AWS.config.region = region; //telling what region to search
+AWS.config.credentials = new AWS.CognitoIdentityCredentials({ //COnnecting to pool
   IdentityPoolId: poolId 
 });
 
-// AWS.Amplify.configure({
-//   Auth: {
-//     region: region,
-//     userPoolId: poolId,
-//     userPoolWebClientId: clientId,
-//   }
-// });
-// AWS.config.credentials.get(function() {
-//   var cognitoParams = {
-//     UserPoolId: 'us-west-1_p8Yc1jkno', // Replace with your actual User Pool ID
-//     ClientId: '70fja60algpc90okhqoru49592' // Replace with your actual App Client ID
-//   };
-//   AWS.config.credentials = new AWS.CognitoIdentityCredentials(cognitoParams);
-//   AWS.config.region = 'us-west-1'; // Replace with your actual region, e.g., 'us-west-2'
-// });
-
 var cognito = new AWS.CognitoIdentityServiceProvider(); //connection to cognito identiy
+const cognitoUserPool = new AmazonCognitoIdentity.CognitoUserPool({
+  UserPoolId: poolId,
+  ClientId: clientId
+}); //connecting to cognito pool
 
 function signUpUser(params) { //function for signing up, this is already defined
 
@@ -33,15 +19,37 @@ function signUpUser(params) { //function for signing up, this is already defined
     
     if (err) {
       console.log(err, err.stack);
+      if (e instanceof UsernameExistsException) { //these are checks cognito already does, we will later add the duplicate email check because for some reason it isn't included
+        alert("A user with this username already exists.")
+      }
+      else if(e instanceof InvalidPasswordException) {
+        alert("Password mut be at least 8 characters with at least one capital letter, one lowercase letter, and one special character")
+      }
     } else {
       console.log(data);
     }
   });
 }
-const cognitoUserPool = new AmazonCognitoIdentity.CognitoUserPool({
-  UserPoolId: poolId,
-  ClientId: clientId
-});
+
+//checks if user with the same email exists
+function checkExistingUser(email) {
+  const params = {
+    UserPoolId: poolId,
+    Filter: `email = "${email}"`, //checking for duplicate email
+  };
+
+  return new Promise((resolve, reject) => { //this is some code I found online but I believe this is what rejects the new entry 
+    cognito.listUsers(params, (err, data) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(data.Users.length > 0);
+      }
+    });
+  });
+}
+
+
 document.querySelector('.signup-send'). //finding signup button
 addEventListener("click", async () => { //pulling and sending information on click
 console.log("clicked");  
@@ -52,8 +60,6 @@ const username = document.getElementById("username").value; //getting values
     const preferredUsername = 'desired_preferred_username';
     const params = { //organizing all of the data into one constant
     ClientId: clientId, 
-    // var secretHash = AWS.util.crypto.sha256(clientId + username + clientSecret);
-    // SecretHash: secretHash,
     Username: username, //username and password are the only required ones by default the rest we'll add later
     Password: password,
     UserAttributes: [ //these are the additional atributes we want
@@ -69,30 +75,19 @@ const username = document.getElementById("username").value; //getting values
         Name: 'name',
         Value: name
       },
-      {
-        Name: 'preferred_username',
-        Value: preferredUsername
-      },
     ]
   }
     console.log(params)
     signUpUser(params); //calling signup function
-
-  // try {
-  //   await Auth.signUp({
-  //     username,
-  //     password,
-  //     attributes: {
-  //       email,
-  //       name,
-  //       preferred_username: username // Assuming preferred-username is the login method
-  //     }
-  //   });
-
-  //   // Registration successful, navigate to a success page or perform any other actions
-  //   console.log("Registration successful");
-  // } catch (error) {
-  //   // Registration failed, handle the error
-  //   console.error("Registration failed", error);
-  // }
+  try {
+      const userExists = await checkExistingUser(email);
+  
+      if (userExists) {
+        alert('An account with the same email already exists.');
+      } else {
+        signUpUser(params);
+      }
+    } catch (error) {
+      console.log('Error:', error);
+    }
 });
