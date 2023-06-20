@@ -43,7 +43,11 @@ async function checkExistingUser(email) {
     Filter: `email = "${email}"`,
     UserPoolId: poolId
  }
-
+ const testparams = {
+  UserPoolId: poolId
+ }
+ const test = await cognito.listUsers(params);
+ console.log(test)
  const users = await cognito.listUsers(params).promise();
  console.log(users);
 
