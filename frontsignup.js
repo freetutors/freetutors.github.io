@@ -33,7 +33,7 @@ function signUpUser(params) { //function for signing up, this is already defined
 }
 
 //checks if user with the same email exists
-function checkExistingUser(email) {
+async function checkExistingUser(email) {
   const params = {
     "AttributesToGet": [ "email" ],
     "Filter": "email = \"${email}\"",
@@ -43,17 +43,10 @@ function checkExistingUser(email) {
   //   UserPoolId: poolId,
   //   Filter: `email = "${email}"`, //checking for duplicate email
   // };
+ const users = await cognitoUserPool.listUsers(params);
 
-  return new Promise((resolve, reject) => { //this is some code I found online but I believe this is what rejects the new entry 
-    cognito.listUsers(params, (err, data) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(data.Users.length > 0);
-        console.log('false')
-      }
-    });
-  });
+ const userExists = users.Users.length > 0 //boolean function that checks if there are more than 0 usres with the same email adress
+return userExists
 }
 
 
