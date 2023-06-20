@@ -1,13 +1,4 @@
-:root{ /*setting color variables incase we want to switch color scheme*/
-    --primary-color:#113265ff;
-    --background-color:#08162bff;
-    --header-color:#242424ff;
-    --text-box-bar-color: #424242ff;
-    --secondary-color:#a32f80ff;
-    --border-color: #474b4eff;
-    --text-color:white;
-    --chat-button: #2c74b3ff;
- }
+
  /* Creates a standard for an object being centered */
  .center{
      display: flex;
@@ -102,6 +93,23 @@
     box-shadow: 0 1rem 3rem #000000;
     padding: 20px;
   }
+  .verification-container{
+    width: 500px;
+    height: auto;
+    background-color: var(--header-color);
+    opacity: 0.95;
+    margin: auto;
+    margin-top: 350px;
+    flex-direction: column;
+    border-radius: .5rem;
+    box-shadow: 0 1rem 3rem #000000;
+    padding: 20px;
+  }
+  .description{
+    color: var(--text-color);
+    margin-top:50px;
+    font-size: 15px;
+  }
 
   .input-group{
     width: 90%;
@@ -145,9 +153,6 @@
     top: 1rem;
     left: 1rem;
   }
-
-
-
 
 .input-group-new {
   width: 90%;
@@ -203,4 +208,10 @@
 .g-signin2 {
   width: 100px;
   height: 50px;
+}
+
+.vCode{
+  height: 10px;
+  margin-bottom: 1rem;
+  padding-top: -1rem;
 }

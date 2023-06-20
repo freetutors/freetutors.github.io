@@ -38,26 +38,20 @@ function signUpUser(params) { //function for signing up, this is already defined
 }
 
 // checks if user with the same email exists
-async function checkExistingUser(email) {
-  const params = {
+async function checkExistingUser(email) { //checking for a duplicate email because thats the only one config doesnt autocheck
+  const params = { //This is telling what the code should look for(used later)
     AttributesToGet: [ "email" ],
-    Filter: `email = "${email}"`,
+    Filter: `email = "${email}"`, //Pulling users from database based on email adress
     UserPoolId: poolId
  }
- const testparams = {
-  UserPoolId: poolId
- }
- const test = await cognito.listUsers(params);
- console.log(test)
- const users = await cognito.listUsers(params).promise();
- console.log(users);
 
- if (users && users.Users.length > 0) {
-  const userExists = users.Users.length > 0;
+ const users = await cognito.listUsers(params).promise(); //this calls the above params and looks for accounts with the same email as the provided one
 
-  return userExists;
+ if (users && users.Users.length > 0) { //Checks if there are more the zero of said accounts
+  const userExists = users.Users.length > 0; //boolean
+  return userExists; //returns true(meaning dont make a new account)
 } else {
-  return false;
+  return false; //allows for new account
 }};
 
 document.querySelector('.signup-send'). //finding signup button
@@ -75,7 +69,7 @@ const username = document.getElementById("username").value; //getting values
     UserAttributes: [ //these are the additional atributes we want
       {
         Name: 'email',
-        Value: email.trim()
+        Value: email.trim() //trimming for easy duplicate detection
       },
       {
         Name: 'preferred_username',
@@ -88,14 +82,14 @@ const username = document.getElementById("username").value; //getting values
     ]
   }
       try {
-      const userExists = await checkExistingUser(email);
+      const userExists = await checkExistingUser(email); //this is what checks the email address
   
       if (userExists) {
-        alert('An account with the same email already exists.');
+        alert('An account with the same email already exists.'); //will tell user if the funtion returns true
       } else {
-        signUpUser(params);
+        signUpUser(params); //Signing up users
       }
     } catch (error) {
-      console.log('Error:', error);
+      console.log('Error:', error); //giving us error details if something happens
     }
 });

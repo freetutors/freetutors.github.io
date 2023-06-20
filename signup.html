@@ -7,17 +7,8 @@
         <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1398.0.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/amazon-cognito-identity-js/dist/amazon-cognito-identity.min.js"></script>
-</head>
-
     </head>
     <body>
-        <!-- <div id="topbar">
-          <img id="logo" src="Logo.svg" alt="Logo" onclick="location.href='index.html'">
-           Add search bar 
-          <input type="search" class="search-bar" placeholder="Search..">
-          <button class="button login-button">Log in</button>
-          <button class="button signup-button">Sign up</button>
-        </div> -->
         <div class = "box center signup-container">
             <div class="input-group-new"><!--Each section is a part of the login section. Lable is what fills the area, and input registers it. Id is necessary for js connection with database-->
                 <label>Full Name:</label>
@@ -34,16 +25,11 @@
                 <input type="email" id="email" class="email login-input"
                 placeholder="Enter Your Email ">
             </div>
-            <!-- <div class="input-group-new">
-                <label>Grade:</label>
-                <input type="number" id="grade" class="grade login-input"
-                placeholder="Enter Your Grade ">
-            </div> -->
             <div class="input-group-new">
                 <label>Password:</label>
                 <input type="text" id="password" class="password login-input"
                 placeholder="Enter Your Passcode ">
-            <!-- Copy Paste sections to add more -->
+            <!-- Copy Paste sections to add more. Also tell Aarush cause it'll take a lot of work -->
             </div>
             <button class="button signup-send" id="signup-send">Sign Up</button>
             <div class="signup-options">
@@ -53,7 +39,7 @@
                 <button>Sign up with facebook placeholder</button>
             </div>
             <a href="#" onclick="signOut();">Sign out</a>
-            <script>
+            <!-- <script>
                 function onSignIn(googleUser) {
                   var profile = googleUser.getBasicProfile();
                   console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
@@ -69,10 +55,9 @@
                   console.log('User signed out.');
                 });
               }
-            </script>
-            <div class="g-signin2" data-onsuccess="onSignIn">hello</div>
+            </script> -->
+            <!-- <div class="g-signin2" data-onsuccess="onSignIn">hello</div> -->
         </div>
         <script src="frontsignup.js"></script>
-        <script src="Backend/config.js"></script>
     </body>
 </html>
