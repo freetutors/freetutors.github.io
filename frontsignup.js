@@ -1,7 +1,7 @@
 const poolId ='us-west-1_p8Yc1jkno' //getting info from cognito
 const clientId ='19tml2007lmvdj4h6r96qa0c6k'
 const region = 'us-west-1'
-process.env.AWS_SDK_LOAD_CONFIG = 1;
+
 AWS.config.region = region; //telling what region to search
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({ //COnnecting to pool
   IdentityPoolId: poolId 
@@ -46,7 +46,8 @@ async function checkExistingUser(email) {
  const users = await cognitoUserPool.listUsers(params);
 
  const userExists = users.Users.length > 0 //boolean function that checks if there are more than 0 usres with the same email adress
-return userExists
+ 
+ return userExists
 }
 
 
