@@ -35,9 +35,14 @@ function signUpUser(params) { //function for signing up, this is already defined
 //checks if user with the same email exists
 function checkExistingUser(email) {
   const params = {
-    UserPoolId: poolId,
-    Filter: `email = "${email}"`, //checking for duplicate email
-  };
+    "AttributesToGet": [ "email" ],
+    "Filter": "email = \"${email}\"",
+    "UserPoolId": poolId
+ }
+  // const params = {
+  //   UserPoolId: poolId,
+  //   Filter: `email = "${email}"`, //checking for duplicate email
+  // };
 
   return new Promise((resolve, reject) => { //this is some code I found online but I believe this is what rejects the new entry 
     cognito.listUsers(params, (err, data) => {
