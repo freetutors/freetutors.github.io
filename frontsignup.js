@@ -78,7 +78,6 @@ const username = document.getElementById("username").value; //getting values
       },
     ]
   }
-  signUpUser(params)
       try {
       const userExists = await checkExistingUser(email);
   
