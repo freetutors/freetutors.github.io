@@ -41,7 +41,7 @@ async function checkExistingUser(email) {
  }
  const testTable = await cognito.listUsers(test)
 console.log(email)
- const users = await cognito.listUsers(params);
+ const users = await cognito.listUsers(params).promise();
  console.log(testTable);
  console.log(users);
 
