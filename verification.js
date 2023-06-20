@@ -39,7 +39,7 @@ function verifyUser(email, verificationCode) {
   
   document.querySelector('.verification-send').addEventListener('click', function () {
     console.log("clicked")
-    const verificationCode = this.value;
+    const verificationCode = document.getElementById("vCode").value;
     const email = 'YOUR_USER_EMAIL'; // Replace with the user's email or retrieve it from your application's state
   
     verifyUser(email, verificationCode);
