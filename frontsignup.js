@@ -45,7 +45,6 @@ async function checkExistingUser(email) {
  }
 
  const users = await cognito.listUsers(params).promise();
- console.log(testTable);
  console.log(users);
 
  if (users && users.Users.length > 0) {
