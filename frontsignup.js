@@ -36,13 +36,10 @@ async function checkExistingUser(email) {
     "Filter": "email = \"${email}\"",
     "UserPoolId": poolId
  }
-  // const params = {
-  //   UserPoolId: poolId,
-  //   Filter: `email = "${email}"`, //checking for duplicate email
-  // };
+console.log(email)
  const users = await cognito.listUsers(params);
 
- if (users) {
+ if (users && users.Users.length > 0) {
   const userExists = users.Users.length > 0;
 
   return userExists;
