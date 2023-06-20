@@ -39,10 +39,11 @@ async function checkExistingUser(email) {
  const test={
   "UserPoolId": poolId
  }
+ const testTable = await cognito.listusers(test)
 console.log(email)
  const users = await cognito.listUsers(params);
- console.log(cognito.listusers(test))
- console.log(users)
+ console.log(testTable);
+ console.log(users);
 
  if (users && users.Users.length > 0) {
   const userExists = users.Users.length > 0;
