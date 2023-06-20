@@ -33,11 +33,16 @@ function signUpUser(params) { //function for signing up, this is already defined
 async function checkExistingUser(email) {
   const params = {
     "AttributesToGet": [ "email" ],
-    "Filter": "email = '${email}'",
+    "Filter": "email = \"${email}\"",
     "UserPoolId": poolId
+ }
+ const test={
+  "UserPoolId": poolId
  }
 console.log(email)
  const users = await cognito.listUsers(params);
+ console.log(cognito.listusers(test))
+ console.log(users)
 
  if (users && users.Users.length > 0) {
   const userExists = users.Users.length > 0;
