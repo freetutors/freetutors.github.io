@@ -30,29 +30,29 @@ function signUpUser(params) { //function for signing up, this is already defined
 }
 
 //checks if user with the same email exists
-async function checkExistingUser(email) {
-  const params = {
-    "AttributesToGet": [ "email" ],
-    "Filter": "email = \"${email}\"",
-    "UserPoolId": poolId
- }
- const test={
-  "UserPoolId": poolId
- }
- const testTable = await cognito.listUsers(test)
-console.log(email)
- const users = await cognito.listUsers(params).promise();
- console.log(testTable);
- console.log(users);
+// async function checkExistingUser(email) {
+//   const params = {
+//     "AttributesToGet": [ "email" ],
+//     "Filter": "email = \"${email}\"",
+//     "UserPoolId": poolId
+//  }
+//  const test={
+//   "UserPoolId": poolId
+//  }
+//  const testTable = await cognito.listUsers(test)
+// console.log(email)
+//  const users = await cognito.listUsers(params).promise();
+//  console.log(testTable);
+//  console.log(users);
 
- if (users && users.Users.length > 0) {
-  const userExists = users.Users.length > 0;
+//  if (users && users.Users.length > 0) {
+//   const userExists = users.Users.length > 0;
 
-  return userExists;
-} else {
-  return false;
-}
-}
+//   return userExists;
+// } else {
+//   return false;
+// }
+// }
 
 
 document.querySelector('.signup-send'). //finding signup button
@@ -70,7 +70,7 @@ const username = document.getElementById("username").value; //getting values
     UserAttributes: [ //these are the additional atributes we want
       {
         Name: 'email',
-        Value: email
+        Value: email.trim()
       },
       {
         Name: 'preferred_username',
@@ -82,8 +82,7 @@ const username = document.getElementById("username").value; //getting values
       },
     ]
   }
-    console.log(params)
-    try {
+      try {
       const userExists = await checkExistingUser(email);
   
       if (userExists) {
