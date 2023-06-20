@@ -1,5 +1,5 @@
 const poolId ='us-west-1_p8Yc1jkno' //getting info from cognito
-const clientId ='19tml2007lmvdj4h6r96qa0c6k'
+const clientId ='lact4vt8ge7lfjvjetu1d3sl7'
 const region = 'us-west-1'
 
 AWS.config.region = region; //telling what region to search
@@ -29,30 +29,26 @@ function signUpUser(params) { //function for signing up, this is already defined
   });
 }
 
-//checks if user with the same email exists
-// async function checkExistingUser(email) {
-//   const params = {
-//     "AttributesToGet": [ "email" ],
-//     "Filter": "email = \"${email}\"",
-//     "UserPoolId": poolId
-//  }
-//  const test={
-//   "UserPoolId": poolId
-//  }
-//  const testTable = await cognito.listUsers(test)
-// console.log(email)
-//  const users = await cognito.listUsers(params).promise();
-//  console.log(testTable);
-//  console.log(users);
+// checks if user with the same email exists
+async function checkExistingUser(email) {
+  const params = {
+    "AttributesToGet": [ "email" ],
+    "Filter": "email = \"${email}\"",
+    "UserPoolId": poolId
+ }
 
-//  if (users && users.Users.length > 0) {
-//   const userExists = users.Users.length > 0;
+ const users = await cognito.listUsers(params).promise();
+ console.log(testTable);
+ console.log(users);
 
-//   return userExists;
-// } else {
-//   return false;
-// }
-// }
+ if (users && users.Users.length > 0) {
+  const userExists = users.Users.length > 0;
+
+  return userExists;
+} else {
+  return false;
+}
+}
 
 
 document.querySelector('.signup-send'). //finding signup button
