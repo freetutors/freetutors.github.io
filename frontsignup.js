@@ -85,8 +85,7 @@ const username = document.getElementById("username").value; //getting values
     ]
   }
     console.log(params)
-    signUpUser(params); //calling signup function
-  try {
+    try {
       const userExists = await checkExistingUser(email);
   
       if (userExists) {
