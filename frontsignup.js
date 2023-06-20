@@ -1,8 +1,9 @@
-const poolId ='us-west-1_p8Yc1jkno' //getting info from cognito
+const poolId ='us-west-1_w3se6DxlL' //getting info from cognito
 const clientId ='lact4vt8ge7lfjvjetu1d3sl7'
 const region = 'us-west-1'
 const accessKey = "AKIAS6EY4GUSOJWYQPUN"
 const secretKey = "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"
+
 AWS.config.region = region; //telling what region to search
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({ //COnnecting to pool
   IdentityPoolId: poolId 
@@ -57,9 +58,7 @@ async function checkExistingUser(email) {
   return userExists;
 } else {
   return false;
-}
-}
-
+}};
 
 document.querySelector('.signup-send'). //finding signup button
 addEventListener("click", async () => { //pulling and sending information on click
