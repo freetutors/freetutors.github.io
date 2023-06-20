@@ -33,7 +33,7 @@ function signUpUser(params) { //function for signing up, this is already defined
 async function checkExistingUser(email) {
   const params = {
     "AttributesToGet": [ "email" ],
-    "Filter": "email = \"${email}\"",
+    "Filter": "email = '${email}'",
     "UserPoolId": poolId
  }
 console.log(email)
