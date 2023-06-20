@@ -42,9 +42,13 @@ async function checkExistingUser(email) {
   // };
  const users = await cognito.listUsers(params);
 
- const userExists = users.Users.length > 0 //boolean function that checks if there are more than 0 usres with the same email adress
+ if (users) {
+  const userExists = users.Users.length > 0;
 
- return userExists
+  return userExists;
+} else {
+  return false;
+}
 }
 
 
