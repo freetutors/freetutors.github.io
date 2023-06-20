@@ -88,6 +88,7 @@ const username = document.getElementById("username").value; //getting values
         alert('An account with the same email already exists.'); //will tell user if the funtion returns true
       } else {
         signUpUser(params); //Signing up users
+        window.location='verification.html'
       }
     } catch (error) {
       console.log('Error:', error); //giving us error details if something happens
