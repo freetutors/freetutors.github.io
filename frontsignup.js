@@ -82,15 +82,16 @@ const username = document.getElementById("username").value; //getting values
       },
     ]
   }
-      try {
-      const userExists = await checkExistingUser(email);
+  signUpUser(params)
+//       try {
+//       const userExists = await checkExistingUser(email);
   
-      if (userExists) {
-        alert('An account with the same email already exists.');
-      } else {
-        signUpUser(params);
-      }
-    } catch (error) {
-      console.log('Error:', error);
-    }
+//       if (userExists) {
+//         alert('An account with the same email already exists.');
+//       } else {
+//         signUpUser(params);
+//       }
+//     } catch (error) {
+//       console.log('Error:', error);
+//     }
 });
