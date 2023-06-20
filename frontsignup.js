@@ -9,10 +9,7 @@ AWS.config.credentials = new AWS.CognitoIdentityCredentials({ //COnnecting to po
 
 var cognito = new AWS.CognitoIdentityServiceProvider(); //connection to cognito identiy
 AWS_SDK_LOAD_CONFIG=1
-const cognitoUserPool = new AmazonCognitoIdentity.CognitoUserPool({
-  UserPoolId: poolId,
-  ClientId: clientId
-}); //connecting to cognito pool
+ //connecting to cognito pool
 
 function signUpUser(params) { //function for signing up, this is already defined
 
@@ -43,10 +40,10 @@ async function checkExistingUser(email) {
   //   UserPoolId: poolId,
   //   Filter: `email = "${email}"`, //checking for duplicate email
   // };
- const users = await cognitoUserPool.listUsers(params);
+ const users = await cognito.listUsers(params);
 
  const userExists = users.Users.length > 0 //boolean function that checks if there are more than 0 usres with the same email adress
- 
+
  return userExists
 }
 
