@@ -39,9 +39,9 @@ function signUpUser(params) { //function for signing up, this is already defined
 // checks if user with the same email exists
 async function checkExistingUser(email) {
   const params = {
-    "AttributesToGet": [ "email" ],
-    "Filter": "email = \"${email}\"",
-    "UserPoolId": poolId
+    AttributesToGet: [ "email" ],
+    Filter: `email = "${email}"`,
+    UserPoolId: poolId
  }
 
  const users = await cognito.listUsers(params).promise();
