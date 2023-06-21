@@ -3,11 +3,6 @@
 const username = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser")
 console.log(username)
 if (username != null){
-    const token = window.accessToken; // pulling logged in user info
-    const decodedToken = JSON.parse(atob(token.split('.')[1])); // Decoding the payload
-
-    const expireTime = decodedToken.exp;
-    console.log(expireTime);
     // const username = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser")
     document.getElementById("loginSignupArea").innerHTML +=
     `
