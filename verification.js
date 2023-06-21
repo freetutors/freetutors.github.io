@@ -24,7 +24,7 @@ if (localStorage.length === 0){
     `
     <label>Verification Number:</label>
     <p class="description">Check your email for a verification number</p>
-    <input type="text" id="useranme" class="username login-input"
+    <input type="text" id="username" class="username login-input"
     placeholder="Enter Your Username">
     <input type="number" id="vCode" class="vCode login-input"
     placeholder="Enter Your Verification Number">
