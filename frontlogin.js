@@ -44,7 +44,7 @@ function loginUser(username, password) { //user auth data
           const accessToken = result.getAccessToken().getJwtToken();
           window.accessToken = accessToken //this is globalizing a logged in user in the whole webpage
           console.log('Access Token: ', accessToken);
-          window.location=""
+          window.location="index.html"
         },
         onFailure: function(err) {
             if (err.code === 'NotAuthorizedException') {
