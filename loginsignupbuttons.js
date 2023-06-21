@@ -1,17 +1,19 @@
 //This code will be used for changing the login and signup button area
 //to the profile area
 if (window.accessToken != null){
-    const accessToken = window.accessToken;
+    const token = window.accessToken; // pulling logged in user info
+    const decodedToken = JSON.parse(atob(token.split('.')[1])); // Decoding the payload
+
+    const username = decodedToken.username;
+    console.log(username);
     document.getElementById("loginSignupArea").innerHTML +=
     `
     <div class = "profilebutton">
         <img class = "profilePicHome" src="profileDefault.jpg">
-        <p class = "usernameOnProfileButton">Usernameasdfasdf</p>
+        <p class = "usernameOnProfileButton">${username}</p>
     </div>
     `
 }
-
-
 // let loggedin = false //currently its hard coded but itll change with backend integration
 // if (loggedin == true){ //if logged in it'll create a button that shows the username and goes to the profile
 //     document.getElementById("loginSignupArea").innerHTML +=
