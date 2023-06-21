@@ -40,7 +40,7 @@ function verifyUser(email, verificationCode) {
   document.querySelector('.verification-send').addEventListener('click', function () {
     console.log("clicked")
     const verificationCode = document.getElementById("vCode").value;
-    const email = localStorage.getItem('signupEmail');
+    const email = localStorage.getItem('signupUsername');
 
     verifyUser(email, verificationCode);
   });

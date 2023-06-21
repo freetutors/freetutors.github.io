@@ -89,7 +89,8 @@ const username = document.getElementById("username").value; //getting values
       } else {
         signUpUser(params); //Signing up users
         localStorage.setItem("signupEmail", email);
-        
+        localStorage.setItem("signupUsername", username);
+
         window.location='verification.html'
       }
     } catch (error) {
