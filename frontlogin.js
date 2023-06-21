@@ -16,7 +16,6 @@ AWS.config.update({
 });
 
 var cognito = new AWS.CognitoIdentityServiceProvider(); //connection to cognito identiy
-AWS_SDK_LOAD_CONFIG=1
 
 function loginUser(username, password) {
     const authenticationData = {
