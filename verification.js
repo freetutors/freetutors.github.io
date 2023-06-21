@@ -29,10 +29,11 @@ function verifyUser(email, verificationCode) {
       if (err) {
         console.log(err, err.stack);
         alert('Verification failed. Please try again.');
+        localStorage.clear();
       } else {
         console.log(data);
         alert('Verification successful! You can now sign in.');
-        // Redirect the user to the sign-in page or perform any desired action
+        window.location = 'profile.html'
       }
     });
   }
