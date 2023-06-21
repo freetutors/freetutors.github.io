@@ -3,7 +3,7 @@ const clientId ='lact4vt8ge7lfjvjetu1d3sl7'
 const region = 'us-west-1'
 const accessKey = "AKIAS6EY4GUSOJWYQPUN"
 const secretKey = "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"
-
+localStorage.clear();
 AWS.config.region = region; //telling what region to search
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({ //COnnecting to pool
   IdentityPoolId: poolId 
@@ -88,6 +88,7 @@ const username = document.getElementById("username").value; //getting values
         alert('An account with the same email already exists.'); //will tell user if the funtion returns true
       } else {
         signUpUser(params); //Signing up users
+        
         localStorage.setItem("signupEmail", email);
         localStorage.setItem("signupUsername", username);
 

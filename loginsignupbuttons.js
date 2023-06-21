@@ -1,7 +1,7 @@
 //This code will be used for changing the login and signup button area
 //to the profile area
-let loggedin = false //currently its hard coded but itll change with backend integration
-if (loggedin == true){ //if logged in it'll create a button that shows the username and goes to the profile
+if (window.accessToken != null){
+    const accessToken = window.accessToken;
     document.getElementById("loginSignupArea").innerHTML +=
     `
     <div class = "profilebutton">
@@ -10,6 +10,18 @@ if (loggedin == true){ //if logged in it'll create a button that shows the usern
     </div>
     `
 }
+
+
+// let loggedin = false //currently its hard coded but itll change with backend integration
+// if (loggedin == true){ //if logged in it'll create a button that shows the username and goes to the profile
+//     document.getElementById("loginSignupArea").innerHTML +=
+//     `
+//     <div class = "profilebutton">
+//         <img class = "profilePicHome" src="profileDefault.jpg">
+//         <p class = "usernameOnProfileButton">Usernameasdfasdf</p>
+//     </div>
+//     `
+// }
 else{
     document.getElementById("loginSignupArea").innerHTML =
     `<button class="button login-button">Log in</button>

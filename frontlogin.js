@@ -9,7 +9,7 @@ AWS.config.credentials = new AWS.CognitoIdentityCredentials({ //COnnecting to po
   IdentityPoolId: poolId 
 });
 
-AWS.config.update({
+AWS.config.update({ //getting conection to IAM user
   region: region,
   accessKeyId: accessKey,
   secretAccessKey: secretKey
@@ -17,7 +17,7 @@ AWS.config.update({
 
 var cognito = new AWS.CognitoIdentityServiceProvider(); //connection to cognito identiy
 
-function loginUser(username, password) {
+function loginUser(username, password) { //user auth data
     const authenticationData = {
       Username: username,
       Password: password
@@ -25,13 +25,13 @@ function loginUser(username, password) {
 
     const authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails(authenticationData);
 
-    const poolData = {
+    const poolData = { //pool data
         UserPoolId: poolId,
         ClientId: clientId
       };
     
       const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
-      const userData = {
+      const userData = { //user data target
         Username: username,
         Pool: userPool
       };
@@ -40,12 +40,15 @@ function loginUser(username, password) {
     
       cognitoUser.authenticateUser(authenticationDetails, {
         onSuccess: function(result) {
-          // User authentication successful
+          // User authentication successful 
           const accessToken = result.getAccessToken().getJwtToken();
-          // You can use the accessToken for authenticated API calls or other operations
+          window.accessToken = accessToken //this is globalizing a logged in user in the whole webpage
           console.log('Access Token: ', accessToken);
         },
         onFailure: function(err) {
+            if (err.code === 'NotAuthorizedException') {
+                alert('Incorrect Username or Password!')
+            }
           // User authentication failed
           console.error(err);
         }

@@ -3,13 +3,13 @@ const clientId ='lact4vt8ge7lfjvjetu1d3sl7'
 const region = 'us-west-1'
 const accessKey = "AKIAS6EY4GUSOJWYQPUN"
 const secretKey = "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"
-
+usingUsernameInput = false
 AWS.config.region = region; //telling what region to search
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({ //COnnecting to pool
   IdentityPoolId: poolId 
 });
 
-AWS.config.update({
+AWS.config.update({ //updating info
   region: region,
   accessKeyId: accessKey,
   secretAccessKey: secretKey
@@ -18,10 +18,23 @@ AWS.config.update({
 var cognito = new AWS.CognitoIdentityServiceProvider(); //connection to cognito identiy
 AWS_SDK_LOAD_CONFIG=1
 
-function verifyUser(email, verificationCode) {
+if (localStorage.length === 0){
+    usingUsernameInput = true;
+    document.getElementById("input-group-new").innerHTML =
+    `
+    <label>Verification Number:</label>
+    <p class="description">Check your email for a verification number</p>
+    <input type="text" id="useranme" class="username login-input"
+    placeholder="Enter Your Username">
+    <input type="number" id="vCode" class="vCode login-input"
+    placeholder="Enter Your Verification Number">
+    <button class="button verification-send" id="verification-send">Verify</button>
+    `
+}
+function verifyUser(username, verificationCode) { //verified account
     const params = {
       ClientId: clientId,
-      Username: email,
+      Username: username,
       ConfirmationCode: verificationCode,
     };
   
@@ -41,7 +54,13 @@ function verifyUser(email, verificationCode) {
   document.querySelector('.verification-send').addEventListener('click', function () {
     console.log("clicked")
     const verificationCode = document.getElementById("vCode").value;
-    const email = localStorage.getItem('signupUsername');
+    const username = "not yet set"
+    if (usingUsernameInput == true){
+        username = document.getElementById("username").value;
+    }
+    else{
+        username = localStorage.getItem('signupUsername');
+    }
+    verifyUser(username, verificationCode);
+  }); 
 
-    verifyUser(email, verificationCode);
-  });
