@@ -2,7 +2,7 @@
 //to the profile area
 const username = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser")
 console.log(username)
-if (localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser" !== null)){
+if (username != null){
     const token = window.accessToken; // pulling logged in user info
     const decodedToken = JSON.parse(atob(token.split('.')[1])); // Decoding the payload
 
