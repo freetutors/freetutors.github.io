@@ -54,7 +54,7 @@ function verifyUser(username, verificationCode) { //verified account
   document.querySelector('.verification-send').addEventListener('click', function () {
     console.log("clicked")
     const verificationCode = document.getElementById("vCode").value;
-    const username = "not yet set"
+    var username = "not yet set"
     if (usingUsernameInput == true){
         username = document.getElementById("username").value;
     }
