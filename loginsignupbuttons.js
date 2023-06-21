@@ -1,11 +1,12 @@
 //This code will be used for changing the login and signup button area
 //to the profile area
-if (window.accessToken != null){
+if (localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser" != null)){
     const token = window.accessToken; // pulling logged in user info
     const decodedToken = JSON.parse(atob(token.split('.')[1])); // Decoding the payload
 
-    const username = decodedToken.username;
-    console.log(username);
+    const expireTime = decodedToken.exp;
+    console.log(expireTime);
+    const username = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser")
     document.getElementById("loginSignupArea").innerHTML +=
     `
     <div class = "profilebutton">
