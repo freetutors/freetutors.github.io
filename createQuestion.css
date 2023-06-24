@@ -1,5 +1,5 @@
  .question_box {
-     font-family: Lexend;
+     font-family: 'Lexend';
      position: absolute;
      height: fit-content;
      width: 900px;
@@ -46,58 +46,48 @@
 
 .paperclip {
     position: absolute;
-    transform: scale(0.017);
-    top: 57px;
-    left: calc(50% - 160px);
-    transition: transform 0.3s ease-in-out;
+    transform: scale(0.0175);
+    top: -43px;
+    left: calc(50% - 260px);
     cursor: pointer;
+    padding: 100px;
+    border-radius: 150px;
 }
 
-.paperclip:hover {
-    transform: scale(0.02175);
-}
 
 .bold {
     position: absolute;
     transform: scale(0.034);
-    top: 401.25px;
-    left: calc(50% + 115px);
-    transition: transform 0.3s ease-in-out;
+    top: 301px;
+    left: calc(50% + 1.5px);
     cursor: pointer;
+    padding: 100px;
+    border-radius: 90px;
 }
 
-.bold:hover {
-    transform: scale(0.043);
-}
 
 .italicize {
     position: absolute;
-    transform: scale(0.027);
-    top: 274px;
-    left: calc(50% + 9px);
-    transition: transform 0.3s ease-in-out;
+    transform: scale(0.025);
+    top: 173px;
+    left: calc(50% - 99px);
     cursor: pointer;
-}
-
-.italicize:hover {
-    transform: scale(0.033);
+    padding: 100px;
+    border-radius: 90px;
 }
 
 .link {
     position: absolute;
-    transform: scale(0.015);
-    top: 58px;
-    left: calc(50% - 185px);
-    transition: transform 0.3s ease-in-out;
+    transform: scale(0.014);
+    top: -222.75787px;
+    left: calc(50% - 467.5px);
     cursor: pointer;
-}
-
-.link:hover {
-    transform: scale(0.019);
+    padding: 280px;
+    border-radius: 190px;
 }
 
 .buttons {
-  position: absolute;
+  position: relative;
   padding: 12px;
   font-size: 15px;
   height: 40px;
@@ -106,7 +96,6 @@
   outline: none;
   cursor: pointer;
   margin: auto;
-  top: 700px;
   left: calc(50% - 460px);
 }
 
@@ -120,4 +109,18 @@
     margin-right: 11px;
     cursor: pointer;
     border-radius: 6px;
+    margin-top: 13px;
  }
+
+.body {
+    margin: 0;
+    height: 100vh;
+    background: rgb(233, 233, 233);
+}
+
+
+
+
+
+
+

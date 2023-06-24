@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta name="google-site-verification" content="WPWFZJ1IkWyVu1IwiGc6Mfgj_W3FmX5N6Sz1LGo2qpg" />
-    <link href='https://fonts.googleapis.com/css?family=Lexend' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Lexend|Lexend:400,700' rel='stylesheet'>
     <link rel="stylesheet" href="createQuestion.css"/>
     <link rel="stylesheet" href="root.css"/>
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <link rel="stylesheet" href="quill_editor.css"/>
+
   </head>
   <body>
     <div id="topbar">
@@ -18,17 +20,43 @@
 
     <div class="back_button">back</div>
 
+
+
     <div class="instructions">Choose a Title</div>
     <input class="question_box" placeholder="Describe your question in a few words">
     <div class="instructions" style="top: 210px;">Elaborate on your Question</div>
-    <textarea class="question_box" style="margin-top: 255px; height: 400px;" placeholder="Provide any additional relevant details"></textarea>
-    <img class="bold" src="bold.png">
-    <img class="italicize" src="italicize.png">
-    <img class="link" src="link.png">
-    <img class="paperclip" src="paperclip.png">
-    <button class="button buttons">Review Question</button>
-    <button class="button buttons" style="top:755px; background-color: var(--secondary-color);">Post Question</button>
 
+    <div id="editor"></div>
+
+    <button class="button buttons">Review Question</button>
+    <button class="button buttons" style="background-color: var(--secondary-color);">Post Question</button>
+
+
+
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script src="image-resize.min.js"></script>
+    <script src="image-drop.min.js"></script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        var toolbarOptions = [
+          ['bold', 'italic', 'underline', 'link', 'image'], // Customize the toolbar elements here
+          // Additional toolbar options...
+        ];
+
+        var quill = new Quill('#editor', {
+          placeholder: 'Provide any additional relevant details',
+          theme: 'snow',
+          modules: {
+            toolbar: toolbarOptions,
+            imageResize: {
+              modules: ['Resize']
+            },
+            imageDrop: true,
+          },
+        });
+      });
+    </script>
 
     <!-- Add rest of content here -->
     <script src="home.js"></script>
