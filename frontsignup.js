@@ -64,7 +64,7 @@ const username = document.getElementById("username").value; //getting values
     const preferredUsername = 'desired_preferred_username';
     const params = { //organizing all of the data into one constant
     ClientId: clientId, 
-    Username: username, //username and password are the only required ones by default the rest we'll add later
+    Username: username.trim(), //username and password are the only required ones by default the rest we'll add later
     Password: password,
     UserAttributes: [ //these are the additional atributes we want
       {
