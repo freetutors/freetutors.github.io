@@ -24,35 +24,42 @@
     padding: 0;
   }
   .profileButton{
-    height: 30.5px;
     width: 170px;
-    margin-left: -10px; /* Add space between search bar and logo */
-    height:30.5px; /* Set height of search bar */
-    background-color: var(--primary-color); /* Set background color of search bar to gray */
-    border-radius: 6px;
-    color: white;
     margin-right: 10px;
+    margin-top: 2px;
+    height: 30.5px;
+    background-color: var(--primary-color);
+    border-radius: 6px;
+    align-items:center;
+    transition: transform 0.3s ease-in-out;
+
   }
-  
   .usernameOnProfileButton{
-    margin-left: 50px;
-    margin-top:-25px;
-    padding-bottom: 10px;
+    max-width: 100px;
+    padding-left: 50px;
+    margin-top:-27px;
+    /* padding-bottom: 10px; */
     text-align: top;
     color: var(--text-color);
     overflow: hidden;
     text-overflow: ellipsis;
     word-wrap:none;
+    cursor: pointer;
   }
   .profilePicHome{
-    margin-top: 2.5px;
-    margin-left: 10px;
+    margin-top: 2.5px; 
+    margin-left: 15px;
+    margin-right: 130px;
     width:25px;
     height: 25px;
     align-items: center;
     border-radius: 6px;
+    cursor: pointer;
   }
-
+  .profileButton:hover{
+    transform: scale(1.06);
+    box-shadow: 0 10 10 black;
+  }
   .center{
     display: flex;
     justify-content: center;

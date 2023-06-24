@@ -48,7 +48,10 @@ function loginUser(username, password) { //user auth data
         },
         onFailure: function(err) {
             if (err.code === 'NotAuthorizedException') {
-                alert('Incorrect Username or Password!')
+                alert('Incorrect Password!')
+            }
+            if (err.code === 'UserNotFoundException') {
+                alert('User not found. Check if your username is typed correctly!')
             }
           // User authentication failed
           console.error(err);
