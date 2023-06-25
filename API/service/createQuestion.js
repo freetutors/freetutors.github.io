@@ -31,10 +31,7 @@ async function createQuestion(questionData) {
         timestamp: timestamp
         
     }
-    const saveUserQuestion = await saveQuestion(question)
-    if (saveUserQuestion = null) {
-        return util.buildResponse(503, {message: 'Server Error. Please try again later'}) //if something goes wrong this will appear
-    }
+    await saveQuestion(question)
 
 }
 async function saveQuestion(question){ //saving new users to database
