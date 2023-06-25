@@ -20,15 +20,15 @@ async function createQuestion(questionData) {
             message: 'Missing Info'
         })
     }
-    const question = {
-        questionId: questionId,
+    const question = { //question details
+        questionId: questionId, //so we can pull it later
         title: title,
         body: body,
-        author: author.trim(),
+        author: author.trim(), //username trimmed to get rid of whtie space
         timestamp: timestamp
     }
     const saveUserQuestion = await saveQuestion(question)
-    if (!saveUserQuestion) {
+    if (saveUserQuestion = null) {
         return util.buildResponse(503, {message: 'Server Error. Please try again later'}) //if something goes wrong this will appear
     }
 
