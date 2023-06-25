@@ -25,7 +25,11 @@ async function createQuestion(questionData) {
         title: title,
         body: body,
         author: author.trim(), //username trimmed to get rid of whtie space
+        rating: 0,
+        views: 0,
+        answers: 0,
         timestamp: timestamp
+        
     }
     const saveUserQuestion = await saveQuestion(question)
     if (saveUserQuestion = null) {
