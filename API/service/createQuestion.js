@@ -28,7 +28,7 @@ async function createQuestion(questionData) {
         timestamp: timestamp
     }
     const saveUserQuestion = await saveQuestion(question)
-    if (!saveUserResponse) {
+    if (!saveUserQuestion) {
         return util.buildResponse(503, {message: 'Server Error. Please try again later'}) //if something goes wrong this will appear
     }
 
