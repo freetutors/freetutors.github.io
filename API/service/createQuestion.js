@@ -21,7 +21,7 @@ async function createQuestion(questionData) {
         })
     }
     const question = {
-        questionID: questionId,
+        questionId: questionId,
         title: title,
         body: body,
         author: author.trim(),
