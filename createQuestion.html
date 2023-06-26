@@ -6,7 +6,9 @@
     <link rel="stylesheet" href="root.css"/>
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <link rel="stylesheet" href="quill_editor.css"/>
-
+    <script src="https://unpkg.com/aws-sdk/dist/aws-sdk.min.js"></script>
+    <script src="https://unpkg.com/@aws-amplify/core/dist/aws-amplify.min.js"></script>
+    <script src="https://unpkg.com/@aws-amplify/api/dist/aws-amplify-api.min.js"></script>
   </head>
   <body>
     <div id="topbar">
@@ -23,13 +25,13 @@
 
 
     <div class="instructions">Choose a Title</div>
-    <input class="question_box" placeholder="Describe your question in a few words">
+    <input class="question_box" id= "title" placeholder="Describe your question in a few words">
     <div class="instructions" style="top: 210px;">Elaborate on your Question</div>
 
     <div id="editor"></div>
 
     <button class="button buttons">Review Question</button>
-    <button class="button buttons" style="background-color: var(--secondary-color);">Post Question</button>
+    <button class="button buttons" id = "question-send" style="background-color: var(--secondary-color);">Post Question</button>
 
     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
     <script src="image-resize.min.js"></script>
@@ -54,6 +56,7 @@
         });
       });
     </script>
+    <script src = "questionApiConnection.js"></script>
     <script src="home.js"></script>
     <script src="loginsignupbuttons.js"></script>
   </body>
