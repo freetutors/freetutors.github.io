@@ -1,8 +1,10 @@
 //Creating question to database. Waiting on how yash inputs values
+import API from '@aws-amplify/api';
+
 async function submitQuestion() {
     const title = document.getElementById('title').value;
     const body = document.getElementById('editor').value;
-    const author = localhost.getitem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser");
+    const author = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser");
   
     const questionData = {
       title: title,
