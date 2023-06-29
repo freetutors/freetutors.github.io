@@ -44,48 +44,6 @@
     transform: scale(1.06);
 }
 
-.paperclip {
-    position: absolute;
-    transform: scale(0.0175);
-    top: -43px;
-    left: calc(50% - 260px);
-    cursor: pointer;
-    padding: 100px;
-    border-radius: 150px;
-}
-
-
-.bold {
-    position: absolute;
-    transform: scale(0.034);
-    top: 301px;
-    left: calc(50% + 1.5px);
-    cursor: pointer;
-    padding: 100px;
-    border-radius: 90px;
-}
-
-
-.italicize {
-    position: absolute;
-    transform: scale(0.025);
-    top: 173px;
-    left: calc(50% - 99px);
-    cursor: pointer;
-    padding: 100px;
-    border-radius: 90px;
-}
-
-.link {
-    position: absolute;
-    transform: scale(0.014);
-    top: -222.75787px;
-    left: calc(50% - 467.5px);
-    cursor: pointer;
-    padding: 280px;
-    border-radius: 190px;
-}
-
 .buttons {
   position: relative;
   padding: 12px;
@@ -112,11 +70,6 @@
     margin-top: 13px;
  }
 
-.body {
-    margin: 0;
-    height: 100vh;
-    background: rgb(233, 233, 233);
-}
 
 
 

@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="editor.css"/>
 
   <!-- MathJax -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
       tex2jax: {
@@ -17,15 +16,12 @@
           ['\\(', '\\)']
         ],
         displayMath:
-        [
-          ['$$','$$'],
-          ['\\[','\\]']
-        ],
+        [],
         processEscapes: true,
-        processEnvironments: true,
       },
     });
   </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
 
 </head>
 <body>
@@ -41,11 +37,12 @@
   <div class="back_button">back</div>
 
   <div class="instructions">Choose a Title</div>
-  <input class="question_box" id="title" placeholder="Describe your question in a few words">
+  <input class="question_box" id="title" placeholder="Describe your question in a few words" oninput="updatePreviewTitle()">
   <div class="instructions" style="top: 210px;">Elaborate on your Question</div>
   <div id="editor"></div>
   <div class="instructions" style="top: 625px;">Review your Question</div>
 
+  <div id="preview-container-title"></div>
   <div id="preview-container"></div>
 
   <button class="button buttons question-send" id="question-send" style="background-color: var(--secondary-color);">Post Question</button>
@@ -73,16 +70,24 @@
     });
 
     var previewContainer = document.getElementById('preview-container');
+    var previewTitleContainer = document.getElementById('preview-container-title');
 
-    function updatePreview() {
+    function updatePreviewBody() {
       var content = quill.root.innerHTML;
       previewContainer.innerHTML = content;
       MathJax.Hub.Queue(['Typeset', MathJax.Hub, previewContainer]);
     }
 
+    function updatePreviewTitle() {
+      var title = document.getElementById('title').value;
+      previewTitleContainer.innerHTML = title;
+      MathJax.Hub.Queue(['Typeset', MathJax.Hub, previewTitleContainer]);
+    }
+
     quill.on('text-change', function () {
-      updatePreview();
+      updatePreviewBody();
     });
+
   </script>
   <script type="module" src="questionApiConnection.js"></script>
   <script src="home.js"></script>
