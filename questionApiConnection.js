@@ -17,7 +17,8 @@ async function submitQuestion() {
     const body = document.getElementById('editor').value;
     const author = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser");  
   const response = await fetch(apiUrl, {
-      method: "POST",
+    mode: 'no-cors',  
+    method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
