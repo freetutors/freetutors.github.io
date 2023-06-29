@@ -74,6 +74,8 @@
   margin-top: -10px;
   background-color: transparent;
   padding-left: 12px;
+  white-space: initial;
+  word-wrap: break-word;
 }
 
 #preview-container-title {
@@ -89,6 +91,7 @@
   background-color: transparent;
   text-align: center;
   font-size: 27px;
+  word-wrap: break-word;
 }
 
 .mathjax-latex {
