@@ -1,0 +1,29 @@
+{
+    "functions": [
+      {
+        "name": "freetutor-question-gateway",
+        "runtime": "nodejs14.x",
+        "handler": "index.handler",
+        "events": [
+          {
+            "http": {
+              "path": "/create",
+              "method": "POST"
+            }
+          },
+          {
+            "http": {
+              "path": "/get-questions",
+              "method": "GET"
+            }
+          },
+          {
+            "http": {
+              "path": "/health",
+              "method": "GET"
+            }
+          }
+        ]
+      }
+    ]
+  }
