@@ -15,10 +15,10 @@ async function createQuestion(questionData) {
     const body = questionData.body //body with formatting
     const author = questionData.author
     const timestamp = new Date().toISOString();
-        if (!title || !body || !author || !timestamp) { //checking for all categories filled, || = or
-        return util.buildResponse(401, { // any arbitrary error number works BUT NOT 200 or 404
-            message: 'Missing Info'
-        })
+    if (!title || !body || !author || !timestamp) { //checking for all categories filled, || = or
+    return util.buildResponse(401, { // any arbitrary error number works BUT NOT 200 or 404
+        message: 'Missing Info'
+    })
     }
     const question = { //question details
         questionId: questionId, //so we can pull it later
@@ -30,8 +30,8 @@ async function createQuestion(questionData) {
         answers: 0,
         timestamp: timestamp
         
-    };
-    saveQuestion(question)
+    }
+    await saveQuestion(question)
 
 }
 async function saveQuestion(question){ //saving new users to database

@@ -1,4 +1,39 @@
 //Creating question to database. Waiting on how yash inputs values
+var toolbarOptions = [
+  ['bold', 'italic', 'underline', 'link', 'image'], // Customize the toolbar elements here
+  // Additional toolbar options...
+];
+
+var quill = new Quill('#editor', {
+  placeholder: 'Provide any additional relevant details',
+  theme: 'snow',
+  modules: {
+    toolbar: toolbarOptions,
+    imageResize: {
+      modules: ['Resize']
+    },
+    imageDrop: true,
+  },
+});
+
+var previewContainer = document.getElementById('preview-container');
+var previewTitleContainer = document.getElementById('preview-container-title');
+
+function updatePreviewBody() {
+  var content = quill.root.innerHTML;
+  previewContainer.innerHTML = content;
+  MathJax.Hub.Queue(['Typeset', MathJax.Hub, previewContainer]);
+}
+
+function updatePreviewTitle() {
+  var title = document.getElementById('title').value;
+  previewTitleContainer.innerHTML = title;
+  MathJax.Hub.Queue(['Typeset', MathJax.Hub, previewTitleContainer]);
+}
+
+quill.on('text-change', function () {
+  updatePreviewBody();
+});
 
 console.log("adljhjhsdfalkjsd");
 const apiUrlcreate = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/create";
@@ -11,17 +46,17 @@ console.log("callede")
 console.log()
 async function submitQuestion() {
   const title = document.getElementById('title').value;
-    const body = document.getElementById('editor').value;
+    const body = quill.root.innerHTML;
+    console.log(body)
     const author = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser");  
+    console.log(author)
     const userToken = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7."+author+".accessToken")
     console.log(userToken)
-    const auth = "Bearer" + author
     const response = await fetch(apiUrlcreate, {
-      mode: 'cors',  
-    method: "POST",
+      mode: 'cors',
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": auth
       },
       body: JSON.stringify({
         title:title,
