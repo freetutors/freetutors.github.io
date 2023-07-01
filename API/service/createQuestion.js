@@ -33,8 +33,8 @@ async function createQuestion(questionData) {
     }
     await saveQuestion(question)
     const response = {
-        user: userInfo,
-        token: token
+        question: question,
+        questionId: questionId
     }
     return util.buildResponse(200, response);
 }
