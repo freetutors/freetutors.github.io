@@ -32,7 +32,11 @@ async function createQuestion(questionData) {
         
     }
     await saveQuestion(question)
-
+    const response = {
+        user: userInfo,
+        token: token
+    }
+    return util.buildResponse(200, response);
 }
 async function saveQuestion(question){ //saving new users to database
     const params = {
