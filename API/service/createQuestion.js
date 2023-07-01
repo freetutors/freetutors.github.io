@@ -30,8 +30,8 @@ async function createQuestion(questionData) {
         answers: 0,
         timestamp: timestamp
         
-    }
-    await saveQuestion(question)
+    };
+    saveQuestion(question)
 
 }
 async function saveQuestion(question){ //saving new users to database

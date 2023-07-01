@@ -1,9 +1,9 @@
 //Creating question to database. Waiting on how yash inputs values
 
 console.log("adljhjhsdfalkjsd");
-const apiUrlcreate = "https://vqela4nlfk.execute-api.us-west-1.amazonaws.com/beta/create";
-const apiUrlget = "https://vqela4nlfk.execute-api.us-west-1.amazonaws.com/beta/get-question";
-const health = "https://vqela4nlfk.execute-api.us-west-1.amazonaws.com/beta/health";
+const apiUrlcreate = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/create";
+const apiUrlget = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/getquestion";
+const health = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/health";
 console.log("callede")
 // document.addEventListener('touchstart', handler, {passive: true});
 // document.addEventListener('mousewheel', handler, {passive: true});
