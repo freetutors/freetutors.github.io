@@ -12,7 +12,6 @@
   border: 1.5px solid var(--border-color);
   border-radius: 0 0 6px 6px;
   background-color: #363636ff;
-  background-color: #363636ff;
   padding-left: 12px;
 }
 
@@ -64,3 +63,40 @@
 .ql-editor strong{
     font-weight: 700;
 }
+
+#preview-container {
+  color: white;
+  position: relative;
+  width: 920px;
+  height: fit-content;
+  inset: 0;
+  margin: auto;
+  margin-top: -10px;
+  background-color: transparent;
+  padding-left: 12px;
+  white-space: initial;
+  word-wrap: break-word;
+}
+
+#preview-container-title {
+  color: white;
+  position: relative;
+  width: 920px;
+  height: fit-content;
+  inset: 0;
+  margin: auto;
+  margin-top: 90px;;
+  background-color: #363636ff;
+  padding-left: 12px;
+  background-color: transparent;
+  text-align: center;
+  font-size: 27px;
+  word-wrap: break-word;
+}
+
+.mathjax-latex {
+  display: inline-block;
+  font-style: italic;
+  color: #333;
+}
+

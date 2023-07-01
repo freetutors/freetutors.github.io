@@ -1,68 +1,96 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link href='https://fonts.googleapis.com/css?family=Lexend|Lexend:400,700' rel='stylesheet'>
-    <link rel="stylesheet" href="createQuestion.css"/>
-    <link rel="stylesheet" href="root.css"/>
-    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
-    <link rel="stylesheet" href="quill_editor.css"/>
-    <!-- HTML code in your page -->
-    <!-- <script src="https://unpkg.com/aws-amplify@5.3.1/dist/aws-amplify.min.js"></script> -->
+<head>
+  <link href='https://fonts.googleapis.com/css?family=Lexend|Lexend:400,700' rel='stylesheet'>
+  <link rel="stylesheet" href="createQuestion.css"/>
+  <link rel="stylesheet" href="root.css"/>
+  <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+  <link rel="stylesheet" href="editor.css"/>
 
-    <!-- <script src="node_modules/aws-sdk/dist/aws-sdk.min.js"></script> -->
-<!-- <script src="node_modules/@aws-amplify/api/dist/aws-amplify-api.min.js"></script> -->
+  <!-- MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [
+          ['$', '$'],
+          ['\\(', '\\)']
+        ],
+        displayMath:
+        [],
+        processEscapes: true,
+      },
+    });
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
 
-
-  </head>
-  <body>
-    <div id="topbar">
-      <img id="logo" src="Logo.svg" alt="Logo" onclick="location.href='index.html'">
-      <!-- Add search bar -->
-      <input type="search" class="search-bar" placeholder="Search..">
-      <button class="button ask-question-button">Ask Question</button>
-      <div id = "loginSignupArea">
-      </div>
+</head>
+<body>
+  <div id="topbar">
+    <img id="logo" src="Logo.svg" alt="Logo" onclick="location.href='index.html'">
+    <!-- Add search bar -->
+    <input type="search" class="search-bar" placeholder="Search..">
+    <button class="button ask-question-button">Ask Question</button>
+    <div id="loginSignupArea">
     </div>
+  </div>
 
-    <div class="back_button">back</div>
+  <div class="back_button">back</div>
+
+  <div class="instructions">Choose a Title</div>
+  <input class="question_box" id="title" placeholder="Describe your question in a few words" oninput="updatePreviewTitle()">
+  <div class="instructions" style="top: 210px;">Elaborate on your Question</div>
+  <div id="editor"></div>
+  <div class="instructions" style="top: 625px;">Review your Question</div>
+
+  <div id="preview-container-title"></div>
+  <div id="preview-container"></div>
+
+  <button class="button buttons question-send" id="question-send" style="background-color: var(--secondary-color);">Post Question</button>
 
 
+  <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+  <script src="image-resize.min.js"></script>
+  <script src="image-drop.min.js"></script>
+  <script>
+    var toolbarOptions = [
+      ['bold', 'italic', 'underline', 'link', 'image'], // Customize the toolbar elements here
+      // Additional toolbar options...
+    ];
 
-    <div class="instructions">Choose a Title</div>
-    <input class="question_box" id= "title" placeholder="Describe your question in a few words">
-    <div class="instructions" style="top: 210px;">Elaborate on your Question</div>
+    var quill = new Quill('#editor', {
+      placeholder: 'Provide any additional relevant details',
+      theme: 'snow',
+      modules: {
+        toolbar: toolbarOptions,
+        imageResize: {
+          modules: ['Resize']
+        },
+        imageDrop: true,
+      },
+    });
 
-    <div id="editor"></div>
+    var previewContainer = document.getElementById('preview-container');
+    var previewTitleContainer = document.getElementById('preview-container-title');
 
-    <button class="button buttons">Review Question</button>
-    <button class="button buttons question-send" id = "question-send" style="background-color: var(--secondary-color);">Post Question</button>
+    function updatePreviewBody() {
+      var content = quill.root.innerHTML;
+      previewContainer.innerHTML = content;
+      MathJax.Hub.Queue(['Typeset', MathJax.Hub, previewContainer]);
+    }
 
-    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-    <script src="image-resize.min.js"></script>
-    <script src="image-drop.min.js"></script>
-    <script>
-      // document.addEventListener('DOMContentLoaded', function () {
-        var toolbarOptions = [
-          ['bold', 'italic', 'underline', 'link', 'image'], // Customize the toolbar elements here
-          // Additional toolbar options...
-        ];
+    function updatePreviewTitle() {
+      var title = document.getElementById('title').value;
+      previewTitleContainer.innerHTML = title;
+      MathJax.Hub.Queue(['Typeset', MathJax.Hub, previewTitleContainer]);
+    }
 
-        var quill = new Quill('#editor', {
-          placeholder: 'Provide any additional relevant details',
-          theme: 'snow',
-          modules: {
-            toolbar: toolbarOptions,
-            imageResize: {
-              modules: ['Resize']
-            },
-            imageDrop: true,
-          },
-        });
-      // }); //this is causing errors because of incompatibility, it works without
-    </script>
-    <script type="module" src = "questionApiConnection.js"></script>
-    <script src="home.js"></script>
-    <script src="loginsignupbuttons.js"></script>
-  </body>
+    quill.on('text-change', function () {
+      updatePreviewBody();
+    });
+
+  </script>
+  <script type="module" src="questionApiConnection.js"></script>
+  <script src="home.js"></script>
+  <script src="loginsignupbuttons.js"></script>
+</body>
 </html>
-
