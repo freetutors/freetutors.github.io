@@ -1,12 +1,9 @@
 //Creating question to database. Waiting on how yash inputs values
-// window._config = {
-//   api:{
-//     invokeUrl: 'https://vqela4nlfk.execute-api.us-west-1.amazonaws.com/beta'
-//   }
-// }
-console.log("adljhjhsdfalkjsd");
-const apiUrl = "https://vqela4nlfk.execute-api.us-west-1.amazonaws.com/beta";
 
+console.log("adljhjhsdfalkjsd");
+const apiUrlcreate = "https://vqela4nlfk.execute-api.us-west-1.amazonaws.com/beta/create";
+const apiUrlget = "https://vqela4nlfk.execute-api.us-west-1.amazonaws.com/beta/get-question";
+const health = "https://vqela4nlfk.execute-api.us-west-1.amazonaws.com/beta/health";
 console.log("callede")
 // document.addEventListener('touchstart', handler, {passive: true});
 // document.addEventListener('mousewheel', handler, {passive: true});
@@ -16,11 +13,15 @@ async function submitQuestion() {
   const title = document.getElementById('title').value;
     const body = document.getElementById('editor').value;
     const author = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser");  
-  const response = await fetch(apiUrl, {
-    mode: 'no-cors',  
+    const userToken = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7."+author+".accessToken")
+    console.log(userToken)
+    const auth = "Bearer" + author
+    const response = await fetch(apiUrlcreate, {
+      mode: 'cors',  
     method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "Authorization": auth
       },
       body: JSON.stringify({
         title:title,
@@ -28,7 +29,6 @@ async function submitQuestion() {
         author: author,
       })
     });
-  
     if (response.ok) {
       const data = await response.json();
       console.log(data);
