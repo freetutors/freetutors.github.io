@@ -1,4 +1,8 @@
-const { request } = require('http');
+const AWS = require('aws-sdk');
+AWS.config.update({
+    region: 'us-west-1'
+})
+
 const util = require('../utils/util')
 console.log("called")
 const dynamodb = new AWS.DynamoDB.DocumentClient();
