@@ -16,7 +16,7 @@ function getQuestionList(requestBody) {
 async function getQuestionBySubject(subject) { //getting user info to check if the user has already logged in 
 
     const params = {
-        TableName: userTable,
+        TableName: questionTable,
         KeyConditionExpression: "#subject = :subject",
         ExpressionAttributeNames: {
           "#subject": "subject"
