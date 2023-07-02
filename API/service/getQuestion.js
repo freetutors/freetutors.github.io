@@ -28,9 +28,12 @@ async function getQuestionBySubject(subject) { //getting user info to check if t
     }
       // Query DynamoDB for the questions.
   const result = await dynamodb.query(params).promise();
-
+  const response = {
+    questionList: result,
+}
+return util.buildResponse(200, response);
   // Return the questions.
-  return result.Items;
+  // return result.Items;
 }
 
 module.exports.getQuestionList = getQuestionList;
