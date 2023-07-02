@@ -1,28 +1,32 @@
+const { request } = require('http');
 const util = require('../utils/util')
-const auth = "test"
-
+console.log("called")
+const dynamodb = new AWS.DynamoDB.DocumentClient();
+const questionTable = 'freetutor-questions' // connection to database and user table
 //creating function to verify if the user is logged in correctly
-function verify(requestBody) {
-    if (!requestBody.user || !requestBody.user.username || !requestBody.token) { //if there isnt a user logged in with the correct information it returns an error
-        return util.buildResponse( 401, {
-            verified: false,
-            message: 'incorrect request body'
-        })
-    }
-    //initializing info
-    const user = requestBody.user;
-    const token = requestBody.token;
-    const verification = auth.verifyToken(user.username, token); //if the user is not verified then it will return an error
-    if(!verification.verified) {
-        return util.buildResponse(401, verification);
-    }
-
-    return util.buildResponse(200, {
-        verified: true,
-        message: 'sucess',
-        user: user,
-        token: token
-    })
+function getQuestionList(requestBody) {
+    const subject = requestBody.subject
+    getQuestionBySubject(subject)
 }
 
-module.exports.verify = verify;
+async function getQuestionBySubject(subject) { //getting user info to check if the user has already logged in 
+
+    const params = {
+        TableName: userTable,
+        KeyConditionExpression: "#subject = :subject",
+        ExpressionAttributeNames: {
+          "#subject": "subject"
+        },
+        ExpressionAttributeValues: {
+          ":subject": subject
+        },
+        Limit: 10
+    }
+      // Query DynamoDB for the questions.
+  const result = await dynamodb.query(params).promise();
+
+  // Return the questions.
+  return result.Items;
+}
+
+module.exports.getQuestionList = getQuestionList;

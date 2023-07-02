@@ -24,6 +24,7 @@ exports.handler = async(event) => {
             break;
             
         case event.httpMethod === 'GET' && event.path === getPath:
+            console.log("calfadsdasdasdfled")    
             const getBody = JSON.parse(event.body);
             response = await getService.login(getBody);
             break;  
