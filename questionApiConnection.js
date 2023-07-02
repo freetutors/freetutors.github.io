@@ -1,57 +1,35 @@
 //Creating question to database. Waiting on how yash inputs values
+
 var toolbarOptions = [
   ['bold', 'italic', 'underline', 'link', 'image'], // Customize the toolbar elements here
   // Additional toolbar options...
 ];
-
-var quill = new Quill('#editor', {
-  placeholder: 'Provide any additional relevant details',
-  theme: 'snow',
-  modules: {
-    toolbar: toolbarOptions,
-    imageResize: {
-      modules: ['Resize']
+if (window.location == "createQuestion.html") {
+  var quill = new Quill('#editor', {
+    placeholder: 'Provide any additional relevant details',
+    theme: 'snow',
+    modules: {
+      toolbar: toolbarOptions,
+      imageResize: {
+        modules: ['Resize']
+      },
+      imageDrop: true,
     },
-    imageDrop: true,
-  },
-});
-
-var previewContainer = document.getElementById('preview-container');
-var previewTitleContainer = document.getElementById('preview-container-title');
-
-function updatePreviewBody() {
-  var content = quill.root.innerHTML;
-  previewContainer.innerHTML = content;
-  MathJax.Hub.Queue(['Typeset', MathJax.Hub, previewContainer]);
+  });
+  
+  document.querySelector(".question-send").addEventListener("click", () => {
+    submitQuestion()
+  })
 }
 
-function updatePreviewTitle() {
-  var title = document.getElementById('title').value;
-  previewTitleContainer.innerHTML = title;
-  MathJax.Hub.Queue(['Typeset', MathJax.Hub, previewTitleContainer]);
-}
-
-quill.on('text-change', function () {
-  updatePreviewBody();
-});
-
-console.log("adljhjhsdfalkjsd");
 const apiUrlcreate = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/create";
 const apiUrlget = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/getquestion";
 const health = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/health";
-console.log("callede")
-// document.addEventListener('touchstart', handler, {passive: true});
-// document.addEventListener('mousewheel', handler, {passive: true});
-// document.addEventListener('touchmove', handler, {passive: true});
-console.log()
+
 async function submitQuestion() {
   const title = document.getElementById('title').value;
     const body = quill.root.innerHTML;
-    console.log(body)
     const author = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser");  
-    console.log(author)
-    const userToken = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7."+author+".accessToken")
-    console.log(userToken)
     const response = await fetch(apiUrlcreate, {
       mode: 'cors',
       method: "POST",
@@ -71,26 +49,51 @@ async function submitQuestion() {
       console.log("Error calling API");
     }
   
-    // const questionData = {
-    //   title: title,
-    //   body: body,
-    //   author: author
-    // };
-    // console.log(questionData)
-    // try {
-    //     const response = await API.post('freetutor-question-gateway', '/create', {
-    //       body: questionData
-    //     });
-    
-    //     // Question created successfully
-    //     console.log("it worked")
-    //   } catch (error) {
-    //     // Error occurred while creating the question
-    //     console.log(error)
-    //   }
 }
-console.log("got to here")
-document.querySelector(".question-send").addEventListener("click", () => {
-  console.log("clicked")  
-  submitQuestion()
-})
+
+//getting for home page
+var desiredSubject = "math" //depending on what column it is on, it will get the questions
+
+async function getQuestionList(desiredSubject) {
+  const questionList = await fetch(apiUrlget + "?subject=" + desiredSubject, +  {
+    mode: "cors",
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    }
+  }).then(response => response.json());
+  console.log(questionList)
+  return questionList
+}
+
+async function showQuestionColumn(){
+  var desiredSubject = "math"
+  const questionList = getQuestionList(desiredSubject)
+  console.log(questionList)
+  questionList.forEach(question => {
+    var title = question.title
+    var author = question.author
+    var answers = question.answers
+    var rating = question.rating
+    var time = question.timestamp
+    var views = question.views
+    document.querySelector(".questions_list").innerHTML += 
+      `<div class="box text_box">
+      <!-- pfp -->
+      <img id="text_box_pfp" src="placeholder_pfp.png">
+      <div id="text_box_question_content">${title}</div>
+      <div id="asked_by_line">asked by ${author} ${time} ago</div>
+      <div id="answered_by_line">answered by abraham_lincoln27, asdfghjkl;, yoyoman, and 2 others</div>
+      <div class="question_stats">
+        <div id="question_stats_items">10 Answers</div>
+        <div id="question_stats_items">${views}</div>
+        <div id="question_stats_items">${rating}</div>
+      </div>`
+    }
+  )
+}
+
+if (window.location == "index.html" || "/") {
+  showQuestionColumn()
+}
+

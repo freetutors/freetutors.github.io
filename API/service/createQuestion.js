@@ -15,6 +15,7 @@ async function createQuestion(questionData) {
     const body = questionData.body //body with formatting
     const author = questionData.author
     const timestamp = new Date().toISOString();
+    const subject = "misc"
     if (!title || !body || !author || !timestamp) { //checking for all categories filled, || = or
     return util.buildResponse(401, { // any arbitrary error number works BUT NOT 200 or 404
         message: 'Missing Info'
@@ -28,8 +29,8 @@ async function createQuestion(questionData) {
         rating: 0,
         views: 0,
         answers: 0,
-        timestamp: timestamp
-        
+        timestamp: timestamp,
+        subject: subject
     }
     await saveQuestion(question)
     const response = {

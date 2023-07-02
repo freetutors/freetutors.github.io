@@ -1,7 +1,7 @@
 // serverside
 const healthPath = '/health'; //checking for healthy service connection, mainly for bug fix and testing
 const createPath = '/create';
-const getPath = '/get-questions';
+const getPath = '/getquestions';
 // initiallized all of the things to check 
 
 const createService = require('./service/createQuestion.js');
