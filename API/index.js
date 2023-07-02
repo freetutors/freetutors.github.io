@@ -23,7 +23,7 @@ exports.handler = async(event) => {
             response = await createService.createQuestion(createBody); //register() defined in register.js all the other functions are done the same way in the service folder
             break;
             
-        case event.httpMethod === 'POST' && event.path === getPath:
+        case event.httpMethod === 'GET' && event.path === getPath:
             const getBody = JSON.parse(event.body);
             response = await getService.login(getBody);
             break;  
