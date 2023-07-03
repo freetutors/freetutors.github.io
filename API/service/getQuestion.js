@@ -53,6 +53,6 @@ async function getQuestionByViews(views) { //getting user info to check if the u
 const result = await dynamodb.query(params).promise();
 
 // Return the questions.
-return result.Items;
+return result;
 }
 module.exports.getQuestionList = getQuestionList;
