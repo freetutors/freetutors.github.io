@@ -6,7 +6,7 @@ AWS.config.update({
 const util = require('../utils/util')
 console.log("called")
 const dynamodb = new AWS.DynamoDB.DocumentClient();
-const questionTable = 'freetutor-questions' // connection to database and user table
+const questionTable = 'Freetutor-Question' // connection to database and user table
 //creating function to verify if the user is logged in correctly
 function getQuestionList(requestBody) {
     const subject = requestBody.subject
