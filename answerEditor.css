@@ -1,0 +1,83 @@
+#editor {
+    border: none;
+}
+
+.ql-editor {
+  position: relative;
+  width: 920px;
+  height: 300px;
+  inset: 0;
+  margin: auto;
+  border: 1.5px solid var(--border-color);
+  border-radius: 0 0 6px 6px;
+  background-color: #363636ff;
+  padding-left: 12px;
+}
+
+/* Change font color of the content */
+.ql-editor p {
+  font-family: 'Lexend';
+  font-size: 15px;
+  color: white;
+}
+
+.ql-toolbar {
+  position: relative;
+  width: 920px;
+  height: fit-content;
+  inset: 0;
+  margin: auto;
+  background-color: #242424ff;
+  border-radius: 6px 6px 0 0;
+}
+
+.ql-toolbar.ql-snow {
+  border: 1.5px solid var(--border-color);
+  border-bottom: none;
+}
+
+.ql-toolbar .ql-stroke {
+    fill: none;
+    stroke: #fff !important;
+}
+
+.ql-toolbar .ql-fill {
+    fill: #fff !important;
+    stroke: none;
+}
+
+.ql-toolbar .ql-picker {
+    color: #fff !important;
+}
+
+.ql-editor.ql-blank::before {
+    font-family: 'Lexend';
+    font-style: normal;
+    color: grey;
+    margin-left: -3px;
+    font-size: 15px;
+}
+
+.ql-editor strong{
+    font-weight: 700;
+}
+
+#preview-container {
+  color: white;
+  position: relative;
+  width: 920px;
+  height: fit-content;
+  inset: 0;
+  margin: auto;
+  margin-top: -10px;
+  background-color: transparent;
+  white-space: initial;
+  word-wrap: break-word;
+}
+
+.mathjax-latex {
+  display: inline-block;
+  font-style: italic;
+  color: #333;
+}
+
