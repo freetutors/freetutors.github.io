@@ -17,12 +17,11 @@
  }
  
  body {
-    overflow: hidden;
-    font-family: 'Lexend', sans-serif;
-    background-color: var(--background-color);
-    margin: 0;
-    padding: 0;
-  }
+   font-family: 'Lexend', sans-serif;
+   background-color: var(--background-color);
+   margin: 0;
+   padding: 0;
+ }
   .profileButton{
     width: 170px;
     margin-right: 10px;
@@ -65,15 +64,6 @@
     justify-content: center;
     align-items: center;
 }
-
-body {
-   overflow: hidden;
-   font-family: 'Lexend', sans-serif;
-   background-color: var(--background-color);
-   margin: 0;
-   padding: 0;
- }
-
 
  #topbar {
    background-color: var(--header-color);
