@@ -10,7 +10,7 @@ const questionTable = 'freetutor-questions' // connection to database and user t
 //creating function to verify if the user is logged in correctly
 function getQuestionList(requestBody) {
     const subject = requestBody.subject
-    getQuestionBySubject(subject)
+    const result = getQuestionBySubject(subject)
     const response = {
       questionList: result,
   }    
@@ -35,7 +35,7 @@ async function getQuestionBySubject(subject) { //getting user info to check if t
   const result = await dynamodb.query(params).promise();
 
   // Return the questions.
-  // return result.Items;
+  return result.Items;
 }
 
 module.exports.getQuestionList = getQuestionList;
