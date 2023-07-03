@@ -44,9 +44,6 @@ async function getQuestionByViews(views) { //getting user info to check if the u
   const params = {
       TableName: questionTable,
       KeyConditionExpression: "#views = :views",
-      ExpressionAttributeNames: {
-        "#views": "views"
-      },
       ExpressionAttributeValues: {
         ":views": views
       },
