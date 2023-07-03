@@ -11,7 +11,11 @@ const questionTable = 'freetutor-questions' // connection to database and user t
 function getQuestionList(requestBody) {
     const subject = requestBody.subject
     getQuestionBySubject(subject)
-
+    const response = {
+      questionList: result,
+  }    
+  return util.buildResponse(200, response);
+  
 }
 
 async function getQuestionBySubject(subject) { //getting user info to check if the user has already logged in 
@@ -29,10 +33,6 @@ async function getQuestionBySubject(subject) { //getting user info to check if t
     }
       // Query DynamoDB for the questions.
   const result = await dynamodb.query(params).promise();
-  const response = {
-    questionList: result,
-}    
-return util.buildResponse(200, response);
 
   // Return the questions.
   // return result.Items;
