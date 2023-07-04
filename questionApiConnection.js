@@ -1,5 +1,4 @@
 //Creating question to database. Waiting on how yash inputs values
-
 var toolbarOptions = [
   ['bold', 'italic', 'underline', 'link', 'image'], // Customize the toolbar elements here
   // Additional toolbar options...
@@ -52,7 +51,6 @@ async function submitQuestion() {
 }
 
 //getting for home page
-var views = "0" //depending on what column it is on, it will get the questions
 function getTimeDifference(timestamp) {
   const currentTime = new Date();
   const previousTime = new Date(timestamp);
@@ -78,7 +76,7 @@ function getTimeDifference(timestamp) {
   }
 }
 
-async function getQuestionList(views) {
+async function getQuestionListViews(views) {
   const url = new URL(`${apiUrlget}?views=${views}`);
   const questionList = await fetch(url,  {
     mode: "cors",
@@ -93,10 +91,8 @@ async function getQuestionList(views) {
 
 async function showQuestionColumn(){
   var views = "0"
-  const questionList = await getQuestionList(views)
-  console.log(questionList)
+  const questionList = await getQuestionListViews(views)
   const questionArray = questionList
-  console.log(questionArray)
   questionArray.forEach(question => {
     var title = question.title
     var author = question.author
@@ -111,16 +107,45 @@ async function showQuestionColumn(){
       <img id="text_box_pfp" src="placeholder_pfp.png">
       <div id="text_box_question_content">${title}</div>
       <div id="asked_by_line">asked by ${author}, ${timeAgo}</div>
-      <div id="answered_by_line">answered by abraham_lincoln27, asdfghjkl;, yoyoman, and 2 others</div>
+      <div id="answered_by_line">Be the first to answer!</div>
       <div class="question_stats">
         <div id="question_stats_items">${answers} Answers</div>
         <div id="question_stats_items">${views} views</div>
         <div id="question_stats_items">${rating} rating</div>
       </div>`
-    }
-  )
+    })
+    const questionBoxes = document.querySelectorAll(".box.text_box");
+    questionBoxes.forEach((box, index) => {
+      box.addEventListener("click", function () {
+        console.log(questionList[index]); // Access the question from the enclosing scope
+        const questionId = questionList[index].questionId; // Retrieve the questionId
+        console.log(questionId);
+        localStorage.setItem("QuestionID", JSON.stringify(questionId));
+        window.location = "viewquestion.html";
+      });
+    });
+  };
+async function getQuestionListId(questionId) {
+  const url = new URL(`${apiUrlget}?questionId=${questionId}`);
+  const questionList = await fetch(url,  {
+    mode: "cors",
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then(response => response.json());
+  console.log(questionList)
+  return questionList.questionList
 }
-
+async function displayQuestion(){
+  const questionId = localStorage.getItem("QuestionID")
+  const questionList = await getQuestionListId(questionId)
+  const questionArray = questionList
+  console.log(questionArray)
+  questionArray.forEach(question => {
+    console.log(questionId)
+  })
+}
 if (window.location == "index.html" || "/") {
   showQuestionColumn()
 }

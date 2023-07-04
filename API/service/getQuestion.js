@@ -8,14 +8,26 @@ const dynamodb = new AWS.DynamoDB.DocumentClient();
 const questionTable = 'Freetutor-Question' // connection to database and user table
 //creating function to verify if the user is logged in correctly
 async function getQuestionList(event) {
-    const views = event.queryStringParameters.views;
-    const result = await getQuestionByViews(views)
     const subject = event.queryStringParameters.subject
+    const questionId = event.queryStringParameters.questionId
+    const views = event.queryStringParameters.views;
+    if (views != null) {
+      const result = await getQuestionByViews(views)
+      return result
+    }
+    else if(questionId != null){
+      const result = await getQuestionById(questionId)
+      return result
+    }
+    else if(subject != null){
+      const result = await getQuestionBySubject(subject)
+      return result
+    }
     console.log("called")
     // const result = getQuestionBySubject(subject)
     const response = {
       questionList: result,
-  }    
+    }    
   return util.buildResponse(200, response);
   
 }
@@ -24,6 +36,7 @@ async function getQuestionBySubject(subject) { //getting user info to check if t
 
     const params = {
         TableName: questionTable,
+        IndexName: "subjectIndex",
         KeyConditionExpression: "#subject = :subject",
         ExpressionAttributeNames: {
           "#subject": "subject"
@@ -34,10 +47,9 @@ async function getQuestionBySubject(subject) { //getting user info to check if t
         Limit: 10
     }
       // Query DynamoDB for the questions.
-  const result = await dynamodb.query(params).promise();
-
-  // Return the questions.
-  return result.Items;
+      const result = await dynamodb.query(params).promise();
+      // Return the questions.
+      return result.Items;
 }
 async function getQuestionByViews(views) { //getting user info to check if the user has already logged in 
 
@@ -55,10 +67,26 @@ async function getQuestionByViews(views) { //getting user info to check if the u
   };
 
     // Query DynamoDB for the questions.
-    console.log("help")
-const result = await dynamodb.query(params).promise();
-console.log(result.Items)
+    const result = await dynamodb.query(params).promise();
 // Return the questions.
-return result.Items;
+    return result.Items;
+}
+async function getQuestionById(questionId) {
+  const params = {
+    TableName: questionTable,
+    KeyConditionExpression: "#Id = :questionId",
+    ExpressionAttributeNames: {
+      "#Id": "questionId"
+    },
+    ExpressionAttributeValues: {
+      ":questionId": questionId
+    },
+    Limit: 10
+  };
+
+    // Query DynamoDB for the questions.
+    const result = await dynamodb.query(params).promise();
+// Return the questions.
+    return result.Items;
 }
 module.exports.getQuestionList = getQuestionList;
