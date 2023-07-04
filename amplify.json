@@ -13,7 +13,7 @@
           },
           {
             "http": {
-              "path": "/get-questions",
+              "path": "/getquestion",
               "method": "GET"
             }
           },

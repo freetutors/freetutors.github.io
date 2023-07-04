@@ -7,10 +7,10 @@ const util = require('../utils/util')
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 const questionTable = 'Freetutor-Question' // connection to database and user table
 //creating function to verify if the user is logged in correctly
-function getQuestionList(requestBody) {
-    const views = requestBody.views;
-    const result = getQuestionByViews(views)
-    const subject = requestBody.subject
+async function getQuestionList(event) {
+    const views = event.queryStringParameters.views;
+    const result = await getQuestionByViews(views)
+    const subject = event.queryStringParameters.subject
     console.log("called")
     // const result = getQuestionBySubject(subject)
     const response = {
@@ -42,18 +42,23 @@ async function getQuestionBySubject(subject) { //getting user info to check if t
 async function getQuestionByViews(views) { //getting user info to check if the user has already logged in 
 
   const params = {
-      TableName: questionTable,
-      KeyConditionExpression: "views = :views",
-      ExpressionAttributeValues: {
-        ":views": views
-      },
-      Limit: 10
-  }
+    TableName: questionTable,
+    IndexName: "viewsIndex",
+    KeyConditionExpression: "#v = :views",
+    ExpressionAttributeNames: {
+      "#v": "views"
+    },
+    ExpressionAttributeValues: {
+      ":views": parseInt(views)
+    },
+    Limit: 10
+  };
 
     // Query DynamoDB for the questions.
+    console.log("help")
 const result = await dynamodb.query(params).promise();
-console.log(result)
+console.log(result.Items)
 // Return the questions.
-return result;
+return result.Items;
 }
 module.exports.getQuestionList = getQuestionList;
