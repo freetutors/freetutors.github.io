@@ -8,27 +8,34 @@ const dynamodb = new AWS.DynamoDB.DocumentClient();
 const questionTable = 'Freetutor-Question' // connection to database and user table
 //creating function to verify if the user is logged in correctly
 async function getQuestionList(event) {
-    const subject = event.queryStringParameters.subject
+  const views = event.queryStringParameters.views;
+  
+  const subject = event.queryStringParameters.subject
     const questionId = event.queryStringParameters.questionId
-    const views = event.queryStringParameters.views;
     if (views != null) {
       const result = await getQuestionByViews(views)
-      return result
+      const response = {
+        questionList: result,
+      }    
+      return util.buildResponse(200, response);
     }
     else if(questionId != null){
       const result = await getQuestionById(questionId)
-      return result
+      const response = {
+        questionList: result,
+      }    
+      return util.buildResponse(200, response);
     }
     else if(subject != null){
       const result = await getQuestionBySubject(subject)
-      return result
+      const response = {
+        questionList: result,
+      }    
+      return util.buildResponse(200, response);
     }
     console.log("called")
     // const result = getQuestionBySubject(subject)
-    const response = {
-      questionList: result,
-    }    
-  return util.buildResponse(200, response);
+
   
 }
 

@@ -121,7 +121,7 @@ async function showQuestionColumn(){
         const questionId = questionList[index].questionId; // Retrieve the questionId
         console.log(questionId);
         localStorage.setItem("QuestionID", JSON.stringify(questionId));
-        window.location = "viewquestion.html";
+        window.location = `viewquestion.html?questionId=${questionId}`;
       });
     });
   };
@@ -137,16 +137,56 @@ async function getQuestionListId(questionId) {
   console.log(questionList)
   return questionList.questionList
 }
+function formatDate(timestamp) {
+  const date = new Date(timestamp);
+  let formattedDate = date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+  return formattedDate
+}
 async function displayQuestion(){
-  const questionId = localStorage.getItem("QuestionID")
+  const urlParams = new URLSearchParams(window.location.search);
+  const questionId = urlParams.get('questionId');
   const questionList = await getQuestionListId(questionId)
   const questionArray = questionList
   console.log(questionArray)
   questionArray.forEach(question => {
-    console.log(questionId)
+    var title = question.title
+    var body = question.body
+    var author = question.author
+    var answers = question.answers
+    var rating = question.rating
+    var date = formatDate(question.timestamp)
+    var views = question.views
+    document.getElementById("question-wrapper").innerHTML = 
+    `
+    <div class="title">${title}</div>
+    <hr class="titleSep">
+    <div class="question">
+      <img src="placeholder_pfp.png" class="user_pfp">
+      <div class="contributorStats">
+        <p class="username">${author}</p>
+        <p class="time">${date}</p>
+      </div>
+      <p class="questionBody">${body}</p>
+      <div class="rating-container">
+        <div class="upvote"></div>
+        <div class="rating-value">${rating}</div>
+        <div class="downvote"></div>
+      </div>
+    </div>
+    `
   })
 }
-if (window.location == "index.html" || "/") {
-  showQuestionColumn()
+console.log(window.location.pathname)
+if (window.location.pathname == "/freetutors.github.io/viewquestion.html") {
+  console.log("Called")
+  await displayQuestion()
+}
+else if (window.location.pathname == "/freetutors.github.io/index.html" || "/freetutors.github.io/") {
+  console.log("????")
+  await showQuestionColumn()
 }
 
