@@ -170,7 +170,9 @@ async function displayQuestion(){
         <p class="username">${author}</p>
         <p class="time">${date}</p>
       </div>
-      <p class="questionBody">${body}</p>
+      <div class= "questionbody>
+      ${body}
+      </div>
       <div class="rating-container">
         <div class="upvote"></div>
         <div class="rating-value">${rating}</div>

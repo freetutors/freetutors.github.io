@@ -10,7 +10,7 @@ const util = require('../utils/util'); // every period shows how much higher you
 async function updateQuestion(event) {
     const questionId = event.queryStringParameters.questionId
     const answers = event.queryStringParameters.answers
-    const views = event.queryStringParameters.views //body with formatting
+    const views = parseInt(event.queryStringParameters.views) //body with formatting
     const rating = event.queryStringParameters.rating
 
     const question = { //question details

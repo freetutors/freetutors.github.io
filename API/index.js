@@ -2,7 +2,7 @@
 const healthPath = '/health'; //checking for healthy service connection, mainly for bug fix and testing
 const createPath = '/create';
 const getPath = '/getquestion';
-const updatePath = '/updatequestion'
+const updatePath = '/updatequestion';
 // initiallized all of the things to check 
 
 const createService = require('./service/createQuestion.js');
@@ -31,7 +31,7 @@ exports.handler = async(event) => {
             response = await getService.getQuestionList(event);
             break;  
         case event.httpMethod === 'POST' && event.path === updatePath:
-            const updatePath = JSON.parse(event.body);
+            const updateBody = JSON.parse(event.body);
             response = await updateService.updateQuestion(event); //register() defined in register.js all the other functions are done the same way in the service folder
             break;
         default:
