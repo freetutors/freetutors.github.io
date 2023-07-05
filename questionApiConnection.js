@@ -180,10 +180,41 @@ async function displayQuestion(){
     `
   })
 }
+//cookies for views and rating
+function checkCookieExists(cookieName) {
+  return document.cookie.split(';').some((cookie) => cookie.trim().startsWith(`${cookieName}=`));
+}
+
+// Function to set a cookie with a given name and value
+function setCookie(cookieName, cookieValue, expirationDays) {
+  const expirationDate = new Date();
+  expirationDate.setDate(expirationDate.getDate() + expirationDays);
+
+  const cookie = `${cookieName}=${cookieValue}; expires=${expirationDate.toUTCString()}; path=/`;
+  document.cookie = cookie;
+}
+
+// Check if the event has already occurred for the current IP address
+const eventCookieName = 'eventOccurred';
+const expirationDays = 365;
+
+if (!checkCookieExists(eventCookieName)) {
+  // Perform the event here
+  
+  // Set a cookie to indicate that the event has occurred for the current IP address
+  setCookie(eventCookieName, 'true', expirationDays);
+}
 console.log(window.location.pathname)
 if (window.location.pathname == "/freetutors.github.io/viewquestion.html") {
   console.log("Called")
   await displayQuestion()
+  if (checkCookieExists("viewed") == false) {
+    setCookie("viewed")
+  }
+  else{
+    console.log("previously viewed")
+  }
+
 }
 else if (window.location.pathname == "/freetutors.github.io/index.html" || "/freetutors.github.io/") {
   console.log("????")
