@@ -39,17 +39,20 @@
   margin-right: 20px;
   margin-left: 20px;
 }
-
+.question-wrapper {
+  padding-bottom: 50px
+}
 .question {
   transform: translateY(-17.5px);
 }
 
 .questionBody {
   color: white;
-  width: 800px;
+  max-width: 800px;
   inset: 0;
   margin: auto;
   line-height: 27.5px;
+  word-wrap: break-word;
 }
 
 .comments {
@@ -68,7 +71,7 @@
 .rating-container {
   position: absolute;
   left: calc(50% - 455px);
-  top: 110px;
+  top: 50px;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -95,8 +98,13 @@
   border-right: 15px solid transparent;
   border-top: 15px solid white;
   cursor: pointer;
+  margin-bottom: 50px;
 }
-
+.answer-wrapper{
+  margin-top: 50px;
+  position: relative;
+  z-index: 10;
+}
 .rating-value {
   font-family: Lexend;
   margin: 10px 0;
@@ -106,6 +114,7 @@
   height: 45px;
   margin-left: calc(50% - 400px);
   cursor: pointer;
+  z-index: 10;
 }
 
 .contributorStats {

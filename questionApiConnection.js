@@ -24,6 +24,7 @@ if (window.location == "createQuestion.html") {
 const apiUrlcreate = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/create";
 const apiUrlget = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/getquestion";
 const health = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/health";
+const apiUrlupdate = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/updatequestion";
 
 async function submitQuestion() {
   const title = document.getElementById('title').value;
@@ -154,7 +155,7 @@ async function displayQuestion(){
   console.log(questionArray)
   questionArray.forEach(question => {
     var title = question.title
-    var body = question.body
+    let body = question.body.replace("<p>", "").replace("</p>", "")
     var author = question.author
     var answers = question.answers
     var rating = question.rating
@@ -170,18 +171,91 @@ async function displayQuestion(){
         <p class="username">${author}</p>
         <p class="time">${date}</p>
       </div>
-      <div class= "questionbody>
-      ${body}
-      </div>
+      <p class = "questionBody">${body}</p>
       <div class="rating-container">
-        <div class="upvote"></div>
+        <div class="upvote vote"></div>
         <div class="rating-value">${rating}</div>
-        <div class="downvote"></div>
+        <div id = "help" class="vote downvote"></div>
       </div>
     </div>
-    `
+    `  
   })
+    const newRating = await ratingButtons()
+    if (checkCookieExists("viewed") == false) {
+    setCookie("viewed")
+    const updatedViews= questionList[0].views+1
+
+    console.log(updatedViews)
+    const answers= questionList[0].answers
+    window.addEventListener('popstate', function (event) {
+      const params = {
+        views: updatedViews,
+        rating: newRating,
+        answers: answers
+      }
+      sendUpdate(params)
+    });
+  }
+  else{
+    console.log("previously viewed")
+  }
 }
+async function sendUpdate(params){
+  const url = new URL(`${apiUrlupdate}?questionId=${questionId}&answers=${answers}&views=${updatedViews}&rating=${rating}`);
+  const response = await fetch(url,  {
+    mode: "cors",
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then(response => response.json());
+};
+
+async function ratingButtons(){
+  let upclick = false
+  let downclick = false
+  let ratingUpdate = 0
+  document.querySelector(".downvote").addEventListener("click", function() {
+    console.log("help")
+    console.log("clicked")
+    if (upclick == false && downclick == false) {
+      console.log("clicked")
+      document.querySelector(".downvote").style.borderTop = '15px solid red'
+      downclick = true
+      ratingUpdate = -1
+      console.log(ratingUpdate)
+    }
+    else if(downclick == true && upclick == false) {
+      document.querySelector(".downvote").style.borderTop = '15px solid white'
+      ratingUpdate = 0
+      downclick = false
+      console.log(ratingUpdate)
+    }
+  })
+
+    document.querySelector(".vote").addEventListener("click", event => {
+      console.log("clicked")
+      console.log(downclick, upclick)
+      if (event.target == document.querySelector(".upvote")){
+        if (upclick == false && downclick == false) {
+          document.querySelector(".upvote").style.borderBottom = '15px solid green'
+          upclick = true
+          ratingUpdate = 1
+          console.log(ratingUpdate)
+        }
+        else if (upclick == true && downclick == false) {
+          document.querySelector(".upvote").style.borderBottom = '15px solid white'
+          ratingUpdate = 0
+          upclick = false
+          console.log(ratingUpdate)
+        }
+      }
+      else if (event.target == document.querySelector(".downvote")){
+
+      }
+    })
+
+  }
 //cookies for views and rating
 function checkCookieExists(cookieName) {
   return document.cookie.split(';').some((cookie) => cookie.trim().startsWith(`${cookieName}=`));
@@ -210,12 +284,7 @@ console.log(window.location.pathname)
 if (window.location.pathname == "/freetutors.github.io/viewquestion.html") {
   console.log("Called")
   await displayQuestion()
-  if (checkCookieExists("viewed") == false) {
-    setCookie("viewed")
-  }
-  else{
-    console.log("previously viewed")
-  }
+
 
 }
 else if (window.location.pathname == "/freetutors.github.io/index.html" || "/freetutors.github.io/") {
