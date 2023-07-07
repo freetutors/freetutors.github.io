@@ -3,7 +3,7 @@ var toolbarOptions = [
   ['bold', 'italic', 'underline', 'link', 'image'], // Customize the toolbar elements here
   // Additional toolbar options...
 ];
-if (window.location == "createQuestion.html") {
+if (window.location.pathname == "/freetutors.github.io/createQuestion.html") {
   var quill = new Quill('#editor', {
     placeholder: 'Provide any additional relevant details',
     theme: 'snow',
@@ -15,9 +15,17 @@ if (window.location == "createQuestion.html") {
       imageDrop: true,
     },
   });
-  
+  function updatePreviewBody() {
+    var content = quill.root.innerHTML;
+    previewContainer.innerHTML = content;
+    MathJax.Hub.Queue(['Typeset', MathJax.Hub, previewContainer]);
+  }
+  quill.on('text-change', function () {
+    updatePreviewBody();
+  });
   document.querySelector(".question-send").addEventListener("click", () => {
     submitQuestion()
+    window.location = "/freetutors.github.io"
   })
 }
 
@@ -44,8 +52,8 @@ async function submitQuestion() {
     });
     if (response.ok) {
       const data = await response.json();
-      console.log(data);
     } else {
+      alert("Error adding question, try again later")
       console.log("Error calling API");
     }
   
@@ -86,7 +94,6 @@ async function getQuestionListViews(views) {
       "Content-Type": "application/json",
     },
   }).then(response => response.json());
-  console.log(questionList)
   return questionList.questionList
 }
 
@@ -118,9 +125,7 @@ async function showQuestionColumn(){
     const questionBoxes = document.querySelectorAll(".box.text_box");
     questionBoxes.forEach((box, index) => {
       box.addEventListener("click", function () {
-        console.log(questionList[index]); // Access the question from the enclosing scope
         const questionId = questionList[index].questionId; // Retrieve the questionId
-        console.log(questionId);
         localStorage.setItem("QuestionID", JSON.stringify(questionId));
         window.location = `viewquestion.html?questionId=${questionId}`;
       });
@@ -135,7 +140,6 @@ async function getQuestionListId(questionId) {
       "Content-Type": "application/json",
     },
   }).then(response => response.json());
-  console.log(questionList)
   return questionList.questionList
 }
 function formatDate(timestamp) {
@@ -148,14 +152,20 @@ function formatDate(timestamp) {
   return formattedDate
 }
 async function displayQuestion(){
+  var toolbarOptions = [
+    ['bold', 'italic', 'underline', 'link', 'image'], // Customize the toolbar elements here
+    // Additional toolbar options...
+  ];
+
   const urlParams = new URLSearchParams(window.location.search);
   const questionId = urlParams.get('questionId');
   const questionList = await getQuestionListId(questionId)
   const questionArray = questionList
-  console.log(questionArray)
   questionArray.forEach(question => {
     var title = question.title
-    let body = question.body.replace("<p>", "").replace("</p>", "")
+    const replacePart = "/</p>/g"
+    let body = question.body.replace(/<p>/g, "").replace(/<\/p>/g, " ")
+    console.log(body)
     var author = question.author
     var answers = question.answers
     var rating = question.rating
@@ -180,27 +190,33 @@ async function displayQuestion(){
     </div>
     `  
   })
-    const newRating = await ratingButtons()
-    if (checkCookieExists("viewed") == false) {
-    setCookie("viewed")
-    const updatedViews= questionList[0].views+1
+  MathJax.Hub.Queue(['Typeset', MathJax.Hub, 'question-wrapper']);
 
-    console.log(updatedViews)
-    const answers= questionList[0].answers
-    window.addEventListener('popstate', function (event) {
-      const params = {
-        views: updatedViews,
-        rating: newRating,
-        answers: answers
-      }
-      sendUpdate(params)
+  if (window.location.pathname == "/freetutors.github.io/viewquestion.html") {
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [],
+        processEscapes: true,
+      },
+      skipStartupTypeset: true, // Skip automatic typesetting on startup
     });
+    
+    MathJax.Hub.Startup.typeset(); // Manually trigger MathJax typesetting
   }
-  else{
-    console.log("previously viewed")
-  }
+  var updatedViews = 0
+    if (checkCookieExists(questionId) == false) {
+      setCookie(questionId)
+      updatedViews= questionList[0].views+1 
+      var newRating = parseInt(questionList[0].rating)
+      var answers= questionList[0].answers 
+      sendUpdate(questionId, answers, updatedViews, newRating)
+    }
+    else{
+    }
+    await ratingButtons(questionList)
 }
-async function sendUpdate(params){
+async function sendUpdate(questionId, answers, updatedViews, rating){
   const url = new URL(`${apiUrlupdate}?questionId=${questionId}&answers=${answers}&views=${updatedViews}&rating=${rating}`);
   const response = await fetch(url,  {
     mode: "cors",
@@ -211,50 +227,85 @@ async function sendUpdate(params){
   }).then(response => response.json());
 };
 
-async function ratingButtons(){
+async function ratingButtons(questionList){
+  var questionId = questionList[0].questionId
+  var answers= questionList[0].answers
+  var updatedViews = questionList[0].views
+  var newRating = parseInt(questionList[0].rating)
   let upclick = false
   let downclick = false
   let ratingUpdate = 0
-  document.querySelector(".downvote").addEventListener("click", function() {
-    console.log("help")
-    console.log("clicked")
-    if (upclick == false && downclick == false) {
-      console.log("clicked")
-      document.querySelector(".downvote").style.borderTop = '15px solid red'
-      downclick = true
-      ratingUpdate = -1
-      console.log(ratingUpdate)
-    }
-    else if(downclick == true && upclick == false) {
-      document.querySelector(".downvote").style.borderTop = '15px solid white'
-      ratingUpdate = 0
+  if (checkCookieExists("voted")==false){
+    setCookie("voted", "no", 365)
+  }
+  else{
+    if (getCookie("voted") === 'no') {
+      upclick = false
       downclick = false
-      console.log(ratingUpdate)
     }
-  })
-
-    document.querySelector(".vote").addEventListener("click", event => {
-      console.log("clicked")
-      console.log(downclick, upclick)
-      if (event.target == document.querySelector(".upvote")){
-        if (upclick == false && downclick == false) {
-          document.querySelector(".upvote").style.borderBottom = '15px solid green'
-          upclick = true
-          ratingUpdate = 1
-          console.log(ratingUpdate)
-        }
-        else if (upclick == true && downclick == false) {
-          document.querySelector(".upvote").style.borderBottom = '15px solid white'
-          ratingUpdate = 0
-          upclick = false
-          console.log(ratingUpdate)
-        }
+    else if(getCookie("voted")=== 'upvote') {
+      upclick = true
+      downclick = false
+      document.querySelector(".upvote").style.borderBottom = '15px solid green'
+    }
+    else if(getCookie("voted") === 'downvote') {
+      downclick = true
+      upclick = false
+      document.querySelector(".downvote").style.borderTop = '15px solid red'
+    }
+  }
+  return new Promise((resolve) => {
+    document.querySelector(".downvote").addEventListener("click", function() {
+      if (upclick == false && downclick == false) {
+        document.querySelector(".downvote").style.borderTop = '15px solid red'
+        downclick = true
+        ratingUpdate = -1
+      newRating += parseInt(ratingUpdate)
+      sendUpdate(questionId, answers, updatedViews, newRating)
+      setCookie("voted", "downvote", 365)
+      displayQuestion()
+      displayQuestion() //failsafe incase update lag
       }
-      else if (event.target == document.querySelector(".downvote")){
-
+      else if(downclick == true && upclick == false) {
+        document.querySelector(".downvote").style.borderTop = '15px solid white'
+        ratingUpdate += 1
+        downclick = false
+        newRating += parseInt(ratingUpdate)
+        sendUpdate(questionId, answers, updatedViews, newRating)
+        setCookie("voted", "no", 365)
+        displayQuestion()
+        displayQuestion()
       }
+      resolve(ratingUpdate)
     })
 
+      document.querySelector(".vote").addEventListener("click", event => {
+        if (event.target == document.querySelector(".upvote")){
+          if (upclick == false && downclick == false) {
+            document.querySelector(".upvote").style.borderBottom = '15px solid green'
+            upclick = true
+            ratingUpdate = 1
+            newRating += parseInt(ratingUpdate)
+            sendUpdate(questionId, answers, updatedViews, newRating)
+            setCookie("voted", "upvote", 365)
+            displayQuestion()
+            displayQuestion()
+          }
+          else if (upclick == true && downclick == false) {
+            document.querySelector(".upvote").style.borderBottom = '15px solid white'
+            ratingUpdate -= 1
+            upclick = false
+            newRating += parseInt(ratingUpdate)
+            sendUpdate(questionId, answers, updatedViews, newRating)
+            setCookie("voted", "no", 365)
+            displayQuestion()
+            displayQuestion()
+          }
+        }
+        resolve(ratingUpdate)
+    })
+  })
+    
   }
 //cookies for views and rating
 function checkCookieExists(cookieName) {
@@ -269,7 +320,16 @@ function setCookie(cookieName, cookieValue, expirationDays) {
   const cookie = `${cookieName}=${cookieValue}; expires=${expirationDate.toUTCString()}; path=/`;
   document.cookie = cookie;
 }
-
+function getCookie(name) {
+  var cookieArr = document.cookie.split(";");
+  for(var i = 0; i < cookieArr.length; i++) {
+      var cookiePair = cookieArr[i].split("=");
+      if(name == cookiePair[0].trim()) {
+          return decodeURIComponent(cookiePair[1]);
+      }
+  }
+  return null;
+}
 // Check if the event has already occurred for the current IP address
 const eventCookieName = 'eventOccurred';
 const expirationDays = 365;
@@ -280,15 +340,13 @@ if (!checkCookieExists(eventCookieName)) {
   // Set a cookie to indicate that the event has occurred for the current IP address
   setCookie(eventCookieName, 'true', expirationDays);
 }
-console.log(window.location.pathname)
 if (window.location.pathname == "/freetutors.github.io/viewquestion.html") {
-  console.log("Called")
   await displayQuestion()
-
-
+}
+else if (window.location.pathname == "/freetutors.github.io/createQuestion.html") {
+  
 }
 else if (window.location.pathname == "/freetutors.github.io/index.html" || "/freetutors.github.io/") {
-  console.log("????")
   await showQuestionColumn()
 }
 
