@@ -165,7 +165,6 @@ async function displayQuestion(){
     var title = question.title
     const replacePart = "/</p>/g"
     let body = question.body.replace(/<p>/g, "").replace(/<\/p>/g, " ")
-    console.log(body)
     var author = question.author
     var answers = question.answers
     var rating = question.rating
@@ -202,7 +201,6 @@ async function displayQuestion(){
       skipStartupTypeset: true, // Skip automatic typesetting on startup
     });
     
-    MathJax.Hub.Startup.typeset(); // Manually trigger MathJax typesetting
   }
   var updatedViews = 0
     if (checkCookieExists(questionId) == false) {
