@@ -233,20 +233,20 @@ async function ratingButtons(questionList){
   let upclick = false
   let downclick = false
   let ratingUpdate = 0
-  if (checkCookieExists("voted")==false){
-    setCookie("voted", "no", 365)
+  if (checkCookieExists("voted"+questionId)==false){
+    setCookie("voted"+questionId, "no", 365)
   }
   else{
-    if (getCookie("voted") === 'no') {
+    if (getCookie("voted"+questionId) === 'no') {
       upclick = false
       downclick = false
     }
-    else if(getCookie("voted")=== 'upvote') {
+    else if(getCookie("voted"+questionId)=== 'upvote') {
       upclick = true
       downclick = false
       document.querySelector(".upvote").style.borderBottom = '15px solid green'
     }
-    else if(getCookie("voted") === 'downvote') {
+    else if(getCookie("voted"+questionId) === 'downvote') {
       downclick = true
       upclick = false
       document.querySelector(".downvote").style.borderTop = '15px solid red'
@@ -260,7 +260,7 @@ async function ratingButtons(questionList){
         ratingUpdate = -1
       newRating += parseInt(ratingUpdate)
       sendUpdate(questionId, answers, updatedViews, newRating)
-      setCookie("voted", "downvote", 365)
+      setCookie("voted"+questionId, "downvote", 365)
       displayQuestion()
       displayQuestion() //failsafe incase update lag
       }
@@ -270,7 +270,7 @@ async function ratingButtons(questionList){
         downclick = false
         newRating += parseInt(ratingUpdate)
         sendUpdate(questionId, answers, updatedViews, newRating)
-        setCookie("voted", "no", 365)
+        setCookie("voted"+questionId, "no", 365)
         displayQuestion()
         displayQuestion()
       }
@@ -285,7 +285,7 @@ async function ratingButtons(questionList){
             ratingUpdate = 1
             newRating += parseInt(ratingUpdate)
             sendUpdate(questionId, answers, updatedViews, newRating)
-            setCookie("voted", "upvote", 365)
+            setCookie("voted"+questionId, "upvote", 365)
             displayQuestion()
             displayQuestion()
           }
@@ -295,7 +295,7 @@ async function ratingButtons(questionList){
             upclick = false
             newRating += parseInt(ratingUpdate)
             sendUpdate(questionId, answers, updatedViews, newRating)
-            setCookie("voted", "no", 365)
+            setCookie("voted"+questionId, "no", 365)
             displayQuestion()
             displayQuestion()
           }
