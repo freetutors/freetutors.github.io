@@ -1,0 +1,143 @@
+ .question_box {
+     font-family: 'Lexend';
+     height: fit-content;
+     width: 920px;
+     background-color: #363636ff;
+     border-radius: 6px;
+     color: white;
+     border: 1.5px solid var(--border-color);
+     padding: 10px;
+     font-size: 17px;
+     margin-top: 15px;
+     margin-left: calc(50% - 460px);
+ }
+
+ .instructions {
+    color: white;
+    font-size: 22px;
+    margin-left: calc(50% - 460px);
+    margin-top: 15px;
+ }
+
+ .back_button {
+    position: absolute;
+    color: white;
+    top: 57px;
+    left: 18px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: transform 0.3s ease-in-out;
+    font-size: 18px;
+}
+
+.back_button::before {
+    margin-right: 3px;
+    content: '\2039';
+    font-size: 18px;
+}
+
+.back_button:hover {
+    transform: scale(1.06);
+}
+
+.buttons {
+  position: relative;
+  padding: 12px;
+  font-size: 15px;
+  height: 40px;
+  width: 947.5px;
+  background-color: var(--primary-color);
+  outline: none;
+  cursor: pointer;
+  margin: auto;
+  left: calc(50% - 460px);
+}
+
+.button {/*setting main button object*/
+    font-family: 'Lexend', sans-serif;
+    border: none;
+    color: white;
+    padding: 6.5px 17px;
+    text-align: center;
+    font-size: 14px;
+    margin-right: 11px;
+    cursor: pointer;
+    border-radius: 6px;
+    margin-top: 13px;
+ }
+
+/* for dropdown */
+
+.dropdown {
+  position: relative;
+  margin-left: calc(50% - 460px);
+  width: fit-content;
+}
+
+.dropbtn {
+  font-family: 'Lexend';
+  background-color: #363636ff;
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border: 1.5px solid var(--border-color);
+  border-radius: 5px;
+  height: 35px;
+  transition: 0.2s;
+  margin-top: 15px;
+}
+
+.dropdown-content {
+  display: none;
+  position: relative;
+  background-color: #363636ff;
+  width: 187.5px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  border: 1.5px solid var(--border-color);
+  border-radius: 5px;
+  transform: translateY(1px);
+}
+
+.dropdown-content a {
+  color: white;
+  padding: 8.75px 16px;
+  text-decoration: none;
+  display: block;
+  font-size: 14px;
+}
+
+.dropdown-content a:hover {
+  background-color: #5e5e5eff;
+}
+
+.dropbtn::after {
+    margin-left: 7px;
+    content: '\203A';
+    font-size: 22px;
+    transform: translateY(-1.5px);
+}
+
+.rotate-after::after {
+    transform: rotate(90deg) translateY(-4px) translateX(1px);
+}
+
+.comments_box {
+  font-family: 'Lexend';
+  font-size: 15px;
+  color: white;
+  width: 920px;
+  height: 300px;
+  margin-top: 15px;
+  margin-left: calc(50% - 460px);
+  border: 1.5px solid var(--border-color);
+  border-radius: 6px;
+  background-color: #363636ff;
+  padding: 12px;
+  padding-top: 9px;
+  padding-bottom: 9px;
+  resize: none;
+}
+

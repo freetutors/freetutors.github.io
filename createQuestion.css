@@ -74,7 +74,8 @@
 
 .dropdown {
   position: relative;
-  margin-left: calc(50% - 460px)
+  margin-left: calc(50% - 460px);
+  width: fit-content;
 }
 
 .dropbtn {
