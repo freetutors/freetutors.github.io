@@ -20,7 +20,7 @@
   <div class="back_button">back</div>
 
   <div class="instructions" style="margin-top: 30px;">Subject</div>
-  <input class="question_box" placeholder="Describe your problem in a few words" oninput="updatePreviewTitle()">
+  <input class="question_box" placeholder="Describe your problem in a few words">
   <div class="instructions" style="top: 210px;">Elaborate on your Problem</div>
   <textarea class="comments_box" placeholder="Provide any additional relevant details"></textarea>
 
@@ -45,49 +45,6 @@
 
   <button class="button buttons" style="background-color: var(--secondary-color);">Submit Feedback</button>
 
-
-  <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-  <script src="image-resize.min.js"></script>
-  <script src="image-drop.min.js"></script>
-  <script> //moving to questionAPIConnect from simplicity
-    var toolbarOptions = [
-      ['bold', 'italic', 'underline', 'link', 'image'], // Customize the toolbar elements here
-      // Additional toolbar options...
-    ];
-
-    var quill = new Quill('#editor', {
-      placeholder: 'Provide any additional relevant details',
-      theme: 'snow',
-      modules: {
-        toolbar: toolbarOptions,
-        imageResize: {
-          modules: ['Resize']
-        },
-        imageDrop: true,
-      },
-    });
-
-    var previewContainer = document.getElementById('preview-container');
-    var previewTitleContainer = document.getElementById('preview-container-title');
-
-    function updatePreviewBody() {
-      var content = quill.root.innerHTML;
-      previewContainer.innerHTML = content;
-      MathJax.Hub.Queue(['Typeset', MathJax.Hub, previewContainer]);
-    }
-
-    function updatePreviewTitle() {
-      var title = document.getElementById('title').value;
-      previewTitleContainer.innerHTML = title;
-      MathJax.Hub.Queue(['Typeset', MathJax.Hub, previewTitleContainer]);
-    }
-
-    quill.on('text-change', function () {
-      updatePreviewBody();
-    });
-
-  </script>
-
   <!-- for dropdown -->
 
   <script>
@@ -103,12 +60,6 @@
       dropdownContent.addEventListener("click", function(event) {
         if (event.target.classList.contains("subject")) {
           dropbtn.textContent = event.target.textContent;
-          dropdownContent.style.display = "none";
-        }
-      });
-
-      document.addEventListener("click", function(event) {
-        if (!dropdown.contains(event.target)) {
           dropdownContent.style.display = "none";
         }
       });

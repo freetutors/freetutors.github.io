@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href='https://fonts.googleapis.com/css?family=Lexend|Lexend:400,700' rel='stylesheet'>
+  <link rel="stylesheet" href="suggestions.css"/>
+  <link rel="stylesheet" href="root.css"/>
+  <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
+</head>
+<body>
+  <div id="topbar">
+    <img id="logo" src="Logo.svg" alt="Logo" onclick="location.href='index.html'">
+    <!-- Add search bar -->
+    <input type="search" class="search-bar" placeholder="Search..">
+    <button class="button ask-question-button">Ask Question</button>
+    <div id="loginSignupArea">
+    </div>
+  </div>
+
+  <div class="back_button">back</div>
+
+  <div class="dropdown" style="margin-top: 35px;">
+    <button class="center dropbtn" onclick="document.querySelector('.dropbtn').classList.toggle('rotate-after');">Select Your Feedback Type</button>
+    <div class="dropdown-content" style="width: 242.5px;">
+      <a href="#" class="subject">Feature Request</a>
+      <a href="#" class="subject">Bug Report</a>
+      <a href="#" class="subject">Other</a>
+    </div>
+  </div>
+
+  <div class="instructions" style="margin-top: 15px;">Subject</div>
+  <input class="question_box" placeholder="Describe your feedback in a few words">
+  <div class="instructions" style="top: 210px;">Elaborate on your feedback</div>
+  <textarea class="comments_box" placeholder="Provide any additional relevant details"></textarea>
+
+
+
+  <button class="button buttons" style="background-color: var(--secondary-color);">Submit Feedback</button>
+
+  <!-- for dropdown -->
+
+  <script>
+   document.addEventListener("DOMContentLoaded", function() {
+      var dropdown = document.querySelector(".dropdown");
+      var dropdownContent = document.querySelector(".dropdown-content");
+      var dropbtn = document.querySelector(".dropbtn");
+
+      dropdown.addEventListener("click", function() {
+        dropdownContent.style.display = dropdownContent.style.display === "block" ? "none" : "block";
+      });
+
+      dropdownContent.addEventListener("click", function(event) {
+        if (event.target.classList.contains("subject")) {
+          dropbtn.textContent = event.target.textContent;
+          dropdownContent.style.display = "none";
+        }
+      });
+    });
+  </script>
+
+
+  <script type="module" src="questionApiConnection.js"></script>
+  <script src="home.js"></script>
+  <script src="loginsignupbuttons.js"></script>
+</body>
+</html>

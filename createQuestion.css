@@ -74,12 +74,13 @@
 
 .dropdown {
   position: relative;
-  margin-left: calc(50% - 460px)
+  margin-left: calc(50% - 460px);
+  width: fit-content;
 }
 
 .dropbtn {
   font-family: 'Lexend';
-  background-color: #242424ff;
+  background-color: #363636ff;
   color: white;
   padding: 10px;
   font-size: 16px;
