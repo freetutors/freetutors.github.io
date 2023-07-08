@@ -23,7 +23,14 @@
         <li class="menu_item" onclick="location.href='help.html'">Help</li>
       </ul>
     </div>
-    <div class="question_header">Active Questions - Math</div>
+    <div class="question_header">
+      Active Questions - Math
+    </div>
+    <div class="arrows">
+      <div id="arrow-left" onclick="moveLeft()"></div>
+      <div id="arrow-right" onclick="moveRight()"></div>
+    </div>
+
     <div class="box important_box">
       <div id="important_box_nums">2048</div>
       <div id="important_box_text">answered questions</div>
@@ -33,12 +40,7 @@
       <div id="important_box_text">volunteer hours earned</div>
       <button id="sign_up_as_tutor_button" onclick="location.href='tutorSignUp.html'">Sign up as tutor</button>
     </div>
-    <div class="semicircle-button semicircle-right" onclick="moveRight()">
-      <div id="arrow-right"></div>
-    </div>
-    <div class="semicircle-button semicircle-left" onclick="moveLeft()">
-      <div id="arrow-left"></div>
-    </div>
+
     <div class="questions_list"><!--invisible box surround the questions to allow from scrolling-->
       <!-- <div class="box text_box"></div> -->
       <div class="box text_box"></div>
