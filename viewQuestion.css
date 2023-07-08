@@ -1,7 +1,3 @@
-.body {
-  background-color: red;
-}
-
 .back_button {
     position: absolute;
     color: white;
@@ -170,15 +166,3 @@
   left: calc(50% - 460px);
 }
 
-.button {/*setting main button object*/
-    font-family: 'Lexend', sans-serif;
-    border: none;
-    color: white;
-    padding: 6.5px 17px;
-    text-align: center;
-    font-size: 14px;
-    margin-right: 11px;
-    cursor: pointer;
-    border-radius: 6px;
-    margin-top: 13px;
- }

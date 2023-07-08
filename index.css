@@ -325,8 +325,4 @@
   .arrows {
     left: calc(100% - 60px);
   }
-
-  .search-bar {
-     width: 200px;
-   }
 }
