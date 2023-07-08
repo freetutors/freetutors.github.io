@@ -122,26 +122,25 @@
  /* Add styles for search bar */
  .search-bar {
      font-family: 'Lexend';
-     flex-grow: 1; /* Allow search bar to grow and fill available space */
-     margin-left: -10px; /* Add space between search bar and logo */
-     margin-right: 30px; /* Add space between search bar and login button */
-     height:30.5px; /* Set height of search bar */
-     background-color: #363636ff; /* Set background color of search bar to gray */
+     flex-grow: 1;
+     margin-left: -10px;
+     margin-right: 30px;
+     height:30.5px;
+     background-color: #363636ff;
      border-radius: 6px;
      color: white;
      padding-left: 13px;
      padding-right: 140px;
-     border: 1.5px solid var(--border-color); /* Add white border around search bar */
+     border: 1.5px solid var(--border-color);
  }
  .search-bar::placeholder {
-   font-family: 'Lexend'; /* Set font of placeholder text to Lexend */
+   font-family: 'Lexend';
    color: white;
  }
  .search-bar::-webkit-search-cancel-button {
    display: none;
  }
 
- /* Remove red border that appears when clicking on search bar */
  .search-bar:focus {
      outline: none;
  }

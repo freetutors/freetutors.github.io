@@ -33,10 +33,10 @@
       <div id="important_box_text">volunteer hours earned</div>
       <button id="sign_up_as_tutor_button" onclick="location.href='tutorSignUp.html'">Sign up as tutor</button>
     </div>
-    <div class="semicircle-button semicircle-right">
+    <div class="semicircle-button semicircle-right" onclick="moveRight()">
       <div id="arrow-right"></div>
     </div>
-    <div class="semicircle-button semicircle-left">
+    <div class="semicircle-button semicircle-left" onclick="moveLeft()">
       <div id="arrow-left"></div>
     </div>
     <div class="questions_list"><!--invisible box surround the questions to allow from scrolling-->
@@ -49,6 +49,32 @@
       <div class="box text_box"></div>
       <div class="box text_box"></div>
     </div>
+
+    <script>
+      const subjects = [
+        "Active Questions - Math",
+        "Active Questions - Chemistry",
+        "Active Questions - Biology",
+        "Active Questions - Physics",
+        "Active Questions - English",
+        "Active Questions - History",
+        "Active Questions - Geography",
+        "Active Questions - Foreign Language",
+        "Active Questions - Computer Science",
+        "Active Questions - Physical Education",
+      ];
+
+      const questionHeader = document.querySelector('.question_header');
+
+      function moveRight() {
+        questionHeader.innerHTML = subjects[(subjects.indexOf(questionHeader.innerHTML) + 1) % (subjects.length)]
+      }
+
+      function moveLeft() {
+        questionHeader.innerHTML = subjects[((subjects.indexOf(questionHeader.innerHTML) - 1) % (subjects.length) + (subjects.length)) % (subjects.length)]
+      }
+    </script>
+
     <!-- Add rest of content here -->
     <script src="home.js"></script>
     <script type="module" src="questionApiConnection.js"></script>
