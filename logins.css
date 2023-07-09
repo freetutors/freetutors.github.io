@@ -203,6 +203,10 @@
   transition: transform 0.3s;
 }
 
+.login-button-on-login-page {
+
+}
+
 .g-signin2 {
   width: 100px;
   height: 50px;
