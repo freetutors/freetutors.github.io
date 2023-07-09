@@ -6,7 +6,16 @@
         <link rel="stylesheet" href="root.css"/>
     </head>
     <body>
-       
+
+        <div id="topbar">
+          <img id="logo" src="Logo.svg" alt="Logo" onclick="location.href='index.html'">
+          <!-- Add search bar -->
+          <input type="search" class="search-bar" placeholder="Search..">
+          <button class="button ask-question-button" onclick="location.href='createQuestion.html'">Ask Question</button>
+          <div id = "loginSignupArea">
+          </div>
+        </div>
+
         <div class = "box center signup-container">
             <div class="input-group-new"><!--Each section is a part of the login section. Lable is what fills the area, and input registers it. Id is necessary for js connection with database-->
                 <label>Full Name:</label>
@@ -29,7 +38,7 @@
                 placeholder="Enter Your Passcode ">
             <!-- Copy Paste sections to add more -->
             </div>
-            <button class="button login-button-on-login-page">Sign Up</button>
+            <button class="button login-send">Sign Up</button>
             <div class="signup-options">
                 <button>Sign up with google placeholder</button>
             </div>
@@ -38,5 +47,10 @@
             </div>
             <a href="#" onclick="signOut();">Sign out</a>
         </div>
+
+        <!-- Add rest of content here -->
+        <script src="home.js"></script>
+        <script type="module" src="questionApiConnection.js"></script>
+        <script src="loginsignupbuttons.js"></script>
     </body>
 </html>

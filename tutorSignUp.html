@@ -8,13 +8,16 @@
         <script src="https://unpkg.com/aws-amplify@3.3.26/dist/aws-amplify.min.js"></script>
     </head>
     <body>
-        <!-- <div id="topbar">
+
+        <div id="topbar">
           <img id="logo" src="Logo.svg" alt="Logo" onclick="location.href='index.html'">
-          Add search bar
+          <!-- Add search bar -->
           <input type="search" class="search-bar" placeholder="Search..">
-          <button class="button login-button">Log in</button>
-          <button class="button signup-button">Sign up</button>
-        </div> -->
+          <button class="button ask-question-button" onclick="location.href='createQuestion.html'">Ask Question</button>
+          <div id = "loginSignupArea">
+          </div>
+        </div>
+
         <div class = "box center signup-container">
             <div class="input-group-new">
                 <label>Username</label>
@@ -39,5 +42,9 @@
 
         <script src="Backend/config.js"></script>
 
+        <!-- Add rest of content here -->
+        <script src="home.js"></script>
+        <script type="module" src="questionApiConnection.js"></script>
+        <script src="loginsignupbuttons.js"></script>
     </body>
 </html>

@@ -72,10 +72,12 @@
    cursor: pointer;
    border-radius: 6px;
  }
+
  .login-button {/*sub-class of button*/
    margin-right: 11px;
    background-color: var(--primary-color)
  }
+
  .signup-button {
     background-color: var(--secondary-color)
  }
@@ -201,10 +203,6 @@
   transition: transform 0.3s;
 }
 
-.login-button-on-login-p.age:hover {
-  transform: scale(1.015);
-}
-
 .g-signin2 {
   width: 100px;
   height: 50px;
@@ -214,4 +212,17 @@
   height: 10px;
   margin-bottom: 1rem;
   padding-top: -1rem;
+}
+
+@media only screen and (max-width: 870px) {
+
+.signup-container {
+    margin-left: 70px;
+    width: calc(100% - 170px);
+}
+
+.login-send {
+  width: calc(90% + 2px);
+}
+
 }
