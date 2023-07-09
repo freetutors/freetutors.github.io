@@ -45,12 +45,8 @@ function checkVS() {
     if (window.innerWidth > document.body.clientWidth) {
         console.log(true);
         askQuestionButton.style.transform = `translateX(-15px)`;
-        loginButton.style.transform = `translateX(0px)`;
-        signupButton.style.transform = `translateX(0px)`;
     } else {
         askQuestionButton.style.transform = `translateX(0px)`;
-        loginButton.style.transform = `translateX(0px)`;
-        signupButton.style.transform = `translateX(0px)`;
     }
 
 }
