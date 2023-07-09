@@ -100,3 +100,26 @@
   color: #333;
 }
 
+@media only screen and (max-width: 1050px) {
+
+.ql-toolbar {
+    margin-left: 50px;
+    width: calc(100% - 100px);
+}
+
+.ql-editor {
+    margin-left: 50px;
+    width: calc(100% - 100px);
+}
+
+#preview-container {
+    margin-left: 50px;
+    width: calc(100% - 115px);
+}
+
+#preview-container-title {
+    margin-left: 50px;
+    width: calc(100% - 115px);
+}
+
+}

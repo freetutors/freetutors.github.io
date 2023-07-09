@@ -2,7 +2,7 @@
      font-family: 'Lexend';
      position: absolute;
      height: fit-content;
-     width: 900px;
+     width: 897px;
      background-color: #363636ff;
      border-radius: 6px;
      color: white;
@@ -113,3 +113,27 @@
 .rotate-after::after {
     transform: rotate(90deg) translateY(-4px) translateX(1px);
 }
+
+@media only screen and (max-width: 1050px) {
+
+.instructions {
+  left: 50px;
+}
+
+.dropdown {
+  margin-left: 50px;
+}
+
+.question_box {
+  margin-left: 50px;
+  width: calc(100% - 120px);
+}
+
+.buttons {
+    left: 50px;
+    width: calc(100% - 100px);
+}
+
+}
+
+
