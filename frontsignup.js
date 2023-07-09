@@ -1,3 +1,6 @@
+console.log(
+  "cladsfksdaf"
+)
 const poolId ='us-west-1_w3se6DxlL' //getting info from cognito
 const clientId ='lact4vt8ge7lfjvjetu1d3sl7'
 const region = 'us-west-1'
