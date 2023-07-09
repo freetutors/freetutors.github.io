@@ -108,8 +108,8 @@ async function showQuestionColumn(){
     var rating = question.rating
     var timeAgo = getTimeDifference(question.timestamp)
     var views = question.views
-    
-    document.querySelector(".questions_list").innerHTML += 
+
+    document.querySelector(".questions_list").innerHTML +=
       `<div class="box text_box">
       <!-- pfp -->
       <img id="text_box_pfp" src="placeholder_pfp.png">
@@ -170,7 +170,7 @@ async function displayQuestion(){
     var rating = question.rating
     var date = formatDate(question.timestamp)
     var views = question.views
-    document.getElementById("question-wrapper").innerHTML = 
+    document.getElementById("question-wrapper").innerHTML =
     `
     <div class="title">${title}</div>
     <hr class="titleSep">
@@ -187,7 +187,7 @@ async function displayQuestion(){
         <div id = "help" class="vote downvote"></div>
       </div>
     </div>
-    `  
+    `
   })
   MathJax.Hub.Queue(['Typeset', MathJax.Hub, 'question-wrapper']);
 
@@ -200,14 +200,14 @@ async function displayQuestion(){
       },
       skipStartupTypeset: true, // Skip automatic typesetting on startup
     });
-    
+
   }
   var updatedViews = 0
     if (checkCookieExists(questionId) == false) {
       setCookie(questionId)
-      updatedViews= questionList[0].views+1 
+      updatedViews= questionList[0].views+1
       var newRating = parseInt(questionList[0].rating)
-      var answers= questionList[0].answers 
+      var answers= questionList[0].answers
       sendUpdate(questionId, answers, updatedViews, newRating)
     }
     else{
@@ -303,7 +303,7 @@ async function ratingButtons(questionList){
         resolve(ratingUpdate)
     })
   })
-    
+
   }
 //cookies for views and rating
 function checkCookieExists(cookieName) {
@@ -334,7 +334,7 @@ const expirationDays = 365;
 
 if (!checkCookieExists(eventCookieName)) {
   // Perform the event here
-  
+
   // Set a cookie to indicate that the event has occurred for the current IP address
   setCookie(eventCookieName, 'true', expirationDays);
 }
@@ -342,9 +342,8 @@ if (window.location.pathname == "/freetutors.github.io/viewquestion.html") {
   await displayQuestion()
 }
 else if (window.location.pathname == "/freetutors.github.io/createQuestion.html") {
-  
+
 }
 else if (window.location.pathname == "/freetutors.github.io/index.html" || "/freetutors.github.io/") {
   await showQuestionColumn()
 }
-

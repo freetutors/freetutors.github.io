@@ -53,19 +53,6 @@
   left: calc(50% - 460px);
 }
 
-.button {/*setting main button object*/
-    font-family: 'Lexend', sans-serif;
-    border: none;
-    color: white;
-    padding: 6.5px 17px;
-    text-align: center;
-    font-size: 14px;
-    margin-right: 11px;
-    cursor: pointer;
-    border-radius: 6px;
-    margin-top: 13px;
- }
-
 /* for dropdown */
 
 .dropdown {
@@ -141,3 +128,30 @@
   resize: none;
 }
 
+@media only screen and (max-width: 1050px) {
+
+.dropdown {
+  margin-left: 50px;
+}
+
+.instructions {
+  margin-left: 50px;
+
+}
+
+.question_box {
+  margin-left: 50px;
+  width: calc(100% - 130px);
+}
+
+.comments_box {
+  margin-left: 50px;
+  width: calc(100% - 130px);
+}
+
+.buttons {
+  left: 50px;
+  width: calc(100% - 104px);
+}
+
+}

@@ -1,7 +1,7 @@
  .question_box {
      font-family: 'Lexend';
      height: fit-content;
-     width: 920px;
+     width: 924px;
      background-color: #363636ff;
      border-radius: 6px;
      color: white;
@@ -9,14 +9,15 @@
      padding: 10px;
      font-size: 17px;
      margin-top: 15px;
-     margin-left: calc(50% - 460px);
+     margin-left: calc(50% - 473px);
  }
 
  .instructions {
     color: white;
     font-size: 22px;
-    margin-left: calc(50% - 460px);
+    margin-left: calc(50% - 473px);
     margin-top: 15px;
+    width: fit-content;
  }
 
  .back_button {
@@ -50,27 +51,14 @@
   outline: none;
   cursor: pointer;
   margin: auto;
-  left: calc(50% - 460px);
+  left: calc(50% - 473px);
 }
-
-.button {/*setting main button object*/
-    font-family: 'Lexend', sans-serif;
-    border: none;
-    color: white;
-    padding: 6.5px 17px;
-    text-align: center;
-    font-size: 14px;
-    margin-right: 11px;
-    cursor: pointer;
-    border-radius: 6px;
-    margin-top: 13px;
- }
 
 /* for dropdown */
 
 .dropdown {
-  position: relative;
-  margin-left: calc(50% - 460px);
+  margin-top: 50px;
+  margin-left: calc(50% - 473px);
   width: fit-content;
 }
 
@@ -131,7 +119,7 @@
   width: 920px;
   height: 300px;
   margin-top: 15px;
-  margin-left: calc(50% - 460px);
+  margin-left: calc(50% - 473px);
   border: 1.5px solid var(--border-color);
   border-radius: 6px;
   background-color: #363636ff;
@@ -139,5 +127,32 @@
   padding-top: 9px;
   padding-bottom: 9px;
   resize: none;
+}
+
+@media only screen and (max-width: 1050px) {
+
+.dropdown {
+  margin-left: 50px;
+}
+
+.instructions {
+  margin-left: 50px;
+}
+
+.question_box {
+  margin-left: 50px;
+  width: calc(100% - 130px);
+}
+
+.comments_box {
+  margin-left: 50px;
+  width: calc(100% - 130px);
+}
+
+.buttons {
+  left: 50px;
+  width: calc(100% - 104px);
+}
+
 }
 

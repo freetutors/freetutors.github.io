@@ -36,3 +36,20 @@ else{
         window.location='signup.html'
     });
 }
+
+const askQuestionButton = document.querySelector('.ask-question-button');
+const loginButton = document.querySelector('.login-button');
+const signupButton = document.querySelector('.signup-button');
+
+function checkVS() {
+    if (window.innerWidth > document.body.clientWidth) {
+        console.log(true);
+        askQuestionButton.style.transform = `translateX(-15px)`;
+    } else {
+        askQuestionButton.style.transform = `translateX(0px)`;
+    }
+
+}
+
+window.addEventListener('load', checkVS)
+window.addEventListener('resize', checkVS)

@@ -10,119 +10,6 @@
    --question_list_width: 1000px;
    --translate_len: -15px;
 }
-/* Creates a standard for an object being centered */
-.center{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-body {
-   overflow: hidden;
-   font-family: 'Lexend', sans-serif;
-   background-color: var(--background-color);
-   margin: 0;
-   padding: 0;
- }
-
-
- #topbar {
-   background-color: var(--header-color);
-   width: 100%;
-   height: 43px;
-   display: flex; /* Use flexbox to position elements within #topbar */
-   align-items: center; /* Vertically center elements within #topbar */
- }
-
-
-#logo {
-  height: 115%;
-  margin-top: -1px;
-  margin-left: 9px;
-  cursor: pointer;
-  transition: transform 0.3s ease-in-out;
-}
-
-#logo:hover {
-    transform: scale(1.06);
-}
-
- .button {/*setting main button object*/
-   font-family: 'Lexend', sans-serif;
-   border: none;
-   color: white;
-   padding: 6.5px 17px;
-   text-align: center;
-   text-decoration: none;
-   display: inline-block;
-   font-size: 14px;
-   cursor: pointer;
-   border-radius: 6px;
- }
-
- .login-button {/*sub-class of button*/
-   margin-right: 8px;
-   background-color: var(--primary-color);
-   transition: transform 0.3s ease-in-out;
- }
-
-  .login-button:hover {
-    transform: scale(1.06);
-  }
-
- .signup-button {
-    margin-right: 12px;
-    background-color: var(--secondary-color);
-    transition: transform 0.3s ease-in-out;
- }
-
- .signup-button:hover {
-    transform: scale(1.06);
-  }
-
- /* Add styles for search bar */
- .search-bar {
-     font-family: 'Lexend';
-     flex-grow: 1; /* Allow search bar to grow and fill available space */
-     margin-left: -10px; /* Add space between search bar and logo */
-     margin-right: 30px; /* Add space between search bar and login button */
-     height:30.5px; /* Set height of search bar */
-     background-color: #363636ff; /* Set background color of search bar to gray */
-     border-radius: 6px;
-     color: white;
-     padding-left: 13px;
-     padding-right: 140px;
-     border: 1.5px solid var(--border-color); /* Add white border around search bar */
- }
- .search-bar::placeholder {
-   font-family: 'Lexend'; /* Set font of placeholder text to Lexend */
-   color: white;
- }
- .search-bar::-webkit-search-cancel-button {
-   display: none;
- }
-
- /* Remove red border that appears when clicking on search bar */
- .search-bar:focus {
-     outline: none;
- }
-
-.ask-question-button {
-  margin-left: calc(100vw - 345px);
-  height: 20px;
-  width: 124px;
-  background-color: var(--ask-question-button);
-  position: absolute;
-  font-size: 13px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.3s ease-in-out;
-}
-
-.ask-question-button:hover {
-  transform: scale(1.06);
-}
 
  .box {/*setting generic box details*/
    background-color: var(--primary-color);
@@ -176,7 +63,6 @@ body {
        overflow-y: scroll;
        overflow-x: hidden;
        max-height: calc(100vh - 215px);
-       margin-right: 215px;
        width: var(--question_list_width);
        margin: auto;
        margin-top: 15px;
@@ -265,12 +151,13 @@ body {
  }
 
 .menu {
-  /* page menu */
   list-style-type: none;
   position: absolute;
-  color: white;
-  cursor: pointer; /* Change the cursor to a pointing hand */
+  cursor: pointer;
   left: calc(50% - var(--question_list_width)/2 - 227.5px);
+  color: white;
+  margin-top: -1px;
+  transform: translateX(calc(-1*var(--translate_len)));
 }
 
 .menu_item {
@@ -300,15 +187,6 @@ body {
   height: 100%;
   width: 5px;
   background-color: white;
-}
-
-.menu {
-  /* page menu */
-  list-style-type: none;
-  position: absolute;
-  color: white;
-  margin-top: -1px;
-  transform: translateX(calc(-1*var(--translate_len)));
 }
 
 .on-page {
@@ -350,66 +228,58 @@ body {
   background-color: white;
 }
 
-   .semicircle-button {
-       position: absolute;
-       height: 110px;
-       width: 55px;
-       top: 40vh;
-       background-color: var(--text-box-bar-color);
-       border: 2px solid #363637ff;
-       cursor: pointer;
-   }
+.arrows {
+    position: absolute;
+    width: fit-content;
+    height: fit-content;
+    top: 62px;
+    left: calc(50% + 450.5px);
+}
 
-   .semicircle-right {
-        border-radius: 0 55px 55px 0;
-        left: calc(50% + var(--question_list_width)/2 + 20px);
-        transform: translateX(var(--translate_len));
-        transition: transform 0.3s ease-in-out;
-   }
+#arrow-right {
+  display: inline-block;
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  border-left: 11px solid white;
+  margin-left: 3px;
+}
 
-   .semicircle-right:hover {
-        transform: scale(1.08) translateX(-15px);
-   }
-
-   .semicircle-left {
-        border-radius: 55px 0 0 55px;
-        left: calc(50% - var(--question_list_width)/2 - 115px);
-        transform: translateX(calc(-1*var(--translate_len)));
-        transition: transform 0.3s ease-in-out;
-   }
-
-   .semicircle-left:hover {
-        transform: scale(1.08) translateX(15px);
-   }
-
-    #arrow-right {
-      position: absolute;
-      inset: 0;
-      margin: auto;
-      width: 0;
-      height: 0;
-      border-top: 20px solid transparent;
-      border-bottom: 20px solid transparent;
-      border-left: 20px solid white;
-    }
-
-    #arrow-left {
-       position: absolute;
-       inset: 0;
-       margin: auto;
-       width: 0;
-       height: 0;
-       border-top: 20px solid transparent;
-       border-bottom: 20px solid transparent;
-       border-right: 20px solid white;
-    }
+#arrow-left {
+   display: inline-block;
+   border-top: 12px solid transparent;
+   border-bottom: 12px solid transparent;
+   border-right: 11px solid white;
+}
 
 
 @media only screen and (max-width: 1400px) {
 
-  .semicircle-button {
-    display: none;
+   .question_header {
+        width: calc(100% - 410px);
+        margin-left: 200px;
+   }
+
+  .questions_list {
+        width: calc(100% - 400px);
+        margin-left: 200px;
   }
+
+   .menu {
+      left: -27px;
+   }
+
+   .important_box {
+     left: calc(100% - 165px);
+   }
+
+   .arrows {
+        left: calc(100% - 249px);
+    }
+
+}
+
+
+@media only screen and (max-width: 1000px) {
 
   .important_box {
      display: none;
@@ -429,10 +299,14 @@ body {
         width: calc(100% - 225px);
         margin-right: 20px;
     }
+
+  .arrows {
+    left: calc(100% - 75px);
+  }
 }
 
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 800px) {
 
   .menu {
     display: none;
@@ -447,13 +321,8 @@ body {
     width: calc(100% - 50px);
     margin-left: 40px;
   }
-}
 
-
-@media only screen and (max-height: 750px) {
-
-  .semicircle-button {
-    display: none;
+  .arrows {
+    left: calc(100% - 60px);
   }
-
 }
