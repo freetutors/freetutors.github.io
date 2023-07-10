@@ -33,7 +33,7 @@ const apiUrlcreate = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/bet
 const apiUrlget = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/getquestion";
 const health = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/health";
 const apiUrlupdate = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/updatequestion";
-
+const apiUrlanswer = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/createanswer";
 async function submitQuestion() {
   const title = document.getElementById('title').value;
     const body = quill.root.innerHTML;
@@ -56,7 +56,6 @@ async function submitQuestion() {
       alert("Error adding question, try again later")
       console.log("Error calling API");
     }
-  
 }
 
 //getting for home page
@@ -163,9 +162,10 @@ async function displayQuestion(){
   const questionArray = questionList
   questionArray.forEach(question => {
     var title = question.title
-    const replacePart = "/</p>/g"
     let body = question.body.replace(/<p>/g, "").replace(/<\/p>/g, " ")
     var author = question.author
+    var answerInfo = question.answersInfo
+    console.log(answerInfo)
     var answers = question.answers
     var rating = question.rating
     var date = formatDate(question.timestamp)
@@ -188,8 +188,31 @@ async function displayQuestion(){
       </div>
     </div>
     `
+    answerInfo.forEach(answer =>{
+      var body = answer.body.replace(/<p>/g, "").replace(/<\/p>/g, " ")
+      var author = answer.author
+      var rating = answer.rating
+      var time = formatDate(answer.timestamp)
+      document.querySelector(".answer-wrapper").innerHTML +=
+        `
+        <div class="answer">
+        <img src="placeholder_pfp.png" class="user_pfp">
+        <div class="contributorStats">
+          <p class="username">${author}</p>
+          <p class="time">${time}</p>
+        </div>
+        <p class="answerBody">${body}</p>
+        <div class="rating-container">
+          <div class="upvote"></div>
+          <div class="rating-value">${rating}</div>
+          <div class="downvote"></div>
+        </div>
+      </div>
+        `
+    })
   })
   MathJax.Hub.Queue(['Typeset', MathJax.Hub, 'question-wrapper']);
+  MathJax.Hub.Queue(['Typeset', MathJax.Hub, 'answer-wrapper']);
 
   if (window.location.pathname == "/freetutors.github.io/viewquestion.html") {
     MathJax.Hub.Config({
@@ -200,20 +223,75 @@ async function displayQuestion(){
       },
       skipStartupTypeset: true, // Skip automatic typesetting on startup
     });
-
   }
   var updatedViews = 0
-    if (checkCookieExists(questionId) == false) {
-      setCookie(questionId)
-      updatedViews= questionList[0].views+1
-      var newRating = parseInt(questionList[0].rating)
-      var answers= questionList[0].answers
-      sendUpdate(questionId, answers, updatedViews, newRating)
-    }
-    else{
-    }
-    await ratingButtons(questionList)
+  if (checkCookieExists(questionId) == false) {
+    setCookie(questionId)
+    updatedViews= questionList[0].views+1
+    var newRating = parseInt(questionList[0].rating)
+    var answers= questionList[0].answers
+    sendUpdate(questionId, answers, updatedViews, newRating)
+  }
+  else{
+  }
+  
+  answerArea(questionId)
+  await ratingButtons(questionList)
+
 }
+async function answerArea(questionId){
+  var toolbarOptions = [
+    ['bold', 'italic', 'underline', 'link', 'image'], // Customize the toolbar elements here
+    // Additional toolbar options...
+  ];
+
+  var quill = new Quill('#editor', {
+    placeholder: 'Type your answer here',
+    theme: 'snow',
+    modules: {
+      toolbar: toolbarOptions,
+      imageResize: {
+        modules: ['Resize']
+      },
+      imageDrop: true,
+    },
+  });
+
+  var previewContainer = document.getElementById('preview-container');
+
+  function updatePreviewBody() {
+    var content = quill.root.innerHTML;
+    previewContainer.innerHTML = content;
+    MathJax.Hub.Queue(['Typeset', MathJax.Hub, previewContainer]);
+  }
+
+  quill.on('text-change', function () {
+    updatePreviewBody();
+  });
+  document.getElementById("answer-send").addEventListener("click", function() {
+    console.log("clicked")
+    const body = quill.root.innerHTML
+    const author = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser")
+    sendAnswer(questionId, body, author)
+  })
+}
+async function sendAnswer(questionId, body, author) {
+  const response = await fetch(apiUrlanswer, {
+    mode: 'cors',
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      questionId: questionId,
+      body: body,
+      author: author,
+    })
+  }); 
+  console.log(response)
+  displayQuestion()
+}
+
 async function sendUpdate(questionId, answers, updatedViews, rating){
   const url = new URL(`${apiUrlupdate}?questionId=${questionId}&answers=${answers}&views=${updatedViews}&rating=${rating}`);
   const response = await fetch(url,  {
@@ -262,6 +340,7 @@ async function ratingButtons(questionList){
       sendUpdate(questionId, answers, updatedViews, newRating)
       setCookie("voted"+questionId, "downvote", 365)
       displayQuestion()
+      displayQuestion()
       displayQuestion() //failsafe incase update lag
       }
       else if(downclick == true && upclick == false) {
@@ -273,6 +352,7 @@ async function ratingButtons(questionList){
         setCookie("voted"+questionId, "no", 365)
         displayQuestion()
         displayQuestion()
+        displayQuestion() //failsafe incase update lag
       }
       resolve(ratingUpdate)
     })
@@ -288,6 +368,7 @@ async function ratingButtons(questionList){
             setCookie("voted"+questionId, "upvote", 365)
             displayQuestion()
             displayQuestion()
+            displayQuestion() //failsafe incase update lag
           }
           else if (upclick == true && downclick == false) {
             document.querySelector(".upvote").style.borderBottom = '15px solid white'
@@ -298,6 +379,7 @@ async function ratingButtons(questionList){
             setCookie("voted"+questionId, "no", 365)
             displayQuestion()
             displayQuestion()
+            displayQuestion() //failsafe incase update lag
           }
         }
         resolve(ratingUpdate)
