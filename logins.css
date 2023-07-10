@@ -8,7 +8,6 @@
  
  
  body {
-    overflow: hidden;
     font-family: 'Lexend', sans-serif;
     background-color: var(--background-color);
     margin: 0;
@@ -203,9 +202,17 @@
   transition: transform 0.3s;
 }
 
-.login-button-on-login-page {
-
-}
+.signup-send {
+  margin-top: 21px;
+  margin-bottom: 4px;
+  margin-left: 10px;
+  padding: 12px;
+  font-size: 15px;
+  width: 633px;
+  background-color: var(--primary-color);
+  outline: none;
+  transition: transform 0.3s;
+ }
 
 .g-signin2 {
   width: 100px;
@@ -226,6 +233,10 @@
 }
 
 .login-send {
+  width: calc(90% + 2px);
+}
+
+.signup-send {
   width: calc(90% + 2px);
 }
 
