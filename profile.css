@@ -10,119 +10,6 @@
    --question_list_width: 1000px;
    --translate_len: -15px;
 }
-/* Creates a standard for an object being centered */
-.center{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-body {
-   overflow: hidden;
-   font-family: 'Lexend', sans-serif;
-   background-color: var(--background-color);
-   margin: 0;
-   padding: 0;
- }
-
-
- #topbar {
-   background-color: var(--header-color);
-   width: 100%;
-   height: 43px;
-   display: flex; /* Use flexbox to position elements within #topbar */
-   align-items: center; /* Vertically center elements within #topbar */
- }
-
-
-#logo {
-  height: 115%;
-  margin-top: -1px;
-  margin-left: 9px;
-  cursor: pointer;
-  transition: transform 0.3s ease-in-out;
-}
-
-#logo:hover {
-    transform: scale(1.06);
-}
-
- .button {/*setting main button object*/
-   font-family: 'Lexend', sans-serif;
-   border: none;
-   color: white;
-   padding: 6.5px 17px;
-   text-align: center;
-   text-decoration: none;
-   display: inline-block;
-   font-size: 14px;
-   cursor: pointer;
-   border-radius: 6px;
- }
-
- .login-button {/*sub-class of button*/
-   margin-right: 8px;
-   background-color: var(--primary-color);
-   transition: transform 0.3s ease-in-out;
- }
-
-  .login-button:hover {
-    transform: scale(1.06);
-  }
-
- .signup-button {
-    margin-right: 12px;
-    background-color: var(--secondary-color);
-    transition: transform 0.3s ease-in-out;
- }
-
- .signup-button:hover {
-    transform: scale(1.06);
-  }
-
- /* Add styles for search bar */
- .search-bar {
-     font-family: 'Lexend';
-     flex-grow: 1; /* Allow search bar to grow and fill available space */
-     margin-left: -10px; /* Add space between search bar and logo */
-     margin-right: 30px; /* Add space between search bar and login button */
-     height:30.5px; /* Set height of search bar */
-     background-color: #363636ff; /* Set background color of search bar to gray */
-     border-radius: 6px;
-     color: white;
-     padding-left: 13px;
-     padding-right: 140px;
-     border: 1.5px solid var(--border-color); /* Add white border around search bar */
- }
- .search-bar::placeholder {
-   font-family: 'Lexend'; /* Set font of placeholder text to Lexend */
-   color: white;
- }
- .search-bar::-webkit-search-cancel-button {
-   display: none;
- }
-
- /* Remove red border that appears when clicking on search bar */
- .search-bar:focus {
-     outline: none;
- }
-
-.ask-question-button {
-  margin-left: calc(100vw - 345px);
-  height: 20px;
-  width: 124px;
-  background-color: var(--ask-question-button);
-  position: absolute;
-  font-size: 13px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.3s ease-in-out;
-}
-
-.ask-question-button:hover {
-  transform: scale(1.06);
-}
 
 .back_button {
     position: absolute;
@@ -223,17 +110,18 @@ hr.pfp_line {
    border-radius: 22px;
  }
 
-#question_header {
+ #question_header { /*divider based on subject*/
      color: white;
      padding-left: 7px;
      padding-top: 4px;
+     width: 840px;
      height: 25px;
      background-color: var(--text-box-bar-color);
      border: 1.5px solid var(--border-color);
-     width: 860px;
-     margin-top: 250px;
-     float: right;
-     margin-right: 322px;
+     margin-top: 262px;
+     float: left;
+     margin-left: calc(50% - 320px);
+     margin-right: 200px;
  }
 
 .questions_list {/*scroll area with questions. It is invisible*/
@@ -316,19 +204,7 @@ hr.pfp_line {
         margin-top: 10px;
     }
 
-   #question_header { /*divider based on subject*/
-     color: white;
-     padding-left: 7px;
-     padding-top: 4px;
-     width: 840px;
-     height: 25px;
-     background-color: var(--text-box-bar-color);
-     border: 1.5px solid var(--border-color);
-     margin-top: 262px;
-     float: left;
-     margin-left: calc(50% - 320px);
-     margin-right: 200px;
- }
+
 
  .user_stats {
    color: white;
@@ -427,8 +303,97 @@ hr.pfp_line {
   transform: scale(1.08);
 }
 
+@media only screen and (max-width: 1240px) {
 
+.signup-container_profile{
+    left: 50px;
+  }
 
+#question_header {
+     margin-left: 300px;
+ }
+
+.questions_list {
+     margin-left: 300px;
+}
+
+.pfp_user {
+  left: calc(620px - 50%);
+}
+
+#arrow-right {
+  left: 1132px;
+}
+
+#arrow-left {
+   left: 1111px;
+}
+
+}
+
+@media only screen and (max-width: 1200px) {
+
+#question_header {
+     width: calc(100% - 360px);
+ }
+
+.questions_list {
+    width: calc(100% - 350px);
+}
+
+#arrow-right {
+  left: calc(100% - 67px);
+}
+
+#arrow-left {
+   left: calc(100% - 88px);
+}
+
+#username_txt {
+    font-size: calc(10vw - 40px);
+    transform: translateX(-47.5px) translateY(calc(-11.75vw + 141px));
+}
+
+.pfp_user {
+  left: calc(20px);
+}
+
+}
+
+@media only screen and (max-width: 600px) {
+
+#username_txt {
+    display: none;
+}
+
+.pfp_user {
+  position: absolute;
+  transform: translateX(150px);
+}
+
+#question_header {
+     display: none;
+ }
+
+.questions_list {
+    display: none;
+}
+
+#arrow-right {
+  display: none;
+}
+
+#arrow-left {
+   display: none;
+}
+
+.signup-container_profile{
+    inset: 0;
+    margin: auto;
+    margin-top: 382.5px;
+  }
+
+}
 
 
 
