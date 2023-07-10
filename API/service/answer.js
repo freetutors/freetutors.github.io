@@ -30,4 +30,4 @@ async function createAnswer(answerData) {
     
     await dynamodb.put(updateParams).promise();
 }
-module.exports.createAnswer() = createAnswer()     
+module.exports.createAnswer = createAnswer     
