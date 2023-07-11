@@ -419,7 +419,7 @@ if (!checkCookieExists(eventCookieName)) {
   // Set a cookie to indicate that the event has occurred for the current IP address
   setCookie(eventCookieName, 'true', expirationDays);
 }
-if (window.location.pathname == "/freetutors.github.io/viewquestion.html") {
+if (window.location.pathname == "/freetutors.github.io/viewQuestion.html") {
   await displayQuestion()
 }
 else if (window.location.pathname == "/freetutors.github.io/createQuestion.html") {
