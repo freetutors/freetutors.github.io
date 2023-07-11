@@ -420,11 +420,13 @@ if (!checkCookieExists(eventCookieName)) {
   setCookie(eventCookieName, 'true', expirationDays);
 }
 if (window.location.pathname == "/freetutors.github.io/viewQuestion.html" || "/viewQuestion.html") {
+  console.log("called")
   await displayQuestion()
 }
 else if (window.location.pathname == "/freetutors.github.io/createQuestion.html" || "/createQuestion.html") {
-
+  console.log("callafdsasdfasdfed")
 }
 else if (window.location.pathname == ""|| "/freetutors.github.io/index.html" || "/freetutors.github.io/" || "/index.html") {
+  console.log("called why tho")
   await showQuestionColumn()
 }
