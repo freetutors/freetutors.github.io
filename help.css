@@ -168,6 +168,10 @@ details[open] summary::after {
   transform: rotate(90deg);
 }
 
+details summary::-webkit-details-marker {
+  display:none;
+}
+
 .sidenote {
     color: white;
     text-align: center;
