@@ -3,7 +3,7 @@ var toolbarOptions = [
   ['bold', 'italic', 'underline', 'link', 'image'], // Customize the toolbar elements here
   // Additional toolbar options...
 ];
-if (window.location.pathname == "/freetutors.github.io/createQuestion.html") {
+if (window.location.pathname.indexOf("/creatQuestion.html") !== -1) {
   var quill = new Quill('#editor', {
     placeholder: 'Provide any additional relevant details',
     theme: 'snow',
