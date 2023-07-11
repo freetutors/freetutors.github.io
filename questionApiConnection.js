@@ -25,7 +25,7 @@ if (window.location.pathname.indexOf("/creatQuestion.html") !== -1) {
   });
   document.querySelector(".question-send").addEventListener("click", () => {
     submitQuestion()
-    window.location = "/freetutors.github.io"
+    window.location = "/"
   })
 }
 
@@ -424,6 +424,6 @@ if (window.location.pathname.indexOf("/viewQuestion.html") !== -1) {
 }
 else if (window.location.pathname === "/freetutors.github.io/createQuestion.html" || window.location.href ==="/createQuestion.html") {
 }
-else if (window.location.pathname === "/"|| window.location.href ==="/freetutors.github.io/index.html" || window.location.href ==="/index.html" || window.location.href ==="https://main.dzouxhnq74cxx.amplifyapp.com//index.html") {
+else if (window.location.pathname === "/"|| window.location.href ==="/freetutors.github.io/index.html" || window.location.href ==="/index.html" || window.location.href ==="/index.html") {
   await showQuestionColumn()
 }
