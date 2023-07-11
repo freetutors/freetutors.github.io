@@ -426,7 +426,7 @@ if (window.location.pathname === "/freetutors.github.io/viewQuestion.html" || wi
 else if (window.location.pathname === "/freetutors.github.io/createQuestion.html" || window.location.href ==="/createQuestion.html") {
   console.log("callafdsasdfasdfed")
 }
-else if (window.location.pathname === ""|| window.location.href ==="/freetutors.github.io/index.html" || window.location.href ==="/freetutors.github.io/" || window.location.href ==="https://main.dzouxhnq74cxx.amplifyapp.com//index.html") {
+else if (window.location.pathname === "/"|| window.location.href ==="/freetutors.github.io/index.html" || window.location.href ==="/index.html" || window.location.href ==="https://main.dzouxhnq74cxx.amplifyapp.com//index.html") {
   console.log("called why tho")
   await showQuestionColumn()
 }
