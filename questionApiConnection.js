@@ -420,6 +420,7 @@ if (!checkCookieExists(eventCookieName)) {
   setCookie(eventCookieName, 'true', expirationDays);
 }
 if (window.location.pathname == "/freetutors.github.io/viewQuestion.html") {
+  console.log("called")
   await displayQuestion()
 }
 else if (window.location.pathname == "/freetutors.github.io/createQuestion.html") {
