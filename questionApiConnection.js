@@ -38,7 +38,7 @@ async function submitQuestion() {
     console.log("clicked")
     const title = document.getElementById('title').value;
     const body = quill.root.innerHTML;
-    const author = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser");  
+    const author = sessionStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser");  
     const response = await fetch(apiUrlcreate, {
       mode: 'cors',
       method: "POST",
@@ -126,7 +126,7 @@ async function showQuestionColumn(){
     questionBoxes.forEach((box, index) => {
       box.addEventListener("click", function () {
         const questionId = questionList[index].questionId; // Retrieve the questionId
-        localStorage.setItem("QuestionID", JSON.stringify(questionId));
+        sessionStorage.setItem("QuestionID", JSON.stringify(questionId));
         window.location.href = `viewquestion.html?questionId=${questionId}`;
       });
     });
@@ -270,7 +270,7 @@ async function answerArea(questionId){
   document.getElementById("answer-send").addEventListener("click", function() {
     console.log("clicked")
     const body = quill.root.innerHTML
-    const author = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser")
+    const author = sessionStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser")
     sendAnswer(questionId, body, author)
   })
 }
