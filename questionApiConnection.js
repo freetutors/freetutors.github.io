@@ -419,14 +419,14 @@ if (!checkCookieExists(eventCookieName)) {
   // Set a cookie to indicate that the event has occurred for the current IP address
   setCookie(eventCookieName, 'true', expirationDays);
 }
-if (window.location.pathname == "/freetutors.github.io/viewQuestion.html" || "https://main.dzouxhnq74cxx.amplifyapp.com/viewQuestion.html") {
+if (window.location.pathname === "/freetutors.github.io/viewQuestion.html" || window.location.href ==="/viewQuestion.html") {
   console.log("called")
   await displayQuestion()
 }
-else if (window.location.pathname == "/freetutors.github.io/createQuestion.html" || "https://main.dzouxhnq74cxx.amplifyapp.com/createQuestion.html") {
+else if (window.location.pathname === "/freetutors.github.io/createQuestion.html" || window.location.href ==="/createQuestion.html") {
   console.log("callafdsasdfasdfed")
 }
-else if (window.location.pathname == ""|| "/freetutors.github.io/index.html" || "/freetutors.github.io/" || "https://main.dzouxhnq74cxx.amplifyapp.com//index.html") {
+else if (window.location.pathname === ""|| window.location.href ==="/freetutors.github.io/index.html" || window.location.href ==="/freetutors.github.io/" || window.location.href ==="https://main.dzouxhnq74cxx.amplifyapp.com//index.html") {
   console.log("called why tho")
   await showQuestionColumn()
 }
