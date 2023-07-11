@@ -3,7 +3,8 @@ var toolbarOptions = [
   ['bold', 'italic', 'underline', 'link', 'image'], // Customize the toolbar elements here
   // Additional toolbar options...
 ];
-if (window.location.pathname.indexOf("/creatQuestion.html") !== -1) {
+if (window.location.pathname.indexOf("/createQuestion.html") !== -1) {
+  console.log("called")
   var quill = new Quill('#editor', {
     placeholder: 'Provide any additional relevant details',
     theme: 'snow',
@@ -24,6 +25,7 @@ if (window.location.pathname.indexOf("/creatQuestion.html") !== -1) {
     updatePreviewBody();
   });
   document.querySelector(".question-send").addEventListener("click", () => {
+    console.log("clickede")
     submitQuestion()
     window.location = "/"
   })
