@@ -35,7 +35,8 @@ const health = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/heal
 const apiUrlupdate = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/updatequestion";
 const apiUrlanswer = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/createanswer";
 async function submitQuestion() {
-  const title = document.getElementById('title').value;
+    console.log("clicked")
+    const title = document.getElementById('title').value;
     const body = quill.root.innerHTML;
     const author = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser");  
     const response = await fetch(apiUrlcreate, {
@@ -132,6 +133,7 @@ async function showQuestionColumn(){
   };
 async function getQuestionListId(questionId) {
   const url = new URL(`${apiUrlget}?questionId=${questionId}`);
+  console.log(url)
   const questionList = await fetch(url,  {
     mode: "cors",
     method: "GET",
@@ -151,10 +153,6 @@ function formatDate(timestamp) {
   return formattedDate
 }
 async function displayQuestion(){
-  var toolbarOptions = [
-    ['bold', 'italic', 'underline', 'link', 'image'], // Customize the toolbar elements here
-    // Additional toolbar options...
-  ];
 
   const urlParams = new URLSearchParams(window.location.search);
   const questionId = urlParams.get('questionId');
@@ -165,7 +163,6 @@ async function displayQuestion(){
     let body = question.body.replace(/<p>/g, "").replace(/<\/p>/g, " ")
     var author = question.author
     var answerInfo = question.answersInfo
-    console.log(answerInfo)
     var answers = question.answers
     var rating = question.rating
     var date = formatDate(question.timestamp)
@@ -188,28 +185,30 @@ async function displayQuestion(){
       </div>
     </div>
     `
-    answerInfo.forEach(answer =>{
-      var body = answer.body.replace(/<p>/g, "").replace(/<\/p>/g, " ")
-      var author = answer.author
-      var rating = answer.rating
-      var time = formatDate(answer.timestamp)
-      document.querySelector(".answer-wrapper").innerHTML +=
-        `
-        <div class="answer">
-        <img src="placeholder_pfp.png" class="user_pfp">
-        <div class="contributorStats">
-          <p class="username">${author}</p>
-          <p class="time">${time}</p>
+    if (answerInfo != null){
+      answerInfo.forEach(answer =>{
+        var body = answer.body.replace(/<p>/g, "").replace(/<\/p>/g, " ")
+        var author = answer.author
+        var rating = answer.rating
+        var time = formatDate(answer.timestamp)
+        document.querySelector(".answer-wrapper").innerHTML +=
+          `
+          <div class="answer">
+          <img src="placeholder_pfp.png" class="user_pfp">
+          <div class="contributorStats">
+            <p class="username">${author}</p>
+            <p class="time">${time}</p>
+          </div>
+          <p class="answerBody">${body}</p>
+          <div class="rating-container">
+            <div class="upvote"></div>
+            <div class="rating-value">${rating}</div>
+            <div class="downvote"></div>
+          </div>
         </div>
-        <p class="answerBody">${body}</p>
-        <div class="rating-container">
-          <div class="upvote"></div>
-          <div class="rating-value">${rating}</div>
-          <div class="downvote"></div>
-        </div>
-      </div>
-        `
-    })
+          `
+      })
+    }
   })
   MathJax.Hub.Queue(['Typeset', MathJax.Hub, 'question-wrapper']);
   MathJax.Hub.Queue(['Typeset', MathJax.Hub, 'answer-wrapper']);
