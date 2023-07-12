@@ -63,6 +63,8 @@ if (browserName == "Chrome") {
 
 if (browserName == "Safari") {
 
+    console.log(pageName)
+
     if (pageName == 'index.html') {
         signUpAsTutorButton.style.fontSize = '13px';
     }
