@@ -14,11 +14,11 @@ if (username != null){
     `
     document.querySelector(".profilePicHome").
     addEventListener("click", () => {
-        window.location='profile.html'
+        window.location='https://freetutors.github.io/profile'
     });
     document.querySelector(".usernameOnProfileButton").
     addEventListener("click", () => {
-        window.location='profile.html'
+        window.location='https://freetutors.github.io/profile'
     });   
 }
 else{
@@ -28,12 +28,12 @@ else{
     //setting login button to redirect
     document.querySelector(".login-button").
     addEventListener("click", () => {
-        window.location='login.html'
+        window.location='https://freetutors.github.io/login'
     }); 
     //setting signup button to redirect
     document.querySelector(".signup-button").
     addEventListener("click", () => {
-        window.location='signup.html'
+        window.location='https://freetutors.github.io/signup'
     });
 }
 
