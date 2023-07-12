@@ -32,6 +32,16 @@ function checkVSSafari() {
 
 }
 
+function checkVSMicrosoftEdge() {
+
+    if (window.innerWidth > document.body.clientWidth) {
+        askQuestionButton.style.transform = `translateX(-15px)`;
+    } else {
+        askQuestionButton.style.transform = `translateX(0px)`;
+    }
+
+}
+
 if (browserName == "Chrome") {
 
     window.addEventListener('load', checkVSChrome);
@@ -51,9 +61,13 @@ if (browserName == "Safari") {
     window.addEventListener('resize', checkVSSafari);
 }
 
+if (browserName == "Microsoft Edge") {
 
+    window.addEventListener('load', checkVSMicrosoftEdge);
+    window.addEventListener('resize', checkVSMicrosoftEdge);
+}
 
-
+console.log(browserName)
 
 
 
