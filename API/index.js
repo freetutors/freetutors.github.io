@@ -4,14 +4,14 @@ const createPath = '/create';
 const getPath = '/getquestion';
 const updatePath = '/updatequestion';
 const answerPath = '/createanswer'
-const getAnswerPath = '/getanswer'
+const updateAnswerPath = '/updateanswer'
 // initiallized all of the things to check 
 
 const createService = require('./service/createQuestion.js');
 const getService = require('./service/getQuestion.js');
 const updateService = require('./service/updateQuestion.js')
 const answerService = require('./service/answer.js')
-const getAnswerService = require("./service/getAnswer.js")
+const updateAnswerService = require("./service/updateAnswer.js")
 const util = require('./utils/util');//this is for a common return function we can use from file to file
 
 // connecting to other codes for giving each item a seperate function
@@ -37,8 +37,8 @@ exports.handler = async(event) => {
             const getBody = JSON.parse(event.body);
             response = await getService.getQuestionList(event);
             break;  
-        case event.httpMethod === 'GET' && event.path === getAnswerPath:
-            response = await getAnswerService.getAnswer(event);
+        case event.httpMethod === 'POST' && event.path === updateAnswerPath:
+            response = await updateAnswerService.updateAnswer(event);
             break;  
         case event.httpMethod === 'POST' && event.path === updatePath:
             const updateBody = JSON.parse(event.body);
