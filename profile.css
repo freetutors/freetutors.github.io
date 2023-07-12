@@ -124,7 +124,7 @@ hr.pfp_line {
      margin-right: 200px;
  }
 
-.questions_list {/*scroll area with questions. It is invisible*/
+.questions_list_profile {/*scroll area with questions. It is invisible*/
        overflow-y: scroll;
        overflow-x: hidden;
        max-height: calc(100vh - 400px);
@@ -135,13 +135,14 @@ hr.pfp_line {
        margin-right: 308px;
        float: left;
        margin-left: calc(50% - 320px);
+       scrollbar-color: var(--text-box-bar-color) var(--background-color);
     }
 
-    .questions_list::-webkit-scrollbar {/*custom scroll bar width*/
+    .questions_list_profile::-webkit-scrollbar {/*custom scroll bar width*/
        width: 13px; /* Adjust the width as needed */
     }
 
-    .questions_list::-webkit-scrollbar-thumb {/*custom scroll bar thumb(the scrolling thing)*/
+    .questions_list_profile::-webkit-scrollbar-thumb {/*custom scroll bar thumb(the scrolling thing)*/
        width: 12px; /* Set the width of the thumb to 12px */
        min-width: 12px; /* Ensure the minimum width of the thumb */
        background-color: var(--text-box-bar-color);

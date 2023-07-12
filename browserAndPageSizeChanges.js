@@ -8,6 +8,8 @@ const askQuestionButton = document.querySelector('.ask-question-button');
 const searchBar = document.querySelector('.search-bar');
 const signUpAsTutorButton = document.querySelector('#sign_up_as_tutor_button');
 const profileButton = document.querySelector('.profileButton');
+const banner = document.querySelector('.banner');
+const infoInputGroupElements = document.getElementsByClassName('info_input_group');
 
 function checkVSChrome() {
 
@@ -59,7 +61,6 @@ if (browserName == "Chrome") {
 
 }
 
-
 if (browserName == "Safari") {
 
     if (pageName == 'index.html') {
@@ -80,11 +81,15 @@ if (browserName == "Microsoft Edge") {
 
 if (browserName == "Firefox") {
 
+    if (pageName == 'profile.html') {
+        banner.style.left = '0';
+        Array.from(infoInputGroupElements).forEach(element => {
+          element.style.width = '137.5px';
+        });
+    }
+
     window.addEventListener('load', checkVSFirefox);
     window.addEventListener('resize', checkVSFirefox);
+
 }
-
-console.log(browserName)
-
-
 
