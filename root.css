@@ -159,11 +159,6 @@
   transition: transform 0.3s ease-in-out;
 }
 
-.ask-question-button:hover {
-  transform: scale(1.06);
-}
-
-
 
 @media only screen and (max-width: 740px) {
 
