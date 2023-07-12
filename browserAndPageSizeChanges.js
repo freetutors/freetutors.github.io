@@ -7,7 +7,7 @@ var pageName = path.split("/").pop();
 const askQuestionButton = document.querySelector('.ask-question-button');
 const searchBar = document.querySelector('.search-bar');
 const signUpAsTutorButton = document.querySelector('#sign_up_as_tutor_button');
-const signUpAsTutorButton = document.querySelector('.profileButton');
+const profileButton = document.querySelector('.profileButton');
 
 function checkVSChrome() {
 
@@ -68,7 +68,7 @@ if (browserName == "Microsoft Edge") {
     window.addEventListener('resize', checkVSMicrosoftEdge);
 }
 
-
+console.log(browserName)
 
 
 
