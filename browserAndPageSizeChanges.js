@@ -43,6 +43,15 @@ function checkVSMicrosoftEdge() {
 
 }
 
+function checkVSFirefox() {
+
+    if (window.innerWidth > document.body.clientWidth) {
+        askQuestionButton.style.transform = `translateX(-15px)`;
+    } else {
+        askQuestionButton.style.transform = `translateX(0px)`;
+    }
+}
+
 if (browserName == "Chrome") {
 
     window.addEventListener('load', checkVSChrome);
@@ -58,6 +67,7 @@ if (browserName == "Safari") {
     }
 
     searchBar.style.fontSize = '13px';
+    profileButton.style.width = '180px';
     window.addEventListener('load', checkVSSafari);
     window.addEventListener('resize', checkVSSafari);
 }
@@ -66,6 +76,12 @@ if (browserName == "Microsoft Edge") {
 
     window.addEventListener('load', checkVSMicrosoftEdge);
     window.addEventListener('resize', checkVSMicrosoftEdge);
+}
+
+if (browserName == "Firefox") {
+
+    window.addEventListener('load', checkVSFirefox);
+    window.addEventListener('resize', checkVSFirefox);
 }
 
 console.log(browserName)

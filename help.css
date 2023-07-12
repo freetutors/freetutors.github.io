@@ -87,16 +87,6 @@ hr.line {
   border-left: 0.5px solid var(--secondary-color);
 }
 
-.help_community_placeholder {
-    background-color: white;
-    text-align: center;
-    width: 200px;
-    height: 100px;
-    border-radius: 20px;
-    inset: 0;
-    margin: auto;
-}
-
 @media only screen and (max-width: 1200px) {
     .container {
         width: calc(100% - 235px);
