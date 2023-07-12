@@ -188,9 +188,12 @@ async function displayQuestion(){
     </div>
     `
     if (answerInfo != null){
+      document.querySelector(".answer-wrapper").innerHtml = 
+      ``
       answerInfo.forEach(answer =>{
         var body = answer.body.replace(/<p>/g, "").replace(/<\/p>/g, " ")
         var author = answer.author
+        var answerId = answer.answerId
         var rating = answer.rating
         var time = formatDate(answer.timestamp)
         document.querySelector(".answer-wrapper").innerHTML +=
@@ -203,9 +206,9 @@ async function displayQuestion(){
           </div>
           <p class="answerBody">${body}</p>
           <div class="rating-container">
-            <div class="upvote"></div>
-            <div class="rating-value">${rating}</div>
-            <div class="downvote"></div>
+            <div class="upvote" id = "upvote${answerId}"></div>
+            <div class="rating-value" id = "rating-value${answerId}">${rating}</div>
+            <div class="downvote" id="downvote${answerId}"></div>
           </div>
         </div>
           `
@@ -273,6 +276,9 @@ async function answerArea(questionId){
     console.log("clicked")
     const body = quill.root.innerHTML
     const author = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser")
+    document.querySelector(".answer-wrapper").innerHTML = 
+    ``
+    quill = ""
     sendAnswer(questionId, body, author)
   })
 }
@@ -289,8 +295,7 @@ async function sendAnswer(questionId, body, author) {
       author: author,
     })
   }); 
-  console.log(response)
-  displayQuestion()
+  location.reload()
 }
 
 async function sendUpdate(questionId, answers, updatedViews, rating){
@@ -304,6 +309,88 @@ async function sendUpdate(questionId, answers, updatedViews, rating){
   }).then(response => response.json());
 };
 
+async function answerRating(answer){
+  var answerId = answer.questionId
+  var newRating = parseInt(answer.rating)
+  let upclick = false
+  let downclick = false
+  let ratingUpdate = 0
+  if (checkCookieExists("voted"+answerId)==false){
+    setCookie("voted"+answerId, "no", 365)
+  }
+  else{
+    if (getCookie("voted"+answerId) === 'no') {
+      upclick = false
+      downclick = false
+    }
+    else if(getCookie("voted"+answerId)=== 'upvote') {
+      upclick = true
+      downclick = false
+      document.querySelector(".upvote").style.borderBottom = '15px solid green'
+    }
+    else if(getCookie("voted"+answerId) === 'downvote') {
+      downclick = true
+      upclick = false
+      document.querySelector(".downvote").style.borderTop = '15px solid red'
+    }
+  }
+  return new Promise((resolve) => {
+    document.getElementById("downvote"+answerId).addEventListener("click", function() {
+      if (upclick == false && downclick == false) {
+        document.getElementById("downvote"+answerId).style.borderTop = '15px solid red'
+        downclick = true
+        ratingUpdate = -1
+      newRating += parseInt(ratingUpdate)
+      sendUpdate(questionId, answers, updatedViews, newRating)
+      setCookie("voted"+answerId, "downvote", 365)
+      displayQuestion()
+      displayQuestion()
+      displayQuestion() //failsafe incase update lag
+      }
+      else if(downclick == true && upclick == false) {
+        document.getElementById("downvote"+answerId).style.borderTop = '15px solid white'
+        ratingUpdate += 1
+        downclick = false
+        newRating += parseInt(ratingUpdate)
+        sendUpdate(questionId, answers, updatedViews, newRating)
+        setCookie("voted"+answerId, "no", 365)
+        displayQuestion()
+        displayQuestion()
+        displayQuestion() //failsafe incase update lag
+      }
+      resolve(ratingUpdate)
+    })
+
+      document.getElementById("upvote"+answerId).addEventListener("click", event => {
+        if (event.target == document.querySelector(".upvote")){
+          if (upclick == false && downclick == false) {
+            document.getElementById("upvote"+answerId).style.borderBottom = '15px solid green'
+            upclick = true
+            ratingUpdate = 1
+            newRating += parseInt(ratingUpdate)
+            sendUpdate(questionId, answers, updatedViews, newRating)
+            setCookie("voted"+answerId, "upvote", 365)
+            displayQuestion()
+            displayQuestion()
+            displayQuestion() //failsafe incase update lag
+          }
+          else if (upclick == true && downclick == false) {
+            document.getElementById("upvote"+answerId).style.borderBottom = '15px solid white'
+            ratingUpdate -= 1
+            upclick = false
+            newRating += parseInt(ratingUpdate)
+            sendUpdate(questionId, answers, updatedViews, newRating)
+            setCookie("voted"+answerId, "no", 365)
+            displayQuestion()
+            displayQuestion()
+            displayQuestion() //failsafe incase update lag
+          }
+        }
+        resolve(ratingUpdate)
+    })
+  })
+
+}
 async function ratingButtons(questionList){
   var questionId = questionList[0].questionId
   var answers= questionList[0].answers
@@ -426,6 +513,9 @@ if (window.location.pathname.indexOf("/viewQuestion.html") !== -1) {
 }
 else if (window.location.pathname === "/freetutors.github.io/createQuestion.html" || window.location.href ==="/createQuestion.html") {
 }
-else if (window.location.pathname === "/"|| window.location.href ==="/freetutors.github.io/index.html" || window.location.href ==="/index.html" || window.location.href ==="/index.html") {
+else if (window.location.pathname === "/"){
+  await showQuestionColumn()
+}
+else if (window.location.pathname.indexOf("/index.html")){
   await showQuestionColumn()
 }
