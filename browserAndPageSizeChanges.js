@@ -63,10 +63,7 @@ if (browserName == "Chrome") {
 
 if (browserName == "Safari") {
 
-    console.log(pageName)
-    console.log('aaaaa')
-
-    if ((pageName == 'index.html') || (pageName == '')) {
+    if (pageName == '') {
         signUpAsTutorButton.style.fontSize = '13px';
     }
 
@@ -84,7 +81,7 @@ if (browserName == "Microsoft Edge") {
 
 if (browserName == "Firefox") {
 
-    if (pageName == 'profile.html') {
+    if (pageName == 'profile') {
         banner.style.left = '0';
         Array.from(infoInputGroupElements).forEach(element => {
           element.style.width = '137.5px';
