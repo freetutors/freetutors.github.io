@@ -1,54 +1,56 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link href='https://fonts.googleapis.com/css?family=Lexend' rel='stylesheet'>
-        <link rel="stylesheet" href="logins.css"/>
-        <link rel="stylesheet" href="root.css"/>
-        <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1398.0.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/amazon-cognito-identity-js/dist/amazon-cognito-identity.min.js"></script>
-        <script src="https://sdk.amazonaws.com/js/aws-sdk-2.932.0.min.js"></script>
+<head>
+  <link href='https://fonts.googleapis.com/css?family=Lexend' rel='stylesheet'>
+  <link rel="stylesheet" href="logins.css"/>
+  <link rel="stylesheet" href="root.css"/>
+  <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1398.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/amazon-cognito-identity-js/dist/amazon-cognito-identity.min.js"></script>
+  <script src="https://sdk.amazonaws.com/js/aws-sdk-2.932.0.min.js"></script>
 
-    </head>
-    <body>
+</head>
+<body>
 
-        <div id="topbar">
-            <img id="logo" src="Logo.svg" alt="Logo" onclick="location.href='https://freetutors.github.io/'">
-            <!-- Add search bar -->
-            <input type="search" class="search-bar" placeholder="Search..">
-            <button class="button ask-question-button" onclick="location.href='https://freetutors.github.io/createQuestion'">Ask Question</button>
-            <div id = "loginSignupArea">
-            </div>
-        </div>
+<div id="topbar">
+  <img id="logo" src="Logo.svg" alt="Logo" onclick="location.href='https://freetutors.github.io/'">
+  <!-- Add search bar -->
+  <input type="search" class="search-bar" placeholder="Search..">
+  <button class="button ask-question-button" onclick="location.href='https://freetutors.github.io/createQuestion'">Ask
+    Question
+  </button>
+  <div id="loginSignupArea">
+  </div>
+</div>
 
-        <div class = "box center signup-container">
-            <div class="input-group-new">
-                <label>Username</label>
-                <input type="text" id="username" class="username login-input"
-                placeholder="Enter Your Username">
-            </div>
-            <div class="input-group-new">
-                <label>Password</label>
-                <input type="text" id="password" class="password login-input"
-                placeholder="Enter Your Password ">
-            <!-- Copy Paste sections to add more -->
-            </div>
-        <button class="button login-send">Log in</button>
-        <div class="signup-options">
-            <button>Sign in with facebook placeholder</button>
-        </div>
-        <div class="signup-options">
-            <button>Sign in with google placeholder</button>
-        </div>
+<div class="box center signup-container">
+  <div class="input-group-new">
+    <label>Username</label>
+    <input type="text" id="username" class="username login-input"
+           placeholder="Enter Your Username">
+  </div>
+  <div class="input-group-new">
+    <label>Password</label>
+    <input type="text" id="password" class="password login-input"
+           placeholder="Enter Your Password ">
+    <!-- Copy Paste sections to add more -->
+  </div>
+  <button class="button login-send">Log in</button>
+  <div class="signup-options">
+    <button>Sign in with facebook placeholder</button>
+  </div>
+  <div class="signup-options">
+    <button>Sign in with google placeholder</button>
+  </div>
 
-        <script type = "module" src="frontlogin.js"></script>
+  <script type="module" src="frontlogin.js"></script>
 
-        <!-- Add rest of content here -->
-        <script src="home.js"></script>
-        <script type="module" src="questionApiConnection.js"></script>
-        <script src="loginsignupbuttons.js"></script>
-        <script src = "frontlogin.js"></script>
-        <script src="https://unpkg.com/bowser@2.7.0/es5.js"></script>
-        <script src="browserAndPageSizeChanges.js"></script>
-    </body>
+  <!-- Add rest of content here -->
+  <script src="home.js"></script>
+  <script type="module" src="questionApiConnection.js"></script>
+  <script src="loginsignupbuttons.js"></script>
+  <script src="frontlogin.js"></script>
+  <script src="https://unpkg.com/bowser@2.7.0/es5.js"></script>
+  <script src="browserAndPageSizeChanges.js"></script>
+</body>
 </html>

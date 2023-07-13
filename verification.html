@@ -1,26 +1,27 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link href='https://fonts.googleapis.com/css?family=Lexend' rel='stylesheet'>
-        <link rel="stylesheet" href="logins.css"/>
-        <link rel="stylesheet" href="root.css"/>
-        <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1398.0.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/amazon-cognito-identity-js/dist/amazon-cognito-identity.min.js"></script>
-    </head>
-    <body>
-        <div class = "box center verification-container">
-            <div class="input-group-new" id = "input-group-new"><!--Each section is a part of the login section. Lable is what fills the area, and input registers it. Id is necessary for js connection with database-->
-                <label>Verification Number:</label>
-                <p class="description">Check your email for a verification number</p>
-                <input type="number" id="vCode" class="vCode login-input"
-                placeholder="Enter Your Verification Number">
-                <button class="button verification-send" id="verification-send">Verify</button>
-            </div>
-        </div>
-        <script src="verification.js"></script>
+<head>
+  <link href='https://fonts.googleapis.com/css?family=Lexend' rel='stylesheet'>
+  <link rel="stylesheet" href="logins.css"/>
+  <link rel="stylesheet" href="root.css"/>
+  <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1398.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/amazon-cognito-identity-js/dist/amazon-cognito-identity.min.js"></script>
+</head>
+<body>
+<div class="box center verification-container">
+  <div class="input-group-new" id="input-group-new">
+    <!--Each section is a part of the login section. Lable is what fills the area, and input registers it. Id is necessary for js connection with database-->
+    <label>Verification Number:</label>
+    <p class="description">Check your email for a verification number</p>
+    <input type="number" id="vCode" class="vCode login-input"
+           placeholder="Enter Your Verification Number">
+    <button class="button verification-send" id="verification-send">Verify</button>
+  </div>
+</div>
+<script src="verification.js"></script>
 
-      <script src="https://unpkg.com/bowser@2.7.0/es5.js"></script>
-      <script src="browserAndPageSizeChanges.js"></script>
-    </body>
+<script src="https://unpkg.com/bowser@2.7.0/es5.js"></script>
+<script src="browserAndPageSizeChanges.js"></script>
+</body>
 </html>

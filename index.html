@@ -1,53 +1,61 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link href='https://fonts.googleapis.com/css?family=Lexend' rel='stylesheet'>
-    <link rel="stylesheet" href="index.css"/>
-    <link rel="stylesheet" href="root.css"/>
-    <script type="text/javascript" src="popup.js"></script><script> window.start.init({Palette:"palette6",Mode:"banner bottom",Theme:"wire",LinkText:" Learn More!",Location:"https://freetutors.github.io/profile.html",Time:"5",})</script>
-  </head>
-  <body>
-    <div id="topbar">
-      <img id="logo" src="Logo.svg" alt="Logo" onclick="location.href='https://freetutors.github.io/'">
-      <!-- Add search bar -->
-      <input type="search" class="search-bar" placeholder="Search..">
-      <button class="button ask-question-button" onclick="location.href='https://freetutors.github.io/createQuestion'">Ask Question</button>
-      <div id = "loginSignupArea">
-      </div>
-    </div>
-    <div class="menu"><!--navigation area-->
-      <ul>
-        <li class="on-page" onclick="location.href='https://freetutors.github.io/'">Home</li>
-        <li class="menu_item" onclick="location.href='https://freetutors.github.io/ourTeam'">Our Team</li>
-        <li class="menu_item" onclick="location.href='https://freetutors.github.io/contactUs'">Contact Us</li>
-        <li class="menu_item" onclick="location.href='https://freetutors.github.io/suggestions'">Suggestions</li>
-        <li class="menu_item" onclick="location.href='https://freetutors.github.io/help'">Help</li>
-      </ul>
-    </div>
-    <div class="question_header">
-      Active Questions - Math
-    </div>
-    <div class="arrows">
-      <div id="arrow-left" onclick="moveLeft()"></div>
-      <div id="arrow-right" onclick="moveRight()"></div>
-    </div>
+<head>
+  <link href='https://fonts.googleapis.com/css?family=Lexend' rel='stylesheet'>
+  <link rel="stylesheet" href="index.css"/>
+  <link rel="stylesheet" href="root.css"/>
+  <script type="text/javascript" src="popup.js"></script>
+  <script>
+     window.start.init({Palette:"palette6",Mode:"banner bottom",Theme:"wire",LinkText:" Learn More!",Location:"https://freetutors.github.io/profile.html",Time:"5",})
 
-    <div class="box important_box">
-      <div id="important_box_nums">2048</div>
-      <div id="important_box_text">answered questions</div>
-      <div id="important_box_nums">91</div>
-      <div id="important_box_text">chat hours</div>
-      <div id="important_box_nums">520</div>
-      <div id="important_box_text">volunteer hours earned</div>
-      <button id="sign_up_as_tutor_button" onclick="location.href='https://freetutors.github.io/tutorSignUp'">Sign up as tutor</button>
-    </div>
+  </script>
+</head>
+<body>
+<div id="topbar">
+  <img id="logo" src="Logo.svg" alt="Logo" onclick="location.href='https://freetutors.github.io/'">
+  <!-- Add search bar -->
+  <input type="search" class="search-bar" placeholder="Search..">
+  <button class="button ask-question-button" onclick="location.href='https://freetutors.github.io/createQuestion'">Ask
+    Question
+  </button>
+  <div id="loginSignupArea">
+  </div>
+</div>
+<div class="menu"><!--navigation area-->
+  <ul>
+    <li class="on-page" onclick="location.href='https://freetutors.github.io/'">Home</li>
+    <li class="menu_item" onclick="location.href='https://freetutors.github.io/ourTeam'">Our Team</li>
+    <li class="menu_item" onclick="location.href='https://freetutors.github.io/contactUs'">Contact Us</li>
+    <li class="menu_item" onclick="location.href='https://freetutors.github.io/suggestions'">Suggestions</li>
+    <li class="menu_item" onclick="location.href='https://freetutors.github.io/help'">Help</li>
+  </ul>
+</div>
+<div class="question_header">
+  Active Questions - Math
+</div>
+<div class="arrows">
+  <div id="arrow-left" onclick="moveLeft()"></div>
+  <div id="arrow-right" onclick="moveRight()"></div>
+</div>
 
-    <div class="questions_list"><!--invisible box surround the questions to allow from scrolling-->
-      <!-- <div class="box text_box"></div> -->
+<div class="box important_box">
+  <div id="important_box_nums">2048</div>
+  <div id="important_box_text">answered questions</div>
+  <div id="important_box_nums">91</div>
+  <div id="important_box_text">chat hours</div>
+  <div id="important_box_nums">520</div>
+  <div id="important_box_text">volunteer hours earned</div>
+  <button id="sign_up_as_tutor_button" onclick="location.href='https://freetutors.github.io/tutorSignUp'">Sign up as
+    tutor
+  </button>
+</div>
 
-    </div>
+<div class="questions_list"><!--invisible box surround the questions to allow from scrolling-->
+  <!-- <div class="box text_box"></div> -->
 
-    <script>
+</div>
+
+<script>
       const subjects = [
         "Active Questions - Math",
         "Active Questions - Chemistry",
@@ -70,14 +78,16 @@
       function moveLeft() {
         questionHeader.innerHTML = subjects[((subjects.indexOf(questionHeader.innerHTML) - 1) % (subjects.length) + (subjects.length)) % (subjects.length)]
       }
-    </script>
 
-    <!-- Add rest of content here -->
-    <script src="home.js"></script>
-    <script type="module" src="questionApiConnection.js"></script>
-    <script src="loginsignupbuttons.js"></script>
-    <script src="https://unpkg.com/bowser@2.7.0/es5.js"></script>
-    <script src="browserAndPageSizeChanges.js"></script>
 
-  </body>
+</script>
+
+<!-- Add rest of content here -->
+<script src="home.js"></script>
+<script type="module" src="questionApiConnection.js"></script>
+<script src="loginsignupbuttons.js"></script>
+<script src="https://unpkg.com/bowser@2.7.0/es5.js"></script>
+<script src="browserAndPageSizeChanges.js"></script>
+
+</body>
 </html>

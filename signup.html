@@ -1,63 +1,66 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link href='https://fonts.googleapis.com/css?family=Lexend' rel='stylesheet'>
-        <link rel="stylesheet" href="logins.css"/>
-        <link rel="stylesheet" href="root.css"/>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/amazon-cognito-identity-js/dist/amazon-cognito-identity.min.js"></script>
-        <script src="https://sdk.amazonaws.com/js/aws-sdk-2.932.0.min.js"></script>
-        <!-- please dont delete links -->
-    </head>
-    <body>
+<head>
+  <link href='https://fonts.googleapis.com/css?family=Lexend' rel='stylesheet'>
+  <link rel="stylesheet" href="logins.css"/>
+  <link rel="stylesheet" href="root.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/amazon-cognito-identity-js/dist/amazon-cognito-identity.min.js"></script>
+  <script src="https://sdk.amazonaws.com/js/aws-sdk-2.932.0.min.js"></script>
+  <!-- please dont delete links -->
+</head>
+<body>
 
-        <div id="topbar">
-            <img id="logo" src="Logo.svg" alt="Logo" onclick="location.href='https://freetutors.github.io/'">
-            <!-- Add search bar -->
-            <input type="search" class="search-bar" placeholder="Search..">
-            <button class="button ask-question-button" onclick="location.href='https://freetutors.github.io/createQuestion'">Ask Question</button>
-            <div id = "loginSignupArea">
-            </div>
-        </div>
+<div id="topbar">
+  <img id="logo" src="Logo.svg" alt="Logo" onclick="location.href='https://freetutors.github.io/'">
+  <!-- Add search bar -->
+  <input type="search" class="search-bar" placeholder="Search..">
+  <button class="button ask-question-button" onclick="location.href='https://freetutors.github.io/createQuestion'">Ask
+    Question
+  </button>
+  <div id="loginSignupArea">
+  </div>
+</div>
 
-        <div class = "box center signup-container">
-            <div class="input-group-new"><!--Each section is a part of the login section. Lable is what fills the area, and input registers it. Id is necessary for js connection with database-->
-                <label>Full Name:</label>
-                <input type="text" id="name" class="name login-input"
-                placeholder="Enter Your Name">
-            </div>
-            <div class="input-group-new">
-                <label>Username:</label>
-                <input type="text" id="username" class="username login-input"
-                placeholder="Enter Your Username">
-            </div>
-            <div class="input-group-new">
-                <label>Email:</label>
-                <input type="email" id="email" class="email login-input"
-                placeholder="Enter Your Email ">
-            </div>
-            <div class="input-group-new">
-                <label>Password:</label>
-                <input type="text" id="password" class="password login-input"
-                placeholder="Enter Your Passcode ">
-            <!-- Copy Paste sections to add more -->
-            </div>
-            <button class="button signup-send">Sign Up</button>
-            <div class="signup-options">
-                <button>Sign up with google placeholder</button>
-            </div>
-            <div class="signup-options">
-                <button>Sign up with facebook placeholder</button>
-            </div>
-            <a href="#" onclick="signOut();">Sign out</a>
-        </div>
+<div class="box center signup-container">
+  <div class="input-group-new">
+    <!--Each section is a part of the login section. Lable is what fills the area, and input registers it. Id is necessary for js connection with database-->
+    <label>Full Name:</label>
+    <input type="text" id="name" class="name login-input"
+           placeholder="Enter Your Name">
+  </div>
+  <div class="input-group-new">
+    <label>Username:</label>
+    <input type="text" id="username" class="username login-input"
+           placeholder="Enter Your Username">
+  </div>
+  <div class="input-group-new">
+    <label>Email:</label>
+    <input type="email" id="email" class="email login-input"
+           placeholder="Enter Your Email ">
+  </div>
+  <div class="input-group-new">
+    <label>Password:</label>
+    <input type="text" id="password" class="password login-input"
+           placeholder="Enter Your Passcode ">
+    <!-- Copy Paste sections to add more -->
+  </div>
+  <button class="button signup-send">Sign Up</button>
+  <div class="signup-options">
+    <button>Sign up with google placeholder</button>
+  </div>
+  <div class="signup-options">
+    <button>Sign up with facebook placeholder</button>
+  </div>
+  <a href="#" onclick="signOut();">Sign out</a>
+</div>
 
-        <!-- Add rest of content here -->
-        <script src="home.js"></script>
-        <script type="module" src="questionApiConnection.js"></script>
-        <script src="loginsignupbuttons.js"></script>
-        <script tpye = "module" src= "frontsignup.js"></script>
-        <script src="https://unpkg.com/bowser@2.7.0/es5.js"></script>
-        <script src="browserAndPageSizeChanges.js"></script>
-    </body>
+<!-- Add rest of content here -->
+<script src="home.js"></script>
+<script type="module" src="questionApiConnection.js"></script>
+<script src="loginsignupbuttons.js"></script>
+<script tpye="module" src="frontsignup.js"></script>
+<script src="https://unpkg.com/bowser@2.7.0/es5.js"></script>
+<script src="browserAndPageSizeChanges.js"></script>
+</body>
 </html>

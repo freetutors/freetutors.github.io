@@ -2,11 +2,13 @@
 
 import hashlib
 
+
 def sha1_hash(text):
     sha1_hash = hashlib.sha1()
     sha1_hash.update(text.encode('utf-8'))
 
     return sha1_hash.hexdigest()
+
 
 userToPwd = {}
 
@@ -18,6 +20,7 @@ userToPwd[user] = sha1_hash(pwd)
 
 print(userToPwd)
 
+
 def authenticateUser(user, pwdAttempt):
     if not user in userToPwd.keys():
         return "Invalid username"
@@ -25,6 +28,7 @@ def authenticateUser(user, pwdAttempt):
         return "Invalid password"
     else:
         return "Access granted"
+
 
 # Invalid username error
 print(authenticateUser('InvalidUser', pwd))
