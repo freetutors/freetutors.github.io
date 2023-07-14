@@ -515,7 +515,7 @@ if (window.location.pathname.indexOf("/viewQuestion.html") !== -1) {
 }
 else if (window.location.pathname === "/freetutors.github.io/createQuestion.html" || window.location.href ==="/createQuestion.html") {
 }
-else if (window.location.pathname === ""){
+else if (window.location.pathname === "/"){
   console.log("afdlkfjaslkdjf")
   await showQuestionColumn()
 }
