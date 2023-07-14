@@ -65,9 +65,7 @@ async function saveUpdates(answer) {
         },
         UpdateExpression: 'SET answersInfo = :newAnswersInfo',
         ExpressionAttributeValues: {
-          ':newAnswersInfo': {
-            M: answersInfo
-          }
+          ':newAnswersInfo': answersInfo
         }
       };
   

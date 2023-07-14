@@ -37,6 +37,8 @@ const apiUrlget = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/g
 const health = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/health";
 const apiUrlupdate = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/updatequestion";
 const apiUrlanswer = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/createanswer";
+const apiUrlanswerUpdate = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/updateanswer";
+
 async function submitQuestion() {
     console.log("clicked")
     const title = document.getElementById('title').value;
@@ -310,6 +312,16 @@ async function sendUpdate(questionId, answers, updatedViews, rating){
   }).then(response => response.json());
 };
 
+async function updateAnswer(questionId, answerId, rating){
+  const url = new URL(`${apiUrlanswerUpdate}?questionId=${questionId}&answerId=${answerId}&rating=${rating}`)
+  const response = await fetch(url,  {
+    mode: "cors",
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then(response => response.json());
+}
 async function answerRating(answer){
   var answerId = answer.questionId
   var newRating = parseInt(answer.rating)
@@ -342,7 +354,7 @@ async function answerRating(answer){
         downclick = true
         ratingUpdate = -1
       newRating += parseInt(ratingUpdate)
-      sendUpdate(questionId, answers, updatedViews, newRating)
+      updateAnswer(questionId, answerId, newRating)
       setCookie("voted"+answerId, "downvote", 365)
       displayQuestion()
       displayQuestion()
@@ -353,7 +365,7 @@ async function answerRating(answer){
         ratingUpdate += 1
         downclick = false
         newRating += parseInt(ratingUpdate)
-        sendUpdate(questionId, answers, updatedViews, newRating)
+        updateAnswer(questionId, answerId, newRating)
         setCookie("voted"+answerId, "no", 365)
         displayQuestion()
         displayQuestion()
@@ -369,7 +381,7 @@ async function answerRating(answer){
             upclick = true
             ratingUpdate = 1
             newRating += parseInt(ratingUpdate)
-            sendUpdate(questionId, answers, updatedViews, newRating)
+            updateAnswer(questionId, answerId, newRating)
             setCookie("voted"+answerId, "upvote", 365)
             displayQuestion()
             displayQuestion()
@@ -380,7 +392,7 @@ async function answerRating(answer){
             ratingUpdate -= 1
             upclick = false
             newRating += parseInt(ratingUpdate)
-            sendUpdate(questionId, answers, updatedViews, newRating)
+            updateAnswer(questionId, answerId, newRating)
             setCookie("voted"+answerId, "no", 365)
             displayQuestion()
             displayQuestion()
@@ -526,6 +538,6 @@ else if (window.location.pathname === "/freetutors.github.io/"){
 else if (window.location === "https://freetutors.github.io/"){
   await showQuestionColumn()
 }
-else if (window.location.pathname.indexOf("/index.html")!== -1){
+else if (window.location.pathname.indexOf("/index")!== -1){
   await showQuestionColumn()
 }
