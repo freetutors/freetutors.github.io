@@ -1,9 +1,10 @@
 //Creating question to database. Waiting on how yash inputs values
+console.log("questionAPI")
 var toolbarOptions = [
   ['bold', 'italic', 'underline', 'link', 'image'], // Customize the toolbar elements here
   // Additional toolbar options...
 ];
-if (window.location.pathname.indexOf("/createQuestion.html") !== -1) {
+if (window.location.pathname.indexOf("createQuestion") !== -1) {
   console.log("called")
   var quill = new Quill('#editor', {
     placeholder: 'Provide any additional relevant details',
@@ -514,10 +515,10 @@ if (window.location.pathname.indexOf("/viewQuestion.html") !== -1) {
 }
 else if (window.location.pathname === "/freetutors.github.io/createQuestion.html" || window.location.href ==="/createQuestion.html") {
 }
-else if (window.location.pathname === "/"){
+else if (window.location.pathname === ""){
   console.log("afdlkfjaslkdjf")
   await showQuestionColumn()
 }
-else if (window.location.pathname.indexOf("/index.html")){
+else if (window.location.pathname.indexOf("/index.html")!== -1){
   await showQuestionColumn()
 }
