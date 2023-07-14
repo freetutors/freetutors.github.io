@@ -519,6 +519,13 @@ else if (window.location.pathname === "/"){
   console.log("afdlkfjaslkdjf")
   await showQuestionColumn()
 }
+else if (window.location.pathname === "/freetutors.github.io/"){
+  console.log("afdlkfjaslkdjf")
+  await showQuestionColumn()
+}
+else if (window.location === "https://freetutors.github.io/"){
+  await showQuestionColumn()
+}
 else if (window.location.pathname.indexOf("/index.html")!== -1){
   await showQuestionColumn()
 }
