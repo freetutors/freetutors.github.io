@@ -218,7 +218,7 @@ async function displayQuestion(){
   MathJax.Hub.Queue(['Typeset', MathJax.Hub, 'question-wrapper']);
   MathJax.Hub.Queue(['Typeset', MathJax.Hub, 'answer-wrapper']);
 
-  if (window.location.pathname == "/freetutors.github.io/viewquestion.html") {
+  if (window.location.pathname == "/freetutors.github.io/viewQuestion.html") {
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$', '$'], ['\\(', '\\)']],
@@ -509,11 +509,13 @@ if (!checkCookieExists(eventCookieName)) {
   setCookie(eventCookieName, 'true', expirationDays);
 }
 if (window.location.pathname.indexOf("/viewQuestion.html") !== -1) {
+  console.log("called")
   await displayQuestion()
 }
 else if (window.location.pathname === "/freetutors.github.io/createQuestion.html" || window.location.href ==="/createQuestion.html") {
 }
 else if (window.location.pathname === "/"){
+  console.log("afdlkfjaslkdjf")
   await showQuestionColumn()
 }
 else if (window.location.pathname.indexOf("/index.html")){
