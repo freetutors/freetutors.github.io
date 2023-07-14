@@ -509,7 +509,7 @@ if (!checkCookieExists(eventCookieName)) {
   // Set a cookie to indicate that the event has occurred for the current IP address
   setCookie(eventCookieName, 'true', expirationDays);
 }
-if (window.location.pathname.indexOf("/viewQuestion.html") !== -1) {
+if (window.location.pathname.indexOf("/viewQuestion") !== -1) {
   console.log("called")
   await displayQuestion()
 }
