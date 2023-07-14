@@ -95,7 +95,7 @@ const username = document.getElementById("username").value; //getting values
         localStorage.setItem("signupEmail", email);
         localStorage.setItem("signupUsername", username);
 
-        window.location='verification.html'
+        window.location='https://freetutors.github.io/verification'
       }
     } catch (error) {
       console.log('Error:', error); //giving us error details if something happens

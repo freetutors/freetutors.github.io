@@ -20,48 +20,56 @@
         processEscapes: true,
       },
     });
+
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
 
 </head>
 <body>
-  <div id="topbar">
-    <img id="logo" src="Logo.svg" alt="Logo" onclick="location.href='index.html'">
-    <!-- Add search bar -->
-    <input type="search" class="search-bar" placeholder="Search..">
-    <button class="button ask-question-button">Ask Question</button>
-    <div id="loginSignupArea">
-    </div>
+<div id="topbar">
+  <img id="logo" src="Logo.svg" alt="Logo" onclick="location.href='https://freetutors.github.io/'">
+  <!-- Add search bar -->
+  <input type="search" class="search-bar" placeholder="Search..">
+  <button class="button ask-question-button" onclick="location.href='https://freetutors.github.io/createQuestion'">Ask
+    Question
+  </button>
+  <div id="loginSignupArea">
   </div>
+</div>
 
-  <div class="back_button">back</div>
+<div class="back_button">back</div>
 
-  <div class="instructions">Choose a Title</div>
-  <input class="question_box" id="title" placeholder="Describe your question in a few words" oninput="updatePreviewTitle()">
-  <div class="instructions" style="top: 210px;">Elaborate on your Question</div>
-  <div id="editor"></div>
-  <div class="instructions" style="top: 625px;">Review your Question</div>
+<div class="instructions">Choose a Title</div>
+<input class="question_box" id="title" placeholder="Describe your question in a few words"
+       oninput="updatePreviewTitle()">
+<div class="instructions" style="top: 210px;">Elaborate on your Question</div>
+<div id="editor"></div>
+<div class="instructions" style="top: 625px;">Review your Question</div>
 
-  <div id="preview-container-title"></div>
-  <div id="preview-container"></div>
+<div id="preview-container-title"></div>
+<div id="preview-container"></div>
 
-  <div class="dropdown">
-    <button class="center dropbtn" onclick="document.querySelector('.dropbtn').classList.toggle('rotate-after');">Select Subject</button>
-    <div class="dropdown-content">
-      <a href="#" class="subject">Math</a>
-      <a href="#" class="subject">English</a>
-      <a href="#" class="subject">History</a>
-    </div>
+<div class="dropdown">
+  <button class="center dropbtn" onclick="document.querySelector('.dropbtn').classList.toggle('rotate-after');">Select
+    Subject
+  </button>
+  <div class="dropdown-content">
+    <a href="#" class="subject">Math</a>
+    <a href="#" class="subject">English</a>
+    <a href="#" class="subject">History</a>
   </div>
+</div>
 
 
-  <button class="button buttons question-send" id="question-send" style="background-color: var(--secondary-color); margin-top: 15px;">Post Question</button>
+<button class="button buttons question-send" id="question-send"
+        style="background-color: var(--secondary-color); margin-top: 15px;">Post Question
+</button>
 
 
-  <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-  <script src="image-resize.min.js"></script>
-  <script src="image-drop.min.js"></script>
-  <script> //moving to questionAPIConnect from simplicity
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+<script src="image-resize.min.js"></script>
+<script src="image-drop.min.js"></script>
+<script> //moving to questionAPIConnect from simplicity
     var toolbarOptions = [
       ['bold', 'italic', 'underline', 'link', 'image'], // Customize the toolbar elements here
       // Additional toolbar options...
@@ -98,11 +106,12 @@
       updatePreviewBody();
     });
 
-  </script>
 
-  <!-- for dropdown -->
+</script>
 
-  <script>
+<!-- for dropdown -->
+
+<script>
    document.addEventListener("DOMContentLoaded", function() {
       var dropdown = document.querySelector(".dropdown");
       var dropdownContent = document.querySelector(".dropdown-content");
@@ -119,13 +128,14 @@
         }
       });
     });
-  </script>
+
+</script>
 
 
-  <script type="module" src="questionApiConnection.js"></script>
-  <script src="home.js"></script>
-  <script src="loginsignupbuttons.js"></script>
-  <script src="https://unpkg.com/bowser@2.7.0/es5.js"></script>
-  <script src="browserAndPageSizeChanges.js"></script>
+<script type="module" src="questionApiConnection.js"></script>
+<script src="home.js"></script>
+<script src="loginsignupbuttons.js"></script>
+<script src="https://unpkg.com/bowser@2.7.0/es5.js"></script>
+<script src="browserAndPageSizeChanges.js"></script>
 </body>
 </html>
