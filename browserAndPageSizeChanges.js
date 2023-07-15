@@ -93,6 +93,6 @@ if (browserName == "Firefox") {
 
 }
 
-console.log(pageName);
+console.log(browserName);
 
 
