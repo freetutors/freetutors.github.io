@@ -94,3 +94,5 @@ if (browserName == "Firefox") {
 }
 
 console.log(pageName);
+
+

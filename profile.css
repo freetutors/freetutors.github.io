@@ -314,7 +314,7 @@ hr.pfp_line {
      margin-left: 300px;
  }
 
-.questions_list {
+.questions_list_profile {
      margin-left: 300px;
 }
 
@@ -338,7 +338,7 @@ hr.pfp_line {
      width: calc(100% - 360px);
  }
 
-.questions_list {
+.questions_list_profile {
     width: calc(100% - 350px);
 }
 
@@ -376,7 +376,7 @@ hr.pfp_line {
      display: none;
  }
 
-.questions_list {
+.questions_list_profile {
     display: none;
 }
 
