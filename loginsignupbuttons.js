@@ -8,8 +8,12 @@ if (username != null){
     document.getElementById("loginSignupArea").innerHTML =
     `
     <div class = "profileButton">
-        <img class = "profilePicHome" src="profileDefault.jpg">
-        <p class = "usernameOnProfileButton">${username}</p>
+        <img class = "inboxHome" src="inbox.png">
+        <div class="userInfoContainerHome">
+          <img class = "profilePicHome" src="profileDefault.jpg">
+          <p class = "usernameOnProfileButton">${username}</p>
+        </div
+
     </div>
     `
     document.querySelector(".profilePicHome").
