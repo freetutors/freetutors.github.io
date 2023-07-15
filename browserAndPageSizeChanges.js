@@ -61,13 +61,6 @@ if (browserName == "Chrome"){
 
 }
 
-if (browserName == "Brave"){
-
-    window.addEventListener('load', checkVSChrome);
-    window.addEventListener('resize', checkVSChrome);
-
-}
-
 if (browserName == "Safari") {
 
     if (pageName == '') {
