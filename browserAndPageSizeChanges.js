@@ -54,7 +54,7 @@ function checkVSFirefox() {
     }
 }
 
-if (browserName == "Chrome") {
+if ((browserName == "Chrome") || (browserName == "Brave")) {
 
     window.addEventListener('load', checkVSChrome);
     window.addEventListener('resize', checkVSChrome);
