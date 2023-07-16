@@ -1,5 +1,11 @@
 //Creating question to database. Waiting on how yash inputs values
-console.log("questionAPI")
+const apiUrlcreate = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/create";
+const apiUrlget = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/getquestion";
+const health = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/health";
+const apiUrlupdate = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/updatequestion";
+const apiUrlanswer = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/createanswer";
+const apiUrlanswerUpdate = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/updateanswer";
+
 var toolbarOptions = [
   ['bold', 'italic', 'underline', 'link', 'image'], // Customize the toolbar elements here
   // Additional toolbar options...
@@ -32,13 +38,6 @@ if (window.location.pathname.indexOf("createQuestion") !== -1) {
   })
 }
 
-const apiUrlcreate = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/create";
-const apiUrlget = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/getquestion";
-const health = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/health";
-const apiUrlupdate = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/updatequestion";
-const apiUrlanswer = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/createanswer";
-const apiUrlanswerUpdate = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/updateanswer";
-
 async function submitQuestion() {
     console.log("clicked")
     const title = document.getElementById('title').value;
@@ -64,78 +63,6 @@ async function submitQuestion() {
     }
 }
 
-//getting for home page
-function getTimeDifference(timestamp) {
-  const currentTime = new Date();
-  const previousTime = new Date(timestamp);
-  const timeDiff = currentTime.getTime() - previousTime.getTime();
-
-  // Calculate time differences in seconds, minutes, hours, days, and weeks
-  const seconds = Math.floor(timeDiff / 1000);
-  const minutes = Math.floor(seconds / 60);
-  const hours = Math.floor(minutes / 60);
-  const days = Math.floor(hours / 24);
-  const weeks = Math.floor(days / 7);
-
-  if (weeks > 0) {
-    return `${weeks} week${weeks > 1 ? 's' : ''} ago`;
-  } else if (days > 0) {
-    return `${days} day${days > 1 ? 's' : ''} ago`;
-  } else if (hours > 0) {
-    return `${hours} hour${hours > 1 ? 's' : ''} ago`;
-  } else if (minutes > 0) {
-    return `${minutes} minute${minutes > 1 ? 's' : ''} ago`;
-  } else {
-    return `${seconds} second${seconds !== 1 ? 's' : ''} ago`;
-  }
-}
-
-async function getQuestionListViews(views) {
-  const url = new URL(`${apiUrlget}?views=${views}`);
-  const questionList = await fetch(url,  {
-    mode: "cors",
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  }).then(response => response.json());
-  return questionList.questionList
-}
-
-async function showQuestionColumn(){
-  var views = "0"
-  const questionList = await getQuestionListViews(views)
-  const questionArray = questionList
-  questionArray.forEach(question => {
-    var title = question.title
-    var author = question.author
-    var answers = question.answers
-    var rating = question.rating
-    var timeAgo = getTimeDifference(question.timestamp)
-    var views = question.views
-
-    document.querySelector(".questions_list").innerHTML +=
-      `<div class="box text_box">
-      <!-- pfp -->
-      <img id="text_box_pfp" src="placeholder_pfp.png">
-      <div id="text_box_question_content">${title}</div>
-      <div id="asked_by_line">asked by ${author}, ${timeAgo}</div>
-      <div id="answered_by_line">Be the first to answer!</div>
-      <div class="question_stats">
-        <div id="question_stats_items">${answers} Answers</div>
-        <div id="question_stats_items">${views} views</div>
-        <div id="question_stats_items">${rating} rating</div>
-      </div>`
-    })
-    const questionBoxes = document.querySelectorAll(".box.text_box");
-    questionBoxes.forEach((box, index) => {
-      box.addEventListener("click", function () {
-        const questionId = questionList[index].questionId; // Retrieve the questionId
-        localStorage.setItem("QuestionID", JSON.stringify(questionId));
-        window.location = `viewQuestion?questionId=${questionId}`;
-      });
-    });
-  };
 async function getQuestionListId(questionId) {
   const url = new URL(`${apiUrlget}?questionId=${questionId}`);
   console.log(url)
@@ -530,7 +457,6 @@ async function ratingButtons(questionList){
 function checkCookieExists(cookieName) {
   return document.cookie.split(';').some((cookie) => cookie.trim().startsWith(`${cookieName}=`));
 }
-
 // Function to set a cookie with a given name and value
 function setCookie(cookieName, cookieValue, expirationDays) {
   const expirationDate = new Date();
@@ -549,7 +475,6 @@ function getCookie(name) {
   }
   return null;
 }
-
 function initializeQuill(){
   var toolbarOptions = [
     ['bold', 'italic', 'underline', 'link', 'image'], // Customize the toolbar elements here
@@ -583,18 +508,4 @@ if (window.location.pathname.indexOf("/viewQuestion") !== -1) {
   await displayQuestion()
 }
 else if (window.location.pathname === "/freetutors.github.io/createQuestion.html" || window.location.href ==="/createQuestion.html") {
-}
-else if (window.location.pathname === "/"){
-  console.log("afdlkfjaslkdjf")
-  await showQuestionColumn()
-}
-else if (window.location.pathname === "/freetutors.github.io/"){
-  console.log("afdlkfjaslkdjf")
-  await showQuestionColumn()
-}
-else if (window.location === "https://freetutors.github.io/"){
-  await showQuestionColumn()
-}
-else if (window.location.pathname.indexOf("/index")!== -1){
-  await showQuestionColumn()
 }

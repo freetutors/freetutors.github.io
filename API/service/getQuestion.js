@@ -41,22 +41,23 @@ async function getQuestionList(event) {
 
 async function getQuestionBySubject(subject) { //getting user info to check if the user has already logged in 
 
-    const params = {
-        TableName: questionTable,
-        IndexName: "subjectIndex",
-        KeyConditionExpression: "#subject = :subject",
-        ExpressionAttributeNames: {
-          "#subject": "subject"
-        },
-        ExpressionAttributeValues: {
-          ":subject": subject
-        },
-        Limit: 10
-    }
-      // Query DynamoDB for the questions.
-      const result = await dynamodb.query(params).promise();
-      // Return the questions.
-      return result.Items;
+  const params = {
+    TableName: questionTable,
+    IndexName: "subjectIndex",
+    KeyConditionExpression: "#s = :subject",
+    ExpressionAttributeNames: {
+      "#s": "subject"
+    },
+    ExpressionAttributeValues: {
+      ":subject": subject
+    },
+    Limit: 20
+  };
+
+    // Query DynamoDB for the questions.
+    const result = await dynamodb.query(params).promise();
+// Return the questions.
+    return result.Items;
 }
 async function getQuestionByViews(views) { //getting user info to check if the user has already logged in 
 

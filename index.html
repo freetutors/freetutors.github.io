@@ -52,37 +52,11 @@
   </button>
 </div>
 
-<div class="questions_list_profile"><!--invisible box surround the questions to allow from scrolling-->
+<div class="questions_list questions_list_profile"><!--invisible box surround the questions to allow from scrolling-->
   <!-- <div class="box text_box"></div> -->
 
 </div>
 
-<script>
-      const subjects = [
-        "Active Questions - Math",
-        "Active Questions - Chemistry",
-        "Active Questions - Biology",
-        "Active Questions - Physics",
-        "Active Questions - English",
-        "Active Questions - History",
-        "Active Questions - Geography",
-        "Active Questions - Foreign Language",
-        "Active Questions - Computer Science",
-        "Active Questions - Physical Education",
-      ];
-
-      const questionHeader = document.querySelector('.question_header');
-
-      function moveRight() {
-        questionHeader.innerHTML = subjects[(subjects.indexOf(questionHeader.innerHTML) + 1) % (subjects.length)]
-      }
-
-      function moveLeft() {
-        questionHeader.innerHTML = subjects[((subjects.indexOf(questionHeader.innerHTML) - 1) % (subjects.length) + (subjects.length)) % (subjects.length)]
-      }
-
-
-</script>
 
 <!-- Add rest of content here -->
 <script src="home.js"></script>
