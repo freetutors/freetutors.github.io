@@ -102,6 +102,9 @@
   cursor: pointer;
   margin-bottom: 50px;
 }
+.quill > .ql-toolbar:first-child {
+  display: none !important;
+}
 .answer-wrapper{
   margin-top: 50px;
   position: relative;

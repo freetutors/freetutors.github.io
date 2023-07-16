@@ -157,8 +157,9 @@ function formatDate(timestamp) {
   });
   return formattedDate
 }
-async function displayQuestion(){
+var isQuillInitialized = false;
 
+async function displayQuestion(){
   const urlParams = new URLSearchParams(window.location.search);
   const questionId = urlParams.get('questionId');
   const questionList = await getQuestionListId(questionId)
@@ -190,16 +191,19 @@ async function displayQuestion(){
       </div>
     </div>
     `
+    document.querySelector(".answer-wrapper").innerHTML = ""
+    console.log("answersadiofjasdf:", document.querySelector(".answer-wrapper").innerHTML)
     if (answerInfo != null){
-      document.querySelector(".answer-wrapper").innerHtml = 
-      ``
+
       answerInfo.forEach(answer =>{
         var body = answer.body.replace(/<p>/g, "").replace(/<\/p>/g, " ")
         var author = answer.author
         var answerId = answer.answerId
         var rating = answer.rating
         var time = formatDate(answer.timestamp)
-        document.querySelector(".answer-wrapper").innerHTML +=
+        console.log("test2:", document.querySelector(".answer-wrapper").innerHTML)
+        document.querySelector(".answer-wrapper").insertAdjacentHTML(
+          "beforeend",
           `
           <div class="answer">
           <img src="placeholder_pfp.png" class="user_pfp">
@@ -209,12 +213,15 @@ async function displayQuestion(){
           </div>
           <p class="answerBody">${body}</p>
           <div class="rating-container">
-            <div class="upvote" id = "upvote${answerId}"></div>
+            <div class="upvote" id="upvote${answerId}"></div>
             <div class="rating-value" id = "rating-value${answerId}">${rating}</div>
             <div class="downvote" id="downvote${answerId}"></div>
           </div>
         </div>
           `
+        )
+        console.log("test3:", document.querySelector(".answer-wrapper").innerHTML)
+        answerRating(answer, questionId)
       })
     }
   })
@@ -241,28 +248,16 @@ async function displayQuestion(){
   }
   else{
   }
-  
-  answerArea(questionId)
+  if (!isQuillInitialized) {
+    var quill = initializeQuill();
+    isQuillInitialized = true;
+  }
+  answerArea(questionId, quill)
+
   await ratingButtons(questionList)
 
 }
-async function answerArea(questionId){
-  var toolbarOptions = [
-    ['bold', 'italic', 'underline', 'link', 'image'], // Customize the toolbar elements here
-    // Additional toolbar options...
-  ];
-
-  var quill = new Quill('#editor', {
-    placeholder: 'Type your answer here',
-    theme: 'snow',
-    modules: {
-      toolbar: toolbarOptions,
-      imageResize: {
-        modules: ['Resize']
-      },
-      imageDrop: true,
-    },
-  });
+async function answerArea(questionId, quill){
 
   var previewContainer = document.getElementById('preview-container');
 
@@ -322,8 +317,10 @@ async function updateAnswer(questionId, answerId, rating){
     },
   }).then(response => response.json());
 }
-async function answerRating(answer){
-  var answerId = answer.questionId
+async function answerRating(answer, questionId){
+  console.log('called')
+  var answerId = answer.answerId
+  console.log(answerId)
   var newRating = parseInt(answer.rating)
   let upclick = false
   let downclick = false
@@ -339,15 +336,50 @@ async function answerRating(answer){
     else if(getCookie("voted"+answerId)=== 'upvote') {
       upclick = true
       downclick = false
-      document.querySelector(".upvote").style.borderBottom = '15px solid green'
+      document.getElementById("upvote"+answerId).style.borderBottom = '15px solid green'
     }
     else if(getCookie("voted"+answerId) === 'downvote') {
       downclick = true
       upclick = false
-      document.querySelector(".downvote").style.borderTop = '15px solid red'
+      document.getElementById("downvote"+answerId).style.borderTop = '15px solid red'
     }
   }
   return new Promise((resolve) => {
+    
+    document.getElementById("upvote"+answerId).addEventListener("click", event => {
+      if (upclick == false && downclick == false) {
+        console.log("this")
+        document.getElementById("upvote"+answerId).style.borderBottom = '15px solid green'
+        upclick = true
+        ratingUpdate = 1
+        newRating += parseInt(ratingUpdate)
+        updateAnswer(questionId, answerId, newRating)
+        setCookie("voted"+answerId, "upvote", 365)
+      document.querySelector(".answer-wrapper").innerHTML = 
+      ``
+      displayQuestion()
+      document.querySelector(".answer-wrapper").innerHTML = 
+      ``
+      displayQuestion()
+      document.querySelector(".answer-wrapper").innerHTML = 
+      ``      
+      }
+        document.getElementById("upvote"+answerId).style.borderBottom = '15px solid white'
+        ratingUpdate -= 1
+        upclick = false
+        newRating += parseInt(ratingUpdate)
+        updateAnswer(questionId, answerId, newRating)
+        setCookie("voted"+answerId, "no", 365)
+        document.querySelector(".answer-wrapper").innerHTML = 
+        ``
+        displayQuestion()
+        document.querySelector(".answer-wrapper").innerHTML = 
+        ``
+        displayQuestion()
+        document.querySelector(".answer-wrapper").innerHTML =    
+        ``   
+    resolve(ratingUpdate)
+  })
     document.getElementById("downvote"+answerId).addEventListener("click", function() {
       if (upclick == false && downclick == false) {
         document.getElementById("downvote"+answerId).style.borderTop = '15px solid red'
@@ -356,10 +388,15 @@ async function answerRating(answer){
       newRating += parseInt(ratingUpdate)
       updateAnswer(questionId, answerId, newRating)
       setCookie("voted"+answerId, "downvote", 365)
+      document.querySelector(".answer-wrapper").innerHTML = 
+      ``
       displayQuestion()
+      document.querySelector(".answer-wrapper").innerHTML = 
+      ``
       displayQuestion()
-      displayQuestion() //failsafe incase update lag
-      }
+      document.querySelector(".answer-wrapper").innerHTML =
+      ``       
+    }
       else if(downclick == true && upclick == false) {
         document.getElementById("downvote"+answerId).style.borderTop = '15px solid white'
         ratingUpdate += 1
@@ -367,42 +404,19 @@ async function answerRating(answer){
         newRating += parseInt(ratingUpdate)
         updateAnswer(questionId, answerId, newRating)
         setCookie("voted"+answerId, "no", 365)
+        document.querySelector(".answer-wrapper").innerHTML = 
+        ``
         displayQuestion()
+        document.querySelector(".answer-wrapper").innerHTML = 
+        ``
         displayQuestion()
-        displayQuestion() //failsafe incase update lag
+        document.querySelector(".answer-wrapper").innerHTML =  
+        ``     
       }
       resolve(ratingUpdate)
     })
 
-      document.getElementById("upvote"+answerId).addEventListener("click", event => {
-        if (event.target == document.querySelector(".upvote")){
-          if (upclick == false && downclick == false) {
-            document.getElementById("upvote"+answerId).style.borderBottom = '15px solid green'
-            upclick = true
-            ratingUpdate = 1
-            newRating += parseInt(ratingUpdate)
-            updateAnswer(questionId, answerId, newRating)
-            setCookie("voted"+answerId, "upvote", 365)
-            displayQuestion()
-            displayQuestion()
-            displayQuestion() //failsafe incase update lag
-          }
-          else if (upclick == true && downclick == false) {
-            document.getElementById("upvote"+answerId).style.borderBottom = '15px solid white'
-            ratingUpdate -= 1
-            upclick = false
-            newRating += parseInt(ratingUpdate)
-            updateAnswer(questionId, answerId, newRating)
-            setCookie("voted"+answerId, "no", 365)
-            displayQuestion()
-            displayQuestion()
-            displayQuestion() //failsafe incase update lag
-          }
-        }
-        resolve(ratingUpdate)
-    })
   })
-
 }
 async function ratingButtons(questionList){
   var questionId = questionList[0].questionId
@@ -440,8 +454,14 @@ async function ratingButtons(questionList){
       newRating += parseInt(ratingUpdate)
       sendUpdate(questionId, answers, updatedViews, newRating)
       setCookie("voted"+questionId, "downvote", 365)
+      document.querySelector(".answer-wrapper").innerHTML = 
+      ``
       displayQuestion()
+      document.querySelector(".answer-wrapper").innerHTML = 
+      ``
       displayQuestion()
+      document.querySelector(".answer-wrapper").innerHTML = 
+      ``
       displayQuestion() //failsafe incase update lag
       }
       else if(downclick == true && upclick == false) {
@@ -451,8 +471,14 @@ async function ratingButtons(questionList){
         newRating += parseInt(ratingUpdate)
         sendUpdate(questionId, answers, updatedViews, newRating)
         setCookie("voted"+questionId, "no", 365)
+        document.querySelector(".answer-wrapper").innerHTML = 
+        ``
         displayQuestion()
+        document.querySelector(".answer-wrapper").innerHTML = 
+        ``  
         displayQuestion()
+        document.querySelector(".answer-wrapper").innerHTML = 
+        ``
         displayQuestion() //failsafe incase update lag
       }
       resolve(ratingUpdate)
@@ -467,8 +493,14 @@ async function ratingButtons(questionList){
             newRating += parseInt(ratingUpdate)
             sendUpdate(questionId, answers, updatedViews, newRating)
             setCookie("voted"+questionId, "upvote", 365)
+            document.querySelector(".answer-wrapper").innerHTML = 
+            ``
             displayQuestion()
+            document.querySelector(".answer-wrapper").innerHTML = 
+            ``
             displayQuestion()
+            document.querySelector(".answer-wrapper").innerHTML = 
+            ``
             displayQuestion() //failsafe incase update lag
           }
           else if (upclick == true && downclick == false) {
@@ -478,8 +510,14 @@ async function ratingButtons(questionList){
             newRating += parseInt(ratingUpdate)
             sendUpdate(questionId, answers, updatedViews, newRating)
             setCookie("voted"+questionId, "no", 365)
+            document.querySelector(".answer-wrapper").innerHTML = 
+            ``
             displayQuestion()
+            document.querySelector(".answer-wrapper").innerHTML = 
+            ``
             displayQuestion()
+            document.querySelector(".answer-wrapper").innerHTML = 
+            ``
             displayQuestion() //failsafe incase update lag
           }
         }
@@ -511,6 +549,26 @@ function getCookie(name) {
   }
   return null;
 }
+
+function initializeQuill(){
+  var toolbarOptions = [
+    ['bold', 'italic', 'underline', 'link', 'image'], // Customize the toolbar elements here
+    // Additional toolbar options...
+  ];
+
+  var quill = new Quill('#editor', {
+    placeholder: 'Type your answer here',
+    theme: 'snow',
+    modules: {
+      toolbar: toolbarOptions,
+      imageResize: {
+        modules: ['Resize']
+      },
+      imageDrop: true,
+    },
+  });
+  return quill
+}
 // Check if the event has already occurred for the current IP address
 const eventCookieName = 'eventOccurred';
 const expirationDays = 365;
@@ -522,7 +580,6 @@ if (!checkCookieExists(eventCookieName)) {
   setCookie(eventCookieName, 'true', expirationDays);
 }
 if (window.location.pathname.indexOf("/viewQuestion") !== -1) {
-  console.log("called")
   await displayQuestion()
 }
 else if (window.location.pathname === "/freetutors.github.io/createQuestion.html" || window.location.href ==="/createQuestion.html") {
