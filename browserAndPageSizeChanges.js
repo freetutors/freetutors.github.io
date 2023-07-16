@@ -21,6 +21,16 @@ function checkVSChrome() {
 
 }
 
+function checkVSBrave() {
+
+    if (window.innerWidth > document.body.clientWidth) {
+        askQuestionButton.style.transform = `translateX(-15px)`;
+    } else {
+        askQuestionButton.style.transform = `translateX(0px)`;
+    }
+
+}
+
 function checkVSSafari() {
 
     if ((window.innerWidth > document.body.clientWidth) && (window.innerWidth <= 740)) {
@@ -54,10 +64,17 @@ function checkVSFirefox() {
     }
 }
 
-if (browserName == "Chrome") {
+if (browserName == "Chrome"){
 
     window.addEventListener('load', checkVSChrome);
     window.addEventListener('resize', checkVSChrome);
+
+}
+
+if (browserName == "Brave"){
+
+    window.addEventListener('load', checkVSBrave);
+    window.addEventListener('resize', checkVSBrave);
 
 }
 
@@ -93,4 +110,5 @@ if (browserName == "Firefox") {
 
 }
 
-console.log(pageName);
+
+
