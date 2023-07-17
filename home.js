@@ -82,7 +82,6 @@ function getTimeDifference(timestamp) {
     }
     
 const subjects = [ //htmlSection
-    "Active Questions - Math",
     "Active Questions - Chemistry",
     "Active Questions - Biology",
     "Active Questions - Physics",
@@ -92,6 +91,7 @@ const subjects = [ //htmlSection
     "Active Questions - Foreign Language",
     "Active Questions - Computer Science",
     "Active Questions - Physical Education",
+    "Active Questions - Math",
   ];
 
   const questionHeader = document.querySelector('.question_header');
