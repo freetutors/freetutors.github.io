@@ -98,6 +98,7 @@ const subjects = [ //htmlSection
   var targetSubject = "math"
   showQuestionColumn(targetSubject)
   function moveRight() {
+    document.querySelector('.questions_list').innerHTML = ""
     questionHeader.innerHTML = subjects[(subjects.indexOf(questionHeader.innerHTML) + 1) % (subjects.length)]
     targetSubject = questionHeader.innerHTML.replace("Active Questions - ", "").toLowerCase()
     console.log(targetSubject)
@@ -105,6 +106,7 @@ const subjects = [ //htmlSection
 }
 
   function moveLeft() {
+    document.querySelector('.questions_list').innerHTML = ""
     questionHeader.innerHTML = subjects[((subjects.indexOf(questionHeader.innerHTML) - 1) % (subjects.length) + (subjects.length)) % (subjects.length)]
     targetSubject = questionHeader.innerHTML.replace("Active Questions - ", "").toLowerCase()
     console.log(targetSubject)

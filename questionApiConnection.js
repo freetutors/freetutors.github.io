@@ -43,6 +43,8 @@ async function submitQuestion() {
     const title = document.getElementById('title').value;
     const body = quill.root.innerHTML;
     const author = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser");  
+    const subject =  document.querySelector(".dropbtn").textContent.toLocaleLowerCase();
+    console.log(subject)
     const response = await fetch(apiUrlcreate, {
       mode: 'cors',
       method: "POST",
@@ -53,6 +55,7 @@ async function submitQuestion() {
         title:title,
         body: body,
         author: author,
+        subject: subject
       })
     });
     if (response.ok) {
