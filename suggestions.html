@@ -64,11 +64,14 @@
 </script>
 
 <script>
-  document.getElementById('back_button').addEventListener('click', function() {
+  document.querySelector('.back_button').addEventListener('click', function() {
+    console.log('hi');
     if (document.referrer.includes(window.location.hostname)) {
       window.history.back();
+      console.log("aaa");
     } else {
       alert("Sorry, the previous page is not within this website.");
+      console.log("bye");
     }
   });
 </script>
