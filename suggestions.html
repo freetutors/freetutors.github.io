@@ -19,7 +19,7 @@
   </div>
 </div>
 
-<div class="back_button">back</div>
+<div class="back_button" onclick="goBack()">back</div>
 
 <div class="dropdown">
   <button class="center dropbtn" onclick="document.querySelector('.dropbtn').classList.toggle('rotate-after');">Select
@@ -61,6 +61,19 @@
       });
     });
 
+</script>
+
+<script>
+  function goBack() {
+    console.log('hi');
+    if (document.referrer.includes(window.location.hostname)) {
+      window.history.back();
+      console.log("aaa");
+    } else {
+      alert("Sorry, the previous page is not within this website.");
+      console.log("bye");
+    }
+  }
 </script>
 
 <script type="module" src="questionApiConnection.js"></script>

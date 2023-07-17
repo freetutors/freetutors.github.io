@@ -19,7 +19,7 @@
 
 <img class="banner" src="haikei-gradient.png">
 
-<div class="back_button">back</div>
+<div class="back_button" onclick="goBack()">back</div>
 
 <div class="pfp_user">
   <div class="pfp_border">
@@ -92,6 +92,18 @@
 <div id="arrow-right"></div>
 <div id="arrow-left"></div>
 
+<script>
+  function goBack() {
+    console.log('hi');
+    if (document.referrer.includes(window.location.hostname)) {
+      window.history.back();
+      console.log("aaa");
+    } else {
+      alert("Sorry, the previous page is not within this website.");
+      console.log("bye");
+    }
+  }
+</script>
 
 <!-- Add rest of content here -->
 <script src="home.js"></script>
