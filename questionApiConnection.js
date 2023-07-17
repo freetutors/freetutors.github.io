@@ -6,6 +6,28 @@ const apiUrlupdate = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/bet
 const apiUrlanswer = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/createanswer";
 const apiUrlanswerUpdate = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/updateanswer";
 
+// Import the necessary AWS SDK components
+const cognito = new AWS.CognitoIdentityServiceProvider();
+
+// Function to check if the user's account is verified
+async function checkUserVerification(userId) {
+  try {
+    const params = {
+      UserPoolId: 'us-west-1_w3se6DxlL',
+      Username: userId
+    };
+
+    const user = await cognito.adminGetUser(params).promise();
+    const isVerified = user.UserStatus === 'CONFIRMED';
+
+    return isVerified;
+  } catch (error) {
+    console.error('Error checking user verification:', error);
+    return false;
+  }
+}
+
+
 var toolbarOptions = [
   ['bold', 'italic', 'underline', 'link', 'image'], // Customize the toolbar elements here
   // Additional toolbar options...
@@ -122,7 +144,6 @@ async function displayQuestion(){
     </div>
     `
     document.querySelector(".answer-wrapper").innerHTML = ""
-    console.log("answersadiofjasdf:", document.querySelector(".answer-wrapper").innerHTML)
     if (answerInfo != null){
 
       answerInfo.forEach(answer =>{
@@ -131,7 +152,6 @@ async function displayQuestion(){
         var answerId = answer.answerId
         var rating = answer.rating
         var time = formatDate(answer.timestamp)
-        console.log("test2:", document.querySelector(".answer-wrapper").innerHTML)
         document.querySelector(".answer-wrapper").insertAdjacentHTML(
           "beforeend",
           `
@@ -150,7 +170,6 @@ async function displayQuestion(){
         </div>
           `
         )
-        console.log("test3:", document.querySelector(".answer-wrapper").innerHTML)
         answerRating(answer, questionId)
       })
     }
@@ -207,7 +226,24 @@ async function answerArea(questionId, quill){
     document.querySelector(".answer-wrapper").innerHTML = 
     ``
     quill = ""
-    sendAnswer(questionId, body, author)
+    var userId = localStorage.getItem(`CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.${author}.idToken`)
+    if (userId !== null){
+      checkUserVerification(userId)
+      .then(isVerified => {
+        if (isVerified) {
+          console.log('User account is verified');
+          sendAnswer(questionId, body, author)
+        } else {
+          if(window.confirm("Please verify your account to answer a question"));{
+            window.location = "/verification.html"
+          }
+        }
+      });
+    }
+    else{
+      alert("Please signup with a verified account to answer question.")
+      displayQuestion()
+    }
   })
 }
 async function sendAnswer(questionId, body, author) {
@@ -275,77 +311,86 @@ async function answerRating(answer, questionId){
     }
   }
   return new Promise((resolve) => {
-    
     document.getElementById("upvote"+answerId).addEventListener("click", event => {
-      if (upclick == false && downclick == false) {
-        console.log("this")
-        document.getElementById("upvote"+answerId).style.borderBottom = '15px solid green'
-        upclick = true
-        ratingUpdate = 1
-        newRating += parseInt(ratingUpdate)
-        updateAnswer(questionId, answerId, newRating)
-        setCookie("voted"+answerId, "upvote", 365)
-      document.querySelector(".answer-wrapper").innerHTML = 
-      ``
-      displayQuestion()
-      document.querySelector(".answer-wrapper").innerHTML = 
-      ``
-      displayQuestion()
-      document.querySelector(".answer-wrapper").innerHTML = 
-      ``      
-      }
-        document.getElementById("upvote"+answerId).style.borderBottom = '15px solid white'
-        ratingUpdate -= 1
-        upclick = false
-        newRating += parseInt(ratingUpdate)
-        updateAnswer(questionId, answerId, newRating)
-        setCookie("voted"+answerId, "no", 365)
-        document.querySelector(".answer-wrapper").innerHTML = 
-        ``
-        displayQuestion()
-        document.querySelector(".answer-wrapper").innerHTML = 
-        ``
-        displayQuestion()
-        document.querySelector(".answer-wrapper").innerHTML =    
-        ``   
-    resolve(ratingUpdate)
-  })
-    document.getElementById("downvote"+answerId).addEventListener("click", function() {
-      if (upclick == false && downclick == false) {
-        document.getElementById("downvote"+answerId).style.borderTop = '15px solid red'
-        downclick = true
-        ratingUpdate = -1
-      newRating += parseInt(ratingUpdate)
-      updateAnswer(questionId, answerId, newRating)
-      setCookie("voted"+answerId, "downvote", 365)
-      document.querySelector(".answer-wrapper").innerHTML = 
-      ``
-      displayQuestion()
-      document.querySelector(".answer-wrapper").innerHTML = 
-      ``
-      displayQuestion()
-      document.querySelector(".answer-wrapper").innerHTML =
-      ``       
-    }
-      else if(downclick == true && upclick == false) {
-        document.getElementById("downvote"+answerId).style.borderTop = '15px solid white'
-        ratingUpdate += 1
-        downclick = false
-        newRating += parseInt(ratingUpdate)
-        updateAnswer(questionId, answerId, newRating)
-        setCookie("voted"+answerId, "no", 365)
-        document.querySelector(".answer-wrapper").innerHTML = 
-        ``
-        displayQuestion()
-        document.querySelector(".answer-wrapper").innerHTML = 
-        ``
-        displayQuestion()
-        document.querySelector(".answer-wrapper").innerHTML =  
-        ``     
-      }
-      resolve(ratingUpdate)
-    })
+      if (localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser") != null){
+          if (upclick == false && downclick == false) {
+            console.log("this")
+            document.getElementById("upvote"+answerId).style.borderBottom = '15px solid green'
+            upclick = true
+            ratingUpdate = 1
+            newRating += parseInt(ratingUpdate)
+            updateAnswer(questionId, answerId, newRating)
+            setCookie("voted"+answerId, "upvote", 365)
+          document.querySelector(".answer-wrapper").innerHTML = 
+          ``
+          displayQuestion()
+          document.querySelector(".answer-wrapper").innerHTML = 
+          ``
+          displayQuestion()
+          document.querySelector(".answer-wrapper").innerHTML = 
+          ``      
+          }
+            document.getElementById("upvote"+answerId).style.borderBottom = '15px solid white'
+            ratingUpdate -= 1
+            upclick = false
+            newRating += parseInt(ratingUpdate)
+            updateAnswer(questionId, answerId, newRating)
+            setCookie("voted"+answerId, "no", 365)
+            document.querySelector(".answer-wrapper").innerHTML = 
+            ``
+            displayQuestion()
+            document.querySelector(".answer-wrapper").innerHTML = 
+            ``
+            displayQuestion()
+            document.querySelector(".answer-wrapper").innerHTML =    
+            ``   
+        resolve(ratingUpdate)
+        }
+        else {
+          alert("Please log in to leave a rating.")
+        }
+     }) 
 
+     document.getElementById("downvote"+answerId).addEventListener("click", function() {
+      if (localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser") != null){
+        if (upclick == false && downclick == false) {
+          document.getElementById("downvote"+answerId).style.borderTop = '15px solid red'
+          downclick = true
+          ratingUpdate = -1
+        newRating += parseInt(ratingUpdate)
+        updateAnswer(questionId, answerId, newRating)
+        setCookie("voted"+answerId, "downvote", 365)
+        document.querySelector(".answer-wrapper").innerHTML = 
+        ``
+        displayQuestion()
+        document.querySelector(".answer-wrapper").innerHTML = 
+        ``
+        displayQuestion()
+        document.querySelector(".answer-wrapper").innerHTML =
+        ``       
+      }
+        else if(downclick == true && upclick == false) {
+          document.getElementById("downvote"+answerId).style.borderTop = '15px solid white'
+          ratingUpdate += 1
+          downclick = false
+          newRating += parseInt(ratingUpdate)
+          updateAnswer(questionId, answerId, newRating)
+          setCookie("voted"+answerId, "no", 365)
+          document.querySelector(".answer-wrapper").innerHTML = 
+          ``
+          displayQuestion()
+          document.querySelector(".answer-wrapper").innerHTML = 
+          ``
+          displayQuestion()
+          document.querySelector(".answer-wrapper").innerHTML =  
+          ``     
+        }
+        resolve(ratingUpdate)
+      }
+      else {
+        alert("Please log in to leave a rating.")
+      }
+    })
   })
 }
 async function ratingButtons(questionList){
@@ -377,44 +422,50 @@ async function ratingButtons(questionList){
   }
   return new Promise((resolve) => {
     document.querySelector(".downvote").addEventListener("click", function() {
-      if (upclick == false && downclick == false) {
-        document.querySelector(".downvote").style.borderTop = '15px solid red'
-        downclick = true
-        ratingUpdate = -1
-      newRating += parseInt(ratingUpdate)
-      sendUpdate(questionId, answers, updatedViews, newRating)
-      setCookie("voted"+questionId, "downvote", 365)
-      document.querySelector(".answer-wrapper").innerHTML = 
-      ``
-      displayQuestion()
-      document.querySelector(".answer-wrapper").innerHTML = 
-      ``
-      displayQuestion()
-      document.querySelector(".answer-wrapper").innerHTML = 
-      ``
-      displayQuestion() //failsafe incase update lag
-      }
-      else if(downclick == true && upclick == false) {
-        document.querySelector(".downvote").style.borderTop = '15px solid white'
-        ratingUpdate += 1
-        downclick = false
+      if (localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser") != null){
+        if (upclick == false && downclick == false) {
+          document.querySelector(".downvote").style.borderTop = '15px solid red'
+          downclick = true
+          ratingUpdate = -1
         newRating += parseInt(ratingUpdate)
         sendUpdate(questionId, answers, updatedViews, newRating)
-        setCookie("voted"+questionId, "no", 365)
+        setCookie("voted"+questionId, "downvote", 365)
         document.querySelector(".answer-wrapper").innerHTML = 
         ``
         displayQuestion()
         document.querySelector(".answer-wrapper").innerHTML = 
-        ``  
+        ``
         displayQuestion()
         document.querySelector(".answer-wrapper").innerHTML = 
         ``
         displayQuestion() //failsafe incase update lag
+        }
+        else if(downclick == true && upclick == false) {
+          document.querySelector(".downvote").style.borderTop = '15px solid white'
+          ratingUpdate += 1
+          downclick = false
+          newRating += parseInt(ratingUpdate)
+          sendUpdate(questionId, answers, updatedViews, newRating)
+          setCookie("voted"+questionId, "no", 365)
+          document.querySelector(".answer-wrapper").innerHTML = 
+          ``
+          displayQuestion()
+          document.querySelector(".answer-wrapper").innerHTML = 
+          ``  
+          displayQuestion()
+          document.querySelector(".answer-wrapper").innerHTML = 
+          ``
+          displayQuestion() //failsafe incase update lag
+        }
+        resolve(ratingUpdate)
       }
-      resolve(ratingUpdate)
-    })
+      else {
+        alert("Please log in to leave a rating.")
+      }
 
-      document.querySelector(".vote").addEventListener("click", event => {
+    })
+    document.querySelector(".vote").addEventListener("click", event => {
+      if (localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser") != null){
         if (event.target == document.querySelector(".upvote")){
           if (upclick == false && downclick == false) {
             document.querySelector(".upvote").style.borderBottom = '15px solid green'
@@ -452,6 +503,10 @@ async function ratingButtons(questionList){
           }
         }
         resolve(ratingUpdate)
+    }
+    else {
+      alert("Please log in to leave a rating.")
+    }
     })
   })
 

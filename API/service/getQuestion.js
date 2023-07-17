@@ -33,7 +33,6 @@ async function getQuestionList(event) {
       }    
       return util.buildResponse(200, response);
     }
-    console.log("called")
     // const result = getQuestionBySubject(subject)
 
   

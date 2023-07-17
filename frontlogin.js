@@ -53,6 +53,11 @@ function loginUser(username, password) { //user auth data
             if (err.code === 'UserNotFoundException') {
                 alert('User not found. Check if your username is typed correctly!')
             }
+            if (err.code ==="UserNotConfirmedException") {
+              if(window.confirm("Please verify your account.")){
+                window.location = "/verification.html"
+              }
+            }
           // User authentication failed
           console.error(err);
         }

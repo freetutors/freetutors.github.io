@@ -101,7 +101,6 @@ const subjects = [ //htmlSection
     document.querySelector('.questions_list').innerHTML = ""
     questionHeader.innerHTML = subjects[(subjects.indexOf(questionHeader.innerHTML) + 1) % (subjects.length)]
     targetSubject = questionHeader.innerHTML.replace("Active Questions - ", "").toLowerCase()
-    console.log(targetSubject)
     showQuestionColumn(targetSubject)
 }
 
@@ -109,7 +108,6 @@ const subjects = [ //htmlSection
     document.querySelector('.questions_list').innerHTML = ""
     questionHeader.innerHTML = subjects[((subjects.indexOf(questionHeader.innerHTML) - 1) % (subjects.length) + (subjects.length)) % (subjects.length)]
     targetSubject = questionHeader.innerHTML.replace("Active Questions - ", "").toLowerCase()
-    console.log(targetSubject)
     showQuestionColumn(targetSubject)
 
 }
