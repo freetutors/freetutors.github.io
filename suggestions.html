@@ -63,6 +63,16 @@
 
 </script>
 
+<script>
+  document.getElementById('back_button').addEventListener('click', function() {
+    if (document.referrer.includes(window.location.hostname)) {
+      window.history.back();
+    } else {
+      alert("Sorry, the previous page is not within this website.");
+    }
+  });
+</script>
+
 <script type="module" src="questionApiConnection.js"></script>
 <script src="home.js"></script>
 <script src="loginsignupbuttons.js"></script>

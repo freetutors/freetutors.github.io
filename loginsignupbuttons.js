@@ -4,8 +4,9 @@ const username = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge
 function inboxDisplay() {
 
   const inbox = document.querySelector('.inbox');
+  console.log(inbox.style.display);
 
-  if (inbox.style.display === "none") {
+  if ((inbox.style.display === "none") || (inbox.style.display === "")) {
     inbox.style.display = "block";
   } else {
     inbox.style.display = "none";
@@ -32,6 +33,51 @@ if (username != null) {
     <hr class="inboxLine">
     <div class="inboxLetters">aaa</div>
     <div class="inboxTime">December 22</div>
+    <hr class="inboxLine">
+    <div class="inboxLetters">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
+    <div class="inboxTime">Today</div>
+    <hr class="inboxLine">
+    <div class="inboxLetters">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
+    <div class="inboxTime">Today</div>
+    <hr class="inboxLine">
+    <div class="inboxLetters">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
+    <div class="inboxTime">Today</div>
+    <hr class="inboxLine">
+    <div class="inboxLetters">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
+    <div class="inboxTime">Today</div>
+    <hr class="inboxLine">
+    <div class="inboxLetters">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
+    <div class="inboxTime">Today</div>
+    <hr class="inboxLine">
+    <div class="inboxLetters">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
+    <div class="inboxTime">Today</div>
+    <hr class="inboxLine">
+    <div class="inboxLetters">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
+    <div class="inboxTime">Today</div>
+    <hr class="inboxLine"><div class="inboxLetters">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
+    <div class="inboxTime">Today</div>
+    <hr class="inboxLine"><div class="inboxLetters">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
+    <div class="inboxTime">Today</div>
+    <hr class="inboxLine">
+    <div class="inboxLetters">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
+    <div class="inboxTime">Today</div>
+    <hr class="inboxLine">
+    <div class="inboxLetters">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
+    <div class="inboxTime">Today</div>
+    <hr class="inboxLine">
+    <div class="inboxLetters">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
+    <div class="inboxTime">Today</div>
+    <hr class="inboxLine">
+    <div class="inboxLetters">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
+    <div class="inboxTime">Today</div>
+    <hr class="inboxLine">
+    <div class="inboxLetters">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
+    <div class="inboxTime">Today</div>
+    <hr class="inboxLine"><div class="inboxLetters">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
+    <div class="inboxTime">Today</div>
+    <hr class="inboxLine">
+    <div class="inboxLetters">aaa</div>
+    <div class="inboxTime">December 22</div>
   `;
 
   profileButton.appendChild(inbox);
@@ -52,3 +98,4 @@ if (username != null) {
     window.location.href = 'https://freetutors.github.io/signup';
   });
 }
+
