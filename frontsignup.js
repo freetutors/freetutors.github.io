@@ -6,6 +6,7 @@ const clientId ='lact4vt8ge7lfjvjetu1d3sl7'
 const region = 'us-west-1'
 const accessKey = "AKIAS6EY4GUSOJWYQPUN"
 const secretKey = "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"
+const createUrl = "https://d487bezzog.execute-api.us-west-1.amazonaws.com/beta/create"
 localStorage.clear();
 AWS.config.region = region; //telling what region to search
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({ //COnnecting to pool
