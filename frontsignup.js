@@ -6,6 +6,7 @@ const clientId ='lact4vt8ge7lfjvjetu1d3sl7'
 const region = 'us-west-1'
 const accessKey = "AKIAS6EY4GUSOJWYQPUN"
 const secretKey = "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"
+const createUrl = "https://d487bezzog.execute-api.us-west-1.amazonaws.com/beta/create"
 localStorage.clear();
 AWS.config.region = region; //telling what region to search
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({ //COnnecting to pool
@@ -33,6 +34,9 @@ function signUpUser(params) { //function for signing up, this is already defined
       }
       else if(err.code === 'InvalidPasswordException') {
         alert("Password mut be at least 8 characters with at least one capital letter, one lowercase letter, and one special character")
+      }
+      else if(err.code === 'InvalidParameterException'){
+        alert("At least one parameter is invalid.")
       }
     } else {
       console.log(data);
@@ -95,10 +99,27 @@ const username = document.getElementById("username").value; //getting values
         localStorage.setItem("signupEmail", email);
         localStorage.setItem("signupUsername", username);
 
-        window.location='https://freetutors.github.io/verification'
       }
     } catch (error) {
       console.log('Error:', error); //giving us error details if something happens
     }
+      const response = await fetch(createUrl, {
+        mode: 'cors',
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: username.trim().toLowerCase()
+        })
+      });
+      if (response.ok) {
+        const data = await response.json();
+      } else {
+        alert("Error adding question, try again later")
+        console.log("Error calling API");
+      }
+      window.location='/verification'
+
 });
 
