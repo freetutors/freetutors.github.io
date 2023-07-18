@@ -18,7 +18,7 @@ AWS.config.update({ //updating info
 var cognito = new AWS.CognitoIdentityServiceProvider(); //connection to cognito identiy
 AWS_SDK_LOAD_CONFIG=1
 
-if (localStorage.length === 0){
+if (localStorage.getItem("signupUsername") === null){
     usingUsernameInput = true;
     document.getElementById("input-group-new").innerHTML =
     `

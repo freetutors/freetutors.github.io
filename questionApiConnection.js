@@ -55,8 +55,21 @@ if (window.location.pathname.indexOf("createQuestion") !== -1) {
   });
   document.querySelector(".question-send").addEventListener("click", () => {
     console.log("clickede")
-    submitQuestion()
-    window.location = "/"
+    var userId = localStorage.getItem(`CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.${author}.idToken`)
+    if (userId !== null){
+      checkUserVerification(userId)
+      .then(isVerified => {
+        if (isVerified) {
+          console.log('User account is verified');
+          submitQuestion()
+          window.location = '/'
+        } else {
+          if(window.confirm("Please verify your account to answer a question"));{
+            window.location = "/verification.html"
+          }
+        }
+      });
+  }
   })
 }
 
