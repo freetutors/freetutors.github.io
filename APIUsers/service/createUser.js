@@ -12,7 +12,11 @@ const util = require('../utils/util'); // every period shows how much higher you
 async function createUser(userdata) {
     const username = userdata.username //body with formatting
     const timestamp = new Date().toISOString();
-    const defaultPic = ".../placeholder_pfp.png"
+    const defaultPic = "/placeholder_pfp.png"
+
+    const imageBuffer = fs.readFileSync(defaultPic.path)
+    let profilePictureBase64 = imageBuffer.toString("base64")
+    
     const user = { //question details
         username: username, //so we can pull it later
         questions: 0,
