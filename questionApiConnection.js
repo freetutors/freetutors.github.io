@@ -5,10 +5,37 @@ const health = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/heal
 const apiUrlupdate = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/updatequestion";
 const apiUrlanswer = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/createanswer";
 const apiUrlanswerUpdate = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/updateanswer";
-
+const apiUrlgetUser = "https://d487bezzog.execute-api.us-west-1.amazonaws.com/beta/get"
 // Import the necessary AWS SDK components
-const cognito = new AWS.CognitoIdentityServiceProvider();
+const poolId ='us-west-1_w3se6DxlL' //getting info from cognito
+const clientId ='lact4vt8ge7lfjvjetu1d3sl7'
+const region = 'us-west-1'
+const accessKey = "AKIAS6EY4GUSOJWYQPUN"
+const secretKey = "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"
 
+AWS.config.region = region; //telling what region to search
+AWS.config.credentials = new AWS.CognitoIdentityCredentials({ //COnnecting to pool
+  IdentityPoolId: poolId 
+});
+
+AWS.config.update({ //getting conection to IAM user
+  region: region,
+  accessKeyId: accessKey,
+  secretAccessKey: secretKey
+});
+var cognito = new AWS.CognitoIdentityServiceProvider(); //connection to cognito identiy
+
+async function getUser(username){
+  const url = new URL(`${apiUrlgetUser}?username=${username}`);
+  const user = await fetch(url,  {
+      mode: "cors",
+      method: "GET",
+      headers: {
+      "Content-Type": "application/json",
+      },
+  }).then(response => response.json());
+  return user
+}
 // Function to check if the user's account is verified
 async function checkUserVerification(userId) {
   try {
@@ -18,11 +45,12 @@ async function checkUserVerification(userId) {
     };
 
     const user = await cognito.adminGetUser(params).promise();
+    console.log(user)
     const isVerified = user.UserStatus === 'CONFIRMED';
-
+    console.log(isVerified)
     return isVerified;
   } catch (error) {
-    console.error('Error checking user verification:', error);
+    console.error('Error checking user verification:', error.message, error.stack);
     return false;
   }
 }
@@ -55,7 +83,7 @@ if (window.location.pathname.indexOf("createQuestion") !== -1) {
   });
   document.querySelector(".question-send").addEventListener("click", () => {
     console.log("clickede")
-    var userId = localStorage.getItem(`CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.${author}.idToken`)
+    var userId = localStorage.getItem(`CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser`)
     if (userId !== null){
       checkUserVerification(userId)
       .then(isVerified => {
@@ -129,7 +157,7 @@ async function displayQuestion(){
   const questionId = urlParams.get('questionId');
   const questionList = await getQuestionListId(questionId)
   const questionArray = questionList
-  questionArray.forEach(question => {
+  for(const question of questionArray) {
     var title = question.title
     let body = question.body.replace(/<p>/g, "").replace(/<\/p>/g, " ")
     var author = question.author
@@ -138,12 +166,21 @@ async function displayQuestion(){
     var rating = question.rating
     var date = formatDate(question.timestamp)
     var views = question.views
+    const user = await getUser(author)
+    const pfp = user.user[0].pfp
+    var displayedImage = ""
+    if (pfp == null){
+      displayedImage = "placeholder_pfp.png"
+    }
+    else{
+      displayedImage = `data:image/png;base64,${pfp}`
+    }
     document.getElementById("question-wrapper").innerHTML =
     `
     <div class="title">${title}</div>
     <hr class="titleSep">
     <div class="question">
-      <img src="placeholder_pfp.png" class="user_pfp">
+      <img src=${displayedImage} class="user_pfp">
       <div class="contributorStats">
         <p class="username">${author}</p>
         <p class="time">${date}</p>
@@ -159,22 +196,33 @@ async function displayQuestion(){
     document.querySelector(".answer-wrapper").innerHTML = ""
     if (answerInfo != null){
 
-      answerInfo.forEach(answer =>{
-        var body = answer.body.replace(/<p>/g, "").replace(/<\/p>/g, " ")
+      for(const answer of answerInfo) {
+        var abody = answer.body.replace(/<p>/g, "").replace(/<\/p>/g, " ")
         var author = answer.author
         var answerId = answer.answerId
         var rating = answer.rating
+        console.log(author)
         var time = formatDate(answer.timestamp)
+        const user = await getUser(author)
+        console.log(user)
+        const pfp = user.user[0].pfp
+        var displayedImage = ""
+        if (pfp == null){
+          displayedImage = "placeholder_pfp.png"
+        }
+        else{
+          displayedImage = `data:image/png;base64,${pfp}`
+        }
         document.querySelector(".answer-wrapper").insertAdjacentHTML(
           "beforeend",
           `
           <div class="answer">
-          <img src="placeholder_pfp.png" class="user_pfp">
+          <img src=${displayedImage} class="user_pfp">
           <div class="contributorStats">
             <p class="username">${author}</p>
             <p class="time">${time}</p>
           </div>
-          <p class="answerBody">${body}</p>
+          <p class="answerBody">${abody}</p>
           <div class="rating-container">
             <div class="upvote" id="upvote${answerId}"></div>
             <div class="rating-value" id = "rating-value${answerId}">${rating}</div>
@@ -184,9 +232,9 @@ async function displayQuestion(){
           `
         )
         answerRating(answer, questionId)
-      })
+      }
     }
-  })
+  }
   MathJax.Hub.Queue(['Typeset', MathJax.Hub, 'question-wrapper']);
   MathJax.Hub.Queue(['Typeset', MathJax.Hub, 'answer-wrapper']);
 
@@ -214,12 +262,12 @@ async function displayQuestion(){
     var quill = initializeQuill();
     isQuillInitialized = true;
   }
-  answerArea(questionId, quill)
+  answerArea(questionList, quill)
 
   await ratingButtons(questionList)
 
 }
-async function answerArea(questionId, quill){
+async function answerArea(questionList, quill){
 
   var previewContainer = document.getElementById('preview-container');
 
@@ -234,18 +282,24 @@ async function answerArea(questionId, quill){
   });
   document.getElementById("answer-send").addEventListener("click", function() {
     console.log("clicked")
+    const questionId = questionList[0].questionId
+    const answers = parseInt(questionList[0].answers) +1
+    const views = questionList[0].views
+    const rating = questionList[0].rating
     const body = quill.root.innerHTML
     const author = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser")
     document.querySelector(".answer-wrapper").innerHTML = 
     ``
     quill = ""
-    var userId = localStorage.getItem(`CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.${author}.idToken`)
-    if (userId !== null){
-      checkUserVerification(userId)
+    var username = localStorage.getItem(`CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser`)
+    console.log(username)
+    if (username !== null){
+      checkUserVerification(username)
       .then(isVerified => {
         if (isVerified) {
           console.log('User account is verified');
           sendAnswer(questionId, body, author)
+          sendUpdate(questionId, answers, views, rating)
         } else {
           if(window.confirm("Please verify your account to answer a question"));{
             window.location = "/verification.html"

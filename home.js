@@ -1,21 +1,31 @@
 const apiUrlget = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/getquestion";
-
+const apiUrlgetUser = "https://d487bezzog.execute-api.us-west-1.amazonaws.com/beta/get"
 
 async function showQuestionColumn(subject){
     const questionList = await getQuestionListSubject(subject)
     const questionArray = questionList
-    questionArray.forEach(question => {
+    console.log(questionArray.length)
+    for (const question of questionArray) {
       var title = question.title
       var author = question.author
       var answers = question.answers
       var rating = question.rating
       var timeAgo = getTimeDifference(question.timestamp)
       var views = question.views
-  
+      const user = await getUser(author)
+      console.log(user)
+      const pfp = user.user[0].pfp
+      var displayedImage = ""
+      if (pfp == null){
+        displayedImage = "placeholder_pfp.png"
+      }
+      else{
+        displayedImage = `data:image/png;base64,${pfp}`
+      }
       document.querySelector(".questions_list").innerHTML +=
         `<div class="box text_box">
         <!-- pfp -->
-        <img id="text_box_pfp" src="placeholder_pfp.png">
+        <img id="text_box_pfp" src="${displayedImage}">
         <div id="text_box_question_content">${title}</div>
         <div id="asked_by_line">asked by ${author}, ${timeAgo}</div>
         <div id="answered_by_line">Be the first to answer!</div>
@@ -24,7 +34,7 @@ async function showQuestionColumn(subject){
           <div id="question_stats_items">${views} views</div>
           <div id="question_stats_items">${rating} rating</div>
         </div>`
-      })
+      }
       const questionBoxes = document.querySelectorAll(".box.text_box");
       questionBoxes.forEach((box, index) => {
         box.addEventListener("click", function () {
@@ -34,6 +44,17 @@ async function showQuestionColumn(subject){
         });
       });
     };
+async function getUser(username){
+  const url = new URL(`${apiUrlgetUser}?username=${username}`);
+  const user = await fetch(url,  {
+      mode: "cors",
+      method: "GET",
+      headers: {
+      "Content-Type": "application/json",
+      },
+  }).then(response => response.json());
+  return user
+}
 async function getQuestionListSubject(subject) {
     const url = new URL(`${apiUrlget}?subject=${subject}`);
     const questionList = await fetch(url,  {

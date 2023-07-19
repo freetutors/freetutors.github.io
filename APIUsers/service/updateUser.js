@@ -3,26 +3,25 @@ AWS.config.update({
     region: 'us-west-1'
 })
 const dynamodb = new AWS.DynamoDB.DocumentClient();
-const tableName = 'Freetutor-Question' // connection to database and user table
+const tableName = 'Freetutor-Users' // connection to database and user table
 
 const util = require('../utils/util'); // every period shows how much higher you have to go on file levels. this has to periods because u have to go outside of the folder, one means that is in the same folder
 
 async function updateQuestion(event) {
-    const questionId = event.queryStringParameters.questionId
-    const answers = event.queryStringParameters.answers
-    const views = parseInt(event.queryStringParameters.views) //body with formatting
-    const rating = event.queryStringParameters.rating
-
-    const question = { //question details
-        questionId: questionId, //so we can pull it later
-        views: views,
-        rating: rating,
+    const pfp = event.queryStringParameters.questionId
+    const about = event.queryStringParameters.answers
+    const questions = parseInt(event.queryStringParameters.views) //body with formatting
+    const answers = event.queryStringParameters.rating
+    const user = { //question details
+        pfp: pfp, //so we can pull it later
+        questions: questions,
+        about: about,
         answers: answers,
     }
-    await saveUpdates(question)
+    await saveUpdates(user)
     const response = {
-        question: question,
-        questionId: questionId
+        user: user,
+        pfp: pfp
     }
     return util.buildResponse(200, response);
 }

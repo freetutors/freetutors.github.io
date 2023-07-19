@@ -1,5 +1,6 @@
-const AWS = require('aws-sdk');
+const AWS = require('aws-sdk'); // dasf
 const fs = require('fs')
+const path = require('path')
 AWS.config.update({
     region: 'us-west-1'
 })
@@ -11,17 +12,18 @@ const util = require('../utils/util'); // every period shows how much higher you
 async function createUser(userdata) {
     const username = userdata.username //body with formatting
     const timestamp = new Date().toISOString();
-    const defaultPic = "/placeholder_pfp.png"
-
-    const imageBuffer = fs.readFileSync(defaultPic.path)
+    const defaultPic = path.join(__dirname, "placeholder_pfp.png")
+    const about = ""
+    const imageBuffer = fs.readFileSync(defaultPic)
     let profilePictureBase64 = imageBuffer.toString("base64")
     
     const user = { //question details
         username: username, //so we can pull it later
         questions: 0,
         answers: 0,
-        pfp: defaultPic.toString("base64"),
+        pfp: profilePictureBase64,
         timestamp: timestamp,
+        about: about
     }
     await saveQuestion(user)
     const response = {

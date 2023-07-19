@@ -9,18 +9,12 @@ const userTable = 'Freetutor-Users' // connection to database and user table
 //creating function to verify if the user is logged in correctly
 async function getUser(event) {
   const username = event.queryStringParameters.username;
-  
-  const target = event.queryStringParameters.target
-  if (target === "pfp") {
     const result = await findUser(username)
     const response = {
-      questionList: result,
+      user: result,
     }    
     return util.buildResponse(200, response);
-  }
     // const result = getQuestionBySubject(subject)
-
-  
 }
 
 async function findUser(username) { //getting user info to check if the user has already logged in 
