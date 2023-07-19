@@ -6,7 +6,6 @@ AWS.config.update({
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 const tableName = 'Freetutor-Users' // connection to database and user table
 
-const fs = require('fs')
 const util = require('../utils/util'); // every period shows how much higher you have to go on file levels. this has to periods because u have to go outside of the folder, one means that is in the same folder
 
 async function createUser(userdata) {
