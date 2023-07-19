@@ -1,23 +1,43 @@
-const tableName = 'Freetutor-Question';
-const region = 'us-west-1';
-const accessKeyId = 'AKIAS6EY4GUSIUNVYNFB';
-const secretAccessKey = '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';
+//Creating question to database. Waiting on how yash inputs values
+const apiUrlcreate = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/create";
+const apiUrlget = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/getquestion";
+const health = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/health";
+const apiUrlupdate = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/updatequestion";
+const apiUrlanswer = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/createanswer";
+const apiUrlanswerUpdate = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/updateanswer";
+const apiUrlgetUser = "https://d487bezzog.execute-api.us-west-1.amazonaws.com/beta/get"
+// Import the necessary AWS SDK components
+const poolId ='us-west-1_w3se6DxlL' //getting info from cognito
+const clientId ='lact4vt8ge7lfjvjetu1d3sl7'
+const region = 'us-west-1'
+const accessKey = "AKIAS6EY4GUSOJWYQPUN"
+const secretKey = "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"
 
-const endpoint = `https://dynamodb.${region}.amazonaws.com/${tableName}/scan`;
+async function getQuestionListId(questionId) {
+  const url = new URL(`${apiUrlget}?questionId=${questionId}`);
+  console.log(url);
+  const questionList = await fetch(url,  {
+    mode: "cors",
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then(response => response.json());
+  return questionList.questionList
+}
 
-const request = new Request(endpoint, {
-  method: 'GET',
-  headers: new Headers({
-    'Content-Type': 'application/json',
-    'x-amz-date': new Date().toISOString()
-  })
-});
+async function displayQuestion(){
+  console.log("hi");
+  const urlParams = new URLSearchParams(window.location.search);
+  const questionId = urlParams.get('questionId');
+  const questionList = await getQuestionListId(questionId);
+  const questionArray = questionList;
+  console.log(questionArray)
+  for(const question of questionArray) {
+    var title = question.title;
+    console.log(title);
+    console.log("hi");
+  }
+}
 
-fetch(request)
-  .then(response => response.json())
-  .then(data => {
-    console.log('Retrieved items:', data);
-  })
-  .catch(error => {
-    console.error('Error retrieving items:', error);
-  });
+displayQuestion();
