@@ -9,7 +9,7 @@ const questionTable = 'Freetutor-Question' // connection to database and user ta
 //creating function to verify if the user is logged in correctly
 async function getQuestionList(event) {
   const views = event.queryStringParameters.views;
-  
+  const username = event.queryStringParameters.username
   const subject = event.queryStringParameters.subject
     const questionId = event.queryStringParameters.questionId
     if (views != null) {
@@ -32,6 +32,13 @@ async function getQuestionList(event) {
         questionList: result,
       }    
       return util.buildResponse(200, response);
+    }
+    else if(username != null){
+      const result = await getQuestionByUser(username)
+      const response = {
+        questionList: result
+      }
+      return util.buildResponse(200,response);
     }
     // const result = getQuestionBySubject(subject)
 
@@ -87,6 +94,25 @@ async function getQuestionById(questionId) {
     },
     ExpressionAttributeValues: {
       ":questionId": questionId
+    },
+    Limit: 10
+  };
+
+    // Query DynamoDB for the questions.
+    const result = await dynamodb.query(params).promise();
+// Return the questions.
+    return result.Items;
+}
+async function getQuestionByUser(author) {
+  const params = {
+    TableName: questionTable,
+    IndexName: "authorIndex",
+    KeyConditionExpression: "#a = :author",
+    ExpressionAttributeNames: {
+      "#a": "author"
+    },
+    ExpressionAttributeValues: {
+      ":author": author
     },
     Limit: 10
   };

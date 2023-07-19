@@ -4,7 +4,7 @@ const apiUrlgetUser = "https://d487bezzog.execute-api.us-west-1.amazonaws.com/be
 async function showQuestionColumn(subject){
     const questionList = await getQuestionListSubject(subject)
     const questionArray = questionList
-    console.log(questionArray.length)
+    console.log(questionArray)
     for (const question of questionArray) {
       var title = question.title
       var author = question.author
