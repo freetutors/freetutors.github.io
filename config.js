@@ -1,25 +1,28 @@
-import { API, Amplify } from './node_modules/aws-amplify';
+const environmentName = 'staging';
+const appId = 'dzouxhnq74cxx';
 
-const environmentName = 'staging'; // Replace this with your desired environment name
-const appId = 'dzouxhnq74cxx'; // Replace this with your Amplify App ID
-const envDetails = await Amplify.API.getEnvDetails(environmentName, appId);
-const secretValue = envDetails[0].envVars['apiUrlCreate'];
-console.log(secretValue)
+// AWS.config.update({
+//     region: 'us-west-1', // Replace 'YOUR_AWS_REGION' with the appropriate AWS region, e.g., 'us-east-1'
+//   });
+// Create an instance of the AWS Systems Manager service
+const ssm = new AWS.SSM();
 
-var config = {
-    apiUrlcreate: window._env_.apiUrlcreate,
-    apiUrlget: window._env_.apiUrlget,
-    health: window._env_.health,
-    apiUrlupdate: window._env_.apiUrlupdate,
-    apiUrlanswer: window._env_.apiUrlanswer,
-    apiUrlanswerUpdate: window._env_.apiUrlanswerUpdate,
-    apiUrlgetUser: window._env_.apiUrlgetUser,
-    poolId: window._env_.poolId,
-    clientId: window._env_.clientId,
-    region: window._env_.region,
-    accessKey: window._env_.accessKey,
-    secretKey: window._env_.secretKey,
-    apiUrlCreateUser: window._env_.apiUrlCreateUser,
-}
-console.log(config)
-export default config;
+// Construct the parameter name to fetch the secret
+const paramName = `/a/amplify/${appId}/${environmentName}/apiUrlCreate`;
+
+// Set up parameters for the GetParameter request
+const params = {
+  Name: paramName,
+  WithDecryption: true, // If the secret is encrypted, set this to true
+};
+
+// Fetch the secret value from AWS Systems Manager Parameter Store
+ssm.getParameter(params, function(err, data) {
+  if (err) {
+    console.error('Error fetching secret:', err);
+  } else {
+    const secretValue = data.Parameter.Value;
+    console.log('Secret Value:', secretValue);
+    // You can use the secretValue variable in your frontend code as needed
+  }
+});
