@@ -17,8 +17,8 @@ var config = {
     // secretKey  : "7XfcugIq2qiZRmj71GZpLBQQp4+PJd+/4uj/jVju",
     
     // apiUrlCreateUser: "https://d487bezzog.execute-api.us-west-1.amazonaws.com/beta/create"
-    apiUrlcreate: amplifyConfig.apiUrlcreate,
-    apiUrlget: amplifyConfig.apiUrlget,
+    apiUrlcreate: window._env_.apiUrlcreate,
+    apiUrlget: window._env_.apiUrlget,
     health: amplifyConfig.health,
     apiUrlupdate: amplifyConfig.apiUrlupdate,
     apiUrlanswer: amplifyConfig.apiUrlanswer,
