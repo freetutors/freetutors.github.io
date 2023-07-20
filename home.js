@@ -1,5 +1,5 @@
 
-import config from './config.js'
+// import config from './config.js'
 
 const apiUrlget = process.env.apiUrlget;
 const apiUrlgetUser = process.env.apiUrlgetUser;
