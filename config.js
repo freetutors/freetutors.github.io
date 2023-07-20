@@ -16,5 +16,5 @@ var config = {
     secretKey: window._env_.secretKey,
     apiUrlCreateUser: window._env_.apiUrlCreateUser,
 }
-
+console.log(config)
 export default config;
