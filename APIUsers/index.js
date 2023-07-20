@@ -31,7 +31,7 @@ exports.handler = async(event) => {
             break;  
         case event.httpMethod === 'POST' && event.path === updatePath:
             const updateBody = JSON.parse(event.body);
-            response = await updateService.updateQuestion(event); //register() defined in register.js all the other functions are done the same way in the service folder
+            response = await updateService.updateUser(updateBody); //register() defined in register.js all the other functions are done the same way in the service folder
             break;
         
         default:
