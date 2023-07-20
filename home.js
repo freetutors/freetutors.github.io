@@ -1,8 +1,8 @@
 
 // import config from './config.js'
 
-const apiUrlget = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/getquestion";
-const apiUrlgetUser = "https://d487bezzog.execute-api.us-west-1.amazonaws.com/beta/get";
+const apiUrlget =config.apiUrlget;
+const apiUrlgetUser = config.apiUrlgetUser;
 console.log(apiUrlget)
 async function showQuestionColumn(subject){
     const questionList = await getQuestionListSubject(subject)
