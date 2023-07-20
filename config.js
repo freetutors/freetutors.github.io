@@ -1,6 +1,11 @@
-console.log('adsdasf')
-import amplifyConfig from './aws-exports'
-console.log(amplifyConfig)
+import { API, Amplify } from './node_modules/aws-amplify';
+
+const environmentName = 'staging'; // Replace this with your desired environment name
+const appId = 'dzouxhnq74cxx'; // Replace this with your Amplify App ID
+const envDetails = await Amplify.API.getEnvDetails(environmentName, appId);
+const secretValue = envDetails[0].envVars['apiUrlCreate'];
+console.log(secretValue)
+
 var config = {
     apiUrlcreate: window._env_.apiUrlcreate,
     apiUrlget: window._env_.apiUrlget,
