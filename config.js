@@ -1,4 +1,4 @@
-// import amplifyConfig from './aws-exports'
+import amplifyConfig from './aws-exports'
 var config = {
     // apiUrlcreate : "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/create",
     // apiUrlget  : "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/getquestion",
@@ -30,4 +30,4 @@ var config = {
     apiUrlCreateUser: amplifyConfig.apiUrlCreateUser,
 }
 
-// export default config;
+export default config;
