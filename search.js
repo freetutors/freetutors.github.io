@@ -1,43 +1,45 @@
-//Creating question to database. Waiting on how yash inputs values
-//Creating question to database. Waiting on how yash inputs values
-const apiUrlcreate = config.apiUrlcreate
-const apiUrlget = config.apiUrlget;
-const health = config.health;
-const apiUrlupdate = config.apiUrlupdate;
-const apiUrlanswer = config.apiUrlanswer;
-const apiUrlanswerUpdate = config.apiUrlanswer;
-const apiUrlgetUser = config.apiUrlgetUser;
-// Import the necessary AWS SDK components
-const poolId =config.poolId //getting info from cognito
-const clientId = config.clientId
-const region = config.region
-const accessKey = config.accessKey
-const secretKey = config.secretKey
+apiUrlget  = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/getquestion"
 
-async function getQuestionListId(questionId) {
-  const url = new URL(`${apiUrlget}?questionId=${questionId}`);
-  console.log(url);
-  const questionList = await fetch(url,  {
-    mode: "cors",
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  }).then(response => response.json());
-  return questionList.questionList
-}
-
-async function displayQuestion(){
-  const urlParams = new URLSearchParams(window.location.search);
-  const questionId = urlParams.get('questionId');
-  const questionList = await getQuestionListId(questionId);
-  const questionArray = questionList;
-  console.log(questionArray)
-  for(const question of questionArray) {
-    var title = question.title;
-    console.log(title);
+async function getAllQuestions() {
+  allQuestionsList = [];
+  for (const subject of subjects) {
+    subjectQuestionList = await getQuestionListSubject(subject);
+    for (const question of subjectQuestionList) {
+      allQuestionsList.push(question.title)
+    }
   }
+  console.log(allQuestionsList)
 }
 
-displayQuestion();
+async function showQuestionColumn(subject){
+    const questionList = await getQuestionListSubject(subject)
+    console.log(questionList)
+}
 
+async function getQuestionListSubject(subject) {
+    const url = new URL(`${apiUrlget}?subject=${subject}`);
+    const questionList = await fetch(url,  {
+        mode: "cors",
+        method: "GET",
+        headers: {
+        "Content-Type": "application/json",
+        },
+    }).then(response => response.json());
+    return questionList.questionList
+}
+
+const subjects = [ //htmlSection
+    "chemistry",
+    "biology",
+    "physics",
+    "english",
+    "history",
+    "geography",
+    "foreign language",
+    "computer science",
+    "physical education",
+    "math",
+  ];
+
+showQuestionColumn("math")
+getAllQuestions()
