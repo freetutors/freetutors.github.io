@@ -1,6 +1,6 @@
-const apiUrlget = config.apiUrlgetConfig;
-const apiUrlgetUser = config.apiUrlgetUserConfig;
-
+// const apiUrlget = config.apiUrlgetConfig;
+// const apiUrlgetUser = config.apiUrlgetUserConfig;
+console.log(apiUrlget)
 async function showQuestionColumn(subject){
     const questionList = await getQuestionListSubject(subject)
     const questionArray = questionList
@@ -36,6 +36,7 @@ async function showQuestionColumn(subject){
         </div>`
       }
       const questionBoxes = document.querySelectorAll(".box.text_box");
+      console.log("called")
       questionBoxes.forEach((box, index) => {
         box.addEventListener("click", function () {
           const questionId = questionList[index].questionId; // Retrieve the questionId

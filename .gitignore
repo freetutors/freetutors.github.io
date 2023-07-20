@@ -18,8 +18,9 @@ amplifyconfiguration.dart
 amplify-build-config.json
 amplify-gradle-config.json
 amplifytools.xcconfig
-
+config.js
 .secret-*
 **.sample
 #amplify-do-not-edit-end
 APIUsers/node_modules/debug/Readme.md
+config.js
