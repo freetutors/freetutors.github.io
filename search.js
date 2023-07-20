@@ -27,7 +27,6 @@ async function getQuestionListId(questionId) {
 }
 
 async function displayQuestion(){
-  console.log("hi");
   const urlParams = new URLSearchParams(window.location.search);
   const questionId = urlParams.get('questionId');
   const questionList = await getQuestionListId(questionId);
@@ -36,8 +35,8 @@ async function displayQuestion(){
   for(const question of questionArray) {
     var title = question.title;
     console.log(title);
-    console.log("hi");
   }
 }
 
 displayQuestion();
+
