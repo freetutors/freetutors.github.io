@@ -1,3 +1,4 @@
+console.log('adsdasf')
 import amplifyConfig from './aws-exports'
 console.log(amplifyConfig)
 // const amplifyConfig = awsmobile.amplifyConfig
