@@ -1,7 +1,6 @@
+import config from './config.js'
 
-// import config from './config.js'
-
-const apiUrlget =config.apiUrlget;
+const apiUrlget = config.apiUrlget;
 const apiUrlgetUser = config.apiUrlgetUser;
 console.log(apiUrlget)
 async function showQuestionColumn(subject){
