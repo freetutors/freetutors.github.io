@@ -1,5 +1,5 @@
-const apiUrlget = config.apiUrlget;
-const apiUrlgetUser = config.apiUrlgetUser;
+const apiUrlget = config.apiUrlgetConfig;
+const apiUrlgetUser = config.apiUrlgetUserConfig;
 
 async function showQuestionColumn(subject){
     const questionList = await getQuestionListSubject(subject)
