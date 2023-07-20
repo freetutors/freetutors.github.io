@@ -1,17 +1,17 @@
 //Creating question to database. Waiting on how yash inputs values
-const apiUrlcreate = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/create";
-const apiUrlget = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/getquestion";
-const health = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/health";
-const apiUrlupdate = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/updatequestion";
-const apiUrlanswer = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/createanswer";
-const apiUrlanswerUpdate = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/updateanswer";
-const apiUrlgetUser = "https://d487bezzog.execute-api.us-west-1.amazonaws.com/beta/get"
+const apiUrlcreate = config.apiUrlcreate
+const apiUrlget = config.apiUrlget;
+const health = config.health;
+const apiUrlupdate = config.apiUrlupdate;
+const apiUrlanswer = config.apiUrlanswer;
+const apiUrlanswerUpdate = config.apiUrlanswer;
+const apiUrlgetUser = config.apiUrlgetUser;
 // Import the necessary AWS SDK components
-const poolId ='us-west-1_w3se6DxlL' //getting info from cognito
-const clientId ='lact4vt8ge7lfjvjetu1d3sl7'
-const region = 'us-west-1'
-const accessKey = "AKIAS6EY4GUSOJWYQPUN"
-const secretKey = "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"
+const poolId =config.poolId //getting info from cognito
+const clientId = config.clientId
+const region = config.region
+const accessKey = config.accessKey
+const secretKey = config.secretKey
 
 AWS.config.region = region; //telling what region to search
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({ //COnnecting to pool

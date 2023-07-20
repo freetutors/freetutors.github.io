@@ -1,5 +1,5 @@
-const apiUrlget = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/getquestion";
-const apiUrlgetUser = "https://d487bezzog.execute-api.us-west-1.amazonaws.com/beta/get"
+const apiUrlget = config.apiUrlget;
+const apiUrlgetUser = config.apiUrlgetUser;
 console.log('called')
 async function showQuestionColumn(user){
     const questionList = await getQuestionListUser(user)
@@ -55,28 +55,6 @@ async function getUser(username){
   }).then(response => response.json());
   return user
 }
-async function getQuestionListSubject(subject) {
-    const url = new URL(`${apiUrlget}?subject=${subject}`);
-    const questionList = await fetch(url,  {
-        mode: "cors",
-        method: "GET",
-        headers: {
-        "Content-Type": "application/json",
-        },
-    }).then(response => response.json());
-    return questionList.questionList
-    }
-async function getQuestionListViews(views) {
-    const url = new URL(`${apiUrlget}?views=${views}`);
-    const questionList = await fetch(url,  {
-        mode: "cors",
-        method: "GET",
-        headers: {
-        "Content-Type": "application/json",
-        },
-    }).then(response => response.json());
-    return questionList.questionList
-    }
 async function getQuestionListUser(user) {
     const url = new URL(`${apiUrlget}?username=${user}`);
     const questionList = await fetch(url,  {
