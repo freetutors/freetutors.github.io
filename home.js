@@ -1,5 +1,8 @@
-// const apiUrlget = config.apiUrlgetConfig;
-// const apiUrlgetUser = config.apiUrlgetUserConfig;
+
+import config from './config.js'
+
+const apiUrlget = config.apiUrlgetConfig;
+const apiUrlgetUser = config.apiUrlgetUserConfig;
 console.log(apiUrlget)
 async function showQuestionColumn(subject){
     const questionList = await getQuestionListSubject(subject)

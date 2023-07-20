@@ -29,3 +29,5 @@ var config = {
     secretKey: amplifyConfig.secretKey,
     apiUrlCreateUser: amplifyConfig.apiUrlCreateUser,
 }
+
+export default config;
