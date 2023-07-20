@@ -19,17 +19,17 @@ var config = {
     // apiUrlCreateUser: "https://d487bezzog.execute-api.us-west-1.amazonaws.com/beta/create"
     apiUrlcreate: window._env_.apiUrlcreate,
     apiUrlget: window._env_.apiUrlget,
-    health: amplifyConfig.health,
-    apiUrlupdate: amplifyConfig.apiUrlupdate,
-    apiUrlanswer: amplifyConfig.apiUrlanswer,
-    apiUrlanswerUpdate: amplifyConfig.apiUrlanswerUpdate,
-    apiUrlgetUser: amplifyConfig.apiUrlgetUser,
-    poolId: amplifyConfig.poolId,
-    clientId: amplifyConfig.clientId,
-    region: amplifyConfig.region,
-    accessKey: amplifyConfig.accessKey,
-    secretKey: amplifyConfig.secretKey,
-    apiUrlCreateUser: amplifyConfig.apiUrlCreateUser,
+    health: window._env_.health,
+    apiUrlupdate: window._env_.apiUrlupdate,
+    apiUrlanswer: window._env_.apiUrlanswer,
+    apiUrlanswerUpdate: window._env_.apiUrlanswerUpdate,
+    apiUrlgetUser: window._env_.apiUrlgetUser,
+    poolId: window._env_.poolId,
+    clientId: window._env_.clientId,
+    region: window._env_.region,
+    accessKey: window._env_.accessKey,
+    secretKey: window._env_.secretKey,
+    apiUrlCreateUser: window._env_.apiUrlCreateUser,
 }
 
 export default config;
