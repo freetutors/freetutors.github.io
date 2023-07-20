@@ -23,3 +23,4 @@ config.js
 **.sample
 #amplify-do-not-edit-end
 APIUsers/node_modules/debug/Readme.md
+config.js
