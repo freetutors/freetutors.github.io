@@ -8,12 +8,12 @@ async function getAllQuestions() {
       allQuestionsList.push(question.title)
     }
   }
-  console.log(allQuestionsList)
+
+  return allQuestionsList
 }
 
 async function showQuestionColumn(subject){
     const questionList = await getQuestionListSubject(subject)
-    console.log(questionList)
 }
 
 async function getQuestionListSubject(subject) {
@@ -41,5 +41,3 @@ const subjects = [ //htmlSection
     "math",
   ];
 
-showQuestionColumn("math")
-getAllQuestions()
