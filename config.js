@@ -1,6 +1,6 @@
-import awsmobile from './aws-exports'
-console.log(awsmobile)
-const amplifyConfig = awsmobile.amplifyConfig
+import amplifyConfig from './aws-exports'
+console.log(amplifyConfig)
+// const amplifyConfig = awsmobile.amplifyConfig
 var config = {
     // apiUrlcreate : "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/create",
     // apiUrlget  : "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/getquestion",
