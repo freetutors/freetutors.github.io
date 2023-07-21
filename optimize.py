@@ -1,4 +1,3 @@
-
 import json
 
 def get_keys(path):
@@ -6,6 +5,6 @@ def get_keys(path):
         return json.load(f)
     
 
-keys = get_keys("/.secret/optimize.json")
+keys = get_keys("./.secret/optimize.json")
 API_Key = keys['apiUrlCreate']
 print(API_Key)

@@ -1,11 +1,11 @@
 // Import the necessary AWS SDK components
-const poolId =config.poolIdConfig //getting info from cognito
-const clientId = config.clientIdConfig
-const region = config.regionConfig
-const accessKey = config.accessKeyConfig
-const secretKey = config.secretKeyConfig
+const poolId =config.poolId //getting info from cognito
+const clientId = config.clientId
+const region = config.region
+const accessKey = config.accessKey
+const secretKey = config.secretKey
 
-const createUrl = config.apiUrlCreateUserConfig
+const createUrl = config.apiUrlCreateUser
 localStorage.clear();
 AWS.config.region = region; //telling what region to search
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({ //COnnecting to pool
