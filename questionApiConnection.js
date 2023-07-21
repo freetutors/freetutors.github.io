@@ -12,7 +12,7 @@ const clientId = config.clientId
 const region = config.region
 const accessKey = config.accessKey
 const secretKey = config.secretKey
-
+import {Amplify, Auth} from "./node_modules/aws-amplify";
 AWS.config.region = region; //telling what region to search
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({ //COnnecting to pool
   IdentityPoolId: poolId 
@@ -319,6 +319,9 @@ async function sendAnswer(questionId, body, author) {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      "Authorization": `Bearer ${(await Auth.currentSession())
+        .getIdToken()
+        .getJwtToken()}`
     },
     body: JSON.stringify({
       questionId: questionId,
@@ -336,6 +339,7 @@ async function sendUpdate(questionId, answers, updatedViews, rating){
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+
     },
   }).then(response => response.json());
 };

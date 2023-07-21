@@ -1,5 +1,3 @@
-import config from './config.js'
-
 const apiUrlget = config.apiUrlget;
 const apiUrlgetUser = config.apiUrlgetUser;
 console.log(apiUrlget)
