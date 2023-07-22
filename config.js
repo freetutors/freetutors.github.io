@@ -3,8 +3,11 @@ let data
 async function getOptimizeConfig() {
     try {
         const response = await fetch('./.secret/optimize.json');
+        console.log(response)
         const json = await response.json();
+        console.log(json)
         data = processJSONData(json);
+        console.log(data)
 
     } catch (error) {
       console.log(error);
@@ -43,6 +46,8 @@ for (const i in range){
     old = await getOptimizeConfig()
 }
 var config = old
+console.log(old)
+console.log(config)
 export default config
 
     // var config = {
