@@ -27,6 +27,7 @@
       }
     ],
     "exclude": [
-      "config.js"
+      "config.js",
+      "home.js"
     ]
   }
