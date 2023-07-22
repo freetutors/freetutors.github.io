@@ -2,7 +2,9 @@
   "dependencies": {
     "amplify": "^0.0.11",
     "aws-amplify": "^5.3.4",
+    "aws-sdk": "^2.1420.0",
     "meilisearch": "^0.33.0",
+    "util": "^0.12.5",
     "python-shell": "^5.0.0",
     "rxjs": "^7.8.1"
   }

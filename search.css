@@ -1,0 +1,109 @@
+.questions_list {/*scroll area with questions. It is invisible*/
+       overflow-y: scroll;
+       overflow-x: hidden;
+       max-height: calc(100vh - 215px);
+       width: 1000px;
+       margin: auto;
+       margin-top: 15px;
+       transform: translateX(var(--translate_len));
+       scrollbar-color: var(--text-box-bar-color) var(--background-color);
+    }
+
+.questions_list::-webkit-scrollbar {/*custom scroll bar width*/
+   width: 13px; /* Adjust the width as needed */
+}
+
+.questions_list::-webkit-scrollbar-thumb {/*custom scroll bar thumb(the scrolling thing)*/
+   width: 12px; /* Set the width of the thumb to 12px */
+   min-width: 12px; /* Ensure the minimum width of the thumb */
+   background-color: var(--text-box-bar-color);
+   border-radius: 2px;
+}
+
+ .box {
+   background-color: var(--primary-color);
+   border-radius: 22px;
+ }
+
+.text_box {/*question subclass of box*/
+  height: 120px;
+  margin-bottom: 15px;
+  margin-right: 10px;
+ position: relative;
+}
+
+#text_box_pfp {
+  height: 50px;
+  margin-top: 15px;
+  margin-left: 15px;
+  cursor: pointer;
+}
+
+#text_box_question_content {
+  position: absolute;
+  top: 15px;
+  left: 77px;
+  font-size: 20px;
+  color: white;
+  cursor: pointer;
+}
+
+#text_box_question_content:hover {
+    text-decoration: underline;
+}
+
+#asked_by_line {
+    position: absolute;
+    top: 47px;
+    left: 77px;
+    color: white;
+    font-size: 13px;
+}
+
+#answered_by_line {
+    color: white;
+    font-size: 14px;
+    margin-top: 13px;
+    margin-left: 25px;
+}
+
+.question_stats {
+    position: absolute;
+    color: white;
+    font-size: 17px;
+    right: 25px;
+    top: 5px;
+    text-align: right;
+}
+
+#question_stats_items {
+    position: relative;
+    margin-top: 10px;
+}
+
+.question_header { /*divider based on subject*/
+   color: white;
+   padding-left: 7px;
+   padding-top: 4px;
+   height: 25px;
+   margin-right: 215px;
+   background-color: var(--text-box-bar-color);
+   border: 1.5px solid var(--border-color);
+   width: calc(1000px - 10px);
+   margin: auto;
+   margin-top: 15px;
+   transform: translateX(var(--translate_len));
+}
+      document.querySelector(".questions_list").innerHTML +=
+        `<div class="box text_box">
+        <!-- pfp -->
+        <img id="text_box_pfp" src="${displayedImage}">
+        <div id="text_box_question_content">${title}</div>
+        <div id="asked_by_line">asked by ${author}, ${timeAgo}</div>
+        <div id="answered_by_line">Be the first to answer!</div>
+        <div class="question_stats">
+          <div id="question_stats_items">${answers} Answers</div>
+          <div id="question_stats_items">${views} views</div>
+          <div id="question_stats_items">${rating} rating</div>
+        </div>`
+      }
