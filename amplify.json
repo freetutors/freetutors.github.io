@@ -25,9 +25,5 @@
           }
         ]
       }
-    ],
-    "exclude": [
-      "config.js",
-      "home.js"
     ]
   }
