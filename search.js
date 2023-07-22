@@ -1,4 +1,5 @@
 searchResultContainer = document.querySelector(".possibleSearchResultContainer")
+possibleSearchResult = document.querySelector(".possibleSearchResult")
 
 async function getAllQuestions() {
   const questions = [];
@@ -91,3 +92,9 @@ searchBar.addEventListener('blur', () => {
   // Set the display property of the search result container back to its original value
   searchResultContainer.style.display = 'none'; // Or 'initial', 'flex', etc., depending on its original display value
 });
+
+
+
+
+
+

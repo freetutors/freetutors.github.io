@@ -264,4 +264,8 @@
       left: 197px;
  }
 
+ .possibleSearchResultContainer {
+  width: calc(100% - 210px);
+}
+
 }
