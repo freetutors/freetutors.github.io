@@ -2,7 +2,7 @@ let data
 // import {from} from 'rxjs'
 async function getOptimizeConfig() {
     try {
-        const response = await fetch('./freetutors.github.io/.secret/optimize.json');
+        const response = await fetch('./optimize.json');
         console.log(response)
         const json = await response.json();
         console.log(json)
