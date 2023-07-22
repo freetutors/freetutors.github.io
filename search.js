@@ -50,8 +50,14 @@ const searchSubjects = [
 
     async function performLiveSearch(inputValue) {
       const search = await index.search(inputValue);
-      searchResultContainer.innerHTML = ''
-      for (hit of search.hits) {
+      searchResultContainer.innerHTML = '';
+      let liveResultsToShow;
+      if (search.hits.length >= 5) {
+        liveResultsToShow = search.hits.slice(0, 5);
+      } else {
+        liveResultsToShow = search.hits;
+      }
+      for (hit of liveResultsToShow) {
         searchResultContainer.innerHTML +=
         `<div class="possibleSearchResult">${hit.title}</div>`
       }
