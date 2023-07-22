@@ -12,3 +12,4 @@ def get_keys(path):
 
 keys = get_keys("./.secret/optimize.json")
 print(keys)
+        # - echo "window._env_ = {\"apiUrlcreate\":\"$apiUrlcreate\",\"apiUrlget\":\"$apiUrlget\",\"health\":\"$health\",\"apiUrlupdate\":\"$apiUrlupdate\",\"apiUrlanswer\":\"$apiUrlanswer\",\"apiUrlanswerUpdate\":\"$apiUrlanswerUpdate\",\"apiUrlgetUser\":\"$apiUrlgetUser\",\"poolId\":\"$poolId\",\"clientId\":\"$clientId\",\"region\":\"$region\",\"accessKey\":\"$accessKey\",\"secretKey\":\"$secretKey\",\"apiUrlCreateUser\":\"$apiUrlCreateUser\"};" >> ./config.js
