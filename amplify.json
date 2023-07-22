@@ -25,5 +25,8 @@
           }
         ]
       }
+    ],
+    "exclude": [
+      "config.js"
     ]
   }
