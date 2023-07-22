@@ -216,6 +216,29 @@
   transition: transform 0.3s ease-in-out;
 }
 
+.possibleSearchResultContainer {
+  position: absolute;
+  top: 37px;
+  left: 192px;
+  height: fit-content;
+  width: calc(100% - 409px);
+  background-color: var(--header-color);
+  border-radius: 6px;
+  z-index: 10;
+}
+
+.possibleSearchResult {
+  height: 37.5px;
+  padding-left: 10px;
+  vertical-align: middle;
+  line-height: 35px;
+  color: white;
+  font-size: 15px;
+}
+
+.possibleSearchResult::hover {
+  background-color: var(--secondary-color);
+}
 
 @media only screen and (max-width: 740px) {
 

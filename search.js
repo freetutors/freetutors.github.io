@@ -1,3 +1,5 @@
+searchResultContainer = document.querySelector(".possibleSearchResultContainer")
+
 async function getAllQuestions() {
   const questions = [];
   for (const subject of searchSubjects) {
@@ -36,8 +38,8 @@ const searchSubjects = [
 ];
 
 (async () => {
+    /*searchResultContainer.innerHTML = ''*/
     const questions = await getAllQuestions();
-    console.log(questions)
 
     const client = new MeiliSearch({
         host: 'http://127.0.0.1:7700',
@@ -46,9 +48,13 @@ const searchSubjects = [
 
     const index = client.index('questions')
 
-    async function performSearch(inputValue) {
+    async function performLiveSearch(inputValue) {
       const search = await index.search(inputValue);
-      console.log(search.hits);
+      searchResultContainer.innerHTML = ''
+      for (hit of search.hits) {
+        searchResultContainer.innerHTML +=
+        `<div class="possibleSearchResult">${hit.title}</div>`
+      }
     }
 
     if (!index) {
@@ -64,8 +70,8 @@ const searchSubjects = [
     // Search bar input event listener
     const searchBar = document.querySelector('.search-bar');
     searchBar.addEventListener('input', (event) => {
-        performSearch(event.target.value);
-    });
+    performLiveSearch(event.target.value);
+  });
 
 })();
 
