@@ -318,9 +318,9 @@ async function sendAnswer(questionId, body, author) {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${(await Auth.currentSession())
-        .getIdToken()
-        .getJwtToken()}`
+      // "Authorization": `Bearer ${(await Auth.currentSession())
+      //   .getIdToken()
+      //   .getJwtToken()}`
     },
     body: JSON.stringify({
       questionId: questionId,
