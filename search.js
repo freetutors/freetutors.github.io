@@ -27,7 +27,6 @@ async function getQuestionListSubject(subject) {
 function handleSearchTrigger() {
   const searchQuery = searchBar.value.trim();
   const searchUrl = 'search.html?query=' + searchQuery;
-
   window.location.href = searchUrl;
 }
 
@@ -51,7 +50,7 @@ const searchSubjects = [
   console.log(questions)
 
   const client = new MeiliSearch({
-      host: 'http://52.53.226.42',
+      host: 'http://54.215.114.211',
       apiKey: 'ZWE3ZGM2YmFmN2JkMjU0ZTBhZWViY2Jm',
   });
 
@@ -95,3 +94,9 @@ searchBar.addEventListener('blur', () => {
   // Set the display property of the search result container back to its original value
   searchResultContainer.style.display = 'none'; // Or 'initial', 'flex', etc., depending on its original display value
 });
+
+/*
+chmod 400 meilisearchKeyPair.pema
+ssh -i meilisearchKeyPair.pem admin@54.215.114.211
+ssh -i c debian@52.53.226.42
+*/
