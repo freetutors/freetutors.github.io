@@ -24,6 +24,13 @@ async function getQuestionListSubject(subject) {
     return questionList.questionList
     }
 
+function handleSearchTrigger() {
+  const searchQuery = searchBar.value.trim();
+  const searchUrl = 'search.html?query=' + searchQuery;
+
+  window.location.href = searchUrl;
+}
+
 const searchSubjects = [
   //htmlSection
   "chemistry",
@@ -92,9 +99,6 @@ searchBar.addEventListener('blur', () => {
   // Set the display property of the search result container back to its original value
   searchResultContainer.style.display = 'none'; // Or 'initial', 'flex', etc., depending on its original display value
 });
-
-
-
 
 
 

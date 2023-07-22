@@ -22,7 +22,7 @@
 <div id="topbar">
   <img id="logo" src="Logo.svg" alt="Logo" onclick="location.href='index.html'">
   <!-- Add search bar -->
-  <input type="search" class="search-bar" placeholder="Search..">
+  <input type="search" class="search-bar" placeholder="Search.." onkeydown="if (event.keyCode == 13) handleSearchTrigger()">
   <button class="button ask-question-button" onclick="location.href='createQuestion.html'">Ask Question</button>
   <div class="possibleSearchResultContainer">
   </div>
