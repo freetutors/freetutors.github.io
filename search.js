@@ -75,3 +75,13 @@ const searchSubjects = [
 
 })();
 
+searchBar.addEventListener('focus', () => {
+  // Set the display property of the search result container to 'none'
+  searchResultContainer.style.display = 'block';
+});
+
+// Add an event listener for the blur event on the search bar
+searchBar.addEventListener('blur', () => {
+  // Set the display property of the search result container back to its original value
+  searchResultContainer.style.display = 'none'; // Or 'initial', 'flex', etc., depending on its original display value
+});
