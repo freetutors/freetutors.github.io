@@ -1,3 +1,4 @@
+import config from "./config.js";
 //Creating question to database. Waiting on how yash inputs values
 const apiUrlcreate = config.apiUrlcreate
 const apiUrlget = config.apiUrlget;
@@ -6,6 +7,9 @@ const apiUrlupdate = config.apiUrlupdate;
 const apiUrlanswer = config.apiUrlanswer;
 const apiUrlanswerUpdate = config.apiUrlanswer;
 const apiUrlgetUser = config.apiUrlgetUser;
+const apiUrlupdateUser = config.apiUrlupdateUser
+const apiUrlupdateUserAnswer = config.apiUrlupdateUserAnswer
+
 // Import the necessary AWS SDK components
 const poolId =config.poolId //getting info from cognito
 const clientId = config.clientId
@@ -31,7 +35,7 @@ async function getUser(username){
       method: "GET",
       headers: {
       "Content-Type": "application/json",
-      },
+      }
   }).then(response => response.json());
   return user
 }
@@ -53,8 +57,6 @@ async function checkUserVerification(userId) {
     return false;
   }
 }
-
-
 var toolbarOptions = [
   ['bold', 'italic', 'underline', 'link', 'image'], // Customize the toolbar elements here
   // Additional toolbar options...
@@ -81,7 +83,6 @@ if (window.location.pathname.indexOf("createQuestion") !== -1) {
     updatePreviewBody();
   });
   document.querySelector(".question-send").addEventListener("click", () => {
-    console.log("clickede")
     var userId = localStorage.getItem(`CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser`)
     if (userId !== null){
       checkUserVerification(userId)
@@ -89,6 +90,7 @@ if (window.location.pathname.indexOf("createQuestion") !== -1) {
         if (isVerified) {
           console.log('User account is verified');
           submitQuestion()
+          addUserQuestions(userId)
           window.location = '/'
         } else {
           if(window.confirm("Please verify your account to answer a question"));{
@@ -100,6 +102,55 @@ if (window.location.pathname.indexOf("createQuestion") !== -1) {
   })
 }
 
+async function addUserQuestions(username){
+  const user = await getUser(username)
+  const questions = parseInt(user.user[0].questions) + 1
+  const url = new URL(`${apiUrlupdateUser}`)
+  const response = await fetch(url,  {
+    mode: "cors",
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      "username": user.user[0].username,
+      "questions":questions,
+    })
+  }).then(response => response.json());
+}
+async function addUserAnswers(username){
+  const user = await getUser(username)
+  const answers = user.user[0].answers +1
+  const url = new URL(`${apiUrlupdateUserAnswer}`)
+  const response = await fetch(url,  {
+    mode: "cors",
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      "username": user.user[0].username,
+      "answers": answers
+    })
+  }).then(response => response.json());
+  console.log(response)
+}
+async function updateUser(username, answers, questions){
+  const url = new URL(`${apiUrlupdateUser}`)
+  const response = await fetch(url,  {
+    mode: "cors",
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      "username": username,
+      "questions":questions,
+      "answers": answers
+    })
+  }).then(response => response.json());
+  console.log(response)
+}
 async function submitQuestion() {
     console.log("clicked")
     const title = document.getElementById('title').value;
@@ -127,7 +178,6 @@ async function submitQuestion() {
       console.log("Error calling API");
     }
 }
-
 async function getQuestionListId(questionId) {
   const url = new URL(`${apiUrlget}?questionId=${questionId}`);
   console.log(url)
@@ -297,8 +347,10 @@ async function answerArea(questionList, quill){
       .then(isVerified => {
         if (isVerified) {
           console.log('User account is verified');
+          addUserAnswers(username)
           sendAnswer(questionId, body, author)
           sendUpdate(questionId, answers, views, rating)
+          location.reload()
         } else {
           if(window.confirm("Please verify your account to answer a question"));{
             window.location = "/verification.html"
@@ -328,7 +380,6 @@ async function sendAnswer(questionId, body, author) {
       author: author,
     })
   }); 
-  location.reload()
 }
 
 async function sendUpdate(questionId, answers, updatedViews, rating){

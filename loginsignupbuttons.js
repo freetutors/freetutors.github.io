@@ -1,6 +1,4 @@
 const username = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser");
-
-
 function inboxDisplay() {
 
   const inbox = document.querySelector('.inbox');
@@ -18,7 +16,7 @@ if (username != null) {
   profileButton.classList.add('profileButton');
   profileButton.innerHTML = `
     <img class="inboxButton" src="inbox.png" onclick="inboxDisplay()">
-    <div class="userInfoContainerHome" onclick="location.href='https://freetutors.github.io/profile'">
+    <div class="userInfoContainerHome" onclick="window.location = 'profile'">
       <img class="profilePicHome" src="profileDefault.jpg">
       <p class="usernameOnProfileButton">${username}</p>
     </div>
@@ -91,11 +89,11 @@ if (username != null) {
    <button class="button signup-button">Sign up</button>`;
 
   document.querySelector(".login-button").addEventListener("click", () => {
-    window.location.href = 'https://freetutors.github.io/login';
+    window.location.location = 'login';
   });
 
   document.querySelector(".signup-button").addEventListener("click", () => {
-    window.location.href = 'https://freetutors.github.io/signup';
+    window.location= "signup";
   });
 }
 

@@ -11,5 +11,8 @@
     "region"  : "us-west-1",
     "accessKey"  : "AKIAS6EY4GUSOJWYQPUN",
     "secretKey"  : "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",
-    "apiUrlCreateUser": "https://d487bezzog.execute-api.us-west-1.amazonaws.com/beta/create"
+    "apiUrlCreateUser": "https://d487bezzog.execute-api.us-west-1.amazonaws.com/beta/create",
+    "apiUrlupdateUser": "https://d487bezzog.execute-api.us-west-1.amazonaws.com/beta/update",
+    "apiUrlupdateUserAnswer": "https://d487bezzog.execute-api.us-west-1.amazonaws.com/beta/updateanswer"
+
 }
