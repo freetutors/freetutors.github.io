@@ -1,10 +1,28 @@
-const apiUrlget = config.apiUrlgetConfig;
-const apiUrlgetUser = config.apiUrlgetUserConfig;
+import config from "./config.js";
+
+const apiUrlget = config.apiUrlget;
+const apiUrlgetUser = config.apiUrlgetUser;
+const poolId =config.poolId //getting info from cognito
+const clientId = config.clientId
+const region = config.region
+const accessKey = config.accessKey
+const secretKey = config.secretKey
+AWS.config.region = region; //telling what region to search
+AWS.config.credentials = new AWS.CognitoIdentityCredentials({ //COnnecting to pool
+  IdentityPoolId: poolId 
+});
+
+AWS.config.update({ //getting conection to IAM user
+  region: region,
+  accessKeyId: accessKey,
+  secretAccessKey: secretKey
+});
+var cognito = new AWS.CognitoIdentityServiceProvider(); //connection to cognito identiy
+
 console.log('called')
 async function showQuestionColumn(user){
-    const questionList = await getQuestionListUser(user)
+    const questionList = await getQuestionListUser(user.user[0].username)
     const questionArray = questionList
-    console.log(questionArray)
     for (const question of questionArray) {
       var title = question.title
       var author = question.author
@@ -12,8 +30,6 @@ async function showQuestionColumn(user){
       var rating = question.rating
       var timeAgo = getTimeDifference(question.timestamp)
       var views = question.views
-      const user = await getUser(author)
-      console.log(user)
       const pfp = user.user[0].pfp
       var displayedImage = ""
       if (pfp == null){
@@ -90,6 +106,48 @@ function getTimeDifference(timestamp) {
         return `${seconds} second${seconds !== 1 ? 's' : ''} ago`;
     }
 }
+async function changePageInfo(user){
+  const cognitoInfo = await getUserCognito(user.username)
+  document.getElementById('username_txt').innerText = user.username
+  document.getElementById('pfp_inner').src = `data:image/png;base64,${user.pfp}`
+  document.querySelector(".signup-container_profile").innerHTML = 
+    `
+    <div class="your_info_txt">Information</div>
+    <p class="info-label">Username</p>
+    <input class="info_input_group" placeholder=${user.username}>
+    <img class="edit_icon" style="top: -172.25px" src="edit_icon.png">
+    <p class="info-label">Password</p>
+    <input class="info_input_group" type=password" placeholder='***************'>
+    <img class="edit_icon" style="top: -111.5px" src="edit_icon.png">
+    <p class="info-label">Full Name</p>
+    <input class="info_input_group" type=password" placeholder=${cognitoInfo.UserAttributes[2].Value}>
+    <img class="edit_icon" style="top: -50.5px" src="edit_icon.png">
+    <p class="info-label">Email</p>
+    <input class="info_input_group" type=password" placeholder=${cognitoInfo.UserAttributes[4].Value}>
+    <img class="edit_icon" style="top: 11px" src="edit_icon.png">
+    <p class="info-label">Questions Asked</p>
+    <input class="info_input_group" type=password" placeholder=${user.questions}>
+    <img class="edit_icon" style="top: 60px" src="edit_icon.png">
+    <p class="info-label">Questions Answered</p>
+    <input class="info_input_group" type=password" placeholder=${user.answers}>
+    <img class="edit_icon" style="top: 110px" src="edit_icon.png">
+    `
+}
 const username = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser")
-document.getElementById('username_txt').innerText = username
-await showQuestionColumn(username)
+async function getUserCognito(username) {
+  try {
+    const params = {
+      UserPoolId: poolId,
+      Username: username
+    };
+
+    const user = await cognito.adminGetUser(params).promise();
+    return user;
+  } catch (error) {
+      alert("error:"+error+"Please log out and log in again")
+  }
+}
+
+var user = await getUser(username)
+await showQuestionColumn(user)
+await changePageInfo(user.user[0])

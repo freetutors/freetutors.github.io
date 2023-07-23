@@ -1,3 +1,5 @@
+import config from "./config.js";
+
 // Import the necessary AWS SDK components
 const poolId =config.poolId //getting info from cognito
 const clientId = config.clientId

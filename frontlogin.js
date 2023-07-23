@@ -1,3 +1,5 @@
+import config from "./config.js";
+
 const poolId =config.poolId //getting info from cognito
 
 const clientId = config.clientId

@@ -39,7 +39,7 @@ async function getUser(username){
 async function checkUserVerification(userId) {
   try {
     const params = {
-      UserPoolId: 'us-west-1_w3se6DxlL',
+      UserPoolId: poolId,
       Username: userId
     };
 
