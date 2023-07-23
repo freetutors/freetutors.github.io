@@ -237,6 +237,70 @@
   font-size: 15px;
 }
 
+.signPopUp {
+  display: none;
+  position: absolute;
+  background-color: var(--header-color);
+  border-radius: 12.5px;
+  height: 190px;
+  width: 500px;
+  inset: 0;
+  margin: auto;
+}
+
+.signPopUpText {
+  position: absolute;
+  color: white;
+  inset: 0;
+  margin: auto;
+  margin-top: 25px;
+  height: fit-content;
+  width: fit-content;
+  font-size: 20px;
+}
+
+.signPopUpLogin {
+  position: absolute;
+  color: white;
+  inset: 0;
+  margin-top: 80px;
+  margin-left: 55px;
+  margin-right: 55px;
+  height: 32.5px;
+  line-height: 30px;
+  font-size: 16px;
+  background: var(--primary-color);
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  }
+
+.signPopUpSignup {
+  position: absolute;
+  color: white;
+  inset: 0;
+  margin-top: 127.5px;
+  margin-left: 55px;
+  margin-right: 55px;
+  height: 32.5px;
+  line-height: 30px;
+  font-size: 16px;
+  background: var(--secondary-color);
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  }
+
+.signPopUpX::before {
+  position: absolute;
+  color: white;
+  content: '\2715';
+  font-size: 17px;
+  top: 7px;
+  left: 472px;
+  cursor: pointer;
+}
+
 @media only screen and (max-width: 740px) {
 
   .login-button {
