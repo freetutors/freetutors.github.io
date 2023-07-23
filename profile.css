@@ -232,7 +232,7 @@ hr.pfp_line {
     top: 383px;
     left: calc(50% - 569px);
     width: 170px;
-    height: 267px;
+    height: 380px;
     background-color: var(--header-color);
     opacity: 0.95;
     border-radius: .5rem;
@@ -392,6 +392,7 @@ hr.pfp_line {
     inset: 0;
     margin: auto;
     margin-top: 382.5px;
+    height: 10000000px
   }
 
 }
