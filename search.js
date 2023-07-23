@@ -1,6 +1,8 @@
 searchResultContainer = document.querySelector(".possibleSearchResultContainer")
 possibleSearchResult = document.querySelector(".possibleSearchResult")
 
+apiUrlget  = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/getquestion"
+
 async function getAllQuestions() {
   const questions = [];
   for (const subject of searchSubjects) {
@@ -47,7 +49,6 @@ const searchSubjects = [
 (async () => {
   /*searchResultContainer.innerHTML = ''*/
   const questions = await getAllQuestions();
-  console.log(questions)
 
   const client = new MeiliSearch({
       host: 'http://54.215.114.211',
@@ -58,7 +59,6 @@ const searchSubjects = [
   const index = client.index('questionIndex')
 
   let response = await index.addDocuments(questions)
-  console.log(response)
 
     async function performLiveSearch(inputValue) {
       const search = await index.search(inputValue);

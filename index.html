@@ -26,7 +26,7 @@
   <img id="logo" src="Logo.svg" alt="Logo" onclick="location.href='index.html'">
   <!-- Add search bar -->
   <input type="search" class="search-bar" placeholder="Search.." onkeydown="if (event.keyCode == 13) handleSearchTrigger()">
-  <button class="button ask-question-button" onclick="location.href='createQuestion.html'">Ask Question</button>
+  <button class="button ask-question-button">Ask Question</button>
   <div class="possibleSearchResultContainer">
   </div>
   <div id="loginSignupArea">
@@ -56,7 +56,7 @@
   <div id="important_box_text">chat hours</div>
   <div id="important_box_nums">520</div>
   <div id="important_box_text">volunteer hours earned</div>
-  <button id="sign_up_as_tutor_button" onclick="location.href='https://freetutors.github.io/tutorSignUp'">Sign up as
+  <button id="sign_up_as_tutor_button">Sign up as
     tutor
   </button>
 </div>
@@ -66,6 +66,7 @@
 
 </div>
 
+<div class="signPopUp"></div>
 
 <!-- Add rest of content here -->
 <script type="module" src="home.js"></script>
@@ -73,6 +74,7 @@
 <script src="loginsignupbuttons.js"></script>
 <script src="https://unpkg.com/bowser@2.7.0/es5.js"></script>
 <script src="browserAndPageSizeChanges.js"></script>
-<script type = "module" src="search.js"></script>
+<script src="search.js"></script>
+<script src="signin/signPopup.js"></script>
 </body>
 </html>
