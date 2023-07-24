@@ -177,6 +177,27 @@ async function updatepfp(username, pfp){
     }).then(response => response.json());
     console.log(response)
 }
+async function updateUsername(username, newUsername){
+  try {
+    const params = {
+      UserPoolId: poolId,
+      Username: username,
+      UserAttributes: [
+        {
+          Name: 'preferred_username', // Cognito attribute name for the username
+          Value: newUsername
+        }
+      ]
+    };
+
+    const result = await cognito.adminUpdateUserAttributes(params).promise();
+    console.log('Username updated successfully!', result);
+    // If you need to update any UI elements after a successful update, do it here.
+  } catch (error) {
+    console.log('Error updating username:', error);
+    // Handle the error, show error messages, etc.
+  }
+}
 var user = await getUser(username)
 await showQuestionColumn(user)
 await changePageInfo(user.user[0])
@@ -184,10 +205,8 @@ document.querySelector(".updateAbout").addEventListener("click", () =>{
   updateAbout(username)
 })
 
-const imgDiv = document.querySelector(".pfp_user")
 const img = document.getElementById('pfp_inner')
 const file = document.getElementById('file')
-const uploadBtn = document.querySelector('uploadBtn')
 
 file.addEventListener('change', function(){
   const choosedFile = this.files[0]
@@ -201,3 +220,9 @@ file.addEventListener('change', function(){
       reader.readAsDataURL(choosedFile)
   }
 })
+
+document.querySelector(".username").addEventListener('blur', function() {
+  // Code to execute when the input field loses focus (someone clicks out of it)
+  const inputValue = document.getElementById('username').value;
+  updateUsername(username, inputValue)
+});

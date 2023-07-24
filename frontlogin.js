@@ -18,6 +18,7 @@ AWS.config.update({ //getting conection to IAM user
   secretAccessKey: secretKey
 });
 
+
 var cognito = new AWS.CognitoIdentityServiceProvider(); //connection to cognito identiy
 
 function loginUser(username, password) { //user auth data
@@ -72,3 +73,10 @@ function loginUser(username, password) { //user auth data
         const password = document.getElementById('password').value;
         loginUser(username, password);
     }) 
+    document.getElementById('password').addEventListener("keyup", function(event) {
+      if (event.key === "Enter") {
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        loginUser(username, password);
+      }
+    })

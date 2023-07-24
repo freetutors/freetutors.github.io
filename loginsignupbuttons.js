@@ -106,7 +106,8 @@ if (username != null) {
    <button class="button signup-button">Sign up</button>`;
 
   document.querySelector(".login-button").addEventListener("click", () => {
-    window.location.location = 'login';
+    console.log("clicked")
+    window.location = 'login';
   });
 
   document.querySelector(".signup-button").addEventListener("click", () => {

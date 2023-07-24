@@ -21,7 +21,6 @@ AWS.config.update({
 });
 
 var cognito = new AWS.CognitoIdentityServiceProvider(); //connection to cognito identiy
-AWS_SDK_LOAD_CONFIG=1
  //connecting to cognito pool
 
 function signUpUser(params) { //function for signing up, this is already defined
@@ -67,6 +66,7 @@ addEventListener("click", async () => { //pulling and sending information on cli
 console.log("clicked");  
 const username = document.getElementById("username").value; //getting values
     const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirm-password").value
     const email = document.getElementById("email").value;
     const name = document.getElementById("name").value;
     const preferredUsername = 'desired_preferred_username';
@@ -104,6 +104,7 @@ const username = document.getElementById("username").value; //getting values
     } catch (error) {
       console.log('Error:', error); //giving us error details if something happens
     }
+    if (password == confirmPassword){
       const response = await fetch(createUrl, {
         mode: 'cors',
         method: "POST",
@@ -121,6 +122,9 @@ const username = document.getElementById("username").value; //getting values
         console.log("Error calling API");
       }
       window.location='/verification'
-
+    }
+    else {
+      alert("Passwords do not match")
+    }
 });
 

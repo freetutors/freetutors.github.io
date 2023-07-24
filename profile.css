@@ -258,6 +258,9 @@ hr.pfp_line {
   box-shadow: 0 1rem 3rem #000000;
   padding: 20px;
 }
+.username{
+  color: pink;
+}
 .about-me{
   position: absolute;
   top: 366px;
