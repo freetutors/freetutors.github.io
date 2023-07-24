@@ -235,6 +235,7 @@
   line-height: 35px;
   color: white;
   font-size: 15px;
+  cursor: pointer;
 }
 
 .signPopUp {

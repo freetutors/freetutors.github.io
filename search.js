@@ -32,8 +32,15 @@ function handleSearchTrigger() {
   window.location.href = searchUrl;
 }
 
+function liveSearch() {
+  var innerHTML = (event.target || event.srcElement).innerHTML;
+  searchBar.value = innerHTML;
+  handleSearchTrigger()
+}
+
+console.log(possibleSearchResult)
+
 const searchSubjects = [
-  //htmlSection
   "chemistry",
   "biology",
   "physics",
@@ -47,8 +54,8 @@ const searchSubjects = [
 ];
 
 (async () => {
-  /*searchResultContainer.innerHTML = ''*/
   const questions = await getAllQuestions();
+
 
   const client = new MeiliSearch({
       host: 'http://54.215.114.211',
@@ -71,12 +78,10 @@ const searchSubjects = [
       }
       for (hit of liveResultsToShow) {
         searchResultContainer.innerHTML +=
-        `<div class="possibleSearchResult">${hit.title}</div>`
+          `<div class="possibleSearchResult" onclick="liveSearch()">${hit.title}</div>`
       }
     }
 
-
-    // Search bar input event listener
     const searchBar = document.querySelector('.search-bar');
     searchBar.addEventListener('input', (event) => {
     performLiveSearch(event.target.value);
@@ -84,19 +89,19 @@ const searchSubjects = [
 
 })();
 
+document.addEventListener('click', function(e) {
+    e = e || window.event;
+    var className = (e.target || e.srcElement).className;
+    if ((className !== 'search-bar') && (className !== 'possibleSearchResult')) {
+     searchResultContainer.style.display = 'none';
+    }
+
+}, false);
+
 searchBar.addEventListener('focus', () => {
-  // Set the display property of the search result container to 'none'
   searchResultContainer.style.display = 'block';
 });
-
-// Add an event listener for the blur event on the search bar
-searchBar.addEventListener('blur', () => {
-  // Set the display property of the search result container back to its original value
-  searchResultContainer.style.display = 'none'; // Or 'initial', 'flex', etc., depending on its original display value
-});
-
 /*
-chmod 400 meilisearchKeyPair.pema
-ssh -i meilisearchKeyPair.pem admin@54.215.114.211
-ssh -i c debian@52.53.226.42
-*/
+searchBar.addEventListener('blur', () => {
+
+});*/
