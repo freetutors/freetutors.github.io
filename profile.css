@@ -33,16 +33,27 @@
 }
 
 .pfp_user {
-  position: absolute;
-  z-index: 6;
-  left: -30px;
-  width: 100%;
+
   /* height: 400px; */
   display: flex;
   justify-content: center;
   text-align: center;
   /* margin-left: calc(50% - 569px); */
   /* transform: translateX(110px); */
+}
+
+.pfp_border {
+  position: absolute;
+  z-index: 6;
+  width: 100%;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  transform: scale(2.66) translateX(-65px);
+  z-index: 9;
+  background-color: var(--secondary-color);
+  margin-top: 130px;
+  left: calc(50% - 340px);
 }
 
 #uploadBtn{
@@ -83,15 +94,6 @@
   z-index: 2;
 }
 
-.pfp_border {
-  height: 100px;
-  width: 100px;
-  border-radius: 50%;
-  transform: scale(2.66) translateX(-65px);
-  z-index: 9;
-  background-color: var(--secondary-color);
-  margin-top: 130px;
-}
 
 .pfp_border:hover #pfp_inner {
     filter: brightness(0.2);
@@ -113,10 +115,12 @@ hr.pfp_line {
 }
 
 #username_txt {
+    margin-left: 0px;
     color: white;
     font-size: 80px;
     margin-top: 115px;
-    transform: translateX(-47.5px);
+    z-index: 11;
+    transform: translateX(-50.5px);
 }
 
 
@@ -136,7 +140,7 @@ hr.pfp_line {
      height: 25px;
      background-color: var(--text-box-bar-color);
      border: 1.5px solid var(--border-color);
-     margin-top: 262px;
+     margin-top: 90px;
      float: left;
      margin-left: calc(50% - 320px);
      margin-right: 200px;
@@ -222,9 +226,6 @@ hr.pfp_line {
         position: relative;
         margin-top: 10px;
     }
-
-
-
  .user_stats {
    color: white;
  }
@@ -375,8 +376,10 @@ hr.pfp_line {
 .about-me{
     left: 155px;
   }
-.pfp_user{
-  margin-left: 25px;
+.pfp_border{
+  /* margin-left: -155px; */
+  left: 290px;
+  
 }
 #question_header {
      margin-left: 300px;
@@ -384,6 +387,13 @@ hr.pfp_line {
 
 .questions_list_profile {
      margin-left: 300px;
+}
+#username_txt{
+  margin-left: 200px;
+  color: white;
+  font-size: 80px;
+  margin-top: 115px;
+  left: 100px
 }
 
 .pfp_user {
