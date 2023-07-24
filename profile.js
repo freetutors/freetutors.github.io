@@ -118,16 +118,15 @@ async function changePageInfo(user){
   document.querySelector(".signup-container_profile").innerHTML = 
     `
     <div class="your_info_txt">Information</div>
-    <p class="info-label">Username</p>
-    <input class="username info_input_group" placeholder=${user.username}>
-    <img class="edit_icon" style="top: -172.25px" src="edit_icon.png">
-    <p class="info-label">Full Name</p>
+    <p class="info-label">Username:</p>
+    <p class="username info_input_group">${user.username}</p>
+    <p class="info-label">Full Name:</p>
     <p class="info_input_group" type=password">${cognitoInfo.UserAttributes[2].Value}</p>
-    <p class="info-label">Email</p>
+    <p class="info-label">Email:</p>
     <p class="info_input_group" type=password">${cognitoInfo.UserAttributes[4].Value}</p>
-    <p class="info-label">Questions Asked</p>
+    <p class="info-label">Questions Asked:</p>
     <p class="info_input_group" type=password">${user.questions}</p>
-    <p class="info-label">Questions Answered</p>
+    <p class="info-label">Questions Answered:</p>
     <p class="info_input_group" type=password">${user.answers}</p>
     `
 }
@@ -178,27 +177,6 @@ async function updatepfp(username, pfp){
     }).then(response => response.json());
     console.log(response)
 }
-async function updateUsername(username, newUsername){
-  try {
-    const params = {
-      UserPoolId: poolId,
-      Username: username,
-      UserAttributes: [
-        {
-          Name: 'preferred_username', // Cognito attribute name for the username
-          Value: newUsername
-        }
-      ]
-    };
-
-    const result = await cognito.adminUpdateUserAttributes(params).promise();
-    console.log('Username updated successfully!', result);
-    // If you need to update any UI elements after a successful update, do it here.
-  } catch (error) {
-    console.log('Error updating username:', error);
-    // Handle the error, show error messages, etc.
-  }
-}
 var user = await getUser(username)
 await showQuestionColumn(user)
 await changePageInfo(user.user[0])
@@ -223,9 +201,3 @@ file.addEventListener('change', function(){
       reader.readAsDataURL(choosedFile)
   }
 })
-
-document.querySelector(".username").addEventListener('blur', function() {
-  // Code to execute when the input field loses focus (someone clicks out of it)
-  const inputValue = document.querySelector('.username').value;
-  updateUsername(username, inputValue)
-});

@@ -30,7 +30,17 @@
     margin-left: 15px;
     cursor: pointer;
     overflow: hidden;
- }
+    align-self: center;
+  }
+ .global_pfp{
+  height: 50px;
+  width: 50px;
+  margin-top: 15px;
+  margin-left: 15px;
+  cursor: pointer;
+  overflow: hidden;
+  align-self: center;
+}
   .profileButton{
     width: 175px;
     margin-left: 10px;
@@ -156,7 +166,8 @@
  .button {/*setting main button object*/
    font-family: 'Lexend', sans-serif;
    border: none;
-   color: white;
+   color: var(--text-color);
+   background-color: var(--primary-color);
    padding: 6.5px 17px;
    text-align: center;
    text-decoration: none;

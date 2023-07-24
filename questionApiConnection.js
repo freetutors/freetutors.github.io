@@ -229,7 +229,7 @@ async function displayQuestion(){
     <div class="title">${title}</div>
     <hr class="titleSep">
     <div class="question">
-      <img src=${displayedImage} class="user_pfp">
+      <img src=${displayedImage} class="global_pfp">
       <div class="contributorStats">
         <p class="username">${author}</p>
         <p class="time">${date}</p>
@@ -266,7 +266,7 @@ async function displayQuestion(){
           "beforeend",
           `
           <div class="answer">
-          <img src=${displayedImage} class="user_pfp">
+          <img src=${displayedImage} class="global_pfp">
           <div class="contributorStats">
             <p class="username">${author}</p>
             <p class="time">${time}</p>
