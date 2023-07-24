@@ -119,7 +119,7 @@ async function changePageInfo(user){
     `
     <div class="your_info_txt">Information</div>
     <p class="info-label">Username</p>
-    <input class="info_input_group" placeholder=${user.username}>
+    <input class="username info_input_group" placeholder=${user.username}>
     <img class="edit_icon" style="top: -172.25px" src="edit_icon.png">
     <p class="info-label">Full Name</p>
     <p class="info_input_group" type=password">${cognitoInfo.UserAttributes[2].Value}</p>
@@ -140,6 +140,7 @@ async function getUserCognito(username) {
     };
 
     const user = await cognito.adminGetUser(params).promise();
+    console.log(user)
     return user;
   } catch (error) {
       alert("error:"+error+"Please log out and log in again")
@@ -216,6 +217,8 @@ file.addEventListener('change', function(){
         img.setAttribute('src', reader.result)
         const fileData = reader.result.split(',')[1]; // Extract base64 data from Data URL
         updatepfp(username, fileData)
+        showQuestionColumn(user)
+        changePageInfo(user.user[0])
       })
       reader.readAsDataURL(choosedFile)
   }
@@ -223,6 +226,6 @@ file.addEventListener('change', function(){
 
 document.querySelector(".username").addEventListener('blur', function() {
   // Code to execute when the input field loses focus (someone clicks out of it)
-  const inputValue = document.getElementById('username').value;
+  const inputValue = document.querySelector('.username').value;
   updateUsername(username, inputValue)
 });
