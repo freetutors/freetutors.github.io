@@ -9,17 +9,20 @@ const tableName = 'Freetutor-Users' // connection to database and user table
 const util = require('../utils/util'); // every period shows how much higher you have to go on file levels. this has to periods because u have to go outside of the folder, one means that is in the same folder
 
 async function updateUser(updateBody) {
+    console.log(updateBody)
     const pfp = updateBody.pfp
     const about = updateBody.about
-    const questions = parseInt(updateBody.questions)+1 //body with formatting
-    const answers = parseInt(updateBody.answers)+1 
+    const questions = parseInt(updateBody.questions) //body with formatting
+    const answers = parseInt(updateBody.answers) 
+    console.log(answers)
     const username = updateBody.username
     if (pfp != null){
+        console.log(pfp)
         const user = {
             username: username,
             pfp: pfp
         }
-        savepfp(user)
+        await savepfp(user)
         const response = {
             user: user,
             pfp: pfp
@@ -27,11 +30,12 @@ async function updateUser(updateBody) {
         return util.buildResponse(200, response);
     }
     else if (about != null){
+        console.log(about)
         const user = {
             username: username,
             about: about
         }
-        saveabout(user)
+        await saveabout(user)
         const response = {
             user: user,
             about: about
@@ -39,11 +43,12 @@ async function updateUser(updateBody) {
         return util.buildResponse(200, response);
     }
     else if (questions != null){
+        console.log(questions)
         const user = {
             username: username,
             questions: questions
         }
-        savequestions(user)
+        await savequestions(user)
         const response = {
             user: user,
             questions: questions
@@ -51,11 +56,12 @@ async function updateUser(updateBody) {
         return util.buildResponse(200, response);
     }
     else if (answers != null){
+        console.log(answers)
         const user = {
             username: username,
             answers: answers
         }
-        saveanswers(user)
+        await saveanswers(user)
         const response = {
             user: user,
             answers: answers

@@ -3,11 +3,13 @@ const healthPath = '/health'; //checking for healthy service connection, mainly 
 const createPath = '/create';
 const getPath = '/get';
 const updatePath = '/update';
+const updateAnswerPath = '/updateanswer';
 // initiallized all of the things to check 
 
 const createService = require('./service/createUser.js');
 const getService = require('./service/getUser.js');
 const updateService = require('./service/updateUser.js')
+const updateAnswerService = require('./service/updateUserAnswer.js')
 const util = require('./utils/util');//this is for a common return function we can use from file to file
 
 // connecting to other codes for giving each item a seperate function
@@ -32,6 +34,10 @@ exports.handler = async(event) => {
         case event.httpMethod === 'POST' && event.path === updatePath:
             const updateBody = JSON.parse(event.body);
             response = await updateService.updateUser(updateBody); //register() defined in register.js all the other functions are done the same way in the service folder
+            break;
+        case event.httpMethod === 'POST' && event.path === updateAnswerPath:
+            const updateAnswerBody = JSON.parse(event.body);
+            response = await updateAnswerService.updateUserAnswers(updateAnswerBody); //register() defined in register.js all the other functions are done the same way in the service folder
             break;
         
         default:

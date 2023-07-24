@@ -27,7 +27,9 @@ function processJSONData(data) {
         accessKey  : data.accessKey,
         secretKey  : data.secretKey,
     
-        apiUrlCreateUser: data.apiUrlCreateUser
+        apiUrlCreateUser: data.apiUrlCreateUser,
+        apiUrlupdateUser: data.apiUrlupdateUser,
+        apiUrlupdateUserAnswer: data.apiUrlupdateUserAnswer
     }
     return data
 }
@@ -37,7 +39,4 @@ for (const i in range){
     old = await getOptimizeConfig()
 }
 var config = old
-console.log(old)
-console.log(config)
-console.log(config.apiUrlget)
 export default config

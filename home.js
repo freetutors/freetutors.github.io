@@ -1,7 +1,6 @@
 import config from "./config.js";
 const apiUrlget = config.apiUrlget;
 const apiUrlgetUser = config.apiUrlgetUser;
-console.log(apiUrlget)
 async function showQuestionColumn(subject){
     const questionList = await getQuestionListSubject(subject)
     const questionArray = questionList
@@ -126,11 +125,15 @@ const subjects = [ //htmlSection
     targetSubject = questionHeader.innerHTML.replace("Active Questions - ", "").toLowerCase()
     showQuestionColumn(targetSubject)
 }
-
   function moveLeft() {
     document.querySelector('.questions_list').innerHTML = ""
     questionHeader.innerHTML = subjects[((subjects.indexOf(questionHeader.innerHTML) - 1) % (subjects.length) + (subjects.length)) % (subjects.length)]
     targetSubject = questionHeader.innerHTML.replace("Active Questions - ", "").toLowerCase()
     showQuestionColumn(targetSubject)
-
 }
+document.getElementById("arrow-left").addEventListener("click", () => {
+  moveLeft()
+})
+document.getElementById("arrow-right").addEventListener("click", () => {
+  moveRight()
+})
