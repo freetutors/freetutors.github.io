@@ -1,4 +1,19 @@
+import config from "./config.js";
+
+const apiUrlgetUser = config.apiUrlgetUser
 const username = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser");
+async function getUser(username){
+  const url = new URL(`${apiUrlgetUser}?username=${username}`);
+  const user = await fetch(url,  {
+      mode: "cors",
+      method: "GET",
+      headers: {
+      "Content-Type": "application/json",
+      },
+  }).then(response => response.json());
+  return user
+}
+
 function inboxDisplay() {
 
   const inbox = document.querySelector('.inbox');
@@ -12,12 +27,14 @@ function inboxDisplay() {
 }
 
 if (username != null) {
+  const user = await getUser(username)
+  const pfp = user.user[0].pfp
   const profileButton = document.createElement('div');
   profileButton.classList.add('profileButton');
   profileButton.innerHTML = `
     <img class="inboxButton" src="inbox.png" onclick="inboxDisplay()">
     <div class="userInfoContainerHome" onclick="window.location = 'profile'">
-      <img class="profilePicHome" src="profileDefault.jpg">
+      <img class="profilePicHome" src="data:image/png;base64,${pfp}">
       <p class="usernameOnProfileButton">${username}</p>
     </div>
   `;

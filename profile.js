@@ -2,6 +2,7 @@ import config from "./config.js";
 
 const apiUrlget = config.apiUrlget;
 const apiUrlgetUser = config.apiUrlgetUser;
+const apiUrlupdateUser = config.apiUrlupdateUser
 const poolId =config.poolId //getting info from cognito
 const clientId = config.clientId
 const region = config.region
@@ -41,7 +42,7 @@ async function showQuestionColumn(user){
       document.querySelector(".questions_list").innerHTML +=
         `<div class="box text_box">
         <!-- pfp -->
-        <img id="text_box_pfp" src="${displayedImage}">
+        <img id="global_pfp" src="${displayedImage}">
         <div id="text_box_question_content">${title}</div>
         <div id="asked_by_line">asked by ${author}, ${timeAgo}</div>
         <div id="answered_by_line">Be the first to answer!</div>
@@ -52,8 +53,11 @@ async function showQuestionColumn(user){
         </div>`
       }
       const questionBoxes = document.querySelectorAll(".box.text_box");
+      
       questionBoxes.forEach((box, index) => {
+        console.log('afdfsd')
         box.addEventListener("click", function () {
+          console.log("called")
           const questionId = questionList[index].questionId; // Retrieve the questionId
           localStorage.setItem("QuestionID", JSON.stringify(questionId));
           window.location = `viewQuestion?questionId=${questionId}`;
@@ -108,6 +112,7 @@ function getTimeDifference(timestamp) {
 }
 async function changePageInfo(user){
   const cognitoInfo = await getUserCognito(user.username)
+  document.querySelector(".about-me-field").innerText = user.about
   document.getElementById('username_txt').innerText = user.username
   document.getElementById('pfp_inner').src = `data:image/png;base64,${user.pfp}`
   document.querySelector(".signup-container_profile").innerHTML = 
@@ -116,21 +121,14 @@ async function changePageInfo(user){
     <p class="info-label">Username</p>
     <input class="info_input_group" placeholder=${user.username}>
     <img class="edit_icon" style="top: -172.25px" src="edit_icon.png">
-    <p class="info-label">Password</p>
-    <input class="info_input_group" type=password" placeholder='***************'>
-    <img class="edit_icon" style="top: -111.5px" src="edit_icon.png">
     <p class="info-label">Full Name</p>
-    <input class="info_input_group" type=password" placeholder=${cognitoInfo.UserAttributes[2].Value}>
-    <img class="edit_icon" style="top: -50.5px" src="edit_icon.png">
+    <p class="info_input_group" type=password">${cognitoInfo.UserAttributes[2].Value}</p>
     <p class="info-label">Email</p>
-    <input class="info_input_group" type=password" placeholder=${cognitoInfo.UserAttributes[4].Value}>
-    <img class="edit_icon" style="top: 11px" src="edit_icon.png">
+    <p class="info_input_group" type=password">${cognitoInfo.UserAttributes[4].Value}</p>
     <p class="info-label">Questions Asked</p>
-    <input class="info_input_group" type=password" placeholder=${user.questions}>
-    <img class="edit_icon" style="top: 60px" src="edit_icon.png">
+    <p class="info_input_group" type=password">${user.questions}</p>
     <p class="info-label">Questions Answered</p>
-    <input class="info_input_group" type=password" placeholder=${user.answers}>
-    <img class="edit_icon" style="top: 110px" src="edit_icon.png">
+    <p class="info_input_group" type=password">${user.answers}</p>
     `
 }
 const username = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser")
@@ -147,7 +145,59 @@ async function getUserCognito(username) {
       alert("error:"+error+"Please log out and log in again")
   }
 }
-
+async function updateAbout(username){
+  const about = document.querySelector('.about-me-field').value
+  console.log(about)
+    const url = new URL(`${apiUrlupdateUser}`)
+    const response = await fetch(url,  {
+      mode: "cors",
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        "username": user.user[0].username,
+        "about":about,
+      })
+    }).then(response => response.json());
+    console.log(response)
+}
+async function updatepfp(username, pfp){
+    const url = new URL(`${apiUrlupdateUser}`)
+    const response = await fetch(url,  {
+      mode: "cors",
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        "username": username,
+        "pfp":pfp,
+      })
+    }).then(response => response.json());
+    console.log(response)
+}
 var user = await getUser(username)
 await showQuestionColumn(user)
 await changePageInfo(user.user[0])
+document.querySelector(".updateAbout").addEventListener("click", () =>{
+  updateAbout(username)
+})
+
+const imgDiv = document.querySelector(".pfp_user")
+const img = document.getElementById('pfp_inner')
+const file = document.getElementById('file')
+const uploadBtn = document.querySelector('uploadBtn')
+
+file.addEventListener('change', function(){
+  const choosedFile = this.files[0]
+  if(choosedFile){
+      const reader = new FileReader()
+      reader.addEventListener('load', function(){
+        img.setAttribute('src', reader.result)
+        const fileData = reader.result.split(',')[1]; // Extract base64 data from Data URL
+        updatepfp(username, fileData)
+      })
+      reader.readAsDataURL(choosedFile)
+  }
+})

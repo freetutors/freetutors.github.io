@@ -23,6 +23,14 @@
    padding: 0;
    overflow-x: hidden;
  }
+ #global_pfp{
+    height: 50px;
+    width: 50px;
+    margin-top: 15px;
+    margin-left: 15px;
+    cursor: pointer;
+    overflow: hidden;
+ }
   .profileButton{
     width: 175px;
     margin-left: 10px;
@@ -71,6 +79,7 @@
     border-radius: 6px;
     cursor: pointer;
     transition: transform 0.3s ease-in-out;
+    z-index: 10;
   }
 
   .inbox {

@@ -88,12 +88,12 @@
      position: relative;
     }
 
-    #text_box_pfp {
+    /* #text_box_pfp {
       height: 50px;
       margin-top: 15px;
       margin-left: 15px;
       cursor: pointer;
-    }
+    } */
 
     #text_box_question_content {
       position: absolute;
