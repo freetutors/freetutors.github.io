@@ -40,7 +40,14 @@ if (pageName == 'suggestions.html'){
   `;
   signPopUp.style.display = 'block';
 }
-  console.log(pageName)
+if (pageName == 'contactUs.html'){
+  signPopUp.innerHTML = `
+    <p class="signPopUpText">You must be logged in to contact us.</p>
+    <div class="signPopUpLogin" onclick='location.href="login.html"'>Log in</div>
+    <div class="signPopUpSignup" onclick='location.href="signup.html"'>Sign up</div>
+  `;
+  signPopUp.style.display = 'block';
+}
 } else {
   askQuestionButton.addEventListener('click', () => {
     window.location.href = "createQuestion.html";

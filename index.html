@@ -23,7 +23,7 @@
 </head>
 <body>
 <div id="topbar">
-  <img id="logo" src="Logo.svg" alt="Logo" onclick="location.href='index.html'">
+  <img id="logo" src="Logo.svg" alt="Logo" onclick="window.location='/'">
   <!-- Add search bar -->
   <input type="search" class="search-bar" placeholder="Search.." onkeydown="if (event.keyCode == 13) handleSearchTrigger()">
   <button class="button ask-question-button">Ask Question</button>
@@ -34,11 +34,11 @@
 </div>
 <div class="menu"><!--navigation area-->
   <ul>
-    <li class="on-page" onclick="location.href='index.html'">Home</li>
-    <li class="menu_item" onclick="location.href='ourTeam.html'">Our Team</li>
-    <li class="menu_item" onclick="location.href='contactUs.html'">Contact Us</li>
-    <li class="menu_item" onclick="location.href='suggestions.html'">Suggestions</li>
-    <li class="menu_item" onclick="location.href='help.html'">Help</li>
+    <li class="on-page" onclick="window.location='/'">Home</li>
+    <li class="menu_item" onclick="window.location='ourTeam'">Our Team</li>
+    <li class="menu_item" onclick="window.location='contactUs'">Contact Us</li>
+    <li class="menu_item" onclick="window.location='suggestions'">Suggestions</li>
+    <li class="menu_item" onclick="window.location='help'">Help</li>
   </ul>
 </div>
 <div class="question_header">
@@ -75,6 +75,10 @@
 <script src="https://unpkg.com/bowser@2.7.0/es5.js"></script>
 <script src="browserAndPageSizeChanges.js"></script>
 <script src="search.js"></script>
+<<<<<<< Updated upstream
 <script src="signin/signPopup.js"></script>
+=======
+
+>>>>>>> Stashed changes
 </body>
 </html>

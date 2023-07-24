@@ -8,13 +8,14 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9510246684554538"
   crossorigin="anonymous"></script>
  <script type = "module" src = 'config.js'></script>
+ <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1301.0.min.js"></script>
 </head>
 <body>
 <div id="topbar">
-  <img id="logo" src="Logo.svg" alt="Logo" onclick="location.href='https://freetutors.github.io/'">
+  <img id="logo" src="Logo.svg" alt="Logo" onclick="window.location='/'">
   <!-- Add search bar -->
   <input type="search" class="search-bar" placeholder="Search..">
-  <button class="button ask-question-button" onclick="location.href='https://freetutors.github.io/createQuestion'">Ask
+  <button class="button ask-question-button" onclick="window.location='createQuestion'">Ask
     Question
   </button>
   <div id="loginSignupArea">
@@ -32,37 +33,14 @@
 <button class="button buttons" style="background-color: var(--secondary-color); margin-top: 15px;">Submit Feedback
 </button>
 
-<!-- for dropdown -->
-
-<script>
-   document.addEventListener("DOMContentLoaded", function() {
-      var dropdown = document.querySelector(".dropdown");
-      var dropdownContent = document.querySelector(".dropdown-content");
-      var dropbtn = document.querySelector(".dropbtn");
-
-      dropdown.addEventListener("click", function() {
-        dropdownContent.style.display = dropdownContent.style.display === "block" ? "none" : "block";
-      });
-
-      dropdownContent.addEventListener("click", function(event) {
-        if (event.target.classList.contains("subject")) {
-          dropbtn.textContent = event.target.textContent;
-          dropdownContent.style.display = "none";
-        }
-      });
-    });
-
-</script>
+<div class="signPopUp"></div>
 
 <script>
   function goBack() {
-    console.log('hi');
     if (document.referrer.includes(window.location.hostname)) {
       window.history.back();
-      console.log("aaa");
     } else {
       alert("Sorry, the previous page is not within this website.");
-      console.log("bye");
     }
   }
 </script>
@@ -72,6 +50,8 @@
 <script type="module"src="loginsignupbuttons.js"></script>
 <script src="https://unpkg.com/bowser@2.7.0/es5.js"></script>
 <script src="browserAndPageSizeChanges.js"></script>
+<script src="signin/signPopup.js"></script>
+<script type="module" src="emails.js"></script>
 </body>
 </html>
 

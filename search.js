@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 searchResultContainer = document.querySelector(".possibleSearchResultContainer")
 possibleSearchResult = document.querySelector(".possibleSearchResult")
 
@@ -6,6 +7,13 @@ apiUrlget  = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/getque
 async function getAllQuestions() {
   const questions = [];
   for (const subject of searchSubjects) {
+=======
+const apiUrlget = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/getquestion";
+
+async function getAllQuestions() {
+  const questions = [];
+  for (const subject of subjects) {
+>>>>>>> Stashed changes
     const subjectQuestionList = await getQuestionListSubject(subject);
     for (const question of subjectQuestionList) {
       questions.push({id: question.questionId, title: question.title});
@@ -15,6 +23,7 @@ async function getAllQuestions() {
 }
 
 async function getQuestionListSubject(subject) {
+<<<<<<< Updated upstream
     const url = new URL(`${apiUrlget}?subject=${subject}`);
     const questionList = await fetch(url,  {
         mode: "cors",
@@ -32,8 +41,15 @@ function handleSearchTrigger() {
   window.location.href = searchUrl;
 }
 
+function liveSearch() {
+  var innerHTML = (event.target || event.srcElement).innerHTML;
+  searchBar.value = innerHTML;
+  handleSearchTrigger()
+}
+
+console.log(possibleSearchResult)
+
 const searchSubjects = [
-  //htmlSection
   "chemistry",
   "biology",
   "physics",
@@ -47,11 +63,11 @@ const searchSubjects = [
 ];
 
 (async () => {
-  /*searchResultContainer.innerHTML = ''*/
   const questions = await getAllQuestions();
 
+
   const client = new MeiliSearch({
-      host: 'http://54.215.114.211',
+      host: 'http://13.52.102.170',
       apiKey: 'ZWE3ZGM2YmFmN2JkMjU0ZTBhZWViY2Jm',
   });
 
@@ -71,12 +87,10 @@ const searchSubjects = [
       }
       for (hit of liveResultsToShow) {
         searchResultContainer.innerHTML +=
-        `<div class="possibleSearchResult">${hit.title}</div>`
+          `<div class="possibleSearchResult" onclick="liveSearch()">${hit.title}</div>`
       }
     }
 
-
-    // Search bar input event listener
     const searchBar = document.querySelector('.search-bar');
     searchBar.addEventListener('input', (event) => {
     performLiveSearch(event.target.value);
@@ -84,19 +98,78 @@ const searchSubjects = [
 
 })();
 
+document.addEventListener('click', function(e) {
+    e = e || window.event;
+    var className = (e.target || e.srcElement).className;
+    if ((className !== 'search-bar') && (className !== 'possibleSearchResult')) {
+     searchResultContainer.style.display = 'none';
+    }
+
+}, false);
+
 searchBar.addEventListener('focus', () => {
-  // Set the display property of the search result container to 'none'
   searchResultContainer.style.display = 'block';
 });
-
-// Add an event listener for the blur event on the search bar
-searchBar.addEventListener('blur', () => {
-  // Set the display property of the search result container back to its original value
-  searchResultContainer.style.display = 'none'; // Or 'initial', 'flex', etc., depending on its original display value
-});
-
 /*
-chmod 400 meilisearchKeyPair.pema
-ssh -i meilisearchKeyPair.pem admin@54.215.114.211
-ssh -i c debian@52.53.226.42
-*/
+searchBar.addEventListener('blur', () => {
+
+});*/
+=======
+  const url = new URL(`${apiUrlget}?subject=${subject}`);
+  const questionList = await fetch(url, {
+    mode: "cors",
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then((response) => response.json());
+  return questionList.questionList;
+}
+
+const subjects = [
+  //htmlSection
+  "chemistry",
+  "biology",
+  "physics",
+  "english",
+  "history",
+  "geography",
+  "foreign language",
+  "computer science",
+  "physical education",
+  "math",
+];
+
+(async () => {
+    const questions = await getAllQuestions();
+
+    const client = new MeiliSearch({
+        host: 'http://127.0.0.1:7700',
+        apiKey: '8Gqjb5Plux9O5lB9UAjqdE_9WjCUNELR4K2WnPbOAhA',
+    });
+
+    let index = await client.getIndex('questions');
+
+    async function performSearch(inputValue) {
+      const search = await index.search(inputValue);
+      console.log(search.hits);
+    }
+
+    if (!index) {
+        try {
+            const newIndex = await createIndex(client, indexName);
+            console.log('Index created:', newIndex);
+            index = client.getIndex(indexName);
+        } catch (error) {
+            console.error('Error creating index:', error);
+        }
+    }
+
+    // Search bar input event listener
+    const searchBar = document.querySelector('.search-bar');
+    searchBar.addEventListener('input', (event) => {
+        performSearch(event.target.value);
+    });
+
+})();
+>>>>>>> Stashed changes
