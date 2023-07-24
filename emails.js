@@ -30,7 +30,7 @@ sendEmailButton.addEventListener("click", () => {
 
   var subject = questionBox.value.trim().replace(/\r?\n|\r/g, '').replace(/"/g, "‟").replace(/"/g, '⁄').replace(/\\/g, '＼');
 
-  var body = commentsBox.value.trim().replace(/\r?\n|\r/g, '').replace(/"/g, "‟").replace(/"/g, ' ⁄').replace(/\\/g, '＼');
+  var body = commentsBox.value.trim().replace(/\r?\n|\r/g, ' ').replace(/"/g, "‟").replace(/"/g, ' ⁄').replace(/\\/g, '＼');
 
   const payload = {
     "body": "{\"subject\": \"" + feedbackType + subject + "\", \"body\": \"" + body + "\"}"

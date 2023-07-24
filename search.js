@@ -58,7 +58,7 @@ const searchSubjects = [
 
 
   const client = new MeiliSearch({
-      host: 'http://54.215.114.211',
+      host: 'http://13.52.102.170',
       apiKey: 'ZWE3ZGM2YmFmN2JkMjU0ZTBhZWViY2Jm',
   });
 
