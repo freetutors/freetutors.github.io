@@ -115,8 +115,8 @@ function getTimeDifference(timestamp) {
 
 async function updateOnAnswer() {
   const questionAuthor = document.querySelector("#question-wrapper > div.question > div.contributorStats > p.username").innerHTML
-  console.log(questionAuthor)
   const questionUser = await getUser(questionAuthor)
+  console.log(questionUser)
   const messages = questionUser.user[0].InboxList
   messages.push(['Your question has been answered', getTimestamp()])
   await updateListAttribute('Freetutor-Users', { username: questionAuthor }, 'InboxList', messages);
@@ -176,6 +176,7 @@ async function updateOnAnswer() {
   document.querySelector(".inboxButton").addEventListener("click", inboxDisplay)
   }
 
+  console.log(pageName)
   if (pageName == 'viewQuestion.html') {
     document.getElementById("answer-send").addEventListener("click", updateOnAnswer)
   }
