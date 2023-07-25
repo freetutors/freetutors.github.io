@@ -216,6 +216,7 @@ async function displayQuestion(){
     var date = formatDate(question.timestamp)
     var views = question.views
     const user = await getUser(author)
+    console.log(user)
     const pfp = user.user[0].pfp
     var displayedImage = ""
     if (pfp == null){
@@ -229,7 +230,7 @@ async function displayQuestion(){
     <div class="title">${title}</div>
     <hr class="titleSep">
     <div class="question">
-      <img src=${displayedImage} class="global_pfp">
+      <img id = "pfp" src=${displayedImage} class="global_pfp" onclick="window.location = 'profile?username=${user.user[0].username}'">
       <div class="contributorStats">
         <p class="username">${author}</p>
         <p class="time">${date}</p>
@@ -266,7 +267,7 @@ async function displayQuestion(){
           "beforeend",
           `
           <div class="answer">
-          <img src=${displayedImage} class="global_pfp">
+          <img src=${displayedImage} class="global_pfp" onclick="window.location = 'profile?username=${author}'">
           <div class="contributorStats">
             <p class="username">${author}</p>
             <p class="time">${time}</p>

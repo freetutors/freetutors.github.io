@@ -33,7 +33,7 @@ if (username != null) {
   profileButton.classList.add('profileButton');
   profileButton.innerHTML = `
     <img class="inboxButton" src="inbox.png" onclick="inboxDisplay()">
-    <div class="userInfoContainerHome" onclick="window.location = 'profile'">
+    <div class="userInfoContainerHome" onclick="window.location = 'profile?username=${username}'">
       <img class="profilePicHome" src="data:image/png;base64,${pfp}">
       <p class="usernameOnProfileButton">${username}</p>
     </div>

@@ -55,9 +55,7 @@ async function showQuestionColumn(user){
       const questionBoxes = document.querySelectorAll(".box.text_box");
       
       questionBoxes.forEach((box, index) => {
-        console.log('afdfsd')
         box.addEventListener("click", function () {
-          console.log("called")
           const questionId = questionList[index].questionId; // Retrieve the questionId
           localStorage.setItem("QuestionID", JSON.stringify(questionId));
           window.location = `viewQuestion?questionId=${questionId}`;
@@ -113,7 +111,7 @@ function getTimeDifference(timestamp) {
 async function changePageInfo(user){
   const cognitoInfo = await getUserCognito(user.username)
   document.querySelector(".about-me-field").innerText = user.about
-  document.getElementById('username_txt').innerText = "humbalumba"//user.username
+  document.getElementById('username_txt').innerText = user.username//user.username
   document.getElementById('pfp_inner').src = `data:image/png;base64,${user.pfp}`
   document.querySelector(".signup-container_profile").innerHTML = 
     `
@@ -130,7 +128,6 @@ async function changePageInfo(user){
     <p class="info_input_group" type=password">${user.answers}</p>
     `
 }
-const username = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser")
 async function getUserCognito(username) {
   try {
     const params = {
@@ -177,7 +174,10 @@ async function updatepfp(username, pfp){
     }).then(response => response.json());
     console.log(response)
 }
+const urlParams = new URLSearchParams(window.location.search);
+const username = urlParams.get('username')
 var user = await getUser(username)
+
 await showQuestionColumn(user)
 await changePageInfo(user.user[0])
 document.querySelector(".updateAbout").addEventListener("click", () =>{
@@ -202,5 +202,11 @@ file.addEventListener('change', function(){
         }, 2000);
       })
       reader.readAsDataURL(choosedFile)
+  }
+})
+document.getElementById("sign-out").addEventListener("click",() => {
+  if (confirm("Do you want sign out?") == true){
+    localStorage.clear()
+    window.location ='/'
   }
 })

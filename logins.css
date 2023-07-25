@@ -238,6 +238,21 @@
 .signup-send:hover{
   transform: scale(1.01)
 }
+.tutor-info{
+  height: 100px;
+  overflow: auto;
+  resize: none;
+}
+.tutor-info::-webkit-scrollbar {/*custom scroll bar width*/
+  width: 10px; /* Adjust the width as needed */
+}
+
+.tutor-info::-webkit-scrollbar-thumb {/*custom scroll bar thumb(the scrolling thing)*/
+  width: 12px; /* Set the width of the thumb to 12px */
+  min-width: 12px; /* Ensure the minimum width of the thumb */
+  background-color: var(--text-box-bar-color);
+  border-radius: 2px;
+}
 @media only screen and (max-width: 870px) {
 
 .signup-container {
