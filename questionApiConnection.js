@@ -394,12 +394,6 @@ async function sendAnswer(questionId, body, author) {
   });
 }
 
-// document.getElementById("answer-send").addEventListener("click", function() {
-//   questionUser = await getUser(document.querySelector("#question-wrapper > div.question > div.contributorStats > p.username").innerHTML)
-//   console.log(questionUser)
-//   messages = questionUser.user[0].InboxList
-// })
-
 async function sendUpdate(questionId, answers, updatedViews, rating){
   const url = new URL(`${apiUrlupdate}?questionId=${questionId}&answers=${answers}&views=${updatedViews}&rating=${rating}`);
   const response = await fetch(url,  {

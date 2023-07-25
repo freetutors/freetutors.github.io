@@ -113,12 +113,29 @@ function getTimeDifference(timestamp) {
   }
 }
 
+async function updateOnAnswer() {
+  const questionAuthor = document.querySelector("#question-wrapper > div.question > div.contributorStats > p.username")
+  questionUser = await getUser(questionAuthor.innerHTML)
+  console.log(questionUser)
+  messages = questionUser.user[0].InboxList
+}
+
 (async () => {
+
+    function inboxDisplay() {
+      const inbox = document.querySelector('.inbox');
+
+      if ((inbox.style.display === "none") || (inbox.style.display === "")) {
+        inbox.style.display = "block";
+      } else {
+        inbox.style.display = "none";
+      }
+    }
    /*const usernames =
     [
       'dsfasdfafsdfa',
       'username',
-      'czvvzcxvczxzvcx',
+      'czvvzcxvczxzvcx'
       'rokkc',
       'use',
       'ritsabha',
@@ -143,8 +160,10 @@ function getTimeDifference(timestamp) {
   user = await getUser(username)
   const messages = user.user[0].InboxList.reverse()
 
+
+
   for (const message of messages) {
-    inbox.innerHTML +=
+    document.querySelector(".inbox").innerHTML +=
     `
       <div class="inboxLetters">${message[0]}</div>
       <div class="inboxTime">${getTimeDifference(message[1])}</div>
@@ -155,8 +174,8 @@ function getTimeDifference(timestamp) {
   document.querySelector(".inboxButton").addEventListener("click", inboxDisplay)
   }
 
+  if (pageName == 'viewQuestion.html') {
+    document.getElementById("answer-send").addEventListener("click", updateOnAnswer)
+  }
 })();
 
-if (pageName == 'viewQuestion.html') {
-  console.log("yay")
-}
