@@ -14,6 +14,7 @@ async function createUser(userdata) {
     const timestamp = new Date().toISOString();
     const defaultPic = path.join(__dirname, "placeholder_pfp.png")
     const about = ""
+    const status = ""
     const imageBuffer = fs.readFileSync(defaultPic)
     let profilePictureBase64 = imageBuffer.toString("base64")
     
@@ -23,7 +24,8 @@ async function createUser(userdata) {
         answers: 0,
         pfp: profilePictureBase64,
         timestamp: timestamp,
-        about: about
+        about: about,
+        status: status
     }
     await saveQuestion(user)
     const response = {
