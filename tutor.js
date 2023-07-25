@@ -37,7 +37,7 @@ async function getUserCognito(username) {
 const username = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser")
 const user = await getUserCognito(username)
 const submit = document.getElementById("tutor-send");
-const email = user.UserAttributes[4].Value
+const email = "Account Email:" + user.UserAttributes[4].Value
 const functionName = 'sendEmail';
 
 const lambda = new AWS.Lambda();
@@ -45,13 +45,13 @@ const lambda = new AWS.Lambda();
 submit.addEventListener("click", () => {
 
   var subject = "New Tutor!!!";
-    const phone = document.getElementById("phone-number").value.trim().replace(/\r?\n|\r/g, ' ').replace(/"/g, "‟").replace(/"/g, ' ⁄').replace(/\\/g, '＼');
-    const subjects = document.getElementById("subjects").value.trim().replace(/\r?\n|\r/g, ' ').replace(/"/g, "‟").replace(/"/g, ' ⁄').replace(/\\/g, '＼');
-    const classes = document.getElementById("classes").value.trim().replace(/\r?\n|\r/g, ' ').replace(/"/g, "‟").replace(/"/g, ' ⁄').replace(/\\/g, '＼');
-    const school = document.getElementById("school").value.trim().replace(/\r?\n|\r/g, ' ').replace(/"/g, "‟").replace(/"/g, ' ⁄').replace(/\\/g, '＼');
-    const grade = document.getElementById("grade").value.trim().replace(/\r?\n|\r/g, ' ').replace(/"/g, "‟").replace(/"/g, ' ⁄').replace(/\\/g, '＼');
-    const info = document.getElementById("info").value.trim().replace(/\r?\n|\r/g, ' ').replace(/"/g, "‟").replace(/"/g, ' ⁄').replace(/\\/g, '＼');
-    var body = "Phone:" + phone + "\n" + "Strong Subjects:" + subjects + "\n" + "Classes:" + classes + "\n" + "School:" + school + "\n" + "Grade:" + grade + "/n"+ "Account Email:" + email + "/n"+"/n"+"Info:"+info
+    const phone = "Phone:" + document.getElementById("phone-number").value.trim().replace(/\r?\n|\r/g, ' ').replace(/"/g, "‟").replace(/"/g, ' ⁄').replace(/\\/g, '＼');
+    const subjects = "          Strong Subjects:" +  document.getElementById("subjects").value.trim().replace(/\r?<br>|\r/g, ' ').replace(/"/g, "‟").replace(/"/g, ' ⁄').replace(/\\/g, '＼');
+    const classes =  "        Classes:" +  document.getElementById("classes").value.trim().replace(/\r?\n|\r/g, ' ').replace(/"/g, "‟").replace(/"/g, ' ⁄').replace(/\\/g, '＼');
+    const school = "        School:" + document.getElementById("school").value.trim().replace(/\r?\n|\r/g, ' ').replace(/"/g, "‟").replace(/"/g, ' ⁄').replace(/\\/g, '＼');
+    const grade = "        Grade:" + document.getElementById("grade").value.trim().replace(/\r?\n|\r/g, ' ').replace(/"/g, "‟").replace(/"/g, ' ⁄').replace(/\\/g, '＼');
+    const info = "        Info:"+ document.getElementById("info").value.trim().replace(/\r?\n|\r/g, ' ').replace(/"/g, "‟").replace(/"/g, ' ⁄').replace(/\\/g, '＼');
+    var body = phone + subjects + classes + school + grade + email + info
     const payload = {
     "body": "{\"subject\": \"" + subject + "\", \"body\": \"" + body + "\"}"
   };
