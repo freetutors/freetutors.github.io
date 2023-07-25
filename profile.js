@@ -195,7 +195,11 @@ file.addEventListener('change', function(){
         img.setAttribute('src', reader.result)
         const fileData = reader.result.split(',')[1]; // Extract base64 data from Data URL
         updatepfp(username, fileData)
-        location.reload()
+        setTimeout(function() {
+          //your code to be executed after 1 second
+          location.reload()
+
+        }, 2000);
       })
       reader.readAsDataURL(choosedFile)
   }
