@@ -385,7 +385,7 @@ hr.pfp_line {
   }
 .pfp_border{
   /* margin-left: -155px; */
-  left: 290px;
+  left: 270px;
   
 }
 #question_header {
@@ -396,7 +396,7 @@ hr.pfp_line {
      margin-left: 300px;
 }
 #username_txt{
-  /* margin-left: 200px; */
+  margin-left: 250px;
   color: white;
   font-size: 80px;
   margin-top: 115px;
