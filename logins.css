@@ -224,7 +224,20 @@
   margin-bottom: 1rem;
   padding-top: -1rem;
 }
-
+.forgotPwd{
+  color: var(--text-color);
+  cursor: pointer;
+  transition: transform 0.3s
+}
+.forgotPwd:hover{
+  transform: scale(1.2)
+}
+.login-send:hover{
+  transform: scale(1.01)
+}
+.signup-send:hover{
+  transform: scale(1.01)
+}
 @media only screen and (max-width: 870px) {
 
 .signup-container {
