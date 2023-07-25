@@ -364,6 +364,7 @@ async function answerArea(questionList, quill){
     }
   })
 }
+
 async function sendAnswer(questionId, body, author) {
   const response = await fetch(apiUrlanswer, {
     mode: 'cors',
@@ -379,7 +380,13 @@ async function sendAnswer(questionId, body, author) {
       body: body,
       author: author,
     })
-  }); 
+  });
+}
+
+document.getElementById("answer-send").addEventListener("click", function() {
+  questionUser = await getUser(document.querySelector("#question-wrapper > div.question > div.contributorStats > p.username").innerHTML)
+  console.log(questionUser)
+  messages = questionUser.user[0].InboxList
 }
 
 async function sendUpdate(questionId, answers, updatedViews, rating){
