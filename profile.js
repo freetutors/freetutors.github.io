@@ -199,7 +199,7 @@ file.addEventListener('change', function(){
           //your code to be executed after 1 second
           location.reload()
 
-        }, 2000);
+        }, 3000);
       })
       reader.readAsDataURL(choosedFile)
   }
