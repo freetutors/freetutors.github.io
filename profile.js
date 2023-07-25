@@ -113,7 +113,7 @@ function getTimeDifference(timestamp) {
 async function changePageInfo(user){
   const cognitoInfo = await getUserCognito(user.username)
   document.querySelector(".about-me-field").innerText = user.about
-  document.getElementById('username_txt').innerText = user.username
+  document.getElementById('username_txt').innerText = "humbalumba"//user.username
   document.getElementById('pfp_inner').src = `data:image/png;base64,${user.pfp}`
   document.querySelector(".signup-container_profile").innerHTML = 
     `
@@ -195,8 +195,11 @@ file.addEventListener('change', function(){
         img.setAttribute('src', reader.result)
         const fileData = reader.result.split(',')[1]; // Extract base64 data from Data URL
         updatepfp(username, fileData)
-        showQuestionColumn(user)
-        changePageInfo(user.user[0])
+        setTimeout(function() {
+          //your code to be executed after 1 second
+          location.reload()
+
+        }, 2000);
       })
       reader.readAsDataURL(choosedFile)
   }
