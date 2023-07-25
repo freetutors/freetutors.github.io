@@ -48,4 +48,6 @@ sendEmailButton.addEventListener("click", () => {
       console.log('Response from Lambda:', data.Payload);
     }
   });
+  alert("Suggestion Sent")
+  window.location = '/'
 });

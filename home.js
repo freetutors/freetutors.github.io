@@ -23,7 +23,7 @@ async function showQuestionColumn(subject){
       document.querySelector(".questions_list").innerHTML +=
         `<div class="box text_box">
         <!-- pfp -->
-        <img id="global_pfp" src="${displayedImage}">
+        <img id="global_pfp" src="${displayedImage}"onclick="window.location = 'profile?username=${author}'">
         <div id="text_box_question_content">${title}</div>
         <div id="asked_by_line">asked by ${author}, ${timeAgo}</div>
         <div id="answered_by_line">Be the first to answer!</div>
@@ -35,7 +35,13 @@ async function showQuestionColumn(subject){
       }
       const questionBoxes = document.querySelectorAll(".box.text_box");
       questionBoxes.forEach((box, index) => {
-        box.addEventListener("click", function () {
+        box.addEventListener("click", function (event) {
+          console.log(event.target.id)
+          if (event.target.id === "global_pfp") { 
+            console.log("called")
+            return;
+          }
+          console.log(event.target)
           const questionId = questionList[index].questionId; // Retrieve the questionId
           localStorage.setItem("QuestionID", JSON.stringify(questionId));
           window.location = `viewQuestion?questionId=${questionId}`;

@@ -156,12 +156,13 @@ hr.pfp_line {
 .questions_list_profile {/*scroll area with questions. It is invisible*/
        overflow-y: scroll;
        overflow-x: hidden;
-       max-height: calc(100vh - 400px);
+       max-height: calc(100vh - 190px);
        margin-right: 215px;
        width: 850px;
        margin: auto;
        margin-top: 20px;
        margin-right: 308px;
+       margin-bottom: 60px;
        float: left;
        margin-left: calc(50% - 320px);
        scrollbar-color: var(--text-box-bar-color) var(--background-color);
@@ -269,7 +270,7 @@ hr.pfp_line {
 .about-me{
   position: absolute;
   top: 366px;
-  margin-left: calc(50% - 569px);
+  left: calc(50% - 569px);
   width: 170px;
   height: 380px;
   background-color: var(--header-color);
@@ -277,6 +278,16 @@ hr.pfp_line {
   border-radius: .5rem;
   box-shadow: 0 1rem 3rem #000000;
   padding: 20px;
+  /* position: absolute;
+  top: 366px;
+  margin-left: calc(50% - 569px);
+  width: 170px;
+  height: 380px;
+  background-color: var(--header-color);
+  opacity: 0.95;
+  border-radius: .5rem;
+  box-shadow: 0 1rem 3rem #000000;
+  padding: 20px; */
 }
 .about-me-field{
   margin-top: 10px;
@@ -374,6 +385,16 @@ hr.pfp_line {
 #arrow-left:hover {
   transform: scale(1.08);
 }
+#sign-out{
+  width: 100px;
+  font-size: 10pt;
+  background-color: red;
+  color: var(--text-color);
+  left: 87.5%;
+  top: 96%;
+  z-index: 21;
+  position: fixed;
+}
 
 @media only screen and (max-width: 1240px) {
 
@@ -381,7 +402,7 @@ hr.pfp_line {
     left: 50px;
   }
 .about-me{
-    left: 155px;
+    left: 50px;
   }
 .pfp_border{
   /* margin-left: -155px; */

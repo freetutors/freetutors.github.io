@@ -31,6 +31,7 @@
     cursor: pointer;
     overflow: hidden;
     align-self: center;
+    z-index: 20;
   }
  .global_pfp{
   height: 50px;
@@ -40,6 +41,7 @@
   cursor: pointer;
   overflow: hidden;
   align-self: center;
+  z-index: 20;
 }
   .profileButton{
     width: 175px;
