@@ -114,10 +114,12 @@ function getTimeDifference(timestamp) {
 }
 
 async function updateOnAnswer() {
-  const questionAuthor = document.querySelector("#question-wrapper > div.question > div.contributorStats > p.username")
-  questionUser = await getUser(questionAuthor.innerHTML)
+  const questionAuthor = document.querySelector("#question-wrapper > div.question > div.contributorStats > p.username").innerHTML
+  const questionUser = await getUser(questionAuthor)
   console.log(questionUser)
-  messages = questionUser.user[0].InboxList
+  const messages = questionUser.user[0].InboxList
+  messages.push(['Your question has been answered', getTimestamp()])
+  await updateListAttribute('Freetutor-Users', { username: questionAuthor }, 'InboxList', messages);
 }
 
 (async () => {
@@ -174,7 +176,8 @@ async function updateOnAnswer() {
   document.querySelector(".inboxButton").addEventListener("click", inboxDisplay)
   }
 
-  if (pageName == 'viewQuestion.html') {
+  console.log(pageName)
+  if (pageName == 'viewQuestion') {
     document.getElementById("answer-send").addEventListener("click", updateOnAnswer)
   }
 })();
