@@ -33,13 +33,14 @@
 }
 
 .pfp_user {
-
+  position: absolute;
   /* height: 400px; */
   display: flex;
-  justify-content: center;
-  text-align: center;
+  justify-content: left;
+  text-align: left;
   /* margin-left: calc(50% - 569px); */
   /* transform: translateX(110px); */
+  left: calc(50% - 340px);
 }
 
 .pfp_border {
@@ -53,7 +54,7 @@
   z-index: 9;
   background-color: var(--secondary-color);
   margin-top: 130px;
-  left: calc(50% - 340px);
+
 }
 
 #uploadBtn{
@@ -94,7 +95,6 @@
   z-index: 2;
 }
 
-
 .pfp_border:hover #pfp_inner {
     filter: brightness(0.2);
 }
@@ -113,16 +113,23 @@ hr.pfp_line {
   border-left: 9px solid var(--secondary-color);
   top: 260px;
 }
-
-#username_txt {
-    margin-left: 0px;
-    color: white;
-    font-size: 80px;
-    margin-top: 115px;
-    z-index: 11;
-    transform: translateX(-50.5px);
+.username_container {
+  position: absolute;
+  top: 50%; /* Vertically center the container */
+  transform: translateY(-50%); /* Vertically center the container */
+  color: white;
+  font-size: 24px;
 }
 
+#username_txt {
+  margin-left: 20px;
+  position: absolute;
+  text-align: left;
+  color: white;
+  font-size: 80px;
+  margin-top: 135px;
+  z-index: 11;
+}
 
 /* for your questions part*/
 
@@ -140,7 +147,7 @@ hr.pfp_line {
      height: 25px;
      background-color: var(--text-box-bar-color);
      border: 1.5px solid var(--border-color);
-     margin-top: 90px;
+     margin-top: 260px;
      float: left;
      margin-left: calc(50% - 320px);
      margin-right: 200px;
@@ -153,7 +160,7 @@ hr.pfp_line {
        margin-right: 215px;
        width: 850px;
        margin: auto;
-       margin-top: 15px;
+       margin-top: 20px;
        margin-right: 308px;
        float: left;
        margin-left: calc(50% - 320px);
@@ -389,7 +396,7 @@ hr.pfp_line {
      margin-left: 300px;
 }
 #username_txt{
-  margin-left: 200px;
+  /* margin-left: 200px; */
   color: white;
   font-size: 80px;
   margin-top: 115px;

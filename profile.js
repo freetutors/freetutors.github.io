@@ -113,7 +113,7 @@ function getTimeDifference(timestamp) {
 async function changePageInfo(user){
   const cognitoInfo = await getUserCognito(user.username)
   document.querySelector(".about-me-field").innerText = user.about
-  document.getElementById('username_txt').innerText = user.username
+  document.getElementById('username_txt').innerText = "humbalumba"//user.username
   document.getElementById('pfp_inner').src = `data:image/png;base64,${user.pfp}`
   document.querySelector(".signup-container_profile").innerHTML = 
     `
