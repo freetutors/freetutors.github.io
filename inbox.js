@@ -177,7 +177,7 @@ async function updateOnAnswer() {
   }
 
   console.log(pageName)
-  if (pageName == 'viewQuestion.html') {
+  if (pageName == 'viewQuestion') {
     document.getElementById("answer-send").addEventListener("click", updateOnAnswer)
   }
 })();
