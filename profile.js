@@ -195,8 +195,7 @@ file.addEventListener('change', function(){
         img.setAttribute('src', reader.result)
         const fileData = reader.result.split(',')[1]; // Extract base64 data from Data URL
         updatepfp(username, fileData)
-        showQuestionColumn(user)
-        changePageInfo(user.user[0])
+        location.reload()
       })
       reader.readAsDataURL(choosedFile)
   }

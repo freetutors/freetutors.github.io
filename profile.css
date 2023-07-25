@@ -455,6 +455,8 @@ hr.pfp_line {
 .pfp_user {
   position: absolute;
   transform: translateX(150px);
+  z-index: 12;
+  left: -7%;
 }
 
 #question_header {
