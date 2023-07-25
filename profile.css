@@ -95,10 +95,12 @@
   z-index: 2;
 }
 
-.pfp_border:hover #pfp_inner {
+.pfp_border:hover .pfp_inner {
     filter: brightness(0.2);
 }
-
+.pfp_border:hover .pfp_inner {
+  filter: brightness(0.2);
+}
 .pfp_border:hover #uploadBtn {
     display: block;
 }
@@ -390,7 +392,7 @@ hr.pfp_line {
   font-size: 10pt;
   background-color: red;
   color: var(--text-color);
-  left: 87.5%;
+  right: 20px;
   top: 96%;
   z-index: 21;
   position: fixed;
@@ -502,9 +504,7 @@ hr.pfp_line {
     margin-top: 382.5px;
   }
   .about-me{
-    inset: 0;
-    margin: auto;
-    margin-top: 382.5px;
+    display: none;
   }
 
 }

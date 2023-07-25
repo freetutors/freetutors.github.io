@@ -91,7 +91,11 @@ if (window.location.pathname.indexOf("createQuestion") !== -1) {
           console.log('User account is verified');
           submitQuestion()
           addUserQuestions(userId)
-          window.location = '/'
+          alert("Question Submitted!")
+          setTimeout(function() {
+            //your code to be executed after 1 second
+            window.location="/"
+          }, 3000);
         } else {
           if(window.confirm("Please verify your account to answer a question"));{
             window.location = "/verification.html"
@@ -173,6 +177,7 @@ async function submitQuestion() {
     });
     if (response.ok) {
       const data = await response.json();
+      console.log(data)
     } else {
       alert("Error adding question, try again later")
       console.log("Error calling API");
@@ -207,6 +212,7 @@ async function displayQuestion(){
   const questionList = await getQuestionListId(questionId)
   const questionArray = questionList
   for(const question of questionArray) {
+    console.log(question)
     var title = question.title
     let body = question.body.replace(/<p>/g, "").replace(/<\/p>/g, " ")
     var author = question.author
@@ -247,6 +253,7 @@ async function displayQuestion(){
     if (answerInfo != null){
 
       for(const answer of answerInfo) {
+        console.log(answer)
         var abody = answer.body.replace(/<p>/g, "").replace(/<\/p>/g, " ")
         var author = answer.author
         var answerId = answer.answerId
@@ -351,7 +358,10 @@ async function answerArea(questionList, quill){
           addUserAnswers(username)
           sendAnswer(questionId, body, author)
           sendUpdate(questionId, answers, views, rating)
-          location.reload()
+          setTimeout(function() {
+            //your code to be executed after 3 second
+            location.reload()
+          }, 3000);
         } else {
           if(window.confirm("Please verify your account to answer a question"));{
             window.location = "/verification.html"

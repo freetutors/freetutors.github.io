@@ -176,6 +176,15 @@ async function updatepfp(username, pfp){
 }
 const urlParams = new URLSearchParams(window.location.search);
 const username = urlParams.get('username')
+const viewerUsername = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser")
+if (username !== viewerUsername){
+  document.querySelector(".pfp_border").innerHTML=
+      `
+      <img id="pfp_inner" class ="pfp_inner2" src="placeholder_pfp.png">
+      `
+  document.getElementById("pfp_inner")
+  document.querySelector("#sign-out").style.display = "none"
+}
 var user = await getUser(username)
 
 await showQuestionColumn(user)
@@ -198,7 +207,6 @@ file.addEventListener('change', function(){
         setTimeout(function() {
           //your code to be executed after 1 second
           location.reload()
-
         }, 3000);
       })
       reader.readAsDataURL(choosedFile)
@@ -211,3 +219,4 @@ document.getElementById("sign-out").addEventListener("click",() => {
     window.location ='/'
   }
 })
+
