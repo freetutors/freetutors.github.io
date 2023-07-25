@@ -394,10 +394,6 @@ async function sendAnswer(questionId, body, author) {
   });
 }
 
-
-
-
-
 async function sendUpdate(questionId, answers, updatedViews, rating){
   const url = new URL(`${apiUrlupdate}?questionId=${questionId}&answers=${answers}&views=${updatedViews}&rating=${rating}`);
   const response = await fetch(url,  {
@@ -408,7 +404,7 @@ async function sendUpdate(questionId, answers, updatedViews, rating){
 
     },
   }).then(response => response.json());
-};
+}
 
 async function updateAnswer(questionId, answerId, rating){
   const url = new URL(`${apiUrlanswerUpdate}?questionId=${questionId}&answerId=${answerId}&rating=${rating}`)
