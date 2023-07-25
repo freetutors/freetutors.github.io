@@ -207,6 +207,7 @@ file.addEventListener('change', function(){
 document.getElementById("sign-out").addEventListener("click",() => {
   if (confirm("Do you want sign out?") == true){
     localStorage.clear()
+    sessionStorage.clear()
     window.location ='/'
   }
 })
