@@ -109,7 +109,7 @@ function getTimeDifference(timestamp) {
 }
 
 async function updateOnAnswer() {
-  const questionAuthor = 'rokkc'/*document.querySelector("#question-wrapper > div.question > div.contributorStats > p.username").innerHTML*/
+  const questionAuthor = document.querySelector("#question-wrapper > div.question > div.contributorStats > p.username").innerHTML
   const questionUser = await getUser(questionAuthor)
   console.log(questionAuthor)
   const messages = questionUser.user[0].InboxList
@@ -175,7 +175,7 @@ async function updateBooleanAttribute(tableName, key, attributeName, attributeVa
   document.querySelector(".inboxButton").addEventListener("click", inboxDisplay)
   }
 
-  if (pageName == 'viewQuestion.html') {
+  if (pageName == 'viewQuestion') {
     document.getElementById("answer-send").addEventListener("click", updateOnAnswer)
   }
 
