@@ -174,7 +174,7 @@ async function updateBooleanAttribute(tableName, key, attributeName, attributeVa
   document.querySelector(".inboxButton").addEventListener("click", inboxDisplay)
   }
 
-  if (pageName == 'viewQuestion.html') {
+  if (pageName == 'viewQuestion') {
     document.getElementById("answer-send").addEventListener("click", updateOnAnswer)
   }
 
