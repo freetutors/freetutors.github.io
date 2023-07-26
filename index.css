@@ -252,69 +252,6 @@
    border-right: 11px solid white;
 }
 
-div {
-    font-family: Arial, sans-serif;
-  color: #34a8eb;
-  width: fit-content;
-}
-
-button {
-  display: block;
-  background-color: #34a8eb;
-  border: 0;
-  color: white;
-  padding: 1em;
-  border-radius: 25px;
-  margin-top: 1em;
-}
-
-h2 {
-  margin: 0.1em 0;
-  position: relative;
-  display: flex;
-  align-items: baseline;
-  font-size: 48px;
-}
-
-h2 + span {
-  display: block;
-  width: 100%;
-  text-align: right;
-}
-
-#number {
-  position: relative;
-  display: flex;
-  margin-right: 0.2em;
-  width: 0;
-  overflow: hidden;
-  height: 48px;
-  transition: width 1.8s ease;
-}
-
-#number > span {
-  display: flex;
-  text-align: center;
-  flex-direction: column;
-  opacity: 0;
-  flex-shrink: 2;
-  flex-basis: 48px;
-  width: 1px;
-
-  position: absolute;
-  right: 0;
-
-  line-height: 48px;
-  transition: all 2s ease;
-}
-
-#number > span.visible {
-  position: static;
-  width: 30px;
-  opacity: 1;
-  flex-shrink: 1;
-}
-
 @media only screen and (max-width: 1400px) {
 
    .question_header {
