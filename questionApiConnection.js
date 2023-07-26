@@ -4,7 +4,7 @@ const apiUrlcreate = config.apiUrlcreate
 const apiUrlget = config.apiUrlget;
 const apiUrlupdate = config.apiUrlupdate;
 const apiUrlanswer = config.apiUrlanswer;
-const apiUrlanswerUpdate = config.apiUrlanswer;
+const apiUrlanswerUpdate = config.apiUrlanswerUpdate;
 const apiUrlgetUser = config.apiUrlgetUser;
 const apiUrlupdateUser = config.apiUrlupdateUser
 const apiUrlupdateUserAnswer = config.apiUrlupdateUserAnswer
@@ -395,6 +395,7 @@ async function sendUpdate(questionId, answers, updatedViews, rating){ //updating
 }
 
 async function updateAnswer(questionId, answerId, rating){ //updating when answer is rated
+  console.log(apiUrlanswerUpdate)
   const url = new URL(`${apiUrlanswerUpdate}?questionId=${questionId}&answerId=${answerId}&rating=${rating}`)
   const response = await fetch(url,  {
     mode: "cors",
@@ -443,7 +444,7 @@ async function answerRating(answer, questionId){ //rating function
           ``
           setTimeout(function(){
             displayQuestion()  //lag proofing
-          },1000)
+          },2000)
           }
           else{ //if cancling upvote
             document.getElementById("upvote"+answerId).style.borderBottom = '15px solid white'
@@ -456,7 +457,7 @@ async function answerRating(answer, questionId){ //rating function
             ``
             setTimeout(function(){
               displayQuestion()  
-            },1000)
+            },2000)
           }
         resolve(ratingUpdate)
         }
@@ -478,7 +479,7 @@ async function answerRating(answer, questionId){ //rating function
         ``
         setTimeout(function(){
           displayQuestion()  
-        },1000)
+        },2000)
       }
         else if(downclick == true && upclick == false) {
           document.getElementById("downvote"+answerId).style.borderTop = '15px solid white'
@@ -491,7 +492,7 @@ async function answerRating(answer, questionId){ //rating function
           ``
           setTimeout(function(){
             displayQuestion()  
-          },1000)  
+          },2000)  
         }
         resolve(ratingUpdate)
       }
