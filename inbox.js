@@ -29,6 +29,7 @@ const docClient = new AWS.DynamoDB.DocumentClient();
 const cognito = new AWS.CognitoIdentityServiceProvider();
 const username = /*'testUserForInbox'*/localStorage.getItem('CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser');
 var user = await getUser(username);
+const questionRating = document.querySelector("#question-wrapper > div.question > div.rating-container > div.rating-value")
 
 
 async function getUser(username) {
@@ -108,7 +109,7 @@ function getTimeDifference(timestamp) {
 }
 
 async function updateOnAnswer() {
-  const questionAuthor = 'rokkc'/*document.querySelector("#question-wrapper > div.question > div.contributorStats > p.username").innerHTML*/
+  const questionAuthor = document.querySelector("#question-wrapper > div.question > div.contributorStats > p.username").innerHTML
   const questionUser = await getUser(questionAuthor)
   console.log(questionUser)
   const messages = questionUser.user[0].InboxList
@@ -170,9 +171,9 @@ async function updateOnAnswer() {
   document.querySelector(".inboxButton").addEventListener("click", inboxDisplay)
   }
 
-  console.log(pageName)
   if (pageName == 'viewQuestion.html') {
     document.getElementById("answer-send").addEventListener("click", updateOnAnswer)
+    console.log(questionRating)
   }
 })();
 

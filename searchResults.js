@@ -60,7 +60,7 @@ async function getAllQuestions2() {
     }
   }
   return questions;
-} // <-- Missing closing brace for getAllQuestions2()
+}
 
 async function getQuestionListSubject(subject) {
   const url = new URL(`${apiUrlget}?subject=${subject}`);
@@ -90,16 +90,15 @@ const searchSubjects = [
 (async () => {
   const questions = await getAllQuestions();
   const totalQuestions = await getAllQuestions2();
-  console.log(totalQuestions);
 
-  const client = new MeiliSearch({
-    host: 'http://54.215.114.211',
-    apiKey: 'ZWE3ZGM2YmFmN2JkMjU0ZTBhZWViY2Jm',
-  });
+    const client = new MeiliSearch({
+        host: 'http://13.52.102.170',
+        apiKey: 'ZWE3ZGM2YmFmN2JkMjU0ZTBhZWViY2Jm',
+    });
 
   const index = client.index('questionIndex');
-
   let response = await index.addDocuments(questions);
+
   const search = await index.search(query);
   for (const hit of search.hits) {
     for (const question of totalQuestions) {
