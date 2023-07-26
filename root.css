@@ -43,6 +43,21 @@
   align-self: center;
   z-index: 20;
 }
+.title-box {
+  display: flex; /* Use flexbox to create a horizontal layout */
+  align-items: center;
+  float: right;
+   /* Align items vertically in the center */
+}
+.tutor-icon{
+  margin-top: 27px;
+  margin-left: 10px;
+}
+.staff-icon{
+  scale: 1.5;
+  margin-top: 18px;
+  margin-left: 20px;
+}
   .profileButton{
     width: 175px;
     margin-left: 10px;

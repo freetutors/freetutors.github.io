@@ -222,7 +222,16 @@ async function displayQuestion(){
     var date = formatDate(question.timestamp)
     var views = question.views
     const user = await getUser(author)
-    console.log(user)
+    let icon
+    if (user.user[0].status =="tutor"){
+      icon = "trace.svg"
+    }
+    else if (user.user[0].status =="staff"){
+      icon = "image2vector.svg"
+    }
+    else {
+      icon = ""
+    }
     const pfp = user.user[0].pfp
     var displayedImage = ""
     if (pfp == null){
@@ -238,7 +247,10 @@ async function displayQuestion(){
     <div class="question">
       <img id = "pfp" src=${displayedImage} class="global_pfp" onclick="window.location = 'profile?username=${user.user[0].username}'">
       <div class="contributorStats">
-        <p class="username">${author}</p>
+        <div class ="title-box">
+          <p class="username">${author}</p>
+          <img class="${user.user[0].status}-icon" src="${icon}" alt="Verified Tutor" width="25px" height="25px"></img>
+        </div>
         <p class="time">${date}</p>
       </div>
       <p class = "questionBody">${body}</p>
@@ -252,16 +264,23 @@ async function displayQuestion(){
     document.querySelector(".answer-wrapper").innerHTML = ""
     if (answerInfo != null){
 
-      for(const answer of answerInfo) {
-        console.log(answer)
+      for(const answer of answerInfo) {        
         var abody = answer.body.replace(/<p>/g, "").replace(/<\/p>/g, " ")
-        var author = answer.author
+        let author = answer.author
         var answerId = answer.answerId
         var rating = answer.rating
-        console.log(author)
         var time = formatDate(answer.timestamp)
         const user = await getUser(author)
-        console.log(user)
+        let icon
+        if (user.user[0].status =="tutor"){
+          icon = "trace.svg"
+        }
+        else if (user.user[0].status =="staff"){
+          icon = "image2vector.svg"
+        }
+        else {
+          icon = ""
+        }
         const pfp = user.user[0].pfp
         var displayedImage = ""
         if (pfp == null){
@@ -276,7 +295,10 @@ async function displayQuestion(){
           <div class="answer">
           <img src=${displayedImage} class="global_pfp" onclick="window.location = 'profile?username=${author}'">
           <div class="contributorStats">
+          <div class ="title-box">
             <p class="username">${author}</p>
+            <img class="${user.user[0].status}-icon" src="${icon}" alt="Verified Tutor" width="25px" height="25px"></img>
+          </div>
             <p class="time">${time}</p>
           </div>
           <p class="answerBody">${abody}</p>
