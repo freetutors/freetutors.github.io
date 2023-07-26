@@ -111,7 +111,6 @@ function getTimeDifference(timestamp) {
 async function updateOnAnswer() {
   const questionAuthor = document.querySelector("#question-wrapper > div.question > div.contributorStats > p.username").innerHTML
   const questionUser = await getUser(questionAuthor)
-  console.log(questionUser)
   const messages = questionUser.user[0].InboxList
   messages.push(['Your ' + '<a href=' + window.location.href + '>question</a>' + ' has been answered', getTimestamp()])
   await updateListAttribute('Freetutor-Users', { username: questionAuthor }, 'InboxList', messages);
@@ -128,25 +127,6 @@ async function updateOnAnswer() {
         inbox.style.display = "none";
       }
     }
-   /*const usernames =
-    [
-      'dsfasdfafsdfa',
-      'username',
-      'czvvzcxvczxzvcx'
-      'rokkc',
-      'use',
-      'ritsabha',
-      'testauthor',
-      'humbalumba',
-      'faddafs',
-      'jignashu',
-      'usersdfasadfname',
-      'user.',
-      'u',
-      'testing',
-      'testUserForInbox',
-    ]
- for (const username1 of usernames) {*/
   const inbox = document.querySelector(".inbox")
 
   if (username !== null) {
@@ -173,7 +153,6 @@ async function updateOnAnswer() {
 
   if (pageName == 'viewQuestion.html') {
     document.getElementById("answer-send").addEventListener("click", updateOnAnswer)
-    console.log(questionRating)
   }
 })();
 

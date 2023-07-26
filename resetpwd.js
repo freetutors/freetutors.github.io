@@ -15,13 +15,11 @@ AWS.config.update({ //updating info
   accessKeyId: accessKey,
   secretAccessKey: secretKey
 });
-console.log("called")
 var cognito = new AWS.CognitoIdentityServiceProvider(); //connection to cognito identiy
 
 document.getElementById('newPwd-send').addEventListener('click', function(event) {
   event.preventDefault();
-  console.log("clicked")
-  const verificationCode = document.getElementById('pwdCode').value;
+  const verificationCode = document.getElementById('pwdCode').value; //getting values from html
   const newPassword = document.getElementById('newPwd').value;
   const confirmPassword = document.getElementById("newPwdConfirm").value
   if (newPassword==confirmPassword){
@@ -37,7 +35,7 @@ document.getElementById('newPwd-send').addEventListener('click', function(event)
       if (err) {
         console.log(err)
         if (err.code === "ExpiredCodeException"){
-          alert("Invalid Code: Please Try Again")
+          alert("Invalid Code: Please Try Again") //letting user know if error is on their part
         }
         else{
           alert("Invalid Password")

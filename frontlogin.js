@@ -47,10 +47,9 @@ function loginUser(username, password) { //user auth data
           // User authentication successful 
           const accessToken = result.getAccessToken().getJwtToken();
           window.accessToken = accessToken //this is globalizing a logged in user in the whole webpage
-          console.log('Access Token: ', accessToken);
           window.location="/"
         },
-        onFailure: function(err) {
+        onFailure: function(err) { //giving user info based on incorrect info
             if (err.code === 'NotAuthorizedException') {
                 alert('Incorrect Password!')
             }
@@ -67,13 +66,13 @@ function loginUser(username, password) { //user auth data
         }
       });
     }
-    document.querySelector('.login-send').addEventListener("click", function(e){
+    document.querySelector('.login-send').addEventListener("click", function(e){ //when login button clicked
         e.preventDefault();
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
         loginUser(username, password);
     }) 
-    document.getElementById('password').addEventListener("keyup", function(event) {
+    document.getElementById('password').addEventListener("keyup", function(event) { //when enter key pressed
       if (event.key === "Enter") {
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;

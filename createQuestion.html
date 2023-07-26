@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link href='https://fonts.googleapis.com/css?family=Lexend|Lexend:400,700' rel='stylesheet'>
   <link rel="stylesheet" href="createQuestion.css"/>
   <link rel="stylesheet" href="root.css"/>
@@ -42,8 +43,7 @@
 <div class="back_button" onclick="goBack()">back</div>
 
 <div class="instructions">Choose a Title</div>
-<input class="question_box" id="title" placeholder="Describe your question in a few words"
-       oninput="updatePreviewTitle()">
+<input class="question_box" id="title" placeholder="Describe your question in a few words"oninput="updatePreviewTitle()">
 <div class="instructions" style="top: 210px;">Elaborate on your Question</div>
 <div id="editor"></div>
 <div class="instructions" style="top: 625px;">Review your Question</div>
@@ -70,94 +70,86 @@
 </div>
 
 
-<button class="button buttons question-send" id="question-send"
-        style="background-color: var(--secondary-color); margin-top: 15px;">Post Question
-</button>
+<button class="button buttons question-send" id="question-send" style="background-color: var(--secondary-color); margin-top: 15px;">Post Question</button>
 
 <div class="signPopUp"></div>
 
-<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-<script src="image-resize.min.js"></script>
-<script src="image-drop.min.js"></script>
-<script> //moving to questionAPIConnect from simplicity
-    var toolbarOptions = [
-      ['bold', 'italic', 'underline', 'link', 'image'], // Customize the toolbar elements here
-      // Additional toolbar options...
-    ];
+  <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+  <script src="image-resize.min.js"></script>
+  <script src="image-drop.min.js"></script>
+  <script> //moving to questionAPIConnect from simplicity
+      var toolbarOptions = [
+        ['bold', 'italic', 'underline', 'link', 'image'], // Customize the toolbar elements here
+        // Additional toolbar options...
+      ];
 
-    var quill = new Quill('#editor', {
-      placeholder: 'Provide any additional relevant details',
-      theme: 'snow',
-      modules: {
-        toolbar: toolbarOptions,
-        imageResize: {
-          modules: ['Resize']
+      var quill = new Quill('#editor', {
+        placeholder: 'Provide any additional relevant details',
+        theme: 'snow',
+        modules: {
+          toolbar: toolbarOptions,
+          imageResize: {
+            modules: ['Resize']
+          },
+          imageDrop: true,
         },
-        imageDrop: true,
-      },
-    });
-
-    var previewContainer = document.getElementById('preview-container');
-    var previewTitleContainer = document.getElementById('preview-container-title');
-
-    function updatePreviewBody() {
-      var content = quill.root.innerHTML;
-      previewContainer.innerHTML = content;
-      MathJax.Hub.Queue(['Typeset', MathJax.Hub, previewContainer]);
-    }
-
-    function updatePreviewTitle() {
-      var title = document.getElementById('title').value;
-      previewTitleContainer.innerHTML = title;
-      MathJax.Hub.Queue(['Typeset', MathJax.Hub, previewTitleContainer]);
-    }
-
-    quill.on('text-change', function () {
-      updatePreviewBody();
-    });
-
-
-</script>
-
-<!-- for dropdown -->
-
-<script>
-   document.addEventListener("DOMContentLoaded", function() {
-      var dropdown = document.querySelector(".dropdown");
-      var dropdownContent = document.querySelector(".dropdown-content");
-      var dropbtn = document.querySelector(".dropbtn");
-
-      dropdown.addEventListener("click", function() {
-        dropdownContent.style.display = dropdownContent.style.display === "block" ? "none" : "block";
       });
 
-      dropdownContent.addEventListener("click", function(event) {
-        if (event.target.classList.contains("subject")) {
-          dropbtn.textContent = event.target.textContent;
-          dropdownContent.style.display = "none";
-        }
+      var previewContainer = document.getElementById('preview-container');
+      var previewTitleContainer = document.getElementById('preview-container-title');
+
+      function updatePreviewBody() {
+        var content = quill.root.innerHTML;
+        previewContainer.innerHTML = content;
+        MathJax.Hub.Queue(['Typeset', MathJax.Hub, previewContainer]);
+      }
+
+      function updatePreviewTitle() {
+        var title = document.getElementById('title').value;
+        previewTitleContainer.innerHTML = title;
+        MathJax.Hub.Queue(['Typeset', MathJax.Hub, previewTitleContainer]);
+      }
+
+      quill.on('text-change', function () {
+        updatePreviewBody();
       });
-    });
+  </script>
 
-</script>
+  <!-- for dropdown -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var dropdown = document.querySelector(".dropdown");
+        var dropdownContent = document.querySelector(".dropdown-content");
+        var dropbtn = document.querySelector(".dropbtn");
 
-<script>
-  function goBack() {
-    console.log('hi');
-    if (document.referrer.includes(window.location.hostname)) {
-      window.history.back();
-      console.log("aaa");
-    } else {
-      alert("Sorry, the previous page is not within this website.");
-      console.log("bye");
+        dropdown.addEventListener("click", function() {
+          dropdownContent.style.display = dropdownContent.style.display === "block" ? "none" : "block";
+        });
+
+        dropdownContent.addEventListener("click", function(event) {
+          if (event.target.classList.contains("subject")) {
+            dropbtn.textContent = event.target.textContent;
+            dropdownContent.style.display = "none";
+          }
+        });
+      });
+
+  </script>
+
+  <script>
+    function goBack() {
+      if (document.referrer.includes(window.location.hostname)) {
+        window.history.back();
+      } else {
+        alert("Sorry, the previous page is not within this website.");
+      }
     }
-  }
-</script>
+  </script>
 
-<script type="module" src="questionApiConnection.js"></script>
-<script type="module" src="loginsignupbuttons.js"></script>
-<script src="https://unpkg.com/bowser@2.7.0/es5.js"></script>
-<script src="browserAndPageSizeChanges.js"></script>
+  <script type="module" src="questionApiConnection.js"></script>
+  <script type="module" src="loginsignupbuttons.js"></script>
+  <script src="https://unpkg.com/bowser@2.7.0/es5.js"></script>
+  <script src="browserAndPageSizeChanges.js"></script>
 <!-- <script src="signin/signPopup.js"></script> -->
 </body>
 </html>

@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link href='https://fonts.googleapis.com/css?family=Lexend|Lexend:400,700' rel='stylesheet'>
   <link rel="stylesheet" href="contactUs.css"/>
   <link rel="stylesheet" href="root.css"/>
   <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9510246684554538"
   crossorigin="anonymous"></script>
- <script type = "module" src = 'config.js'></script>
- <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1301.0.min.js"></script>
+  <script type = "module" src = 'config.js'></script>
+  <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1301.0.min.js"></script>
 </head>
 <body>
 <div id="topbar">
@@ -18,8 +19,7 @@
   <button class="button ask-question-button" onclick="window.location='createQuestion'">Ask
     Question
   </button>
-  <div id="loginSignupArea">
-  </div>
+  <div id="loginSignupArea"></div>
 </div>
 
 <div class="back_button" onclick="goBack()">back</div>
@@ -29,29 +29,28 @@
 <div class="instructions" style="top: 210px;">Elaborate on your Problem</div>
 <textarea class="comments_box" placeholder="Provide any additional relevant details"></textarea>
 
-
 <button class="button buttons" style="background-color: var(--secondary-color); margin-top: 15px;">Submit Feedback
 </button>
 
 <div class="signPopUp"></div>
 
-<script>
-  function goBack() {
-    if (document.referrer.includes(window.location.hostname)) {
-      window.history.back();
-    } else {
-      alert("Sorry, the previous page is not within this website.");
+  <script>
+    function goBack() {
+      if (document.referrer.includes(window.location.hostname)) {
+        window.history.back();
+      } else {
+        alert("Sorry, the previous page is not within this website.");
+      }
     }
-  }
-</script>
+  </script>
 
-<script type="module" src="questionApiConnection.js"></script>
-<script src="home.js"></script>
-<script type="module"src="loginsignupbuttons.js"></script>
-<script src="https://unpkg.com/bowser@2.7.0/es5.js"></script>
-<script src="browserAndPageSizeChanges.js"></script>
-<script src="signin/signPopup.js"></script>
-<script type="module" src="emails.js"></script>
+  <script type="module" src="questionApiConnection.js"></script>
+  <script src="home.js"></script>
+  <script type="module"src="loginsignupbuttons.js"></script>
+  <script src="https://unpkg.com/bowser@2.7.0/es5.js"></script>
+  <script src="browserAndPageSizeChanges.js"></script>
+  <script src="signin/signPopup.js"></script>
+  <script type="module" src="emails.js"></script>
 </body>
 </html>
 

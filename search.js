@@ -1,7 +1,7 @@
-const apiUrlget = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/getquestion";
+import config from './config.js'
+const apiUrlget = config.apiUrlget;
 const possibleSearchResultContainer = document.querySelector('.possibleSearchResultContainer')
 const possibleSearchResult = document.querySelector('.possibleSearchResult')
-
 
 async function getAllQuestions() {
   const questions = [];

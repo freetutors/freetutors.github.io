@@ -22,7 +22,7 @@ AWS_SDK_LOAD_CONFIG=1
 
 if (localStorage.getItem("signupUsername") === null){
     usingUsernameInput = true;
-    document.getElementById("input-group-new").innerHTML =
+    document.getElementById("input-group-new").innerHTML = //changing html based on if username is found or not
     `
     <label>Verification Number:</label>
     <p class="description">Check your email for a verification number</p>
@@ -43,7 +43,7 @@ function verifyUser(username, verificationCode) { //verified account
     cognito.confirmSignUp(params, function (err, data) {
       if (err) {
         console.log(err, err.stack);
-        alert('Verification failed. Please try again.');
+        alert('Verification failed. Please try again.'); //verification details
         localStorage.clear();
       } else {
         console.log(data);
@@ -53,10 +53,9 @@ function verifyUser(username, verificationCode) { //verified account
     });
   }
   
-  document.querySelector('.verification-send').addEventListener('click', function () {
-    console.log("clicked")
+  document.querySelector('.verification-send').addEventListener('click', function () { //upon sending data
     const verificationCode = document.getElementById("vCode").value;
-    var username = "not yet set"
+    var username = "not yet set" //setting arbitrary value for global variable
     if (usingUsernameInput == true){
         username = document.getElementById("username").value;
     }

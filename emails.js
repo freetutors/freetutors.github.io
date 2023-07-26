@@ -1,5 +1,5 @@
 import config from "./config.js";
-
+//sending email to lamda and then to owners
 var path = window.location.pathname;
 var pageName = path.split("/").pop();
 

@@ -1,26 +1,26 @@
 import config from "./config.js";
 const apiUrlget = config.apiUrlget;
 const apiUrlgetUser = config.apiUrlgetUser;
-async function showQuestionColumn(subject){
+async function showQuestionColumn(subject){ //showing the column of questions for each question
     const questionList = await getQuestionListSubject(subject)
     const questionArray = questionList
-    for (const question of questionArray) {
+    for (const question of questionArray) { //for each question filling values
       var title = question.title
       var author = question.author
       var answers = question.answers
       var rating = question.rating
-      var timeAgo = getTimeDifference(question.timestamp)
+      var timeAgo = getTimeDifference(question.timestamp) //gives in terms of ...ago
       var views = question.views
       const user = await getUser(author)
       const pfp = user.user[0].pfp
       var displayedImage = ""
-      if (pfp == null){
+      if (pfp == null){ //pfp setting(if none set will use default)
         displayedImage = "placeholder_pfp.png"
       }
       else{
         displayedImage = `data:image/png;base64,${pfp}`
       }
-      document.querySelector(".questions_list").innerHTML +=
+      document.querySelector(".questions_list").innerHTML += //setting html
         `<div class="box text_box">
         <!-- pfp -->
         <img id="global_pfp" src="${displayedImage}"onclick="window.location = 'profile?username=${author}'">
@@ -33,22 +33,19 @@ async function showQuestionColumn(subject){
           <div id="question_stats_items">${rating} rating</div>
         </div>`
       }
-      const questionBoxes = document.querySelectorAll(".box.text_box");
+      const questionBoxes = document.querySelectorAll(".box.text_box"); //adding listener for click
       questionBoxes.forEach((box, index) => {
         box.addEventListener("click", function (event) {
-          console.log(event.target.id)
-          if (event.target.id === "global_pfp") { 
-            console.log("called")
+          if (event.target.id === "global_pfp") { //if profile clicked it will send to profile.html
             return;
           }
-          console.log(event.target)
           const questionId = questionList[index].questionId; // Retrieve the questionId
           localStorage.setItem("QuestionID", JSON.stringify(questionId));
           window.location = `viewQuestion?questionId=${questionId}`;
         });
       });
     };
-async function getUser(username){
+async function getUser(username){ //getting user from dynamo
   const url = new URL(`${apiUrlgetUser}?username=${username}`);
   const user = await fetch(url,  {
       mode: "cors",
@@ -59,7 +56,7 @@ async function getUser(username){
   }).then(response => response.json());
   return user
 }
-async function getQuestionListSubject(subject) {
+async function getQuestionListSubject(subject) { //getting list by subject(this is the api one)
     const url = new URL(`${apiUrlget}?subject=${subject}`);
     const questionList = await fetch(url,  {
         mode: "cors",
@@ -70,18 +67,8 @@ async function getQuestionListSubject(subject) {
     }).then(response => response.json());
     return questionList.questionList
     }
-async function getQuestionListViews(views) {
-    const url = new URL(`${apiUrlget}?views=${views}`);
-    const questionList = await fetch(url,  {
-        mode: "cors",
-        method: "GET",
-        headers: {
-        "Content-Type": "application/json",
-        },
-    }).then(response => response.json());
-    return questionList.questionList
-    }
-function getTimeDifference(timestamp) {
+
+function getTimeDifference(timestamp) { //giving times in terms of ...ago
     const currentTime = new Date();
     const previousTime = new Date(timestamp);
     const timeDiff = currentTime.getTime() - previousTime.getTime();
@@ -122,7 +109,7 @@ const subjects = [ //htmlSection
   const questionHeader = document.querySelector('.question_header');
   var targetSubject = "math"
   showQuestionColumn(targetSubject)
-  function moveRight() {
+  function moveRight() { //if movement it will pull based on that subject
     document.querySelector('.questions_list').innerHTML = ""
     questionHeader.innerHTML = subjects[(subjects.indexOf(questionHeader.innerHTML) + 1) % (subjects.length)]
     targetSubject = questionHeader.innerHTML.replace("Active Questions - ", "").toLowerCase()
@@ -134,7 +121,7 @@ const subjects = [ //htmlSection
     targetSubject = questionHeader.innerHTML.replace("Active Questions - ", "").toLowerCase()
     showQuestionColumn(targetSubject)
 }
-document.getElementById("arrow-left").addEventListener("click", () => {
+document.getElementById("arrow-left").addEventListener("click", () => { //click
   moveLeft()
 })
 document.getElementById("arrow-right").addEventListener("click", () => {

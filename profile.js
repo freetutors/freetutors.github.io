@@ -4,7 +4,6 @@ const apiUrlget = config.apiUrlget;
 const apiUrlgetUser = config.apiUrlgetUser;
 const apiUrlupdateUser = config.apiUrlupdateUser
 const poolId =config.poolId //getting info from cognito
-const clientId = config.clientId
 const region = config.region
 const accessKey = config.accessKey
 const secretKey = config.secretKey
@@ -20,12 +19,11 @@ AWS.config.update({ //getting conection to IAM user
 });
 var cognito = new AWS.CognitoIdentityServiceProvider(); //connection to cognito identiy
 
-console.log('called')
-async function showQuestionColumn(user){
+async function showQuestionColumn(user){ //showing the questions the user asked
     const questionList = await getQuestionListUser(user.user[0].username)
     const questionArray = questionList
     for (const question of questionArray) {
-      var title = question.title
+      var title = question.title //getting question data
       var author = question.author
       var answers = question.answers
       var rating = question.rating
@@ -33,13 +31,13 @@ async function showQuestionColumn(user){
       var views = question.views
       const pfp = user.user[0].pfp
       var displayedImage = ""
-      if (pfp == null){
+      if (pfp == null){ //getting pfp, if pfp is none it will user defaul
         displayedImage = "placeholder_pfp.png"
       }
       else{
         displayedImage = `data:image/png;base64,${pfp}`
       }
-      document.querySelector(".questions_list").innerHTML +=
+      document.querySelector(".questions_list").innerHTML += //sending html info
         `<div class="box text_box">
         <!-- pfp -->
         <img id="global_pfp" src="${displayedImage}">
@@ -54,7 +52,7 @@ async function showQuestionColumn(user){
       }
       const questionBoxes = document.querySelectorAll(".box.text_box");
       
-      questionBoxes.forEach((box, index) => {
+      questionBoxes.forEach((box, index) => { //when click will go to view Question.html
         box.addEventListener("click", function () {
           const questionId = questionList[index].questionId; // Retrieve the questionId
           localStorage.setItem("QuestionID", JSON.stringify(questionId));
@@ -62,7 +60,7 @@ async function showQuestionColumn(user){
         });
       });
     };
-async function getUser(username){
+async function getUser(username){ //getting user info from dynamo
   const url = new URL(`${apiUrlgetUser}?username=${username}`);
   const user = await fetch(url,  {
       mode: "cors",
@@ -73,7 +71,7 @@ async function getUser(username){
   }).then(response => response.json());
   return user
 }
-async function getQuestionListUser(user) {
+async function getQuestionListUser(user) { //getting user's quetsions from dynamo
     const url = new URL(`${apiUrlget}?username=${user}`);
     const questionList = await fetch(url,  {
         mode: "cors",
@@ -84,7 +82,7 @@ async function getQuestionListUser(user) {
     }).then(response => response.json());
     return questionList.questionList
     }
-function getTimeDifference(timestamp) {
+function getTimeDifference(timestamp) { //giving time in terms of ago
     const currentTime = new Date();
     const previousTime = new Date(timestamp);
     const timeDiff = currentTime.getTime() - previousTime.getTime();
@@ -108,7 +106,7 @@ function getTimeDifference(timestamp) {
         return `${seconds} second${seconds !== 1 ? 's' : ''} ago`;
     }
 }
-async function changePageInfo(user){
+async function changePageInfo(user){ //updating html values on page
   const cognitoInfo = await getUserCognito(user.username)
   document.querySelector(".about-me-field").innerText = user.about
   document.getElementById('username_txt').innerText = user.username//user.username
@@ -128,7 +126,7 @@ async function changePageInfo(user){
     <p class="info_input_group" type=password">${user.answers}</p>
     `
 }
-async function getUserCognito(username) {
+async function getUserCognito(username) { //getting email and name from cognito
   try {
     const params = {
       UserPoolId: poolId,
@@ -142,9 +140,8 @@ async function getUserCognito(username) {
       alert("error:"+error+"Please log out and log in again")
   }
 }
-async function updateAbout(username){
+async function updateAbout(username){ //updating about me info
   const about = document.querySelector('.about-me-field').value
-  console.log(about)
     const url = new URL(`${apiUrlupdateUser}`)
     const response = await fetch(url,  {
       mode: "cors",
@@ -153,13 +150,12 @@ async function updateAbout(username){
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        "username": user.user[0].username,
+        "username": username,
         "about":about,
       })
     }).then(response => response.json());
-    console.log(response)
 }
-async function updatepfp(username, pfp){
+async function updatepfp(username, pfp){ //updating pfp for user
     const url = new URL(`${apiUrlupdateUser}`)
     const response = await fetch(url,  {
       mode: "cors",
@@ -172,24 +168,23 @@ async function updatepfp(username, pfp){
         "pfp":pfp,
       })
     }).then(response => response.json());
-    console.log(response)
 }
-const urlParams = new URLSearchParams(window.location.search);
-const username = urlParams.get('username')
-const viewerUsername = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser")
+const urlParams = new URLSearchParams(window.location.search); 
+const username = urlParams.get('username')//getting username from url
+const viewerUsername = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser") //getting viewer's username
 if (username !== viewerUsername){
   document.querySelector(".pfp_border").innerHTML=
       `
       <img id="pfp_inner" class ="pfp_inner2" src="placeholder_pfp.png">
       `
-  document.getElementById("pfp_inner")
+      document.querySelector(".about-me-field").readOnly = true; 
+      document.getElementById("pfp_inner")
   document.querySelector("#sign-out").style.display = "none"
 }
-var user = await getUser(username)
-
-await showQuestionColumn(user)
+var user = await getUser(username) //getting user
+await showQuestionColumn(user) //calling functinos
 await changePageInfo(user.user[0])
-document.querySelector(".updateAbout").addEventListener("click", () =>{
+document.querySelector(".updateAbout").addEventListener("click", () =>{ //when about updated
   updateAbout(username)
 })
 
@@ -212,7 +207,7 @@ file.addEventListener('change', function(){
       reader.readAsDataURL(choosedFile)
   }
 })
-document.getElementById("sign-out").addEventListener("click",() => {
+document.getElementById("sign-out").addEventListener("click",() => { //signout
   if (confirm("Do you want sign out?") == true){
     localStorage.clear()
     sessionStorage.clear()

@@ -27,8 +27,8 @@ function signUpUser(params) { //function for signing up, this is already defined
 
   cognito.signUp(params, function(err, data) {
     
-    if (err) {
-      console.log(err, err.stack);
+    if (err) { 
+      console.log(err, err.stack); //if error the user will know if they did something wrong
       if (err.code === 'UsernameExistsException') { //these are checks cognito already does, we will later add the duplicate email check because for some reason it isn't included
         alert("A user with this username already exists.")
       }
@@ -63,7 +63,6 @@ async function checkExistingUser(email) { //checking for a duplicate email becau
 
 document.querySelector('.signup-send'). //finding signup button
 addEventListener("click", async () => { //pulling and sending information on click
-console.log("clicked");  
 const username = document.getElementById("username").value; //getting values
     const password = document.getElementById("password").value;
     const confirmPassword = document.getElementById("confirm-password").value
@@ -105,7 +104,7 @@ const username = document.getElementById("username").value; //getting values
       console.log('Error:', error); //giving us error details if something happens
     }
     if (password == confirmPassword){
-      const response = await fetch(createUrl, {
+      const response = await fetch(createUrl, { //sending user to database
         mode: 'cors',
         method: "POST",
         headers: {
