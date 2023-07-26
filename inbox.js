@@ -114,30 +114,53 @@ async function updateOnAnswer() {
   const messages = questionUser.user[0].InboxList
   messages.push(['Your ' + '<a href=' + window.location.href + '>question</a>' + ' has been answered', getTimestamp()])
   await updateListAttribute('Freetutor-Users', { username: questionAuthor }, 'InboxList', messages);
+  await updateBooleanAttribute('Freetutor-Users', { username: questionAuthor }, 'isRead', false);
+}
+
+async function updateBooleanAttribute(tableName, key, attributeName, attributeValue) {
+  const params = {
+    TableName: tableName,
+    Key: key,
+    UpdateExpression: 'SET #attributeName = :attributeValue',
+    ExpressionAttributeNames: {
+      '#attributeName': attributeName,
+    },
+    ExpressionAttributeValues: {
+      ':attributeValue': attributeValue,
+    },
+  };
+  try {
+    await docClient.update(params).promise();
+    console.log(`Updated ${attributeName} attribute in ${tableName} table`);
+  } catch (error) {
+    console.error(`Error updating ${attributeName} attribute in ${tableName} table`, error);
+  }
 }
 
 (async () => {
 
-    function inboxDisplay() {
-      const inbox = document.querySelector('.inbox');
+  async function inboxDisplay() {
+    const inbox = document.querySelector('.inbox');
 
-      if ((inbox.style.display === "none") || (inbox.style.display === "")) {
-        inbox.style.display = "block";
-      } else {
-        inbox.style.display = "none";
-      }
+    if ((inbox.style.display === "none") || (inbox.style.display === "")) {
+      inbox.style.display = "block";
+      await updateBooleanAttribute('Freetutor-Users', { username: username }, 'isRead', true);
+      document.querySelector(".notif").style.display = "none"
+    } else {
+      inbox.style.display = "none";
     }
+  }
+
   const inbox = document.querySelector(".inbox")
 
   if (username !== null) {
     if (user.user[0].InboxList == undefined) {
       await updateListAttribute('Freetutor-Users', { username: username }, 'InboxList', [["Welcome to FreeTutors!", getTimestamp()]]);
+      await updateBooleanAttribute('Freetutor-Users', { username: username }, 'isRead', false);
     }
 
   user = await getUser(username)
   const messages = user.user[0].InboxList.reverse()
-
-
 
   for (const message of messages) {
     document.querySelector(".inbox").innerHTML +=
@@ -154,5 +177,11 @@ async function updateOnAnswer() {
   if (pageName == 'viewQuestion.html') {
     document.getElementById("answer-send").addEventListener("click", updateOnAnswer)
   }
+
+  user = await getUser(username);
+  if (user.user[0].isRead == false) {
+    document.querySelector(".notif").style.display = "block"
+  }
+
 })();
 

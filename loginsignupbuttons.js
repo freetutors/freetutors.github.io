@@ -22,6 +22,7 @@ if (username != null) { //if nothing in localStorage
   const profileButton = document.createElement('div');
   profileButton.classList.add('profileButton');//info for profile click button
   profileButton.innerHTML = `
+    <div class="notif"></div>
     <img class="inboxButton" src="inbox.png">
     <div class="userInfoContainerHome" onclick="window.location = 'profile?username=${username}'">
       <img class="profilePicHome" src="data:image/png;base64,${pfp}">
