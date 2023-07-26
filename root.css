@@ -337,6 +337,17 @@
   cursor: pointer;
 }
 
+.notif {
+  display: none;
+  position: absolute;
+  background-color: var(--secondary-color);
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  z-index: 11;
+  margin-left: 8.5px;
+}
+
 @media only screen and (max-width: 740px) {
 
   .login-button {
