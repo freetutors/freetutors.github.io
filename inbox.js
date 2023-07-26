@@ -29,6 +29,7 @@ const docClient = new AWS.DynamoDB.DocumentClient();
 const cognito = new AWS.CognitoIdentityServiceProvider();
 const username = /*'testUserForInbox'*/localStorage.getItem('CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser');
 var user = await getUser(username);
+const questionRating = document.querySelector("#question-wrapper > div.question > div.rating-container > div.rating-value")
 
 
 async function getUser(username) {
@@ -68,8 +69,6 @@ async function updateListAttribute(tableName, key, listAttributeName, listAttrib
   }
 }
 
-
-
 function inboxDisplay() {
   const inbox = document.querySelector('.inbox');
 
@@ -78,10 +77,6 @@ function inboxDisplay() {
   } else {
     inbox.style.display = "none";
   }
-}
-
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 function getTimestamp() {
@@ -118,7 +113,7 @@ async function updateOnAnswer() {
   const questionUser = await getUser(questionAuthor)
   console.log(questionUser)
   const messages = questionUser.user[0].InboxList
-  messages.push(['Your question has been answered', getTimestamp()])
+  messages.push(['Your ' + '<a href=' + window.location.href + '>question</a>' + ' has been answered', getTimestamp()])
   await updateListAttribute('Freetutor-Users', { username: questionAuthor }, 'InboxList', messages);
 }
 
@@ -176,9 +171,9 @@ async function updateOnAnswer() {
   document.querySelector(".inboxButton").addEventListener("click", inboxDisplay)
   }
 
-  console.log(pageName)
-  if (pageName == 'viewQuestion') {
+  if (pageName == 'viewQuestion.html') {
     document.getElementById("answer-send").addEventListener("click", updateOnAnswer)
+    console.log(questionRating)
   }
 })();
 

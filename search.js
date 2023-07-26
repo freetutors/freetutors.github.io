@@ -1,4 +1,7 @@
 const apiUrlget = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/getquestion";
+const possibleSearchResultContainer = document.querySelector('.possibleSearchResultContainer')
+const possibleSearchResult = document.querySelector('.possibleSearchResult')
+
 
 async function getAllQuestions() {
   const questions = [];
@@ -9,6 +12,10 @@ async function getAllQuestions() {
     }
   }
   return questions;
+}
+
+function handleSearchTrigger() {
+  window.location = 'search.html?query=' + searchBar.value.trim()
 }
 
 async function getQuestionListSubject(subject) {
@@ -24,7 +31,6 @@ async function getQuestionListSubject(subject) {
 }
 
 const subjects = [
-  //htmlSection
   "chemistry",
   "biology",
   "physics",
@@ -41,31 +47,41 @@ const subjects = [
     const questions = await getAllQuestions();
 
     const client = new MeiliSearch({
-        host: 'http://127.0.0.1:7700',
-        apiKey: '8Gqjb5Plux9O5lB9UAjqdE_9WjCUNELR4K2WnPbOAhA',
+        host: 'http://13.52.102.170',
+        apiKey: 'ZWE3ZGM2YmFmN2JkMjU0ZTBhZWViY2Jm',
     });
 
-    let index = await client.getIndex('questions');
-
-    async function performSearch(inputValue) {
+    async function performLiveSearch(inputValue) {
       const search = await index.search(inputValue);
-      console.log(search.hits);
+      possibleSearchResultContainer.innerHTML = ''
+      for (const searchResult of search.hits.reverse().slice(0, 5)) {
+        possibleSearchResultContainer.innerHTML +=
+        `
+          <div class="possibleSearchResult">${searchResult.title}</div>
+        `
+      }
     }
 
-    if (!index) {
-        try {
-            const newIndex = await createIndex(client, indexName);
-            console.log('Index created:', newIndex);
-            index = client.getIndex(indexName);
-        } catch (error) {
-            console.error('Error creating index:', error);
-        }
-    }
+    const index = client.index('questionIndex')
+    let response = await index.addDocuments(questions)
 
-    // Search bar input event listener
     const searchBar = document.querySelector('.search-bar');
     searchBar.addEventListener('input', (event) => {
-        performSearch(event.target.value);
+        performLiveSearch(event.target.value);
     });
 
 })();
+
+document.addEventListener('click', function(e) {
+  var clickedElement = (e.target || e.srcElement)
+  if ((clickedElement.className !== 'search-bar') && (clickedElement.className !== 'possibleSearchResult')) {
+    possibleSearchResultContainer.style.display = "none";
+  } else if (clickedElement.className == 'possibleSearchResult') {
+    searchBar.value = clickedElement.innerHTML
+    window.location = 'search.html?query=' + searchBar.value.trim()
+  }
+}, false);
+
+searchBar.addEventListener('focus', () => {
+      possibleSearchResultContainer.style.display = "block";
+});
