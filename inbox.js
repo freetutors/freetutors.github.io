@@ -109,7 +109,7 @@ function getTimeDifference(timestamp) {
 }
 
 async function updateOnAnswer() {
-  const questionAuthor = document.querySelector("#question-wrapper > div.question > div.contributorStats > p.username").innerHTML
+  const questionAuthor = document.querySelector("#question-wrapper > div.question > div.contributorStats > div > p").innerHTML
   const questionUser = await getUser(questionAuthor)
   console.log(questionAuthor)
   const messages = questionUser.user[0].InboxList
