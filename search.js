@@ -62,7 +62,7 @@ const subjects = [
       }
     }
 
-    const index = client.index('questionIndex')
+    const index = client.index('questionListIndex')
     let response = await index.addDocuments(questions)
 
     const searchBar = document.querySelector('.search-bar');
@@ -84,4 +84,10 @@ document.addEventListener('click', function(e) {
 
 searchBar.addEventListener('focus', () => {
       possibleSearchResultContainer.style.display = "block";
+});
+
+searchBar.addEventListener("keydown", function(event) {
+  if (event.keyCode === 13) {
+    handleSearchTrigger()
+  }
 });

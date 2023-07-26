@@ -42,21 +42,10 @@ if (paramString) {
 
 async function getAllQuestions() {
   const questions = [];
-  for (const subject of searchSubjects) {
+  for (const subject of subjects) {
     const subjectQuestionList = await getQuestionListSubject(subject);
     for (const question of subjectQuestionList) {
-      questions.push({ id: question.questionId, title: question.title });
-    }
-  }
-  return questions;
-}
-
-async function getAllQuestions2() {
-  const questions = [];
-  for (const subject of searchSubjects) {
-    const subjectQuestionList = await getQuestionListSubject(subject);
-    for (const question of subjectQuestionList) {
-      questions.push(question);
+      questions.push({id: question.questionId, title: question.title});
     }
   }
   return questions;
@@ -70,11 +59,11 @@ async function getQuestionListSubject(subject) {
     headers: {
       "Content-Type": "application/json",
     },
-  }).then(response => response.json());
+  }).then((response) => response.json());
   return questionList.questionList;
 }
 
-const searchSubjects = [
+const subjects = [
   "chemistry",
   "biology",
   "physics",
@@ -89,20 +78,23 @@ const searchSubjects = [
 
 (async () => {
   const questions = await getAllQuestions();
-  const totalQuestions = await getAllQuestions2();
+  console.log(questions)
 
     const client = new MeiliSearch({
         host: 'http://13.52.102.170',
         apiKey: 'ZWE3ZGM2YmFmN2JkMjU0ZTBhZWViY2Jm',
     });
 
-  const index = client.index('questionIndex');
-  let response = await index.addDocuments(questions);
+  const index = client.index('questionListIndex')
+  let response = await index.addDocuments(questions)
 
   const search = await index.search(query);
-  for (const hit of search.hits) {
-    for (const question of totalQuestions) {
-      if (question.questionId == hit.id) {
+
+  console.log(search.hits)
+
+  for (const hit of search.hits.reverse()) {
+    for (const question of questions) {
+      if (question.id == hit.id) {
         questionsList.innerHTML +=
           `<div class="box text_box">
              <img id="text_box_pfp" src="${"placeholder_pfp.png"}">
@@ -118,3 +110,5 @@ const searchSubjects = [
     }
   }
 })();
+
+
