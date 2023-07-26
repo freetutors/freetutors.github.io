@@ -68,8 +68,6 @@ async function updateListAttribute(tableName, key, listAttributeName, listAttrib
   }
 }
 
-
-
 function inboxDisplay() {
   const inbox = document.querySelector('.inbox');
 
@@ -78,10 +76,6 @@ function inboxDisplay() {
   } else {
     inbox.style.display = "none";
   }
-}
-
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 function getTimestamp() {
@@ -114,11 +108,11 @@ function getTimeDifference(timestamp) {
 }
 
 async function updateOnAnswer() {
-  const questionAuthor = document.querySelector("#question-wrapper > div.question > div.contributorStats > p.username").innerHTML
+  const questionAuthor = 'rokkc'/*document.querySelector("#question-wrapper > div.question > div.contributorStats > p.username").innerHTML*/
   const questionUser = await getUser(questionAuthor)
   console.log(questionUser)
   const messages = questionUser.user[0].InboxList
-  messages.push(['Your question has been answered', getTimestamp()])
+  messages.push(['Your ' + '<a href=' + window.location.href + '>question</a>' + ' has been answered', getTimestamp()])
   await updateListAttribute('Freetutor-Users', { username: questionAuthor }, 'InboxList', messages);
 }
 
@@ -177,7 +171,7 @@ async function updateOnAnswer() {
   }
 
   console.log(pageName)
-  if (pageName == 'viewQuestion') {
+  if (pageName == 'viewQuestion.html') {
     document.getElementById("answer-send").addEventListener("click", updateOnAnswer)
   }
 })();
