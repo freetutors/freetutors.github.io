@@ -45,7 +45,7 @@ async function getAllQuestions() {
   for (const subject of subjects) {
     const subjectQuestionList = await getQuestionListSubject(subject);
     for (const question of subjectQuestionList) {
-      questions.push({id: question.questionId, title: question.title});
+      questions.push(question);
     }
   }
   return questions;
@@ -78,7 +78,6 @@ const subjects = [
 
 (async () => {
   const questions = await getAllQuestions();
-  console.log(questions)
 
     const client = new MeiliSearch({
         host: 'http://13.52.102.170',
@@ -90,11 +89,9 @@ const subjects = [
 
   const search = await index.search(query);
 
-  console.log(search.hits)
-
   for (const hit of search.hits.reverse()) {
     for (const question of questions) {
-      if (question.id == hit.id) {
+      if (question.questionId == hit.id) {
         questionsList.innerHTML +=
           `<div class="box text_box">
              <img id="text_box_pfp" src="${"placeholder_pfp.png"}">
