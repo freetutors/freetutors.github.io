@@ -1,11 +1,8 @@
-const apiUrlget = "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/getquestion";
+import config from "./config.js"
+const apiUrlget = config.apiUrlget;
 const questionsList = document.querySelector(".questions_list")
-const dynamodb = new AWS.DynamoDB.DocumentClient();
-const questionTable = 'Freetutor-Question';
 
-const urlString = window.location.href;
-let paramString = urlString.split('?')[1];
-let query;
+const urlParams = new URLSearchParams(window.location.search)
 
 function getTimeDifference(timestamp) {
     const currentTime = new Date();
@@ -31,23 +28,18 @@ function getTimeDifference(timestamp) {
         return `${seconds} second${seconds !== 1 ? 's' : ''} ago`;
     }
     }
-
-if (paramString) {
-  let queryString = new URLSearchParams(paramString);
-
-  for (let pair of queryString.entries()) {
-    query = pair[1];
-  }
-}
+var query = urlParams.get('query');
 
 async function getAllQuestions() {
   const questions = [];
   for (const subject of subjects) {
     const subjectQuestionList = await getQuestionListSubject(subject);
+    console.log("1")
     for (const question of subjectQuestionList) {
       questions.push(question);
     }
   }
+  console.log("2")
   return questions;
 }
 
@@ -80,13 +72,12 @@ const subjects = [
   const questions = await getAllQuestions();
 
     const client = new MeiliSearch({
-        host: 'https://x75687kx49.execute-api.us-west-1.amazonaws.com/',
-        apiKey: 'ZWE3ZGM2YmFmN2JkMjU0ZTBhZWViY2Jm',
+        host: config.searchHost,
+        apiKey: config.searchKey,
     });
 
   const index = client.index('questionListIndex')
-  let response = await index.addDocuments(questions)
-
+  await index.addDocuments(questions)
   const search = await index.search(query);
 
   for (const hit of search.hits.reverse()) {

@@ -4,7 +4,7 @@ const searchHost = config.searchHost
 const searchKey = config.searchKey
 const possibleSearchResultContainer = document.querySelector('.possibleSearchResultContainer')
 const possibleSearchResult = document.querySelector('.possibleSearchResult')
-
+console.log(searchHost, searchKey)
 async function getAllQuestions() {
   const questions = [];
   for (const subject of subjects) {
@@ -53,9 +53,6 @@ const subjects = [
         apiKey: searchKey,
     });
 
-    console.log(searchHost)
-    console.log(searchKey)
-
     async function performLiveSearch(inputValue) {
       const search = await index.search(inputValue);
       possibleSearchResultContainer.innerHTML = ''
@@ -78,7 +75,7 @@ const subjects = [
 })();
 
 document.addEventListener('click', function(e) {
-  var clickedElement = (e.target || e.srcElement)
+  var clickedElement = (e.target)
   if ((clickedElement.className !== 'search-bar') && (clickedElement.className !== 'possibleSearchResult')) {
     possibleSearchResultContainer.style.display = "none";
   } else if (clickedElement.className == 'possibleSearchResult') {
