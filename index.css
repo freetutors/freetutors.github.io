@@ -25,20 +25,81 @@
      transform: translateX(calc(var(--translate_len) - 2px));
    }
 
-   #important_box_nums {
-        font-size: 22px;
-        color: white;
-        position: relative;
-        text-align: center;
-        margin-top: 16px;
-   }
+.important_box_num1 {
+      display: flex;
+      font-size: 25px;
+      color: white;
+      position: relative;
+      text-align: center;
+      margin-top: 16px;
+      justify-content: center;
+      height: 30px;
+      overflow: hidden;
+ }
+
+.important_box_num2 {
+    display: flex;
+    font-size: 22px;
+    color: white;
+    position: relative;
+    text-align: center;
+    margin-top: 16px;
+    justify-content: center;
+    height: 30px;
+    overflow: hidden;
+}
+
+.important_box_num3 {
+    display: flex;
+    font-size: 22px;
+    color: white;
+    position: relative;
+    text-align: center;
+    margin-top: 16px;
+    justify-content: center;
+    height: 30px;
+    overflow: hidden;
+}
+
+.important_box_num1_digit {
+  display: inline-block;
+  font-size: 23px;
+  color: white;
+  transition: transform 2s ease;
+}
+
+.important_box_num2_digit {
+  display: inline-block;
+  font-size: 23px;
+  color: white;
+  transition: transform 2s ease;
+}
+
+.important_box_num3_digit {
+  display: inline-block;
+  font-size: 23px;
+  color: white;
+  transition: transform 2s ease;
+}
+
+.dig {
+  height: 30px;
+}
+
+#important_box_nums {
+      font-size: 22px;
+      color: white;
+      position: relative;
+      text-align: center;
+      margin-top: 16px;
+ }
 
   #important_box_text {
         font-size: 12px;
         color: white;
         position: relative;
         text-align: center;
-    }
+  }
 
   #sign_up_as_tutor_button {
     color: white;

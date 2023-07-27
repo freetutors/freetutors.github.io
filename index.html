@@ -17,6 +17,7 @@
      crossorigin="anonymous"></script>
   <script src="https://sdk.amazonaws.com/js/aws-sdk-2.101.0.min.js"></script>
   <script src='https://cdn.jsdelivr.net/npm/meilisearch@latest/dist/bundles/meilisearch.umd.js'></script>
+  <script src="animateNums.js"></script>
 </head>
 <body>
 <div id="topbar">
@@ -29,7 +30,7 @@
   <div id="loginSignupArea">
   </div>
 </div>
-<div class="menu"><!--navigation area-->
+<div class="menu"><!--nav area-->
   <ul>
     <li class="on-page" onclick="window.location='/'">Home</li>
     <li class="menu_item" onclick="window.location='ourTeam'">Our Team</li>
@@ -47,11 +48,11 @@
 </div>
 
 <div class="box important_box">
-  <div id="important_box_nums">2048</div>
+  <div class="important_box_num1"></div>
   <div id="important_box_text">answered questions</div>
-  <div id="important_box_nums">91</div>
+  <div class="important_box_num2"></div>
   <div id="important_box_text">chat hours</div>
-  <div id="important_box_nums">520</div>
+  <div class="important_box_num3"></div>
   <div id="important_box_text">volunteer hours earned</div>
   <button id="sign_up_as_tutor_button">Sign up as
     tutor
