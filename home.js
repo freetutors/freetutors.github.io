@@ -62,7 +62,6 @@ async function showQuestionColumn(subject) {
   questionBoxContainer.appendChild(fragment);
 
   addQuestionClickListeners(questionList);
-  console.log(questionList)
 }
 
 
