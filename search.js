@@ -47,7 +47,7 @@ const subjects = [
     const questions = await getAllQuestions();
 
     const client = new MeiliSearch({
-        host: 'http://13.52.102.170',
+        host: 'https://x75687kx49.execute-api.us-west-1.amazonaws.com/',
         apiKey: 'ZWE3ZGM2YmFmN2JkMjU0ZTBhZWViY2Jm',
     });
 
@@ -91,3 +91,27 @@ searchBar.addEventListener("keydown", function(event) {
     handleSearchTrigger()
   }
 });
+
+/*
+
+chmod 400 meilisearchKeyPair.pem
+ssh -i meilisearchKeyPair.pem admin@54.183.227.34
+ssh -i meilisearchKeyPair.pem -L 7700:127.0.0.1:7700 ec2-user@54.183.227.34
+
+http://54.183.227.34
+
+https://54.183.227.34.nip.io
+
+54.183.227.34.nip.io {
+    reverse_proxy localhost:8000
+}
+
+54.183.227.34.nip.io {
+    reverse_proxy localhost:8000
+}
+
+ sudo lsof -i :80
+
+sudo nano /etc/caddy/Caddyfile
+
+*/

@@ -80,7 +80,7 @@ const subjects = [
   const questions = await getAllQuestions();
 
     const client = new MeiliSearch({
-        host: 'http://13.52.102.170',
+        host: 'https://x75687kx49.execute-api.us-west-1.amazonaws.com/',
         apiKey: 'ZWE3ZGM2YmFmN2JkMjU0ZTBhZWViY2Jm',
     });
 
