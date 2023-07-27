@@ -4,6 +4,7 @@ var browserName = browser.parsedResult.browser.name;
 var path = window.location.pathname;
 var pageName = path.split("/").pop();
 
+
 const askQuestionButton = document.querySelector('.ask-question-button');
 const searchBar = document.querySelector('.search-bar');
 const signUpAsTutorButton = document.querySelector('#sign_up_as_tutor_button');
@@ -110,5 +111,10 @@ if (browserName == "Firefox") {
 
 }
 
+askQuestionButton.addEventListener('mouseover', () => {
+  askQuestionButton.style.transform = 'scale(1.06)';
+});
 
-
+askQuestionButton.addEventListener('mouseout', () => {
+  askQuestionButton.style.transform = 'scale(1)';
+});

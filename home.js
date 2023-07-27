@@ -71,7 +71,7 @@ function addQuestionClickListeners(questionList) {
       if (event.target.id === "global_pfp") {
         const questionAuthor = questionList[index].author;
         openProfile(questionAuthor)
-      } else {
+      } else if (event.target.id === "text_box_question_content"){
         const questionId = questionList[index].questionId;
         localStorage.setItem("QuestionID", JSON.stringify(questionId));
         window.location = `viewQuestion?questionId=${questionId}`;
