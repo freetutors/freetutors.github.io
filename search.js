@@ -3,18 +3,27 @@ const apiUrlget = config.apiUrlget;
 const searchHost = config.searchHost
 const searchKey = config.searchKey
 const possibleSearchResultContainer = document.querySelector('.possibleSearchResultContainer')
-const possibleSearchResult = document.querySelector('.possibleSearchResult')
-
 async function getAllQuestions() {
   const questions = [];
-  for (const subject of subjects) {
-    const subjectQuestionList = await getQuestionListSubject(subject);
+    const subjectQuestionList = await getQuestionListSubject("all");
     for (const question of subjectQuestionList) {
       questions.push({id: question.questionId, title: question.title});
     }
-  }
   return questions;
 }
+// async function getAllQuestions() {
+//   const questions = [];
+//   for (const subject of subjects) {
+//     const subjectQuestionList = await getQuestionListSubject(subject);
+//     console.log("1")
+//     for (const question of subjectQuestionList) {
+//       questions.push(question);
+//     }
+//   }
+//   console.log("2")
+//   return questions;
+// }
+//old function so you can test speed diff
 
 function handleSearchTrigger() {
   window.location = 'search.html?query=' + searchBar.value.trim()
@@ -53,9 +62,6 @@ const subjects = [
         apiKey: searchKey,
     });
 
-    console.log(searchHost)
-    console.log(searchKey)
-
     async function performLiveSearch(inputValue) {
       const search = await index.search(inputValue);
       possibleSearchResultContainer.innerHTML = ''
@@ -78,7 +84,7 @@ const subjects = [
 })();
 
 document.addEventListener('click', function(e) {
-  var clickedElement = (e.target || e.srcElement)
+  var clickedElement = (e.target)
   if ((clickedElement.className !== 'search-bar') && (clickedElement.className !== 'possibleSearchResult')) {
     possibleSearchResultContainer.style.display = "none";
   } else if (clickedElement.className == 'possibleSearchResult') {

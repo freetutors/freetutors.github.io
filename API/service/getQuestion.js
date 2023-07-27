@@ -12,7 +12,14 @@ async function getQuestionList(event) {
   const username = event.queryStringParameters.username
   const subject = event.queryStringParameters.subject
     const questionId = event.queryStringParameters.questionId
-    if (views != null) {
+    if(subject=="all"){
+      result = await getAllQuestions()
+      const response = {
+        questionList: result
+      }
+      return util.buildResponse(200, response)
+    }
+    else if (views != null) {
       const result = await getQuestionByViews(views)
       const response = {
         questionList: result,
@@ -40,11 +47,21 @@ async function getQuestionList(event) {
       }
       return util.buildResponse(200,response);
     }
+
     // const result = getQuestionBySubject(subject)
 
   
 }
-
+async function getAllQuestions(){
+    console.log("called")
+    const params = {
+      TableName: questionTable,
+    };
+    // Scan DynamoDB to get all the questions (Note: Scanning large tables may be slow).
+    const result = await dynamodb.scan(params).promise();
+    // Return the questions.
+    return result.Items;
+}
 async function getQuestionBySubject(subject) { //getting user info to check if the user has already logged in 
 
   const params = {

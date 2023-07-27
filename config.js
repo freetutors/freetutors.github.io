@@ -29,7 +29,10 @@ function processJSONData(data) {
     
         apiUrlCreateUser: data.apiUrlCreateUser,
         apiUrlupdateUser: data.apiUrlupdateUser,
-        apiUrlupdateUserAnswer: data.apiUrlupdateUserAnswer
+        apiUrlupdateUserAnswer: data.apiUrlupdateUserAnswer,
+    
+        searchHost: data.searchHost,
+        searchKey: data.searchKey
     }
     return data
 }
