@@ -5,7 +5,7 @@ const searchKey = config.searchKey
 const possibleSearchResultContainer = document.querySelector('.possibleSearchResultContainer')
 async function getAllQuestions() {
   const questions = [];
-    const subjectQuestionList = await getQuestionListSubject(all);
+    const subjectQuestionList = await getQuestionListSubject("all");
     for (const question of subjectQuestionList) {
       questions.push({id: question.questionId, title: question.title});
     }
