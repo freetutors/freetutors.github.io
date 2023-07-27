@@ -1,5 +1,7 @@
 import config from './config.js'
 const apiUrlget = config.apiUrlget;
+const searchHost = config.searchHost
+const searchKey = config.searchKey
 const possibleSearchResultContainer = document.querySelector('.possibleSearchResultContainer')
 const possibleSearchResult = document.querySelector('.possibleSearchResult')
 
@@ -47,8 +49,8 @@ const subjects = [
     const questions = await getAllQuestions();
 
     const client = new MeiliSearch({
-        host: 'https://x75687kx49.execute-api.us-west-1.amazonaws.com/',
-        apiKey: 'ZWE3ZGM2YmFmN2JkMjU0ZTBhZWViY2Jm',
+        host: searchHost,
+        apiKey: searchKey,
     });
 
     async function performLiveSearch(inputValue) {
