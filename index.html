@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <script type="module" src="home.js"></script>
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link href='https://fonts.googleapis.com/css?family=Lexend' rel='stylesheet'>
   <link rel="stylesheet" href="index.css"/>
@@ -18,7 +17,7 @@
      crossorigin="anonymous"></script>
   <script src="https://sdk.amazonaws.com/js/aws-sdk-2.101.0.min.js"></script>
   <script src='https://cdn.jsdelivr.net/npm/meilisearch@latest/dist/bundles/meilisearch.umd.js'></script>
-  <script src="animateNums.js"></script>
+  <script src="animateNums.js" defer></script>
 </head>
 <body>
 <div id="topbar">
@@ -70,11 +69,12 @@
 <!-- Add rest of content here -->
 
 <!-- <script type="module" src="questionApiConnection.js"></script> -->
-<script type="module" src="loginsignupbuttons.js"></script>
+<script type="module" src="loginsignupbuttons.js" async></script>
 <script src="https://unpkg.com/bowser@2.7.0/es5.js"></script>
 <script src="browserAndPageSizeChanges.js"></script>
-<script type="module" src="search.js"></script>
-<script type="module" src="signin/signPopup.js"></script>
-<script type="module" src="inbox.js"></script>
+<script type="module" src="search.js" defer></script>
+<script type="module" src="signin/signPopup.js" defer></script>
+<script type="module" src="inbox.js" defer></script>
+<script type="module" src="home.js" async></script>
 </body>
 </html>
