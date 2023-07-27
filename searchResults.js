@@ -32,16 +32,13 @@ var query = urlParams.get('query');
 
 async function getAllQuestions() {
   const questions = [];
-  for (const subject of subjects) {
-    const subjectQuestionList = await getQuestionListSubject(subject);
-    console.log("1")
+    const subjectQuestionList = await getQuestionListSubject("all");
     for (const question of subjectQuestionList) {
       questions.push(question);
     }
-  }
   console.log("2")
   return questions;
-}
+  }
 
 async function getQuestionListSubject(subject) {
   const url = new URL(`${apiUrlget}?subject=${subject}`);
