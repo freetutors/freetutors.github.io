@@ -26,7 +26,7 @@ async function animate(valToAnimate, container, gear) {
     `;
   }
 
-  await sleep(500);
+  await sleep(100);
 
   for (let i = 0; i < numDigits; i++) {
     digWheel[i].style.transform = 'translateY(-' + String(30 * strVal[i]) + 'px)';
