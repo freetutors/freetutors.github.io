@@ -40,3 +40,4 @@ for (const i in range){
 }
 var config = old
 export default config
+
