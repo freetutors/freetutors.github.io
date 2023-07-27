@@ -38,7 +38,19 @@ async function getAllQuestions() {
     }
   return questions;
   }
-
+// async function getAllQuestions() {
+//   const questions = [];
+//   for (const subject of subjects) {
+//     const subjectQuestionList = await getQuestionListSubject(subject);
+//     console.log("1")
+//     for (const question of subjectQuestionList) {
+//       questions.push(question);
+//     }
+//   }
+//   console.log("2")
+//   return questions;
+// }
+//old function so you can test speed diff
 async function getQuestionListSubject(subject) {
   const url = new URL(`${apiUrlget}?subject=${subject}`);
   const questionList = await fetch(url, {
