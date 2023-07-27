@@ -11,6 +11,19 @@ async function getAllQuestions() {
     }
   return questions;
 }
+// async function getAllQuestions() {
+//   const questions = [];
+//   for (const subject of subjects) {
+//     const subjectQuestionList = await getQuestionListSubject(subject);
+//     console.log("1")
+//     for (const question of subjectQuestionList) {
+//       questions.push(question);
+//     }
+//   }
+//   console.log("2")
+//   return questions;
+// }
+//old function so you can test speed diff
 
 function handleSearchTrigger() {
   window.location = 'search.html?query=' + searchBar.value.trim()
