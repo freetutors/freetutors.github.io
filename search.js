@@ -53,6 +53,9 @@ const subjects = [
         apiKey: searchKey,
     });
 
+    console.log(searchHost)
+    console.log(searchKey)
+
     async function performLiveSearch(inputValue) {
       const search = await index.search(inputValue);
       possibleSearchResultContainer.innerHTML = ''
