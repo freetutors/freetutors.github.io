@@ -36,7 +36,6 @@ async function getAllQuestions() {
     for (const question of subjectQuestionList) {
       questions.push(question);
     }
-  console.log("2")
   return questions;
   }
 

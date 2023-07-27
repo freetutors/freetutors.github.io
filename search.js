@@ -3,16 +3,12 @@ const apiUrlget = config.apiUrlget;
 const searchHost = config.searchHost
 const searchKey = config.searchKey
 const possibleSearchResultContainer = document.querySelector('.possibleSearchResultContainer')
-const possibleSearchResult = document.querySelector('.possibleSearchResult')
-console.log(searchHost, searchKey)
 async function getAllQuestions() {
   const questions = [];
-  for (const subject of subjects) {
-    const subjectQuestionList = await getQuestionListSubject(subject);
+    const subjectQuestionList = await getQuestionListSubject(all);
     for (const question of subjectQuestionList) {
       questions.push({id: question.questionId, title: question.title});
     }
-  }
   return questions;
 }
 
