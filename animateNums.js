@@ -37,5 +37,5 @@ const total =localStorage.getItem("totalQuestions")
 window.addEventListener("DOMContentLoaded", (event) => {
   animate(total, document.querySelector(".important_box_num1"), 'important_box_num1_digit')
   animate(answers, document.querySelector(".important_box_num2"), 'important_box_num2_digit')
-  animate(answers/5, document.querySelector(".important_box_num3"), 'important_box_num3_digit')
+  animate(Math.round(answers/5), document.querySelector(".important_box_num3"), 'important_box_num3_digit')
 });

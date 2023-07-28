@@ -160,6 +160,9 @@ function debounce(func, delay) {
 }
 const localUser = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser")
 const user = await getUser(localUser)
+if (user.user[0].status == "tutor" || user.user[0].status =="staff"){
+  document.getElementById("sign_up_as_tutor_button").style.display="none"
+}
 const answers = parseInt(user.user[0].answers)
 const totalQuestions = await getQuestionListSubject("all")
 localStorage.setItem("userAnswers", answers)
