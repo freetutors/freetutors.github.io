@@ -1,47 +1,48 @@
 import config from "./config.js";
-
-const apiUrlcreate = config.apiUrlcreate;
+//Creating question to database. Waiting on how yash inputs values
+const apiUrlcreate = config.apiUrlcreate
 const apiUrlget = config.apiUrlget;
 const apiUrlupdate = config.apiUrlupdate;
 const apiUrlanswer = config.apiUrlanswer;
 const apiUrlanswerUpdate = config.apiUrlanswerUpdate;
 const apiUrlgetUser = config.apiUrlgetUser;
-const apiUrlupdateUser = config.apiUrlupdateUser;
-const apiUrlupdateUserAnswer = config.apiUrlupdateUserAnswer;
+const apiUrlupdateUser = config.apiUrlupdateUser
+const apiUrlupdateUserAnswer = config.apiUrlupdateUserAnswer
 
-const poolId = config.poolId;
-const region = config.region;
-const accessKey = config.accessKey;
-const secretKey = config.secretKey;
-AWS.config.region = region;
-AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-  IdentityPoolId: poolId,
+// Import the necessary AWS SDK components
+const poolId =config.poolId //getting info from cognito
+const region = config.region
+const accessKey = config.accessKey
+const secretKey = config.secretKey
+AWS.config.region = region; //telling what region to search
+AWS.config.credentials = new AWS.CognitoIdentityCredentials({ //COnnecting to pool
+  IdentityPoolId: poolId 
 });
 
-AWS.config.update({
+AWS.config.update({ //getting conection to IAM user
   region: region,
   accessKeyId: accessKey,
-  secretAccessKey: secretKey,
+  secretAccessKey: secretKey
 });
-var cognito = new AWS.CognitoIdentityServiceProvider();
+var cognito = new AWS.CognitoIdentityServiceProvider(); //connection to cognito identiy
 
-async function getUser(username) {
+async function getUser(username){ //pulls user from database with details
   const url = new URL(`${apiUrlgetUser}?username=${username}`);
-  const user = await fetch(url, {
-    mode: "cors",
-    method: "GET",
-    headers: {
+  const user = await fetch(url,  {
+      mode: "cors",
+      method: "GET",
+      headers: {
       "Content-Type": "application/json",
-    },
+      }
   }).then(response => response.json());
-  return user;
+  return user
 }
-
+// Function to check if the user's account is verified
 async function checkUserVerification(userId) {
   try {
     const params = {
       UserPoolId: poolId,
-      Username: userId,
+      Username: userId
     };
 
     const user = await cognito.adminGetUser(params).promise();
@@ -52,24 +53,22 @@ async function checkUserVerification(userId) {
     return false;
   }
 }
-
-var toolbarOptions = [
-  ['bold', 'italic', 'underline', 'link', 'image'],
+var toolbarOptions = [ //setting quill toolbar options and settings
+  ['bold', 'italic', 'underline', 'link', 'image'], // Customize the toolbar elements here
+  // Additional toolbar options...
 ];
-
-if (window.location.pathname.indexOf("createQuestion") !== -1) {
-  var quill = new Quill('#editor', {
+if (window.location.pathname.indexOf("createQuestion") !== -1) { //if on the create question page
+  var quill = new Quill('#editor', { //creates a new quill editor for user
     placeholder: 'Provide any additional relevant details',
     theme: 'snow',
     modules: {
       toolbar: toolbarOptions,
       imageResize: {
-        modules: ['Resize'],
+        modules: ['Resize']
       },
       imageDrop: true,
     },
   });
-
   function updatePreviewBody() { //updates for latex
     var content = quill.root.innerHTML;
     previewContainer.innerHTML = content;
@@ -180,103 +179,112 @@ function formatDate(timestamp) { //turning the saved timestamp into a month, dat
 }
 var isQuillInitialized = false; //this is making sure there is no duplicate quill sections on the page upon rating
 
-async function displayQuestion() {
-  const urlParams = new URLSearchParams(window.location.search);
+async function displayQuestion(){ //displays on view question.html
+  const urlParams = new URLSearchParams(window.location.search); //info for each unique question is sent in the acutal url
   const questionId = urlParams.get('questionId');
-  const questionList = await getQuestionListId(questionId);
-
-  // Get all the answers for the given question
-  const answerInfo = questionList[0].answersInfo || [];
-
-  const questionArray = questionList;
-  for (const question of questionArray) {
-    var title = question.title;
-    let body = question.body.replace(/<p>/g, "").replace(/<\/p>/g, " ");
-    var author = question.author;
-    var answers = question.answers;
-    var rating = question.rating;
-    var date = formatDate(question.timestamp);
-    const user = await getUser(author);
-    let icon;
-    if (user.user[0].status == "tutor") {
-      icon = "trace.svg";
-    } else if (user.user[0].status == "staff") {
-      icon = "image2vector.svg";
-    } else {
-      icon = "Blank.svg";
+  const questionList = await getQuestionListId(questionId) //pulls question
+  const questionArray = questionList
+  for(const question of questionArray) {
+    var title = question.title
+    let body = question.body.replace(/<p>/g, "").replace(/<\/p>/g, " ")
+    var author = question.author
+    var answerInfo = question.answersInfo
+    var answers = question.answers
+    var rating = question.rating
+    var date = formatDate(question.timestamp)
+    const user = await getUser(author)
+    let icon //changing based on if someone is a tutor or not
+    if (user.user[0].status =="tutor"){
+      icon = "trace.svg"
     }
-    const pfp = user.user[0].pfp;
-    var displayedImage = "";
-    if (pfp == null) {
-      displayedImage = "placeholder_pfp.png";
-    } else {
-      displayedImage = `data:image/png;base64,${pfp}`;
+    else if (user.user[0].status =="staff"){
+      icon = "image2vector.svg"
     }
-    document.getElementById("question-wrapper").innerHTML =
-      `
+    else {
+      icon = "Blank.svg"
+    }
+    const pfp = user.user[0].pfp //pulling pfp
+    var displayedImage = ""
+    if (pfp == null){
+      displayedImage = "placeholder_pfp.png" //if the user hasn't set one it will give this default one
+    }
+    else{
+      displayedImage = `data:image/png;base64,${pfp}`//pfp is saved as long base 64 so it can be saved without extra charge
+    }
+    document.getElementById("question-wrapper").innerHTML = //filling info in html class global_pfp squarifies image
+    `
     <div class="title">${title}</div>
     <hr class="titleSep">
     <div class="question">
-      <img id="pfp" src=${displayedImage} class="global_pfp" onclick="window.location = 'profile?username=${user.user[0].username}'">
+      <img id = "pfp" src=${displayedImage} class="global_pfp" onclick="window.location = 'profile?username=${user.user[0].username}'">
       <div class="contributorStats">
-        <div class="title-box">
+        <div class ="title-box">
           <p class="username">${author}</p>
           <img class="${user.user[0].status}-icon" src="${icon}" alt="Verified Tutor" width="25px" height="25px"></img>
         </div>
         <p class="time">${date}</p>
       </div>
-      <p class="questionBody">${body}</p>
+      <p class = "questionBody">${body}</p>
       <div class="rating-container">
         <div class="upvote vote"></div>
         <div class="rating-value">${rating}</div>
-        <div id="help" class="vote downvote"></div>
+        <div id = "help" class="vote downvote"></div>
       </div>
     </div>
-    `;
-  }
+    `
+    document.querySelector(".answer-wrapper").innerHTML = "" //filling in answers
+    if (answerInfo != null){ //wont run upon no answers
 
-  // Fetch all the answers in parallel
-  const answerPromises = answerInfo.map(async (answer) => {
-    const user = await getUser(answer.author);
-    const pfp = user.user[0].pfp;
-    const displayedImage = pfp ? `data:image/png;base64,${pfp}` : "placeholder_pfp.png";
-    const abody = answer.body.replace(/<p>/g, "").replace(/<\/p>/g, " ");
-    let icon;
-    if (user.user[0].status == "tutor") {
-      icon = "trace.svg";
-    } else if (user.user[0].status == "staff") {
-      icon = "image2vector.svg";
-    } else {
-      icon = "Blank.svg";
-    }
-    const time = formatDate(answer.timestamp);
-
-    return `
-      <div class="answer">
-        <img src=${displayedImage} class="global_pfp" onclick="window.location = 'profile?username=${answer.author}'">
-        <div class="contributorStats">
-          <div class="title-box">
-            <p class="username">${answer.author}</p>
+      for(const answer of answerInfo) {  //pulling info from each answer
+        var abody = answer.body.replace(/<p>/g, "").replace(/<\/p>/g, " ")
+        let author = answer.author
+        var answerId = answer.answerId
+        var rating = answer.rating
+        var time = formatDate(answer.timestamp) //formating date
+        const user = await getUser(author)
+        let icon
+        if (user.user[0].status =="tutor"){
+          icon = "trace.svg"
+        }
+        else if (user.user[0].status =="staff"){
+          icon = "image2vector.svg"
+        }
+        else {
+          icon = "Blank.svg"
+        }
+        const pfp = user.user[0].pfp
+        var displayedImage = ""
+        if (pfp == null){ //if author has no pfp it will give a defaul
+          displayedImage = "placeholder_pfp.png"
+        }
+        else{
+          displayedImage = `data:image/png;base64,${pfp}`
+        }
+        document.querySelector(".answer-wrapper").insertAdjacentHTML(
+          "beforeend",
+          `
+          <div class="answer">
+          <img src=${displayedImage} class="global_pfp" onclick="window.location = 'profile?username=${author}'">
+          <div class="contributorStats">
+          <div class ="title-box">
+            <p class="username">${author}</p>
             <img class="${user.user[0].status}-icon" src="${icon}" alt="Verified Tutor" width="25px" height="25px"></img>
           </div>
-          <p class="time">${time}</p>
+            <p class="time">${time}</p>
+          </div>
+          <p class="answerBody">${abody}</p>
+          <div class="rating-container">
+            <div class="upvote" id="upvote${answerId}"></div>
+            <div class="rating-value" id = "rating-value${answerId}">${rating}</div>
+            <div class="downvote" id="downvote${answerId}"></div>
+          </div>
         </div>
-        <p class="answerBody">${abody}</p>
-        <div class="rating-container">
-          <div class="upvote" id="upvote${answer.answerId}"></div>
-          <div class="rating-value" id="rating-value${answer.answerId}">${answer.rating}</div>
-          <div class="downvote" id="downvote${answer.answerId}"></div>
-        </div>
-      </div>
-    `;
-  });
-
-  // Wait for all the answers to be fetched
-  const answersHtml = await Promise.all(answerPromises);
-
-  // Display all the answers together
-  document.querySelector(".answer-wrapper").innerHTML = answersHtml.join("");
-
+          `
+        )
+        answerRating(answer, questionId)
+      }
+    }
+  }
   MathJax.Hub.Queue(['Typeset', MathJax.Hub, 'question-wrapper']); //latex addition
   MathJax.Hub.Queue(['Typeset', MathJax.Hub, 'answer-wrapper']);
 
@@ -290,17 +298,25 @@ async function displayQuestion() {
       skipStartupTypeset: true, // Skip automatic typesetting on startup
     });
   }
-
-  var updatedViews = 0;
+  var updatedViews = 0
   if (checkCookieExists(questionId) == false) { //checking cookies for views and updating
-    setCookie(questionId);
-    updatedViews = questionList[0].views + 1;
-    var newRating = parseInt(questionList[0].rating);
-    var answers = questionList[0].answers;
-    sendUpdate(questionId, answers, updatedViews, newRating); //sending update for cookies
+    setCookie(questionId)
+    updatedViews= questionList[0].views+1
+    var newRating = parseInt(questionList[0].rating)
+    var answers= questionList[0].answers
+    sendUpdate(questionId, answers, updatedViews, newRating) //sending update for cookies
   }
-}
+  else{
+  }
+  if (!isQuillInitialized) {
+    var quill = initializeQuill();
+    isQuillInitialized = true;
+  }
+  answerArea(questionList, quill)
+  await ratingButtons(questionList)
 
+
+}
 async function answerArea(questionList, quill){
 
   var previewContainer = document.getElementById('preview-container');
@@ -416,6 +432,10 @@ async function answerRating(answer, questionId){ //rating function
       document.getElementById("downvote"+answerId).style.borderTop = '15px solid red'
     }
   }
+  window.addEventListener('beforeunload', function (event) {
+    sendUpdate(questionId, answers, updatedViews, newRating)
+    localStorage.setItem("test","yes")
+  });
   return new Promise((resolve) => { //code for updating live, sending cookies and update
     document.getElementById("upvote"+answerId).addEventListener("click", event => { //if upvote clicked
       if (localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser") != null){ //signup check
@@ -486,7 +506,11 @@ async function answerRating(answer, questionId){ //rating function
         alert("Please log in to leave a rating.")
       }
     })
+    console.log("called")
+
   })
+  
+  
 }
 async function ratingButtons(questionList){ //same as above, but updates question instead
   var questionId = questionList[0].questionId
@@ -527,9 +551,6 @@ async function ratingButtons(questionList){ //same as above, but updates questio
         setCookie("voted"+questionId, "downvote", 365)
         document.querySelector(".answer-wrapper").innerHTML = 
         ``
-        setTimeout(function(){
-          displayQuestion()  
-        },1000)
         }
         else if(downclick == true && upclick == false) {
           document.querySelector(".downvote").style.borderTop = '15px solid white'
@@ -538,15 +559,6 @@ async function ratingButtons(questionList){ //same as above, but updates questio
           newRating += parseInt(ratingUpdate)
           sendUpdate(questionId, answers, updatedViews, newRating)
           setCookie("voted"+questionId, "no", 365)
-          document.querySelector(".answer-wrapper").innerHTML = 
-          ``
-          displayQuestion()
-          document.querySelector(".answer-wrapper").innerHTML = 
-          ``  
-          displayQuestion()
-          document.querySelector(".answer-wrapper").innerHTML = 
-          ``
-          displayQuestion() //failsafe incase update lag
         }
         resolve(ratingUpdate)
       }
@@ -567,9 +579,6 @@ async function ratingButtons(questionList){ //same as above, but updates questio
             setCookie("voted"+questionId, "upvote", 365)
             document.querySelector(".answer-wrapper").innerHTML = 
             ``
-            setTimeout(function(){
-              displayQuestion()  
-            },1000)
           }
           else if (upclick == true && downclick == false) {
             document.querySelector(".upvote").style.borderBottom = '15px solid white'
@@ -580,9 +589,6 @@ async function ratingButtons(questionList){ //same as above, but updates questio
             setCookie("voted"+questionId, "no", 365)
             document.querySelector(".answer-wrapper").innerHTML = 
             ``
-            setTimeout(function(){
-              displayQuestion()  
-            },1000)
           }
         }
         resolve(ratingUpdate)
@@ -646,7 +652,12 @@ if (!checkCookieExists(eventCookieName)) {
   setCookie(eventCookieName, 'true', expirationDays);
 }
 if (window.location.pathname.indexOf("/viewQuestion") !== -1) {
-  await displayQuestion()
+  displayQuestion().then(() => {
+    // window.addEventListener('unload', function (event) {
+    //   // sendUpdate(questionId, answers, updatedViews, newRating);
+    //   localStorage.setItem("test", "yes");
+    // });
+  });
 }
 else if (window.location.pathname === "/freetutors.github.io/createQuestion.html" || window.location.href ==="/createQuestion.html") {
 }
