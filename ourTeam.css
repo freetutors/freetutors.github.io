@@ -1,3 +1,85 @@
+.menu {
+  list-style-type: none;
+  position: absolute;
+  cursor: pointer;
+  left: 10px;
+  color: white;
+  margin-top: -1px;
+  transform: translateX(calc(-1*var(--translate_len)));
+}
+
+.menu_item {
+  font-size: 19px;
+  list-style-type: none;
+  padding-right: 15px;
+  margin-left: -13px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 10px;
+  margin-top: 5px;
+  border-radius: 0 7px 7px 0; /* creating a straight edge for showing the selected area */
+  background-color: transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.menu_item:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.menu_item:hover::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 5px;
+  background-color: white;
+}
+.on-page {
+  font-size: 19px;
+  list-style-type: none;
+  padding-right: 15px;
+  margin-left: -13px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 10px;
+  margin-top: 5px;
+  border-radius: 0 7px 7px 0; /* creating a straight edge for showing the selected area */
+  background-color: rgba(163, 47, 128, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.on-page::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 5px;
+  background-color: var(--secondary-color);
+}
+
+.on-page:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.on-page:hover::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 5px;
+  background-color: white;
+}
+
+@media only screen and (max-width: 1400px){
+   .menu {
+display: none;   
+}
+}
 .our_team_text {
     color: white;
     padding: 7px;

@@ -158,3 +158,9 @@ function debounce(func, delay) {
     timeoutId = setTimeout(() => func.apply(this, args), delay);
   };
 }
+const localUser = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser")
+const user = await getUser(localUser)
+const answers = parseInt(user.user[0].answers)
+const totalQuestions = await getQuestionListSubject("all")
+localStorage.setItem("userAnswers", answers)
+localStorage.setItem("totalQuestions", totalQuestions.length)

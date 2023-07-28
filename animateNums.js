@@ -32,9 +32,10 @@ async function animate(valToAnimate, container, gear) {
     digWheel[i].style.transform = 'translateY(-' + String(30 * strVal[i]) + 'px)';
   }
 }
-
+const answers = localStorage.getItem("userAnswers")
+const total =localStorage.getItem("totalQuestions")
 window.addEventListener("DOMContentLoaded", (event) => {
-  animate(2048, document.querySelector(".important_box_num1"), 'important_box_num1_digit')
-  animate(91, document.querySelector(".important_box_num2"), 'important_box_num2_digit')
-  animate(520, document.querySelector(".important_box_num3"), 'important_box_num3_digit')
+  animate(total, document.querySelector(".important_box_num1"), 'important_box_num1_digit')
+  animate(answers, document.querySelector(".important_box_num2"), 'important_box_num2_digit')
+  animate(answers/5, document.querySelector(".important_box_num3"), 'important_box_num3_digit')
 });
