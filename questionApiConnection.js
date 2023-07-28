@@ -397,7 +397,6 @@ async function sendUpdate(questionId, answers, updatedViews, rating){ //updating
 }
 
 async function updateAnswer(questionId, answerId, rating){ //updating when answer is rated
-  console.log(apiUrlanswerUpdate)
   const url = new URL(`${apiUrlanswerUpdate}?questionId=${questionId}&answerId=${answerId}&rating=${rating}`)
   const response = await fetch(url,  {
     mode: "cors",
@@ -424,12 +423,12 @@ async function answerRating(answer, questionId){ //rating function
     else if(getCookie("voted"+answerId)=== 'upvote') {
       upclick = true
       downclick = false
-      document.getElementById("upvote"+answerId).style.borderBottom = '15px solid green'
+      document.getElementById("upvote"+answerId).style.borderBottom = '15px solid var(--secondary-color)'
     }
     else if(getCookie("voted"+answerId) === 'downvote') {
       downclick = true
       upclick = false
-      document.getElementById("downvote"+answerId).style.borderTop = '15px solid red'
+      document.getElementById("downvote"+answerId).style.borderTop = '15px solid var(--secondary-color)'
     }
   }
   window.addEventListener('beforeunload', function (event) {
@@ -440,7 +439,7 @@ async function answerRating(answer, questionId){ //rating function
     document.getElementById("upvote"+answerId).addEventListener("click", event => { //if upvote clicked
       if (localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser") != null){ //signup check
           if (upclick == false && downclick == false) { //if no votes then plus one
-            document.getElementById("upvote"+answerId).style.borderBottom = '15px solid green'
+            document.getElementById("upvote"+answerId).style.borderBottom = '15px solid var(--secondary-color)'
             upclick = true
             ratingUpdate = 1
             newRating += parseInt(ratingUpdate)
@@ -467,7 +466,7 @@ async function answerRating(answer, questionId){ //rating function
      document.getElementById("downvote"+answerId).addEventListener("click", function() { //if downvote, following same logic as above
       if (localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser") != null){
         if (upclick == false && downclick == false) {
-          document.getElementById("downvote"+answerId).style.borderTop = '15px solid red'
+          document.getElementById("downvote"+answerId).style.borderTop = '15px solid var(--secondary-color)'
           downclick = true
           ratingUpdate = -1
         newRating += parseInt(ratingUpdate)
@@ -479,11 +478,9 @@ async function answerRating(answer, questionId){ //rating function
         else if(downclick == true && upclick == false) {
           document.getElementById("downvote"+answerId).style.borderTop = '15px solid white'
           ratingUpdate = 1
-          console.log(newRating, ratingUpdate)
           downclick = false
           newRating += parseInt(ratingUpdate)
           updateAnswer(questionId, answerId, newRating)
-          console.log(newRating)
           setCookie("voted"+answerId, "no", 365)
           document.getElementById(`rating-value${answerId}`).innerText = newRating
         }
@@ -493,8 +490,6 @@ async function answerRating(answer, questionId){ //rating function
         alert("Please log in to leave a rating.")
       }
     })
-    console.log("called")
-
   })
   
   
@@ -518,19 +513,19 @@ async function ratingButtons(questionList){ //same as above, but updates questio
     else if(getCookie("voted"+questionId)=== 'upvote') {
       upclick = true
       downclick = false
-      document.querySelector(".upvote").style.borderBottom = '15px solid green'
+      document.querySelector(".upvote").style.borderBottom = '15px solid var(--secondary-color)'
     }
     else if(getCookie("voted"+questionId) === 'downvote') {
       downclick = true
       upclick = false
-      document.querySelector(".downvote").style.borderTop = '15px solid red'
+      document.querySelector(".downvote").style.borderTop = '15px solid var(--secondary-color)'
     }
   }
   return new Promise((resolve) => {
     document.querySelector(".downvote").addEventListener("click", function() {
       if (localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser") != null){
         if (upclick == false && downclick == false) {
-          document.querySelector(".downvote").style.borderTop = '15px solid red'
+          document.querySelector(".downvote").style.borderTop = '15px solid var(--secondary-color)'
           downclick = true
           ratingUpdate = -1
         newRating += parseInt(ratingUpdate)
@@ -558,7 +553,7 @@ async function ratingButtons(questionList){ //same as above, but updates questio
       if (localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser") != null){
         if (event.target == document.querySelector(".upvote")){
           if (upclick == false && downclick == false) {
-            document.querySelector(".upvote").style.borderBottom = '15px solid green'
+            document.querySelector(".upvote").style.borderBottom = '15px solid var(--secondary-color)'
             upclick = true
             ratingUpdate = 1
             newRating += parseInt(ratingUpdate)
