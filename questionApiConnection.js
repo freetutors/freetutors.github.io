@@ -446,11 +446,7 @@ async function answerRating(answer, questionId){ //rating function
             newRating += parseInt(ratingUpdate)
             updateAnswer(questionId, answerId, newRating)
             setCookie("voted"+answerId, "upvote", 365)
-          document.querySelector(".answer-wrapper").innerHTML = 
-          ``
-          setTimeout(function(){
-            displayQuestion()  //lag proofing
-          },2000)
+            document.getElementById(`rating-value${answerId}`).innerText = newRating
           }
           else{ //if cancling upvote
             document.getElementById("upvote"+answerId).style.borderBottom = '15px solid white'
@@ -459,11 +455,7 @@ async function answerRating(answer, questionId){ //rating function
             newRating += parseInt(ratingUpdate)
             updateAnswer(questionId, answerId, newRating)
             setCookie("voted"+answerId, "no", 365)
-            document.querySelector(".answer-wrapper").innerHTML = 
-            ``
-            setTimeout(function(){
-              displayQuestion()  
-            },2000)
+            document.getElementById(`rating-value${answerId}`).innerText = newRating
           }
         resolve(ratingUpdate)
         }
@@ -481,24 +473,19 @@ async function answerRating(answer, questionId){ //rating function
         newRating += parseInt(ratingUpdate)
         updateAnswer(questionId, answerId, newRating)
         setCookie("voted"+answerId, "downvote", 365)
-        document.querySelector(".answer-wrapper").innerHTML = 
-        ``
-        setTimeout(function(){
-          displayQuestion()  
-        },2000)
+        document.getElementById(`rating-value${answerId}`).innerText = newRating
+
       }
         else if(downclick == true && upclick == false) {
           document.getElementById("downvote"+answerId).style.borderTop = '15px solid white'
-          ratingUpdate += 1
+          ratingUpdate = 1
+          console.log(newRating, ratingUpdate)
           downclick = false
           newRating += parseInt(ratingUpdate)
           updateAnswer(questionId, answerId, newRating)
+          console.log(newRating)
           setCookie("voted"+answerId, "no", 365)
-          document.querySelector(".answer-wrapper").innerHTML = 
-          ``
-          setTimeout(function(){
-            displayQuestion()  
-          },2000)  
+          document.getElementById(`rating-value${answerId}`).innerText = newRating
         }
         resolve(ratingUpdate)
       }
@@ -549,8 +536,7 @@ async function ratingButtons(questionList){ //same as above, but updates questio
         newRating += parseInt(ratingUpdate)
         sendUpdate(questionId, answers, updatedViews, newRating)
         setCookie("voted"+questionId, "downvote", 365)
-        document.querySelector(".answer-wrapper").innerHTML = 
-        ``
+        document.querySelector(".rating-value").innerText = newRating
         }
         else if(downclick == true && upclick == false) {
           document.querySelector(".downvote").style.borderTop = '15px solid white'
@@ -559,6 +545,7 @@ async function ratingButtons(questionList){ //same as above, but updates questio
           newRating += parseInt(ratingUpdate)
           sendUpdate(questionId, answers, updatedViews, newRating)
           setCookie("voted"+questionId, "no", 365)
+          document.querySelector(".rating-value").innerText = newRating
         }
         resolve(ratingUpdate)
       }
@@ -577,8 +564,7 @@ async function ratingButtons(questionList){ //same as above, but updates questio
             newRating += parseInt(ratingUpdate)
             sendUpdate(questionId, answers, updatedViews, newRating)
             setCookie("voted"+questionId, "upvote", 365)
-            document.querySelector(".answer-wrapper").innerHTML = 
-            ``
+            document.querySelector(".rating-value").innerText = newRating
           }
           else if (upclick == true && downclick == false) {
             document.querySelector(".upvote").style.borderBottom = '15px solid white'
@@ -587,8 +573,7 @@ async function ratingButtons(questionList){ //same as above, but updates questio
             newRating += parseInt(ratingUpdate)
             sendUpdate(questionId, answers, updatedViews, newRating)
             setCookie("voted"+questionId, "no", 365)
-            document.querySelector(".answer-wrapper").innerHTML = 
-            ``
+            document.querySelector(".rating-value").innerText = newRating
           }
         }
         resolve(ratingUpdate)
