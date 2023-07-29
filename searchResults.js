@@ -102,6 +102,11 @@ const subjects = [
              <div id="question_stats_items">${question.views} views</div>
              <div id="question_stats_items">${question.rating} rating</div>
           </div>`
+          console.log(question)
+
+          question.addEventListener('click', () => {
+            console.log("hi")
+          });
       }
     }
   }
