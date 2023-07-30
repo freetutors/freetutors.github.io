@@ -77,14 +77,10 @@ function addQuestionClickListeners(questionList) {
 function showQuestionColumn(subject) {
   (async () => {
     const questionList = await getQuestionList(subject);
-    const fetchUserPromises = questionList.map((question) => getUser(question.author));
-    const users = await Promise.all(fetchUserPromises);
 
     let html = '';
     questionList.forEach((question, index) => {
-      const user = users[index];
-
-      const pfp = user.user[0].pfp;
+      const pfp = null
       const displayedImage = pfp == null ? "placeholder_pfp.png" : `data:image/png;base64,${pfp}`;
       html += `
         <div class="box text_box">
