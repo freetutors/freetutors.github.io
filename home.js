@@ -79,8 +79,8 @@ function showQuestionColumn(subject) {
     const questionList = await getQuestionList(subject);
 
     let html = '';
-    questionList.forEach((question, index) => {
-      const pfp = null
+    for (const question of questionList) {
+      const pfp = question.pfp
       const displayedImage = pfp == null ? "placeholder_pfp.png" : `data:image/png;base64,${pfp}`;
       html += `
         <div class="box text_box">
@@ -94,7 +94,7 @@ function showQuestionColumn(subject) {
             <div id="question_stats_items">${question.rating} rating</div>
           </div>
         </div>`;
-    });
+    };
 
     questionBoxContainer.innerHTML = html;
     addQuestionClickListeners(questionList);
