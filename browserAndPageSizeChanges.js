@@ -4,6 +4,8 @@ var browserName = browser.parsedResult.browser.name;
 var path = window.location.pathname;
 var pageName = path.split("/").pop();
 
+const username = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser")
+
 
 const askQuestionButton = document.querySelector('.ask-question-button');
 const searchBar = document.querySelector('.search-bar');
@@ -11,6 +13,10 @@ const signUpAsTutorButton = document.querySelector('#sign_up_as_tutor_button');
 const profileButton = document.querySelector('.profileButton');
 const banner = document.querySelector('.banner');
 const infoInputGroupElements = document.getElementsByClassName('info_input_group');
+
+if (username == null) {
+  searchBar.style.marginRight = '30px';
+}
 
 function checkVSChrome() {
 
