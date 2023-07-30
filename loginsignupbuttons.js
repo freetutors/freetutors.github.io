@@ -20,7 +20,6 @@ if (username != null) { //if nothing in localStorage
   const pfp = user.user[0].pfp
   const profileButton = document.createElement('div');
   profileButton.classList.add('profileButton');//info for profile click button
-  console.log(profileButton)
   profileButton.innerHTML = `
     <div class="notif"></div>
     <img class="inboxButton" src="inbox.png">
@@ -52,7 +51,9 @@ if (username != null) { //if nothing in localStorage
     window.location= "signup";
   });
 }
-const inbox = document.querySelector(".inboxButton")
+
+if (username !== null) {
+  const inbox = document.querySelector(".inboxButton")
 
   inbox.addEventListener('mouseover', () => {
     inbox.style.transform = 'scale(1.1)';
@@ -61,6 +62,9 @@ const inbox = document.querySelector(".inboxButton")
   inbox.addEventListener('mouseout', () => {
     inbox.style.transform = 'scale(1)';
   });
+}
+
+
 
 
 

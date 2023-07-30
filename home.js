@@ -3,113 +3,38 @@ import config from "./config.js";
 const apiUrlget = config.apiUrlget;
 const apiUrlgetUser = config.apiUrlgetUser;
 
-const subjects = [
-  "Active Questions - Chemistry",
-  "Active Questions - Biology",
-  "Active Questions - Physics",
-  "Active Questions - English",
-  "Active Questions - History",
-  "Active Questions - Geography",
-  "Active Questions - Foreign Language",
-  "Active Questions - Computer Science",
-  "Active Questions - Physical Education",
-  "Active Questions - Math",
-];
-
-const questionHeader = document.querySelector('.question_header');
-let targetSubject = "math";
-
-document.getElementById("arrow-left").addEventListener("click", debounce(moveLeft, 100));
-document.getElementById("arrow-right").addEventListener("click", debounce(moveRight, 100));
-
 const questionBoxContainer = document.querySelector(".questions_list");
-showQuestionColumn(targetSubject);
+const questionHeader = document.querySelector('.question_header');
 
-const userCache = new Map();
-
-async function showQuestionColumn(subject) {
-  const questionList = await getQuestionListSubject(subject);
-  const users = await Promise.all(questionList.map(question => getUser(question.author)));
-
-  const fragment = document.createDocumentFragment();
-  questionList.forEach((question, index) => {
-    const user = users[index];
-    const pfp = userCache.get(question.author) || user.user[0].pfp;
-    if (!userCache.has(question.author)) {
-      userCache.set(question.author, pfp);
-    }
-    const displayedImage = pfp == null
-      ? "placeholder_pfp.png"
-      : `data:image/png;base64,${pfp}`;
-
-    const questionBox = document.createElement("div");
-    questionBox.classList.add("box", "text_box");
-    questionBox.innerHTML = `
-      <img id="global_pfp" src="${displayedImage}">
-      <div id="text_box_question_content">${question.title}</div>
-      <div id="asked_by_line">asked by ${question.author}, ${getTimeDifference(question.timestamp)}</div>
-      <div id="answered_by_line">Be the first to answer!</div>
-      <div class="question_stats">
-        <div id="question_stats_items">${question.answers} Answers</div>
-        <div id="question_stats_items">${question.views} views</div>
-        <div id="question_stats_items">${question.rating} rating</div>
-      </div>
-    `;
-    fragment.appendChild(questionBox);
+async function getQuestionList(subject) {
+  const url = new URL(`${apiUrlget}?subject=${subject}`);
+  const response = await fetch(url, {
+    mode: "cors",
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
   });
-
-  questionBoxContainer.innerHTML = "";
-  questionBoxContainer.appendChild(fragment);
-
-  addQuestionClickListeners(questionList);
-}
-
-
-function addQuestionClickListeners(questionList) {
-  questionBoxContainer.querySelectorAll(".box.text_box").forEach((box, index) => {
-    box.addEventListener("click", function (event) {
-      if (event.target.id === "global_pfp") {
-        const questionAuthor = questionList[index].author;
-        openProfile(questionAuthor)
-      } else if (event.target.id === "text_box_question_content"){
-        const questionId = questionList[index].questionId;
-        localStorage.setItem("QuestionID", JSON.stringify(questionId));
-        window.location = `viewQuestion?questionId=${questionId}`;
-      }
-    });
-  });
+  const data = await response.json();
+  return data.questionList;
 }
 
 async function getUser(username) {
-  if (userCache.has(username)) {
-    return { user: [{ pfp: userCache.get(username) }] };
-  }
   const url = new URL(`${apiUrlgetUser}?username=${username}`);
-  const user = await fetch(url, {
+  const response = await fetch(url, {
     mode: "cors",
     method: "GET",
     headers: {
       "Content-Type": "application/json",
     },
-  }).then((response) => response.json());
-  return user;
-}
-
-async function getQuestionListSubject(subject) {
-  const url = new URL(`${apiUrlget}?subject=${subject}`);
-  const questionList = await fetch(url, {
-    mode: "cors",
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  }).then((response) => response.json());
-  return questionList.questionList;
+  });
+  const data = await response.json();
+  return data;
 }
 
 function getTimeDifference(timestamp) {
   const currentTime = Date.now();
-  const previousTime = new Date(timestamp).getTime();
+  const previousTime = new Date(timestamp).getTime();1
   const timeDiff = currentTime - previousTime;
 
   const seconds = Math.floor(timeDiff / 1000);
@@ -131,25 +56,92 @@ function getTimeDifference(timestamp) {
   }
 }
 
-function moveRight() {
-  const currentIndex = subjects.indexOf(questionHeader.innerHTML);
-  const nextIndex = (currentIndex + 1) % subjects.length;
-  questionHeader.innerHTML = subjects[nextIndex];
-  targetSubject = subjects[nextIndex].replace("Active Questions - ", "").toLowerCase();
-  showQuestionColumn(targetSubject);
+function addQuestionClickListeners(questionList) {
+  questionBoxContainer.addEventListener("click", function (event) {
+    const box = event.target.closest(".box.text_box");
+    if (!box) return;
+
+    const index = Array.from(questionBoxContainer.children).indexOf(box);
+    if (event.target.id === "global_pfp") {
+      const questionAuthor = questionList[index].author;
+      openProfile(questionAuthor);
+    } else if (event.target.id === "text_box_question_content") {
+      const questionId = questionList[index].questionId;
+      localStorage.setItem("QuestionID", JSON.stringify(questionId));
+      window.location = `viewQuestion?questionId=${questionId}`;
+    }
+  });
 }
 
-function moveLeft() {
-  const currentIndex = subjects.indexOf(questionHeader.innerHTML);
-  const prevIndex = ((currentIndex - 1) % subjects.length + subjects.length) % subjects.length;
-  questionHeader.innerHTML = subjects[prevIndex];
-  targetSubject = subjects[prevIndex].replace("Active Questions - ", "").toLowerCase();
-  showQuestionColumn(targetSubject);
+
+function showQuestionColumn(subject) {
+  (async () => {
+    const questionList = await getQuestionList(subject);
+    const fetchUserPromises = questionList.map((question) => getUser(question.author));
+    const users = await Promise.all(fetchUserPromises);
+
+    let html = '';
+    questionList.forEach((question, index) => {
+      const user = users[index];
+
+      const pfp = user.user[0].pfp;
+      const displayedImage = pfp == null ? "placeholder_pfp.png" : `data:image/png;base64,${pfp}`;
+      html += `
+        <div class="box text_box">
+          <img id="global_pfp" src="${displayedImage}">
+          <div id="text_box_question_content">${question.title}</div>
+          <div id="asked_by_line">asked by ${question.author}, ${getTimeDifference(question.timestamp)}</div>
+          <div id="answered_by_line">Be the first to answer!</div>
+          <div class="question_stats">
+            <div id="question_stats_items">${question.answers} Answers</div>
+            <div id="question_stats_items">${question.views} views</div>
+            <div id="question_stats_items">${question.rating} rating</div>
+          </div>
+        </div>`;
+    });
+
+    questionBoxContainer.innerHTML = html;
+    addQuestionClickListeners(questionList);
+  })();
 }
+
+showQuestionColumn("math");
 
 function openProfile(username) {
   window.location = `profile?username=${username}`;
 }
+
+const headerSubjects = [
+  "Active Questions - Math",
+  "Active Questions - Chemistry",
+  "Active Questions - Biology",
+  "Active Questions - Physics",
+  "Active Questions - English",
+  "Active Questions - History",
+  "Active Questions - Geography",
+  "Active Questions - Foreign Language",
+  "Active Questions - Computer Science",
+  "Active Questions - Physical Education",
+];
+
+let currentIndex = 0;
+
+function moveRight() {
+  currentIndex = (currentIndex + 1) % headerSubjects.length;
+  questionHeader.innerHTML = headerSubjects[currentIndex];
+  const targetSubject = headerSubjects[currentIndex].replace("Active Questions - ", "").toLowerCase();
+  showQuestionColumn(targetSubject);
+}
+
+function moveLeft() {
+  currentIndex = ((currentIndex - 1) % headerSubjects.length + headerSubjects.length) % headerSubjects.length;
+  questionHeader.innerHTML = headerSubjects[currentIndex];
+  const targetSubject = headerSubjects[currentIndex].replace("Active Questions - ", "").toLowerCase();
+  showQuestionColumn(targetSubject);
+}
+
+document.getElementById("arrow-left").addEventListener("click", debounce(moveLeft, 100));
+document.getElementById("arrow-right").addEventListener("click", debounce(moveRight, 100));
 
 function debounce(func, delay) {
   let timeoutId;
@@ -158,12 +150,5 @@ function debounce(func, delay) {
     timeoutId = setTimeout(() => func.apply(this, args), delay);
   };
 }
-const localUser = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser")
-const user = await getUser(localUser)
-if (user.user[0].status == "tutor" || user.user[0].status =="staff"){
-  document.getElementById("sign_up_as_tutor_button").style.display="none"
-}
-const answers = parseInt(user.user[0].answers)
-const totalQuestions = await getQuestionListSubject("all")
-localStorage.setItem("userAnswers", answers)
-localStorage.setItem("totalQuestions", totalQuestions.length)
+
+

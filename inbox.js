@@ -175,15 +175,15 @@ async function updateBooleanAttribute(tableName, key, attributeName, attributeVa
   document.querySelector(".inboxButton").addEventListener("click", inboxDisplay)
   }
 
-  console.log(pageName)
   if (pageName == 'viewQuestion') {
     document.getElementById("answer-send").addEventListener("click", updateOnAnswer)
   }
 
+if (username !== null) {
   user = await getUser(username);
   if (user.user[0].isRead == false) {
     document.querySelector(".notif").style.display = "block"
   }
-
+}
 })();
 
