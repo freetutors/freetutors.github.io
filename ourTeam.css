@@ -195,6 +195,7 @@ hr.line {
   max-width: 60%;
   padding: 5%;
   padding-top: 0;
+  font-size: auto;
 }
 .details{
   display: flex;
@@ -204,6 +205,7 @@ hr.line {
   width: 30%;
   height: auto;
   overflow: hidden;
+  margin-right: 20px;
 }
 @media only screen and (max-width: 1200px) {
     .full-text {
