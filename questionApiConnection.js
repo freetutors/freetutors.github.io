@@ -92,7 +92,7 @@ if (window.location.pathname.indexOf("createQuestion") !== -1) { //if on the cre
           }, 3000);
         } else {
           if(window.confirm("Please verify your account to answer a question"));{
-            window.location = "/verification.html" //sends to verificatino if not verified
+            window.location = "/verification" //sends to verificatino if not verified
           }
         }
       });

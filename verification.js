@@ -5,7 +5,7 @@ const clientId =config.clientId
 const region = config.region
 const accessKey = config.accessKey
 const secretKey = config.secretKey
-usingUsernameInput = false
+let usingUsernameInput = false
 AWS.config.region = region; //telling what region to search
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({ //COnnecting to pool
   IdentityPoolId: poolId 
@@ -18,7 +18,6 @@ AWS.config.update({ //updating info
 });
 
 var cognito = new AWS.CognitoIdentityServiceProvider(); //connection to cognito identiy
-AWS_SDK_LOAD_CONFIG=1
 
 if (localStorage.getItem("signupUsername") === null){
     usingUsernameInput = true;
@@ -48,7 +47,7 @@ function verifyUser(username, verificationCode) { //verified account
       } else {
         console.log(data);
         alert('Verification successful! You can now sign in.');
-        window.location = 'https://freetutors.github.io/profile'
+        window.location = '/profile'
       }
     });
   }
