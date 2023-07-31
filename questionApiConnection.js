@@ -448,10 +448,12 @@ async function answerRating(answer, questionId){ //rating function
             document.getElementById(`rating-value${answerId}`).innerText = newRating
           }
           else{ //if cancling upvote
+            console.log("dfasjdf")
             document.getElementById("upvote"+answerId).style.borderBottom = '15px solid white'
-            ratingUpdate -= 1
+            ratingUpdate = -1
             upclick = false
             newRating += parseInt(ratingUpdate)
+            console.log(newRating)
             updateAnswer(questionId, answerId, newRating)
             setCookie("voted"+answerId, "no", 365)
             document.getElementById(`rating-value${answerId}`).innerText = newRating
@@ -535,7 +537,7 @@ async function ratingButtons(questionList){ //same as above, but updates questio
         }
         else if(downclick == true && upclick == false) {
           document.querySelector(".downvote").style.borderTop = '15px solid white'
-          ratingUpdate += 1
+          ratingUpdate = 1
           downclick = false
           newRating += parseInt(ratingUpdate)
           sendUpdate(questionId, answers, updatedViews, newRating)
@@ -563,7 +565,7 @@ async function ratingButtons(questionList){ //same as above, but updates questio
           }
           else if (upclick == true && downclick == false) {
             document.querySelector(".upvote").style.borderBottom = '15px solid white'
-            ratingUpdate -= 1
+            ratingUpdate = -1
             upclick = false
             newRating += parseInt(ratingUpdate)
             sendUpdate(questionId, answers, updatedViews, newRating)
