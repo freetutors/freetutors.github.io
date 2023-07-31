@@ -17,7 +17,12 @@ const sendEmailButton = document.querySelector(".buttons");
 const functionName = 'sendEmail';
 
 const lambda = new AWS.Lambda();
-
+const username = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser")
+if (username == null){
+  if(window.confirm("Please Log In to Contact Us"));{
+    window.location = "/login"
+  }
+}
 sendEmailButton.addEventListener("click", () => {
 
   if (pageName == 'suggestions.html') {
