@@ -17,7 +17,8 @@
  }
    .important_box {/*sub class of box*/
      position: absolute;
-     height: 240px;
+     height: auto;
+     padding-bottom: 30px;
      width: 165px;
      margin-top: -32px;
      left: calc(50% + var(--question_list_width)/2 + 35px);

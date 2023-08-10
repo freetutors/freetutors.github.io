@@ -34,8 +34,9 @@ async function animate(valToAnimate, container, gear) {
 }
 const answers = localStorage.getItem("userAnswers")
 const total =localStorage.getItem("totalQuestions")
-window.addEventListener("DOMContentLoaded", (event) => {
+setTimeout(() => {
+  console.log("called")
   animate(total, document.querySelector(".important_box_num1"), 'important_box_num1_digit')
   animate(answers, document.querySelector(".important_box_num2"), 'important_box_num2_digit')
-  animate(Math.round(answers/5), document.querySelector(".important_box_num3"), 'important_box_num3_digit')
-});
+  animate(Math.round(answers/5), document.querySelector(".important_box_num3"), 'important_box_num3_digit') 
+}, 2000);
