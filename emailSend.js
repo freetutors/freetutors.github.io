@@ -22,22 +22,27 @@ var cognito = new AWS.CognitoIdentityServiceProvider(); //connection to cognito 
 document.getElementById('username-send').addEventListener('click', function(event) {
     event.preventDefault();
     const username = document.getElementById('resetUsername').value;
-
+    if(username == null){
+      alert("Please enter your Username")
+    }
+    else{
+      const params = {
+        ClientId: clientId, // Replace with your Cognito App Client ID
+        Username: username
+      };
+  
+      // Call the forgotPassword API
+      cognito.forgotPassword(params, function(err, data) {
+        if (err) {
+          console.error('Error:', err.message);
+        } else {
+          console.log('Password reset email sent:', data);
+        }
+      });
+      localStorage.setItem("Username", username)
+      window.location = "resetpwd"
+    }
     // Create a CognitoIdentityServiceProvider object
     // Parameters for the forgotPassword API call
-    const params = {
-      ClientId: clientId, // Replace with your Cognito App Client ID
-      Username: username
-    };
-
-    // Call the forgotPassword API
-    cognito.forgotPassword(params, function(err, data) {
-      if (err) {
-        console.error('Error:', err.message);
-      } else {
-        console.log('Password reset email sent:', data);
-      }
-    });
-    localStorage.setItem("Username", username)
-    window.location = "resetpwd"
+    
   });
