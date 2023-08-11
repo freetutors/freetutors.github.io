@@ -5,7 +5,7 @@ const clientId =config.clientId
 const region = config.region
 const accessKey = config.accessKey
 const secretKey = config.secretKey
-usingUsernameInput = false
+let usingUsernameInput = false
 AWS.config.region = region; //telling what region to search
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({ //COnnecting to pool
   IdentityPoolId: poolId 
@@ -18,7 +18,6 @@ AWS.config.update({ //updating info
 });
 
 var cognito = new AWS.CognitoIdentityServiceProvider(); //connection to cognito identiy
-AWS_SDK_LOAD_CONFIG=1
 
 if (localStorage.getItem("signupUsername") === null){
     usingUsernameInput = true;
@@ -31,6 +30,7 @@ if (localStorage.getItem("signupUsername") === null){
     <input type="number" id="vCode" class="vCode login-input"
     placeholder="Enter Your Verification Number">
     <button class="button verification-send" id="verification-send">Verify</button>
+    <a class="forgotPwd">Resend Email?</a>
     `
 }
 function verifyUser(username, verificationCode) { //verified account
@@ -48,11 +48,35 @@ function verifyUser(username, verificationCode) { //verified account
       } else {
         console.log(data);
         alert('Verification successful! You can now sign in.');
-        window.location = 'https://freetutors.github.io/profile'
+        window.location = `/profile?username=${username}`
       }
     });
   }
+  document.querySelector('.resend-email').addEventListener('click', function () {
+    var username = "not yet set"; //setting arbitrary value for global variable
+    if (usingUsernameInput == true) {
+      username = document.getElementById("username").value;
+    } else {
+      username = localStorage.getItem('signupUsername');
+    }
+    resendVerificationCode(username);
+  });
+  function resendVerificationCode(username) {
+    const params = {
+      ClientId: clientId,
+      Username: username,
+    };
   
+    cognito.resendConfirmationCode(params, function (err, data) {
+      if (err) {
+        console.log(err, err.stack);
+        alert('Failed to resend verification code. Please try again.');
+      } else {
+        console.log(data);
+        alert('Verification code resent successfully! Please check your email.');
+      }
+    });
+  }
   document.querySelector('.verification-send').addEventListener('click', function () { //upon sending data
     const verificationCode = document.getElementById("vCode").value;
     var username = "not yet set" //setting arbitrary value for global variable

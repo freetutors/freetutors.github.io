@@ -1,9 +1,99 @@
+.menu {
+  list-style-type: none;
+  position: absolute;
+  cursor: pointer;
+  left: 10px;
+  color: white;
+  margin-top: -1px;
+  transform: translateX(calc(-1*var(--translate_len)));
+}
+
+.menu_item {
+  font-size: 19px;
+  list-style-type: none;
+  padding-right: 15px;
+  margin-left: -13px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 10px;
+  margin-top: 5px;
+  border-radius: 0 7px 7px 0; /* creating a straight edge for showing the selected area */
+  background-color: transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.menu_item:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.menu_item:hover::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 5px;
+  background-color: white;
+}
+.on-page {
+  font-size: 19px;
+  list-style-type: none;
+  padding-right: 15px;
+  margin-left: -13px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 10px;
+  margin-top: 5px;
+  border-radius: 0 7px 7px 0; /* creating a straight edge for showing the selected area */
+  background-color: rgba(163, 47, 128, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.on-page::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 5px;
+  background-color: var(--secondary-color);
+}
+
+.on-page:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.on-page:hover::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 5px;
+  background-color: white;
+}
+
+@media only screen and (max-width: 1400px){
+   .menu {
+display: none;   
+}
+}
 .our_team_text {
     color: white;
+    padding: 7px;
     font-size: 40px;
     text-align: center;
     margin-top: 40px;
+    box-shadow: 0 1rem 2rem #000000;
     text-decoration: underline;
+}
+.page-heading{
+  margin-left: calc(50% - 125px);
+  background-color: var(--primary-color);
+  width: 250px;
+  border-radius: 10px;
 }
 
 
@@ -40,18 +130,22 @@ details summary::-webkit-details-marker {
 }
 
 .container{
-    width: 1000px;
+    width: 100%;
     height: auto;
     background-color: var(--header-color);
     opacity: 0.95;
-    margin: auto;
     margin-top: 50px;
     flex-direction: column;
     border-radius: .5rem;
     box-shadow: 0 1rem 2rem #000000;
     padding: 20px;
+    padding-right: 0;
   }
-
+.full-text{
+  width: 1000px;
+  margin: auto;
+  padding: 0;
+}
 .sidenote {
     color: white;
     text-align: center;
@@ -64,9 +158,57 @@ hr.line {
   border-right: 0.5px solid var(--secondary-color);
   border-left: 0.5px solid var(--secondary-color);
 }
-
+.box{
+  border-radius: 10px;
+  background-color: var(--secondary-color);
+  width: 300px;
+  color: var(--text-color);
+  box-shadow: 0 1rem 2rem #000000;
+  padding-left: 10px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  margin-top: 20px ;
+}
+.leadership{
+  width: 180px;
+}
+.staff{
+  width: 90px;
+  margin-top: 50px;
+  margin-left: auto;
+  text-align: right;
+  padding-right: 20px;
+}
+.application{
+  align-items: center;
+  height: 60px;
+  font-size: 20px;
+}
+.application-text{
+  padding: 15px;
+}
+.link{
+  color: var(--text-color);
+}
+.info{
+  color: var(--text-color);
+  max-width: 60%;
+  padding: 5%;
+  padding-top: 0;
+  font-size: auto;
+}
+.details{
+  display: flex;
+}
+.pic{
+  border: 3px solid var(--secondary-color);
+  width: 30%;
+  height: auto;
+  overflow: hidden;
+  margin-right: 20px;
+}
 @media only screen and (max-width: 1200px) {
-    .container {
+    .full-text {
         width: auto;
         margin-left: 80px;
         margin-right: 80px;

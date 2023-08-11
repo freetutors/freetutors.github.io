@@ -1,36 +1,50 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z9E3QD9J4Y"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Z9E3QD9J4Y');
+
+  </script>
   <title>Free Tutors - Profile</title>
   <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-T474C4DT');</script>
+  })(window,document,'script','dataLayer','GTM-T474C4DT');
+  </script>
   <!-- End Google Tag Manager -->
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-HYTQ49YRWP"></script>
-<script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HYTQ49YRWP"></script>
+  <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
   gtag('config', 'G-HYTQ49YRWP');
-</script>
+
+  </script>
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link href='https://fonts.googleapis.com/css?family=Lexend' rel='stylesheet'>
   <link rel="stylesheet" href="profile.css"/>
   <link rel="stylesheet" href="root.css"/>
   <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1101.0.min.js"></script>
-  <script type = "module" src = 'config.js'></script>
+  <script type="module" src='config.js'></script>
 
 </head>
 <body>
-  <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T474C4DT"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
+<!-- Google Tag Manager (noscript) -->
+<noscript>
+  <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T474C4DT"
+          height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
 <div id="topbar">
   <img id="logo" src="Logo.svg" alt="Logo" onclick="window.location='/'">
   <!-- Add search bar -->
@@ -51,7 +65,7 @@
   <div class="pfp_border" id="pfp-container">
     <img id="pfp_inner" class="pfp_inner" src="placeholder_pfp.png">
     <input type="file" class="center " id="file">
-    <label for="file" id = "uploadBtn">Change Profile Picture</label>
+    <label for="file" id="uploadBtn">Change Profile Picture</label>
   </div>
   <p class="username-container" id="username_txt">abraham_lincoln_27</p>
 </div>
@@ -65,16 +79,17 @@
 </div>
 
 
-<div class = "box about-me ">
+<div class="box about-me ">
   <div class="your_info_txt">About Me:</div>
-  <textarea maxlength="300" type = "text" class=" box about-me-field" placeholder='Tell us something about you! 300 character limit.'></textarea>
-  <button class = "button updateAbout">Save</button>
+  <textarea maxlength="300" type="text" class=" box about-me-field"
+            placeholder='Tell us something about you! 300 character limit.'></textarea>
+  <button class="button updateAbout">Save</button>
 </div>
 
 <div class="box signup-container_profile">
   <div class="your_info_txt">Information</div>
   <p class="info-label">Username</p>
-  <input id="username"  class="username info_input_group" placeholder="abraham_lincoln_27">
+  <input id="username" class="username info_input_group" placeholder="abraham_lincoln_27">
   <img class="edit_icon" style="top: -172.25px" src="edit_icon.png">
   <p class="info-label">Password</p>
   <input class="info_input_group" type=password" placeholder='***************'>
@@ -97,6 +112,7 @@
       alert("Sorry, the previous page is not within this website.");
     }
   }
+
 </script>
 
 <!-- Add rest of content here -->
@@ -104,6 +120,6 @@
 <script src="https://unpkg.com/bowser@2.7.0/es5.js"></script>
 <script src="browserAndPageSizeChanges.js"></script>
 <script src="signin/signPopup.js"></script>
-<script type = "module" src="profile.js"></script>
+<script type="module" src="profile.js"></script>
 </body>
 </html>

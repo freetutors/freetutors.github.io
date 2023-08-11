@@ -3,18 +3,27 @@ const apiUrlget = config.apiUrlget;
 const searchHost = config.searchHost
 const searchKey = config.searchKey
 const possibleSearchResultContainer = document.querySelector('.possibleSearchResultContainer')
-const possibleSearchResult = document.querySelector('.possibleSearchResult')
-console.log(searchHost, searchKey)
 async function getAllQuestions() {
   const questions = [];
-  for (const subject of subjects) {
-    const subjectQuestionList = await getQuestionListSubject(subject);
+    const subjectQuestionList = await getQuestionListSubject("all");
     for (const question of subjectQuestionList) {
       questions.push({id: question.questionId, title: question.title});
     }
-  }
   return questions;
 }
+// async function getAllQuestions() {
+//   const questions = [];
+//   for (const subject of subjects) {
+//     const subjectQuestionList = await getQuestionListSubject(subject);
+//     console.log("1")
+//     for (const question of subjectQuestionList) {
+//       questions.push(question);
+//     }
+//   }
+//   console.log("2")
+//   return questions;
+// }
+//old function so you can test speed diff
 
 function handleSearchTrigger() {
   window.location = 'search.html?query=' + searchBar.value.trim()

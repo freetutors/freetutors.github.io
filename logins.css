@@ -253,6 +253,16 @@
   background-color: var(--text-box-bar-color);
   border-radius: 2px;
 }
+.resend{
+  text-align: center;
+  color: var(--text-color);
+  cursor: pointer;
+  transition: transform 0.3s;
+  margin-bottom: 10px;
+}
+.resend:hover{
+  transform: scale(1.2)
+}
 @media only screen and (max-width: 870px) {
 
 .signup-container {

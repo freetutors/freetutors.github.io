@@ -17,6 +17,27 @@ const sendEmailButton = document.querySelector(".buttons");
 const functionName = 'sendEmail';
 
 const lambda = new AWS.Lambda();
+const username = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser")
+if (username == null){
+  if(window.confirm("Please Log In to Contact Us"));{
+    window.location = "/login"
+  }
+}
+async function getUserCognito(username) { //getting cognito info
+  try {
+    const params = {
+      UserPoolId: poolId,
+      Username: username
+    };
+
+    const user = await cognito.adminGetUser(params).promise();
+    return user;
+  } catch (error) {
+      alert("error:"+error+"Please log out and log in again")
+  }
+}
+const user = await getUserCognito(username) //getting user info with previous username
+const email = "          Account Email:" + user.UserAttributes[4].Value //letting us know ur email
 
 sendEmailButton.addEventListener("click", () => {
 
@@ -30,7 +51,7 @@ sendEmailButton.addEventListener("click", () => {
 
   var subject = questionBox.value.trim().replace(/\r?\n|\r/g, '').replace(/"/g, "‟").replace(/"/g, '⁄').replace(/\\/g, '＼');
 
-  var body = commentsBox.value.trim().replace(/\r?\n|\r/g, ' ').replace(/"/g, "‟").replace(/"/g, ' ⁄').replace(/\\/g, '＼');
+  var body = commentsBox.value.trim().replace(/\r?\n|\r/g, ' ').replace(/"/g, "‟").replace(/"/g, ' ⁄').replace(/\\/g, '＼') + email;
 
   const payload = {
     "body": "{\"subject\": \"" + feedbackType + subject + "\", \"body\": \"" + body + "\"}"

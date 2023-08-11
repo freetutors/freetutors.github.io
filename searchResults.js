@@ -36,10 +36,21 @@ async function getAllQuestions() {
     for (const question of subjectQuestionList) {
       questions.push(question);
     }
-  console.log("2")
   return questions;
   }
-
+// async function getAllQuestions() {
+//   const questions = [];
+//   for (const subject of subjects) {
+//     const subjectQuestionList = await getQuestionListSubject(subject);
+//     console.log("1")
+//     for (const question of subjectQuestionList) {
+//       questions.push(question);
+//     }
+//   }
+//   console.log("2")
+//   return questions;
+// }
+//old function so you can test speed diff
 async function getQuestionListSubject(subject) {
   const url = new URL(`${apiUrlget}?subject=${subject}`);
   const questionList = await fetch(url, {
@@ -91,6 +102,11 @@ const subjects = [
              <div id="question_stats_items">${question.views} views</div>
              <div id="question_stats_items">${question.rating} rating</div>
           </div>`
+          console.log(question)
+
+          question.addEventListener('click', () => {
+            console.log("hi")
+          });
       }
     }
   }

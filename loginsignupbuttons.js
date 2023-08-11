@@ -15,7 +15,6 @@ async function getUser(username){ //pulling user info
 }
 
 
-
 if (username != null) { //if nothing in localStorage
   const user = await getUser(username)
   const pfp = user.user[0].pfp
@@ -52,6 +51,20 @@ if (username != null) { //if nothing in localStorage
     window.location= "signup";
   });
 }
+
+if (username !== null) {
+  const inbox = document.querySelector(".inboxButton")
+
+  inbox.addEventListener('mouseover', () => {
+    inbox.style.transform = 'scale(1.1)';
+  });
+
+  inbox.addEventListener('mouseout', () => {
+    inbox.style.transform = 'scale(1)';
+  });
+}
+
+
 
 
 
