@@ -20,7 +20,7 @@ AWS.config.update({ //updating info
 var cognito = new AWS.CognitoIdentityServiceProvider(); //connection to cognito identiy
 
 document.getElementById('username-send').addEventListener('click', function(event) {
-    event.preventDefault();
+    event.preventDefafult();
     const username = document.getElementById('resetUsername').value;
     if(username == null){
       alert("Please enter your Username")
