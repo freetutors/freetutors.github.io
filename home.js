@@ -157,22 +157,22 @@ if (status == "tutor" || status == "staff"){
   signUpTutor.innerHTML = 
 
     `
-    <div class="important_box_num1"></div>
+    <div class="important_box_num1">0</div>
   <div id="important_box_text">Total Site Questions</div>
-  <div class="important_box_num2"></div>
+  <div class="important_box_num2">0</div>
   <div id="important_box_text">Your Answers</div>
-  <div class="important_box_num3"></div>
+  <div class="important_box_num3">0</div>
   <div id="important_box_text">Volunteer Hours Earned</div>
 `
 }
 else{
   signUpTutor.innerHTML = 
   `
-  <div class="important_box_num1"></div>
+  <div class="important_box_num1">0</div>
   <div id="important_box_text">Total Site Questions</div>
-  <div class="important_box_num2"></div>
+  <div class="important_box_num2">0</div>
   <div id="important_box_text">Your Answers</div>
-  <div class="important_box_num3"></div>
+  <div class="important_box_num3">0</div>
   <div id="important_box_text">Volunteer Hours Earned</div>
   <button id="sign_up_as_tutor_button">Sign up as tutor</button>
   `
