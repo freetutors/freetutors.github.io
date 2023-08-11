@@ -18,7 +18,6 @@ if (username == null) {
     `;
     signPopUp.style.display = 'block';
   });
-const signPopUp = document.querySelector('.signPopUp');
 if (signUpAsTutor != null) {
   signUpAsTutor.addEventListener('click', () => {
     signPopUp.innerHTML = `
@@ -30,7 +29,6 @@ if (signUpAsTutor != null) {
     signPopUp.style.display = 'block';
   });
 }
-const signPopUp = document.querySelector('.signPopUp');
 if (pageName == 'createQuestion.html'){
   signPopUp.innerHTML = `
     <p class="signPopUpText">You must be logged in to ask a question.</p>
