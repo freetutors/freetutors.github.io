@@ -1,7 +1,7 @@
-const answers = localStorage.getItem("userAnswers")
-const total =localStorage.getItem("totalQuestions")
-document.querySelector(".important_box_num1").innerHTML = '0'.repeat(total.toString().length)
-document.querySelector(".important_box_num2").innerHTML = '0'.repeat(answers.toString().length)
+/*const answers = localStorage.getItem("userAnswers")
+const total =localStorage.getItem("totalQuestions")*/
+const answers = 323
+const total = 9824
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -31,7 +31,7 @@ async function animate(valToAnimate, container, gear) {
     `;
   }
 
-  await sleep(5);
+  await sleep(25);
 
   for (let i = 0; i < numDigits; i++) {
     digWheel[i].style.transform = 'translateY(-' + String(30 * strVal[i]) + 'px)';
@@ -39,8 +39,7 @@ async function animate(valToAnimate, container, gear) {
 }
 
 setTimeout(() => {
-  console.log("called")
   animate(total, document.querySelector(".important_box_num1"), 'important_box_num1_digit')
   animate(answers, document.querySelector(".important_box_num2"), 'important_box_num2_digit')
   animate(Math.round(answers/5), document.querySelector(".important_box_num3"), 'important_box_num3_digit') 
-}, 2000);
+}, 25);
