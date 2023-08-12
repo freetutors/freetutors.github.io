@@ -146,6 +146,7 @@ function debounce(func, delay) {
     timeoutId = setTimeout(() => func.apply(this, args), delay);
   };
 }
+const signUpTutor = document.querySelector('#tutorSignUp')
 const localUser = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser")
 if (localUser == null){
   signUpTutor.innerHTML = 
@@ -163,7 +164,7 @@ const user = await getUser(localUser)
 console
 const answers = parseInt(user.user[0].answers)
 const totalQuestions = await getQuestionList("all")
-const signUpTutor = document.querySelector('#tutorSignUp')
+
 const status = user.user[0].status
 if (status == "tutor" || status == "staff"){
   signUpTutor.innerHTML = 
