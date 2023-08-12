@@ -1,7 +1,3 @@
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
 async function animate(valToAnimate, container, gear) {
   const strVal = String(valToAnimate);
   const numDigits = strVal.length;
@@ -25,8 +21,6 @@ async function animate(valToAnimate, container, gear) {
       </div>
     `;
   }
-
-  await sleep(500);
 
   for (let i = 0; i < numDigits; i++) {
     digWheel[i].style.transform = 'translateY(-' + String(30 * strVal[i]) + 'px)';
