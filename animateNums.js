@@ -29,7 +29,7 @@ async function animate(valToAnimate, container, gear) {
     `;
   }
 
-  await sleep(25);
+  await sleep(10);
 
   for (let i = 0; i < numDigits; i++) {
     digWheel[i].style.transform = 'translateY(-' + String(30 * strVal[i]) + 'px)';
@@ -41,3 +41,4 @@ setTimeout(() => {
   animate(answers, document.querySelector(".important_box_num2"), 'important_box_num2_digit')
   animate(Math.round(answers/5), document.querySelector(".important_box_num3"), 'important_box_num3_digit') 
 }, 100);
+
