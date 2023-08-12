@@ -1,3 +1,12 @@
+const answers = localStorage.getItem("userAnswers")
+const total =localStorage.getItem("totalQuestions")
+console.log(answers, total)
+
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 async function animate(valToAnimate, container, gear) {
   const strVal = String(valToAnimate);
   const numDigits = strVal.length;
@@ -22,12 +31,13 @@ async function animate(valToAnimate, container, gear) {
     `;
   }
 
+  await sleep(5);
+
   for (let i = 0; i < numDigits; i++) {
     digWheel[i].style.transform = 'translateY(-' + String(30 * strVal[i]) + 'px)';
   }
 }
-const answers = localStorage.getItem("userAnswers")
-const total =localStorage.getItem("totalQuestions")
+
 setTimeout(() => {
   console.log("called")
   animate(total, document.querySelector(".important_box_num1"), 'important_box_num1_digit')
