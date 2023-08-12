@@ -1,7 +1,7 @@
 const answers = localStorage.getItem("userAnswers")
 const total =localStorage.getItem("totalQuestions")
-document.querySelector(".important_box_num1").innerHTML = '0'.repeat(total2.toString().length)
-document.querySelector(".important_box_num2").innerHTML = '0'.repeat(answers2.toString().length)
+document.querySelector(".important_box_num1").innerHTML = '0'.repeat(total.toString().length)
+document.querySelector(".important_box_num2").innerHTML = '0'.repeat(answers.toString().length)
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
