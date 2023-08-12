@@ -1,5 +1,9 @@
-const answers = localStorage.getItem("userAnswers")
-const total = localStorage.getItem("totalQuestions")
+/*const answers = localStorage.getItem("userAnswers")
+const total = localStorage.getItem("totalQuestions")*/
+
+const answers = 12343
+const total = 3242
+
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
