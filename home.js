@@ -147,6 +147,18 @@ function debounce(func, delay) {
   };
 }
 const localUser = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser")
+if (localUser == null){
+  signUpTutor.innerHTML = 
+
+  `
+  <div class="important_box_num1"></div>
+<div id="important_box_text">Total Site Questions</div>
+<div class="important_box_num2"></div>
+<div id="important_box_text">Your Answers</div>
+<div class="important_box_num3"></div>
+<div id="important_box_text">Volunteer Hours Earned</div>
+`
+}
 const user = await getUser(localUser)
 console
 const answers = parseInt(user.user[0].answers)
