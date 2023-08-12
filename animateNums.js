@@ -40,4 +40,4 @@ setTimeout(() => {
   animate(total, document.querySelector(".important_box_num1"), 'important_box_num1_digit')
   animate(answers, document.querySelector(".important_box_num2"), 'important_box_num2_digit')
   animate(Math.round(answers/5), document.querySelector(".important_box_num3"), 'important_box_num3_digit') 
-}, 2000);
+}, 100);
