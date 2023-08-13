@@ -1,5 +1,5 @@
-const answers = localStorage.getItem("userAnswers")
-const total = localStorage.getItem("totalQuestions")
+const numAnswers = localStorage.getItem("userAnswers")
+const numTotal = localStorage.getItem("totalQuestions")
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -37,8 +37,8 @@ async function animate(valToAnimate, container, gear) {
 }
 
 setTimeout(() => {
-  animate(total, document.querySelector(".important_box_num1"), 'important_box_num1_digit')
-  animate(answers, document.querySelector(".important_box_num2"), 'important_box_num2_digit')
+  animate(numTotal, document.querySelector(".important_box_num1"), 'important_box_num1_digit')
+  animate(numAnswers, document.querySelector(".important_box_num2"), 'important_box_num2_digit')
   animate(Math.round(answers/5), document.querySelector(".important_box_num3"), 'important_box_num3_digit') 
 }, 1000);
 
