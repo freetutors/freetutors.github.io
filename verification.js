@@ -29,8 +29,9 @@ if (localStorage.getItem("signupUsername") === null){
     placeholder="Enter Your Username">
     <input type="number" id="vCode" class="vCode login-input"
     placeholder="Enter Your Verification Number">
+    <a id = "resend-email" class="resend">Resend Email?</a>
+
     <button class="button verification-send" id="verification-send">Verify</button>
-    <a id = "resend-email" class="forgotPwd">Resend Email?</a>
     `
 }
 function verifyUser(username, verificationCode) { //verified account
