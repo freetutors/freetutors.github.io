@@ -148,21 +148,7 @@ function debounce(func, delay) {
 }
 const signUpTutor = document.querySelector('#tutorSignUp')
 const localUser = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser")
-if (localUser == null){
-  signUpTutor.innerHTML = 
-
-  `
-  <div class="important_box_num1"></div>
-<div id="important_box_text">Total Site Questions</div>
-<div class="important_box_num2"></div>
-<div id="important_box_text">Your Answers</div>
-<div class="important_box_num3"></div>
-<div id="important_box_text">Volunteer Hours Earned</div>
-`
-}
 const user = await getUser(localUser)
-console
-const answers = parseInt(user.user[0].answers)
 const totalQuestions = await getQuestionList("all")
 
 const status = user.user[0].status
@@ -190,7 +176,7 @@ else{
   <button id="sign_up_as_tutor_button">Sign up as tutor</button>
   `
 }
-localStorage.setItem("userAnswers", answers)
+
 localStorage.setItem("totalQuestions", totalQuestions.length)
 console.log(status)
 
