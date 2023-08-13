@@ -29,8 +29,9 @@ if (localStorage.getItem("signupUsername") === null){
     placeholder="Enter Your Username">
     <input type="number" id="vCode" class="vCode login-input"
     placeholder="Enter Your Verification Number">
+    <a id = "resend-email" class="resend">Resend Email?</a>
+
     <button class="button verification-send" id="verification-send">Verify</button>
-    <a class="forgotPwd">Resend Email?</a>
     `
 }
 function verifyUser(username, verificationCode) { //verified account
@@ -52,7 +53,7 @@ function verifyUser(username, verificationCode) { //verified account
       }
     });
   }
-  document.querySelector('.resend-email').addEventListener('click', function () {
+  document.getElementById('resend-email').addEventListener('click', function () {
     var username = "not yet set"; //setting arbitrary value for global variable
     if (usingUsernameInput == true) {
       username = document.getElementById("username").value;
