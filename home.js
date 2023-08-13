@@ -148,37 +148,67 @@ function debounce(func, delay) {
 }
 const signUpTutor = document.querySelector('#tutorSignUp')
 const localUser = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser")
-const user = await getUser(localUser)
-const totalQuestions = await getQuestionList("all")
 
-const status = user.user[0].status
-if (status == "tutor" || status == "staff"){
-  signUpTutor.innerHTML = 
-
-    `
-    <div class="important_box_num1"></div>
-  <div id="important_box_text">Total Site Questions</div>
-  <div class="important_box_num2"></div>
-  <div id="important_box_text">Your Answers</div>
-  <div class="important_box_num3"></div>
-  <div id="important_box_text">Volunteer Hours Earned</div>
-`
-}
-else{
-  signUpTutor.innerHTML = 
+if (localUser !== null) {
+  const user = await getUser(localUser)
+  const status = user.user[0].status
+  if (status !== "tutor" && status !== "staff"){
+    signUpTutor.innerHTML +=
   `
-  <div class="important_box_num1"></div>
-  <div id="important_box_text">Total Site Questions</div>
-  <div class="important_box_num2"></div>
-  <div id="important_box_text">Your Answers</div>
-  <div class="important_box_num3"></div>
-  <div id="important_box_text">Volunteer Hours Earned</div>
-  <button id="sign_up_as_tutor_button">Sign up as tutor</button>
+    <button id="sign_up_as_tutor_button">Sign up as tutor</button>
   `
+  }
 }
 
-localStorage.setItem("totalQuestions", totalQuestions.length)
-console.log(status)
+(async () => {
 
+  const totalQuestions = await getQuestionList("all")
+  const numQuestions = totalQuestions.length
+  var numAnswers = 0
 
+  for (const question of totalQuestions) {
+    numAnswers = numAnswers + parseInt(question.answers)
+  }
 
+  function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  async function animate(valToAnimate, container, gear) {
+    const strVal = String(valToAnimate);
+    const numDigits = strVal.length;
+    const digWheel = container.getElementsByClassName(gear);
+
+    container.innerHTML = '';
+
+    for (let i = 0; i < numDigits; i++) {
+      container.innerHTML += `
+        <div class=${gear}>
+          <div class="dig">0</div>
+          <div class="dig">1</div>
+          <div class="dig">2</div>
+          <div class="dig">3</div>
+          <div class="dig">4</div>
+          <div class="dig">5</div>
+          <div class="dig">6</div>
+          <div class="dig">7</div>
+          <div class="dig">8</div>
+          <div class="dig">9</div>
+        </div>
+      `;
+    }
+
+    await sleep(10);
+
+    for (let i = 0; i < numDigits; i++) {
+      digWheel[i].style.transform = 'translateY(-' + String(30 * strVal[i]) + 'px)';
+    }
+  }
+
+  setTimeout(() => {
+    animate(numQuestions, document.querySelector(".important_box_num1"), 'important_box_num1_digit')
+    animate(numAnswers, document.querySelector(".important_box_num2"), 'important_box_num2_digit')
+    animate(Math.round(numAnswers/5), document.querySelector(".important_box_num3"), 'important_box_num3_digit')
+  }, 50);
+
+})();
