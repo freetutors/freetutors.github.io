@@ -149,15 +149,23 @@ function debounce(func, delay) {
 const signUpTutor = document.querySelector('#tutorSignUp')
 const localUser = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser")
 
+console.log(localUser)
+
 if (localUser !== null) {
   const user = await getUser(localUser)
   const status = user.user[0].status
+  console.log(status)
   if (status !== "tutor" && status !== "staff"){
     signUpTutor.innerHTML +=
   `
     <button id="sign_up_as_tutor_button">Sign up as tutor</button>
   `
   }
+} else {
+  signUpTutor.innerHTML +=
+    `
+      <button id="sign_up_as_tutor_button">Sign up as tutor</button>
+    `
 }
 
 (async () => {
