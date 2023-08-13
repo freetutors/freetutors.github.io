@@ -39,6 +39,6 @@ async function animate(valToAnimate, container, gear) {
 setTimeout(() => {
   animate(numQuestions, document.querySelector(".important_box_num1"), 'important_box_num1_digit')
   animate(numAnswers, document.querySelector(".important_box_num2"), 'important_box_num2_digit')
-  animate(Math.round(answers/5), document.querySelector(".important_box_num3"), 'important_box_num3_digit') 
+  animate(Math.round(numAnswers/5), document.querySelector(".important_box_num3"), 'important_box_num3_digit')
 }, 1000);
 
