@@ -155,13 +155,13 @@ if (localUser !== null) {
   if (status !== "tutor" && status !== "staff"){
     signUpTutor.innerHTML +=
   `
-    <button id="sign_up_as_tutor_button">Sign up as tutor</button>
+    <button id="sign_up_as_tutor_button" onclick="window.location='tutorSignUp'">Sign up as tutor</button>
   `
   }
 } else {
   signUpTutor.innerHTML +=
     `
-      <button id="sign_up_as_tutor_button">Sign up as tutor</button>
+      <button id="sign_up_as_tutor_button" onclick="window.location='tutorSignUp'">Sign up as tutor</button>
     `
 }
 

@@ -20,7 +20,7 @@ AWS.config.update({ //getting conection to IAM user
 var cognito = new AWS.CognitoIdentityServiceProvider(); //connection to cognito identiy
 
 async function showQuestionColumn(user){ //showing the questions the user asked
-  console.log('called')  
+  console.log('called')
   const questionList = await getQuestionListUser(user.user[0].username)
     const questionArray = questionList
     document.querySelector(".questions_list").innerHTML = ''
@@ -167,11 +167,16 @@ async function updatepfp(username, pfp){ //updating pfp for user
       },
       body: JSON.stringify({
         "username": username,
-        "pfp":pfp,
+        "pfp": pfp,
       })
     }).then(response => response.json());
     console.log(response)
 }
+
+async function updateQuestionPfp(username, pfp) {
+  console.log(pfp)
+}
+
 const urlParams = new URLSearchParams(window.location.search); 
 const username = urlParams.get('username')//getting username from url
 const viewerUsername = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser") //getting viewer's username
@@ -230,6 +235,7 @@ file.addEventListener('change', function(){
         profileImg.setAttribute('src', croppedDataUrl); //updating current html
 
         const fileData = croppedDataUrl.split(',')[1]; // Extract base64 data from Data URL
+        console.log(fileData)
         try {
           await updatepfp(username, fileData);
           console.log("Profile picture updated successfully");
