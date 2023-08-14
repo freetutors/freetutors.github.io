@@ -77,7 +77,7 @@ function addQuestionClickListeners(questionList) {
 function showQuestionColumn(subject) {
   (async () => {
     const questionList = await getQuestionList(subject);
-
+    
     let html = '';
     for (const question of questionList) {
       const pfp = question.pfp
@@ -108,36 +108,79 @@ function openProfile(username) {
 }
 
 const headerSubjects = [
-  "Active Questions - Math",
-  "Active Questions - Chemistry",
-  "Active Questions - Biology",
-  "Active Questions - Physics",
-  "Active Questions - English",
-  "Active Questions - History",
-  "Active Questions - Geography",
-  "Active Questions - Foreign Language",
-  "Active Questions - Computer Science",
-  "Active Questions - Physical Education",
+  "Math",
+  "Chemistry",
+  "Biology",
+  "Physics",
+  "English",
+  "History",
+  "Geography",
+  "Foreign Language",
+  "Computer Science",
+  "Physical Education",
 ];
 
-let currentIndex = 0;
+const subjectList = document.querySelector('.subject-list');
+const scrollLeftButton = document.querySelector('#arrow-left');
+const scrollRightButton = document.querySelector('#arrow-right');
 
-function moveRight() {
-  currentIndex = (currentIndex + 1) % headerSubjects.length;
-  questionHeader.innerHTML = headerSubjects[currentIndex];
-  const targetSubject = headerSubjects[currentIndex].replace("Active Questions - ", "").toLowerCase();
-  showQuestionColumn(targetSubject);
+// Populate subject list
+for (const subject of headerSubjects) {
+  subjectList.innerHTML += `<li class="subject">${subject}</li>`;
+}
+const scrollStep = 150; 
+const scrollDuration = 300;
+
+// Scroll left
+scrollLeftButton.addEventListener('click', () => {
+  scrollToSmoothly(subjectList, subjectList.scrollLeft - scrollStep, scrollDuration);
+});
+
+// Scroll right
+scrollRightButton.addEventListener('click', () => {
+  scrollToSmoothly(subjectList, subjectList.scrollLeft + scrollStep, scrollDuration);
+});
+
+function scrollToSmoothly(element, to, duration) {
+  const start = element.scrollLeft;
+  const change = to - start;
+  const startTime = performance.now();
+
+  function animateScroll(timestamp) {
+    const elapsed = timestamp - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const easedProgress = easeInOutQuad(progress);
+    element.scrollLeft = start + change * easedProgress;
+
+    if (elapsed < duration) {
+      requestAnimationFrame(animateScroll);
+    }
+  }
+
+  requestAnimationFrame(animateScroll);
 }
 
-function moveLeft() {
-  currentIndex = ((currentIndex - 1) % headerSubjects.length + headerSubjects.length) % headerSubjects.length;
-  questionHeader.innerHTML = headerSubjects[currentIndex];
-  const targetSubject = headerSubjects[currentIndex].replace("Active Questions - ", "").toLowerCase();
-  showQuestionColumn(targetSubject);
+// Easing function for smoother scrolling animation
+function easeInOutQuad(t) {
+  return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
 }
 
-document.getElementById("arrow-left").addEventListener("click", debounce(moveLeft, 100));
-document.getElementById("arrow-right").addEventListener("click", debounce(moveRight, 100));
+// function moveRight() {
+//   currentIndex = (currentIndex + 1) % headerSubjects.length;
+//   questionHeader.innerHTML = headerSubjects[currentIndex];
+//   const targetSubject = headerSubjects[currentIndex].replace("Active Questions - ", "").toLowerCase();
+//   showQuestionColumn(targetSubject);
+// }
+
+// function moveLeft() {
+//   currentIndex = ((currentIndex - 1) % headerSubjects.length + headerSubjects.length) % headerSubjects.length;
+//   questionHeader.innerHTML = headerSubjects[currentIndex];
+//   const targetSubject = headerSubjects[currentIndex].replace("Active Questions - ", "").toLowerCase();
+//   showQuestionColumn(targetSubject);
+// }
+
+// document.getElementById("arrow-left").addEventListener("click", debounce(moveLeft, 100));
+// document.getElementById("arrow-right").addEventListener("click", debounce(moveRight, 100));
 
 function debounce(func, delay) {
   let timeoutId;
