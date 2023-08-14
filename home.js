@@ -107,7 +107,7 @@ function openProfile(username) {
   window.location = `profile?username=${username}`;
 }
 
-const headerSubjects = [
+const headerSubjects = [ //list of subjects, we can always add more
   "Math",
   "Chemistry",
   "Biology",
@@ -123,12 +123,29 @@ const headerSubjects = [
 const subjectList = document.querySelector('.subject-list');
 const scrollLeftButton = document.querySelector('#arrow-left');
 const scrollRightButton = document.querySelector('#arrow-right');
-
+let active = "Math"
 // Populate subject list
 for (const subject of headerSubjects) {
-  subjectList.innerHTML += `<li class="subject">${subject}</li>`;
+  const formattedSubject = subject.replace(" ", "");
+  subjectList.innerHTML += `<li class="subject" id="subject${formattedSubject}">${subject}</li>`;
 }
-const scrollStep = 150; 
+for (const subject of headerSubjects) { //for some reason it has to be seperate or it doesn't register clicks idk bro
+  const formattedSubject = subject.replace(" ", "");  
+  const subjectElement = document.querySelector(`#subject${formattedSubject}`);
+
+  subjectElement.addEventListener("click", () => {
+    console.log('Click event registered for:', subject);
+    document.querySelector(`#subject${active}`).classList.remove("active")
+    active = formattedSubject
+    document.querySelector(`#subject${active}`).classList.add("active")
+    showQuestionColumn(formattedSubject.toLowerCase())
+  });
+}
+document.querySelector("#subjectComputerScience").addEventListener("click", () => {
+  console.log("adflh")
+})
+document.querySelector(`#subjectMath`).classList.add('active')
+const scrollStep = 150; //variables for smooth scrolling
 const scrollDuration = 300;
 
 // Scroll left
@@ -141,7 +158,7 @@ scrollRightButton.addEventListener('click', () => {
   scrollToSmoothly(subjectList, subjectList.scrollLeft + scrollStep, scrollDuration);
 });
 
-function scrollToSmoothly(element, to, duration) {
+function scrollToSmoothly(element, to, duration) { //code for making the arrows scroll smoothly
   const start = element.scrollLeft;
   const change = to - start;
   const startTime = performance.now();
@@ -156,7 +173,6 @@ function scrollToSmoothly(element, to, duration) {
       requestAnimationFrame(animateScroll);
     }
   }
-
   requestAnimationFrame(animateScroll);
 }
 
@@ -164,23 +180,6 @@ function scrollToSmoothly(element, to, duration) {
 function easeInOutQuad(t) {
   return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
 }
-
-// function moveRight() {
-//   currentIndex = (currentIndex + 1) % headerSubjects.length;
-//   questionHeader.innerHTML = headerSubjects[currentIndex];
-//   const targetSubject = headerSubjects[currentIndex].replace("Active Questions - ", "").toLowerCase();
-//   showQuestionColumn(targetSubject);
-// }
-
-// function moveLeft() {
-//   currentIndex = ((currentIndex - 1) % headerSubjects.length + headerSubjects.length) % headerSubjects.length;
-//   questionHeader.innerHTML = headerSubjects[currentIndex];
-//   const targetSubject = headerSubjects[currentIndex].replace("Active Questions - ", "").toLowerCase();
-//   showQuestionColumn(targetSubject);
-// }
-
-// document.getElementById("arrow-left").addEventListener("click", debounce(moveLeft, 100));
-// document.getElementById("arrow-right").addEventListener("click", debounce(moveRight, 100));
 
 function debounce(func, delay) {
   let timeoutId;

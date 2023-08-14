@@ -96,6 +96,9 @@
   background-color: rgb(53, 53, 53);
   border-radius: 3px;
 }
+.active{
+  text-decoration: underline;
+}
 .subject {
   border-right: 1px solid #bbb;
 }
