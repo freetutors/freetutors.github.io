@@ -73,31 +73,82 @@ function addQuestionClickListeners(questionList) {
   });
 }
 
-
+// async function getUser(username){ //getting user info from dynamo
+//   const url = new URL(`${apiUrlgetUser}?username=${username}`);
+//   const user = await fetch(url,  {
+//       mode: "cors",
+//       method: "GET",
+//       headers: {
+//       "Content-Type": "application/json",
+//       },
+//   }).then(response => response.json());
+//   return user
+// }
 function showQuestionColumn(subject) {
   (async () => {
-    const questionList = await getQuestionList(subject);
-    
-    let html = '';
-    for (const question of questionList) {
-      const pfp = question.pfp
-      const displayedImage = pfp == null ? "placeholder_pfp.png" : `data:image/png;base64,${pfp}`;
-      html += `
-        <div class="box text_box">
-          <img id="global_pfp" src="${displayedImage}">
-          <div id="text_box_question_content">${question.title}</div>
-          <div id="asked_by_line">asked by ${question.author}, ${getTimeDifference(question.timestamp)}</div>
-          <div id="answered_by_line">Be the first to answer!</div>
-          <div class="question_stats">
-            <div id="question_stats_items">${question.answers} Answers</div>
-            <div id="question_stats_items">${question.views} views</div>
-            <div id="question_stats_items">${question.rating} rating</div>
-          </div>
-        </div>`;
-    };
+    // const questionList = await getQuestionList(subject);
 
-    questionBoxContainer.innerHTML = html;
-    addQuestionClickListeners(questionList);
+    const questionList = await getQuestionList(subject)
+    const questionArray = questionList
+    document.querySelector(".questions_list").innerHTML = ''
+    for (const question of questionArray) {
+      var title = question.title //getting question data
+      var author = question.author
+      var answers = question.answers
+      var rating = question.rating
+      var timeAgo = getTimeDifference(question.timestamp)
+      var views = question.views
+      const user = await getUser(author)
+      const pfp = user.user[0].pfp
+      var displayedImage = ""
+      if (pfp == null){ //getting pfp, if pfp is none it will user defaul
+        displayedImage = "placeholder_pfp.png"
+      }
+      else{
+        displayedImage = `data:image/png;base64,${pfp}`
+      }
+      document.querySelector(".questions_list").innerHTML += //sending html info
+        `<div class="box text_box">
+        <!-- pfp -->
+        <img id="global_pfp" src="${displayedImage}">
+        <div id="text_box_question_content">${title}</div>
+        <div id="asked_by_line">asked by ${author}, ${timeAgo}</div>
+        <div id="answered_by_line">Be the first to answer!</div>
+        <div class="question_stats">
+          <div id="question_stats_items">${answers} Answers</div>
+          <div id="question_stats_items">${views} views</div>
+          <div id="question_stats_items">${rating} rating</div>
+        </div>`
+      }
+      const questionBoxes = document.querySelectorAll(".box.text_box");
+      
+      questionBoxes.forEach((box, index) => { //when click will go to view Question.html
+        box.addEventListener("click", function () {
+          const questionId = questionList[index].questionId; // Retrieve the questionId
+          localStorage.setItem("QuestionID", JSON.stringify(questionId));
+          window.location = `viewQuestion?questionId=${questionId}`;
+        });
+      });
+    // let html = '';
+    // for (const question of questionList) {
+    //   const pfp = question.pfp
+    //   const displayedImage = pfp == null ? "placeholder_pfp.png" : `data:image/png;base64,${pfp}`;
+    //   html += `
+    //     <div class="box text_box">
+    //       <img id="global_pfp" src="${displayedImage}">
+    //       <div id="text_box_question_content">${question.title}</div>
+    //       <div id="asked_by_line">asked by ${question.author}, ${getTimeDifference(question.timestamp)}</div>
+    //       <div id="answered_by_line">Be the first to answer!</div>
+    //       <div class="question_stats">
+    //         <div id="question_stats_items">${question.answers} Answers</div>
+    //         <div id="question_stats_items">${question.views} views</div>
+    //         <div id="question_stats_items">${question.rating} rating</div>
+    //       </div>
+    //     </div>`;
+    // };
+
+    // questionBoxContainer.innerHTML = html;
+    // addQuestionClickListeners(questionList);
   })();
 }
 
