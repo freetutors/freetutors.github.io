@@ -188,6 +188,7 @@ for (const subject of headerSubjects) { //for some reason it has to be seperate 
     console.log('Click event registered for:', subject);
     document.querySelector(`#subject${active}`).classList.remove("active")
     active = formattedSubject
+    document.querySelector('.questions_list').innerHTML = ''
     document.querySelector(`#subject${active}`).classList.add("active")
     showQuestionColumn(formattedSubject.toLowerCase())
   });
