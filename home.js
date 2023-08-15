@@ -198,7 +198,7 @@ document.querySelector("#subjectComputerScience").addEventListener("click", () =
   console.log("adflh")
 })
 document.querySelector(`#subjectMath`).classList.add('active')
-const scrollStep = 150; //variables for smooth scrolling
+const scrollStep = 200; //variables for smooth scrolling
 const scrollDuration = 300;
 
 // Scroll left
