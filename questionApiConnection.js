@@ -185,8 +185,8 @@ async function displayQuestion(){ //displays on view question.html
   const questionList = await getQuestionListId(questionId) //pulls question
   const questionArray = questionList
   for(const question of questionArray) {
-    const users = [question.author, question.answersInfo.map(answer => answer.author)]
-    console.log(users)
+    // const users = [question.author, question.answersInfo.map(answer => answer.author)]
+    // console.log(users)
     var title = question.title
     let body = question.body.replace(/<p>/g, "").replace(/<\/p>/g, " ")
     var author = question.author
