@@ -15,11 +15,126 @@
    background-color: var(--primary-color);
    border-radius: 22px;
  }
+ #sign_up_as_tutor_button {
+  color: white;
+  font-family: Lexend;
+  background-color: black;
+  border: none;
+  height: 35px;
+  width: 140px;
+  border-radius: 7px;
+  inset: 175px 0 0 0;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: -5px;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
+
+#sign_up_as_tutor_button:hover {
+  transform: scale(1.06);
+}
+.question_header { /*divider based on subject*/
+  color: white;
+  padding-left: 7px;
+  padding-right: 7px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  width: calc(var(--question_list_width) - 10px);
+  height: 30px;
+  margin-right: 215px;
+  background-color: var(--text-box-bar-color);
+  border: 1.5px solid var(--border-color);
+  margin: auto;
+  margin-top: 15px;
+  transform: translateX(var(--translate_len));
+  display: flex;
+}
+.subject-list {
+  z-index: 10;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  padding-top: 2px;
+  background-color:var(--text-box-bar-color);
+  overflow-x: hidden;
+  overflow-y: hidden;
+  white-space: nowrap;
+  width: 100%;
+}
+.subject-list::-webkit-scrollbar {/*custom scroll bar width*/
+  height: 5px; /* Adjust the width as needed */
+  margin-top: 5px;
+}
+
+.subject-list::-webkit-scrollbar-thumb {/*custom scroll bar thumb(the scrolling thing)*/
+  height: 12px; /* Set the width of the thumb to 12px */
+  min-width: 12px; /* Ensure the minimum width of the thumb */
+  background-color: var(--header-color);
+  border-radius: 6px;
+}
+
+.subject {
+  padding: 4px;
+  padding-right: 14px;
+  padding-left: 14px;
+  display: inline-block;
+}
+
+.subject a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+.subject:hover {
+  cursor: pointer;
+  background-color: rgb(53, 53, 53);
+  border-radius: 3px;
+}
+.active{
+  text-decoration: underline;
+}
+.subject {
+  border-right: 1px solid #bbb;
+}
+
+.subject:last-child {
+  border-right: none;
+}
+#arrow-right {
+  display: inline-block;
+  border-top: 14px solid transparent;
+  border-bottom: 14px solid transparent;
+  border-left: 12px solid white;
+  border-radius: 3px;
+  box-shadow: -3px 0px 2px var(--header-color);
+  z-index: 15;
+  /* margin-left: 3px;
+  margin-bottom: 5px; */
+}
+
+#arrow-left {
+   display: inline-block;
+   border-top: 14px solid transparent;
+   border-bottom: 14px solid transparent;
+   border-right: 12px solid white;
+   border-radius: 3px;
+   box-shadow: 3px 0px 2px  var(--header-color);
+   z-index: 15;
+
+}
+
    .important_box {/*sub class of box*/
      position: absolute;
-     height: auto;
-     padding-bottom: 30px;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
      width: 165px;
+     padding-bottom: 17px;
      margin-top: -32px;
      left: calc(50% + var(--question_list_width)/2 + 35px);
      background-color: var(--secondary-color);
@@ -102,24 +217,6 @@
         text-align: center;
   }
 
-  #sign_up_as_tutor_button {
-    color: white;
-    font-family: Lexend;
-    background-color: black;
-    border: none;
-    height: 35px;
-    width: 140px;
-    border-radius: 7px;
-    position: absolute;
-    inset: 175px 0 0 0;
-    margin: auto;
-    cursor: pointer;
-    transition: transform 0.3s ease-in-out;
-  }
-
-  #sign_up_as_tutor_button:hover {
-    transform: scale(1.06);
-  }
 
 .questions_list {/*scroll area with questions. It is invisible*/
        overflow-y: scroll;
@@ -199,19 +296,7 @@
         margin-top: 10px;
     }
 
-.question_header { /*divider based on subject*/
-     color: white;
-     padding-left: 7px;
-     padding-top: 4px;
-     height: 25px;
-     margin-right: 215px;
-     background-color: var(--text-box-bar-color);
-     border: 1.5px solid var(--border-color);
-     width: calc(var(--question_list_width) - 10px);
-     margin: auto;
-     margin-top: 15px;
-     transform: translateX(var(--translate_len));
- }
+
 
 .menu {
   list-style-type: none;
@@ -292,27 +377,15 @@
 }
 
 .arrows {
-    position: absolute;
+  z-index: 300;
+  display: flex;
     width: fit-content;
     height: fit-content;
+    overflow: hidden;
     top: 62px;
-    left: calc(50% + 450.5px);
+
 }
 
-#arrow-right {
-  display: inline-block;
-  border-top: 12px solid transparent;
-  border-bottom: 12px solid transparent;
-  border-left: 11px solid white;
-  margin-left: 3px;
-}
-
-#arrow-left {
-   display: inline-block;
-   border-top: 12px solid transparent;
-   border-bottom: 12px solid transparent;
-   border-right: 11px solid white;
-}
 
 @media only screen and (max-width: 1400px) {
 
