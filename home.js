@@ -175,6 +175,7 @@ const subjectList = document.querySelector('.subject-list');
 const scrollLeftButton = document.querySelector('#arrow-left');
 const scrollRightButton = document.querySelector('#arrow-right');
 let active = "Math"
+
 // Populate subject list
 for (const subject of headerSubjects) {
   const formattedSubject = subject.replace(" ", "");
@@ -184,14 +185,14 @@ for (const subject of headerSubjects) { //for some reason it has to be seperate 
   const formattedSubject = subject.replace(" ", "");  
   const subjectElement = document.querySelector(`#subject${formattedSubject}`);
 
-  subjectElement.addEventListener("click", () => {
+  subjectElement.addEventListener("click", debounce(function() {
     console.log('Click event registered for:', subject);
     document.querySelector(`#subject${active}`).classList.remove("active")
     active = formattedSubject
     document.querySelector('.questions_list').innerHTML = ''
     document.querySelector(`#subject${active}`).classList.add("active")
     showQuestionColumn(formattedSubject.toLowerCase())
-  });
+  }, 200));
 }
 document.querySelector("#subjectComputerScience").addEventListener("click", () => {
   console.log("adflh")
