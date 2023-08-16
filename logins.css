@@ -94,17 +94,19 @@ background-color: var(--primary-color)
  box-shadow: 0 1rem 3rem #000000;
  padding: 20px;
 }
-.verification-container{
- width: 500px;
- height: auto;
- background-color: var(--header-color);
- opacity: 0.95;
- margin: auto;
- margin-top: 350px;
- flex-direction: column;
- border-radius: .5rem;
- box-shadow: 0 1rem 3rem #000000;
- padding: 20px;
+.verification-container {
+  width: 500px;
+  height: auto;
+  background-color: var(--header-color);
+  opacity: 0.95;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  flex-direction: column;
+  border-radius: .5rem;
+  box-shadow: 0 1rem 3rem #000000;
+  padding: 20px;
 }
 .description{
  color: var(--text-color);
