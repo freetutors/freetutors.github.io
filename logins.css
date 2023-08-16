@@ -84,7 +84,7 @@ background-color: var(--primary-color)
 /* Sign-up section */
 .signup-container{
  width: 700px;
- height: auto;
+ height: 70%;
  background-color: var(--header-color);
  opacity: 0.95;
  margin: auto;

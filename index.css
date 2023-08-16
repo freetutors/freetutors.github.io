@@ -324,7 +324,7 @@
 }
 
 .menu_item:hover {
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(163, 47, 128, 0.397);
 }
 
 .menu_item:hover::before {
@@ -334,7 +334,7 @@
   top: 0;
   height: 100%;
   width: 5px;
-  background-color: white;
+  background-color: var(--secondary-color);
 }
 
 .on-page {
@@ -347,7 +347,7 @@
   padding-left: 10px;
   margin-top: 5px;
   border-radius: 0 7px 7px 0; /* creating a straight edge for showing the selected area */
-  background-color: rgba(163, 47, 128, 0.15);
+  /* background-color: rgba(163, 47, 128, 0.15); */
   position: relative;
   overflow: hidden;
 }
@@ -363,7 +363,7 @@
 }
 
 .on-page:hover {
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(163, 47, 128, 0.397);
 }
 
 .on-page:hover::before {
@@ -373,7 +373,7 @@
   top: 0;
   height: 100%;
   width: 5px;
-  background-color: white;
+  background-color: var(--secondary-color);
 }
 
 .arrows {
