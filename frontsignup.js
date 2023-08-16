@@ -120,7 +120,7 @@ const username = document.getElementById("username").value; //getting values
         alert("Error adding question, try again later")
         console.log("Error calling API");
       }
-      window.location='/signup'
+      window.location='/verification'
     }
     else {
       alert("Passwords do not match")

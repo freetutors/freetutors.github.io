@@ -20,7 +20,6 @@ AWS.config.update({ //getting conection to IAM user
 var cognito = new AWS.CognitoIdentityServiceProvider(); //connection to cognito identiy
 
 async function showQuestionColumn(user){ //showing the questions the user asked
-  console.log('called')
   const questionList = await getQuestionListUser(user.user[0].username)
     const questionArray = questionList
     document.querySelector(".questions_list").innerHTML = ''
@@ -158,7 +157,6 @@ async function updateAbout(username){ //updating about me info
 }
 async function updatepfp(username, pfp){ //updating pfp for user
     const url = new URL(`${apiUrlupdateUser}`)
-    console.log("called")
     const response = await fetch(url,  {
       mode: "cors",
       method: "POST",
@@ -170,11 +168,10 @@ async function updatepfp(username, pfp){ //updating pfp for user
         "pfp": pfp,
       })
     }).then(response => response.json());
-    console.log(response)
 }
 
 async function updateQuestionPfp(username, pfp) {
-  console.log(pfp)
+
 }
 
 const urlParams = new URLSearchParams(window.location.search); 
@@ -235,18 +232,14 @@ file.addEventListener('change', function(){
         profileImg.setAttribute('src', croppedDataUrl); //updating current html
 
         const fileData = croppedDataUrl.split(',')[1]; // Extract base64 data from Data URL
-        console.log(fileData)
         try {
           await updatepfp(username, fileData);
           console.log("Profile picture updated successfully");
-          console.log(username)
           user = await getUser(username)
-          console.log(user)
           await changePageInfo(user.user[0])
           await showQuestionColumn(user)
           document.querySelector(".profilePicHome").setAttribute('src', `data:image/png;base64,${fileData}`)
           setTimeout(function() {
-            console.log(user)
 
           }, 3000);
         } catch (error) {
