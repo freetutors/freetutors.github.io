@@ -318,6 +318,10 @@ async function displayQuestion(){ //displays on view question.html
     var quill = initializeQuill();
     isQuillInitialized = true;
   }
+  if (!isQuillInitialized) {
+    var quill = initializeQuill();
+    isQuillInitialized = true;
+  }
   answerArea(questionList, quill)
   await ratingButtons(questionList)
 
