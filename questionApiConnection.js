@@ -218,6 +218,7 @@ async function displayQuestion(){ //displays on view question.html
     <div class="title">${title}</div>
     <hr class="titleSep">
     <div class="question">
+      <div class="pfpRow">
       <img id = "pfp" src=${displayedImage} class="global_pfp" onclick="window.location = 'profile?username=${user.user[0].username}'">
       <div class="contributorStats">
         <div class ="title-box">
@@ -225,6 +226,7 @@ async function displayQuestion(){ //displays on view question.html
           <img class="${user.user[0].status}-icon" src="${icon}" alt="Verified Tutor" width="25px" height="25px"></img>
         </div>
         <p class="time">${date}</p>
+      </div>
       </div>
       <p class = "questionBody">${body}</p>
       <div class="rating-container">
