@@ -215,6 +215,8 @@ margin-top: 2vh;
 margin-bottom: 4px;
 margin-left: 10px;
 height: 3vh;
+min-height: 30px;
+max-height: 50px;
 padding: 0.1vh;
 font-size: 1.3vh;
 width: 59vw;
