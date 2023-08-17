@@ -185,8 +185,8 @@ async function displayQuestion(){ //displays on view question.html
   const questionList = await getQuestionListId(questionId) //pulls question
   const questionArray = questionList
   for(const question of questionArray) {
-    const users = [question.author, question.answersInfo.map(answer => answer.author)]
-    console.log(users)
+    // const users = [question.author, question.answersInfo.map(answer => answer.author)]
+    // console.log(users)
     var title = question.title
     let body = question.body.replace(/<p>/g, "").replace(/<\/p>/g, " ")
     var author = question.author
@@ -194,9 +194,7 @@ async function displayQuestion(){ //displays on view question.html
     var answers = question.answers
     var rating = question.rating
     var date = formatDate(question.timestamp)
-    console.log("1.5")
     const user = await getUser(author)
-    console.log('1.6')
     let icon //changing based on if someone is a tutor or not
     if (user.user[0].status =="tutor"){
       icon = "trace.svg"
@@ -215,7 +213,6 @@ async function displayQuestion(){ //displays on view question.html
     else{
       displayedImage = `data:image/png;base64,${pfp}`//pfp is saved as long base 64 so it can be saved without extra charge
     }
-    console.log('2)')
     document.getElementById("question-wrapper").innerHTML = //filling info in html class global_pfp squarifies image
     `
     <div class="title">${title}</div>
@@ -238,7 +235,6 @@ async function displayQuestion(){ //displays on view question.html
     </div>
     `
     document.querySelector(".answer-wrapper").innerHTML = "" //filling in answers
-    console.log("3")
     if (answerInfo != null){ //wont run upon no answers
 
       for(const answer of answerInfo) {  //pulling info from each answer
@@ -247,9 +243,7 @@ async function displayQuestion(){ //displays on view question.html
         var answerId = answer.answerId
         var rating = answer.rating
         var time = formatDate(answer.timestamp) //formating date
-        console.log("4")
         const user = await getUser(author)
-        console.log("5")
         let icon
         if (user.user[0].status =="tutor"){
           icon = "trace.svg"
@@ -268,7 +262,6 @@ async function displayQuestion(){ //displays on view question.html
         else{
           displayedImage = `data:image/png;base64,${pfp}`
         }
-        console.log("6")
         document.querySelector(".answer-wrapper").insertAdjacentHTML(
           "beforeend",
           `
@@ -294,7 +287,6 @@ async function displayQuestion(){ //displays on view question.html
       }
     }
   }
-  console.log("7")
   MathJax.Hub.Queue(['Typeset', MathJax.Hub, 'question-wrapper']); //latex addition
   MathJax.Hub.Queue(['Typeset', MathJax.Hub, 'answer-wrapper']);
 
@@ -458,12 +450,10 @@ async function answerRating(answer, questionId){ //rating function
             document.getElementById(`rating-value${answerId}`).innerText = newRating
           }
           else{ //if cancling upvote
-            console.log("dfasjdf")
             document.getElementById("upvote"+answerId).style.borderBottom = '15px solid white'
             ratingUpdate = -1
             upclick = false
             newRating += parseInt(ratingUpdate)
-            console.log(newRating)
             updateAnswer(questionId, answerId, newRating)
             setCookie("voted"+answerId, "no", 365)
             document.getElementById(`rating-value${answerId}`).innerText = newRating

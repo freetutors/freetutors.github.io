@@ -20,8 +20,9 @@ AWS.config.update({ //getting conection to IAM user
 var cognito = new AWS.CognitoIdentityServiceProvider(); //connection to cognito identiy
 
 async function showQuestionColumn(user){ //showing the questions the user asked
-    const questionList = await getQuestionListUser(user.user[0].username)
+  const questionList = await getQuestionListUser(user.user[0].username)
     const questionArray = questionList
+    document.querySelector(".questions_list").innerHTML = ''
     for (const question of questionArray) {
       var title = question.title //getting question data
       var author = question.author
@@ -134,7 +135,6 @@ async function getUserCognito(username) { //getting email and name from cognito
     };
 
     const user = await cognito.adminGetUser(params).promise();
-    console.log(user)
     return user;
   } catch (error) {
       alert("error:"+error+"Please log out and log in again")
@@ -165,10 +165,15 @@ async function updatepfp(username, pfp){ //updating pfp for user
       },
       body: JSON.stringify({
         "username": username,
-        "pfp":pfp,
+        "pfp": pfp,
       })
     }).then(response => response.json());
 }
+
+async function updateQuestionPfp(username, pfp) {
+
+}
+
 const urlParams = new URLSearchParams(window.location.search); 
 const username = urlParams.get('username')//getting username from url
 const viewerUsername = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser") //getting viewer's username
@@ -188,23 +193,61 @@ document.querySelector(".updateAbout").addEventListener("click", () =>{ //when a
   updateAbout(username)
 })
 
-const img = document.getElementById('pfp_inner')
+const profileImg = document.getElementById('pfp_inner')
 const file = document.getElementById('file')
+const img = document.getElementById('pfp_inner')
 
 file.addEventListener('change', function(){
   const choosedFile = this.files[0]
   if(choosedFile){
-      const reader = new FileReader()
+      // const reader = new FileReader()
+      // reader.addEventListener('load', function(){
+      //   img.setAttribute('src', reader.result)
+      //   const fileData = reader.result.split(',')[1]; // Extract base64 data from Data URL
+      //   updatepfp(username, fileData)
+      //   setTimeout(function() {
+      //     //your code to be executed after 1 second
+      //     location.reload()
+      //   }, 3000);
+      // })
+      // reader.readAsDataURL(choosedFile)
+      //below is the squarifying code, what happens is html cuts the image into a square and then js reads and converts into a base64 to store
+      const reader = new FileReader();
       reader.addEventListener('load', function(){
-        img.setAttribute('src', reader.result)
-        const fileData = reader.result.split(',')[1]; // Extract base64 data from Data URL
-        updatepfp(username, fileData)
-        setTimeout(function() {
-          //your code to be executed after 1 second
-          location.reload()
-        }, 3000);
-      })
-      reader.readAsDataURL(choosedFile)
+        const img = new Image(); //this is creating a new img
+        img.src = reader.result;
+        // console.log(img.src)
+      img.onload = async function() {
+        const squareSize = Math.min(img.width, img.height); //picks the lower value
+        const canvas = document.createElement('canvas'); //this is the html elemnet for cutting the image
+        canvas.width = squareSize; //setting width and height to the same min value
+        canvas.height = squareSize;
+
+        const context = canvas.getContext('2d'); //allowing canvas element to have new img
+        const offsetX = (img.width - squareSize) / 2; //centering image horizontally
+        const offsetY = (img.height - squareSize) / 2; //centering image vertically
+        context.drawImage(img, offsetX, offsetY, squareSize, squareSize, 0, 0, squareSize, squareSize); //putting in image with all values
+
+        const croppedDataUrl = canvas.toDataURL('image/png'); //converting to readable value, honestly i dont fully understand what happens here
+        profileImg.setAttribute('src', croppedDataUrl); //updating current html
+
+        const fileData = croppedDataUrl.split(',')[1]; // Extract base64 data from Data URL
+        try {
+          await updatepfp(username, fileData);
+          console.log("Profile picture updated successfully");
+          user = await getUser(username)
+          await changePageInfo(user.user[0])
+          await showQuestionColumn(user)
+          document.querySelector(".profilePicHome").setAttribute('src', `data:image/png;base64,${fileData}`)
+          setTimeout(function() {
+
+          }, 3000);
+        } catch (error) {
+          console.error("Error updating profile picture:", error);
+        }
+      };
+      });
+      reader.readAsDataURL(choosedFile);
   }
 })
 document.getElementById("sign-out").addEventListener("click",() => { //signout

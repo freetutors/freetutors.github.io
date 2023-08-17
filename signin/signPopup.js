@@ -14,18 +14,17 @@ if (username == null) {
       <p class="signPopUpText">You must be logged in to ask a question.</p>
       <div class="signPopUpLogin" onclick='location.href="login.html"'>Log in</div>
       <div class="signPopUpSignup" onclick='location.href="signup.html"'>Sign up</div>
-      <div class="signPopUpX" onclick="signPopUp.style.display='none'"></div>
+      <div class="signPopUpX" onclick="document.querySelector('.signPopUp').style.display='none'"></div>
     `;
     signPopUp.style.display = 'block';
   });
-
 if (signUpAsTutor != null) {
   signUpAsTutor.addEventListener('click', () => {
     signPopUp.innerHTML = `
       <p class="signPopUpText">You must be logged in to sign up as a tutor.</p>
       <div class="signPopUpLogin" onclick='location.href="login.html"'>Log in</div>
       <div class="signPopUpSignup" onclick='location.href="signup.html"'>Sign up</div>
-      <div class="signPopUpX" onclick="signPopUp.style.display='none'"></div>
+      <div class="signPopUpX" onclick="document.querySelector('.signPopUp').style.display='none'"></div>
     `;
     signPopUp.style.display = 'block';
   });
@@ -35,6 +34,7 @@ if (pageName == 'createQuestion.html'){
     <p class="signPopUpText">You must be logged in to ask a question.</p>
     <div class="signPopUpLogin" onclick='location.href="login.html"'>Log in</div>
     <div class="signPopUpSignup" onclick='location.href="signup.html"'>Sign up</div>
+    <div class="signPopUpX" onclick="document.querySelector('signPopUp').style.display='none'"></div>
   `;
   signPopUp.style.display = 'block';
 }
@@ -43,6 +43,7 @@ if (pageName == 'suggestions.html'){
     <p class="signPopUpText">You must be logged in to make a suggestion.</p>
     <div class="signPopUpLogin" onclick='location.href="login.html"'>Log in</div>
     <div class="signPopUpSignup" onclick='location.href="signup.html"'>Sign up</div>
+    <div class="signPopUpX" onclick="document.querySelector('signPopUp').style.display='none'"></div>
   `;
   signPopUp.style.display = 'block';
 }
@@ -51,6 +52,7 @@ if (pageName == 'contactUs.html'){
     <p class="signPopUpText">You must be logged in to contact us.</p>
     <div class="signPopUpLogin" onclick='location.href="login.html"'>Log in</div>
     <div class="signPopUpSignup" onclick='location.href="signup.html"'>Sign up</div>
+    <div class="signPopUpX" onclick="document.querySelector('signPopUp').style.display='none'"></div>
   `;
   signPopUp.style.display = 'block';
 }
