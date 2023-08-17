@@ -83,7 +83,8 @@ background-color: var(--primary-color)
 
 /* Sign-up section */
 .signup-container{
- width: 65vh;
+ width: 65vw;
+ max-width: 700px;
  height: auto;
  background-color: var(--header-color);
  opacity: 0.95;
@@ -216,7 +217,8 @@ margin-left: 10px;
 height: 3vh;
 padding: 0.1vh;
 font-size: 1.3vh;
-width: 65.5vw;
+width: 59vw;
+max-width: 633px;
 background-color: var(--primary-color);
 outline: none;
 transition: transform 0.3s;
