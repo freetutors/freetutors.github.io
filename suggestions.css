@@ -141,7 +141,7 @@ display: none;
 
 .dropdown {
   position: relative;
-  margin-top: 16px;
+  margin-top: 15px;
   margin-left: 20px;
   width: 200px;
   z-index: 5;
@@ -156,7 +156,7 @@ display: none;
   cursor: pointer;
   border: 1.5px solid var(--border-color);
   border-radius: 5px;
-  height: 45px;
+  height: 44px;
   transition: 0.2s;
   width: 200.5;  /* margin-top: 15px; */
 }
