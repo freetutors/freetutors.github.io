@@ -263,12 +263,20 @@ if (localUser !== null) {
 (async () => {
 
   const totalQuestions = await getQuestionList("all")
+  console.log(totalQuestions)
   const numQuestions = totalQuestions.length
   var numAnswers = 0
 
   for (const question of totalQuestions) {
-    numAnswers = numAnswers + parseInt(question.answers)
+    var answers = 0
+    if (question.answersInfo) {
+      answers = question.answersInfo.length
+    }
+    numAnswers = numAnswers + answers
   }
+
+
+
 
   function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
