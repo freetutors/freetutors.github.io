@@ -83,7 +83,7 @@ background-color: var(--primary-color)
 
 /* Sign-up section */
 .signup-container{
- width: 700px;
+ width: 65vh;
  height: auto;
  background-color: var(--header-color);
  opacity: 0.95;
@@ -214,12 +214,16 @@ margin-top: 2vh;
 margin-bottom: 4px;
 margin-left: 10px;
 height: 3vh;
-padding: 12px;
+padding: 0.1vh;
 font-size: 1.3vh;
 width: 633px;
 background-color: var(--primary-color);
 outline: none;
 transition: transform 0.3s;
+}
+.label-signup{
+  margin: 0;
+  transition: transform 0.3s;
 }
 
 .g-signin2 {
