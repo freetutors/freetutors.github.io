@@ -263,7 +263,6 @@ if (localUser !== null) {
 (async () => {
 
   const totalQuestions = await getQuestionList("all")
-  console.log(totalQuestions)
   const numQuestions = totalQuestions.length
   var numAnswers = 0
 
