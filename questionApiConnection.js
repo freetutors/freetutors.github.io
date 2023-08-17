@@ -268,7 +268,7 @@ async function displayQuestion(){ //displays on view question.html
           "beforeend",
           `
           <div class="answer">
-          <div class ="pfpRow"
+          <div class ="pfpRow">
           <img src=${displayedImage} class="global_pfp" onclick="window.location = 'profile?username=${author}'">
           <div class="contributorStats">
           <div class ="title-box">
@@ -342,7 +342,15 @@ async function answerArea(questionList, quill){
   });
   document.getElementById("answer-send").addEventListener("click", function() { //when answer send clicked
     const questionId = questionList[0].questionId
-    const answers = parseInt(questionList[0].answers) +1
+    let answers = parseInt(questionList[0].answers) 
+    if (parseInt(questionList[0].answers) == 0){
+      answers += 1
+      answers +=1
+    }
+    else{
+      answers +=1
+    }
+
     const views = questionList[0].views
     const rating = questionList[0].rating
     const body = quill.root.innerHTML
@@ -351,6 +359,8 @@ async function answerArea(questionList, quill){
     ``
     quill = ""
     var username = localStorage.getItem(`CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser`)
+    
+    console.log(views, rating, body, author, username, answers)
     if (username !== null){
       checkUserVerification(username)
       .then(isVerified => { //checking if user is veriified
@@ -360,7 +370,7 @@ async function answerArea(questionList, quill){
           sendUpdate(questionId, answers, views, rating) //updating question stats
           setTimeout(function() { //lag proof
             //your code to be executed after 3 second
-            location.reload()
+            // location.reload()
           }, 3000);
         } else {
           if(window.confirm("Please verify your account to answer a question"));{
