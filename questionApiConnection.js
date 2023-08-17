@@ -87,6 +87,12 @@ if (window.location.pathname.indexOf("createQuestion") !== -1) { //if on the cre
           submitQuestion() //submits to database
           addUserQuestions(userId) //updates user stats
           alert("Question Submitted!")
+          //this is creating a 100 second cooldown from creating questions to fix a overwriting bug
+          var currentTime = new Date();
+          var expirationTime = new Date(currentTime.getTime() + 100000); // 100000 milliseconds = 100seconds
+          // Convert the expiration time to the appropriate format for cookies
+          var expirationString = expirationTime.toUTCString();
+          document.cookie = "createCooldown=NopeYouGottaAwait; expires=" + expirationString + "; path=/";
           setTimeout(function() { //3 sceond delay for lag
             window.location="/"
           }, 3000);
@@ -517,12 +523,14 @@ async function ratingButtons(questionList){ //same as above, but updates questio
   let downclick = false
   let ratingUpdate = 0
   if (checkCookieExists("voted"+questionId)==false){
-    setCookie("voted"+questionId, "no", 365)
+    upclick = false
+    downclick = false
   }
   else{
     if (getCookie("voted"+questionId) === 'no') {
       upclick = false
       downclick = false
+      deleteCookie("voted"+questionId);
     }
     else if(getCookie("voted"+questionId)=== 'upvote') {
       upclick = true
@@ -644,6 +652,9 @@ if (!checkCookieExists(eventCookieName)) {
 
   // Set a cookie to indicate that the event has occurred for the current IP address
   setCookie(eventCookieName, 'true', expirationDays);
+}
+function deleteCookie(cookieName) {
+  document.cookie = cookieName + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 }
 if (window.location.pathname.indexOf("/viewQuestion") !== -1) {
   displayQuestion().then(() => {
