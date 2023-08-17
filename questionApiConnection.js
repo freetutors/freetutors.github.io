@@ -342,15 +342,8 @@ async function answerArea(questionList, quill){
   });
   document.getElementById("answer-send").addEventListener("click", function() { //when answer send clicked
     const questionId = questionList[0].questionId
-    let answers = parseInt(questionList[0].answers) 
-    if (parseInt(questionList[0].answers) == 0){
-      answers += 1
-      answers +=1
-    }
-    else{
-      answers +=1
-    }
-
+    let answers = parseInt(questionList[0].answers) +1
+    console.log(answers)
     const views = questionList[0].views
     const rating = questionList[0].rating
     const body = quill.root.innerHTML
@@ -370,7 +363,7 @@ async function answerArea(questionList, quill){
           sendUpdate(questionId, answers, views, rating) //updating question stats
           setTimeout(function() { //lag proof
             //your code to be executed after 3 second
-            // location.reload()
+            location.reload()
           }, 3000);
         } else {
           if(window.confirm("Please verify your account to answer a question"));{
@@ -405,6 +398,7 @@ async function sendAnswer(questionId, body, author) { //sending answer to databa
 }
 
 async function sendUpdate(questionId, answers, updatedViews, rating){ //updating question stats
+  console.log(answers)
   const url = new URL(`${apiUrlupdate}?questionId=${questionId}&answers=${answers}&views=${updatedViews}&rating=${rating}`);
   const response = await fetch(url,  {
     mode: "cors",
