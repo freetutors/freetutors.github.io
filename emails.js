@@ -29,13 +29,15 @@ async function getUserCognito(username) { //getting cognito info
     const user = await cognito.adminGetUser(params).promise();
     return user;
   } catch (error) {
-      alert("error:"+error+"Please log out and log in again")
+      alert("Please log in to contact us!")
+      window.location('/login')
   }
 }
-const user = await getUserCognito(username) //getting user info with previous username
+
+sendEmailButton.addEventListener("click", async () => {
+  const user = await getUserCognito(username) //getting user info with previous username
 const email = "          Account Email:" + user.UserAttributes[4].Value //letting us know ur email
 
-sendEmailButton.addEventListener("click", () => {
   if (username == null){
     if(window.confirm("Please Log In to Contact Us"));{
       window.location = "/login"
@@ -48,7 +50,7 @@ sendEmailButton.addEventListener("click", () => {
     } else {
       var feedbackType = ""
     }
-  
+    
   
     var subject = questionBox.value.trim().replace(/\r?\n|\r/g, '').replace(/"/g, "‟").replace(/"/g, '⁄').replace(/\\/g, '＼');
   
