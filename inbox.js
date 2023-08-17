@@ -112,7 +112,7 @@ async function updateOnAnswer() {
   const questionAuthor = document.querySelector("#question-wrapper > div.question > div.contributorStats > div > p").innerHTML
   const questionUser = await getUser(questionAuthor)
   const messages = questionUser.user[0].InboxList
-  messages.push(['Your ' + '<a href=' + window.location.href + '>question</a>' + ' has been answered', getTimestamp()])
+  messages.push(['Your ' + '<a href=' + window.location.href + '>question</a>' + ' has been answered - ' + String(username), getTimestamp()])
   await updateListAttribute('Freetutor-Users', { username: questionAuthor }, 'InboxList', messages);
   await updateBooleanAttribute('Freetutor-Users', { username: questionAuthor }, 'isRead', false);
 }

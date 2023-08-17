@@ -24,7 +24,7 @@ var cognito = new AWS.CognitoIdentityServiceProvider(); //connection to cognito 
  //connecting to cognito pool
 
 function signUpUser(params) { //function for signing up, this is already defined
-  let status = incomplete
+  let status = 'incomplete'
   cognito.signUp(params, function(err, data) {
     
     if (err) { 
