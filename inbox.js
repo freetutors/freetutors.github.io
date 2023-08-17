@@ -174,9 +174,11 @@ async function updateBooleanAttribute(tableName, key, attributeName, attributeVa
   document.querySelector(".inboxButton").addEventListener("click", inboxDisplay)
   }
 
+if (username !== null) {
   if (pageName == 'viewQuestion') {
     document.getElementById("answer-send").addEventListener("click", updateOnAnswer)
   }
+}
 
 if (username !== null) {
   user = await getUser(username);
@@ -184,6 +186,9 @@ if (username !== null) {
     document.querySelector(".notif").style.display = "block"
   }
 }
+
+console.log(username)
+
 })();
 
 
