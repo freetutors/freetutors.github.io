@@ -200,43 +200,59 @@ const img = document.getElementById('pfp_inner')
 if (file !== null){
   file.addEventListener('change', function(){
     const choosedFile = this.files[0]
-    if(choosedFile){
-        const reader = new FileReader();
-        reader.addEventListener('load', function(){
-          const img = new Image(); //this is creating a new img
-          img.src = reader.result;
-          // console.log(img.src)
+    if (choosedFile) {
+      const reader = new FileReader();
+      reader.addEventListener('load', async function() {
+        const img = new Image();
+        img.src = reader.result;
+  
         img.onload = async function() {
-          const squareSize = Math.min(img.width, img.height); //picks the lower value
-          const canvas = document.createElement('canvas'); //this is the html elemnet for cutting the image
-          canvas.width = squareSize; //setting width and height to the same min value
+          const maxDimensions = 800;
+          const squareSize = Math.min(img.width, img.height); //finds the smaller dismension, width or height
+  
+          // Check if the image dimensions exceed the maximum dimensions
+          let width = img.width;
+          let height = img.height;
+  
+          if (width > maxDimensions || height > maxDimensions) {
+            if (width > height) {
+              height = (height / width) * maxDimensions;
+              width = maxDimensions;
+            } else {
+              width = (width / height) * maxDimensions;
+              height = maxDimensions;
+            } //basically this makes it the max quality our database can handle
+          }
+  
+          const canvas = document.createElement('canvas');
+          canvas.width = squareSize; //this canvas code is for squaring
           canvas.height = squareSize;
   
-          const context = canvas.getContext('2d'); //allowing canvas element to have new img
-          const offsetX = (img.width - squareSize) / 2; //centering image horizontally
-          const offsetY = (img.height - squareSize) / 2; //centering image vertically
-          context.drawImage(img, offsetX, offsetY, squareSize, squareSize, 0, 0, squareSize, squareSize); //putting in image with all values
+          const context = canvas.getContext('2d');
+          const offsetX = (img.width - squareSize) / 2; //centr the square
+          const offsetY = (img.height - squareSize) / 2;
+          context.drawImage(img, offsetX, offsetY, squareSize, squareSize, 0, 0, squareSize, squareSize);
   
-          const croppedDataUrl = canvas.toDataURL('image/png'); //converting to readable value, honestly i dont fully understand what happens here
-          profileImg.setAttribute('src', croppedDataUrl); //updating current html
+          const squarifiedDataUrl = canvas.toDataURL('image/jpeg', 0.9);//dowgrades to max
+          profileImg.setAttribute('src', squarifiedDataUrl); //updates screen circle
   
-          const fileData = croppedDataUrl.split(',')[1]; // Extract base64 data from Data URL
+          const fileData = squarifiedDataUrl.split(',')[1];
           try {
             await updatepfp(username, fileData);
             console.log("Profile picture updated successfully");
-            user = await getUser(username)
-            await changePageInfo(user.user[0])
-            await showQuestionColumn(user)
-            document.querySelector(".profilePicHome").setAttribute('src', `data:image/png;base64,${fileData}`)
+            user = await getUser(username); //updating page data without any reloading
+            await changePageInfo(user.user[0]);
+            await showQuestionColumn(user);
+            document.querySelector(".profilePicHome").setAttribute('src', `data:image/png;base64,${fileData}`);
             setTimeout(function() {
-  
+              // ...
             }, 3000);
           } catch (error) {
             console.error("Error updating profile picture:", error);
           }
         };
-        });
-        reader.readAsDataURL(choosedFile);
+      });
+      reader.readAsDataURL(choosedFile);
     }
   })
 }
