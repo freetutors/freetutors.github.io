@@ -83,28 +83,36 @@ background-color: var(--primary-color)
 
 /* Sign-up section */
 .signup-container{
- width: 700px;
+ width: 65vw;
+ max-width: 700px;
  height: auto;
  background-color: var(--header-color);
  opacity: 0.95;
  margin: auto;
- margin-top: 100px;
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%, -50%);
  flex-direction: column;
  border-radius: .5rem;
  box-shadow: 0 1rem 3rem #000000;
  padding: 20px;
+ display: flex;
+
 }
-.verification-container{
- width: 500px;
- height: auto;
- background-color: var(--header-color);
- opacity: 0.95;
- margin: auto;
- margin-top: 350px;
- flex-direction: column;
- border-radius: .5rem;
- box-shadow: 0 1rem 3rem #000000;
- padding: 20px;
+.verification-container {
+  width: 500px;
+  height: auto;
+  background-color: var(--header-color);
+  opacity: 0.95;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  flex-direction: column;
+  border-radius: .5rem;
+  box-shadow: 0 1rem 3rem #000000;
+  padding: 20px;
 }
 .description{
  color: var(--text-color);
@@ -144,7 +152,7 @@ background-color: var(--primary-color)
 }
 
 .input-group label{
- font-size: 1.2rem;
+ font-size: 1.2vh;
  color: WHITE;
  font-weight: 600;
  text-transform: uppercase;
@@ -166,7 +174,7 @@ position: relative;
 .input-group-new input,
 .input-group-new textarea {
 font-family: 'Lexend', sans-serif;
-padding: 3rem 1rem 0.65rem 0.25rem;
+padding: 4vh 1rem 0.65rem 0.25rem;
 background-color: transparent;
 border-top: none;
 border-left: none;
@@ -180,7 +188,7 @@ outline: none;
 
 
 .input-group-new label {
-font-size: 1.2rem;
+font-size: 1.8vh;
 color: white;
 font-weight: 600;
 letter-spacing: .1rem;
@@ -203,15 +211,23 @@ transition: transform 0.3s;
 }
 
 .signup-send {
-margin-top: 21px;
+margin-top: 2vh;
 margin-bottom: 4px;
 margin-left: 10px;
-padding: 12px;
-font-size: 15px;
-width: 633px;
+height: 3vh;
+min-height: 30px;
+max-height: 50px;
+padding: 0.1vh;
+font-size: 1.3vh;
+width: 59vw;
+max-width: 633px;
 background-color: var(--primary-color);
 outline: none;
 transition: transform 0.3s;
+}
+.label-signup{
+  margin: 0;
+  transition: transform 0.3s;
 }
 
 .g-signin2 {

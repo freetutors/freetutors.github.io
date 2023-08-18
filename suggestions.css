@@ -2,7 +2,7 @@
   list-style-type: none;
   position: absolute;
   cursor: pointer;
-  left: 10px;
+  left: calc(50% - var(--question_list_width)/2 - 227.5px);
   color: white;
   margin-top: -1px;
   transform: translateX(calc(-1*var(--translate_len)));
@@ -24,7 +24,7 @@
 }
 
 .menu_item:hover {
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(163, 47, 128, 0.397);
 }
 
 .menu_item:hover::before {
@@ -34,8 +34,9 @@
   top: 0;
   height: 100%;
   width: 5px;
-  background-color: white;
+  background-color: var(--secondary-color);
 }
+
 .on-page {
   font-size: 19px;
   list-style-type: none;
@@ -46,7 +47,7 @@
   padding-left: 10px;
   margin-top: 5px;
   border-radius: 0 7px 7px 0; /* creating a straight edge for showing the selected area */
-  background-color: rgba(163, 47, 128, 0.15);
+  /* background-color: rgba(163, 47, 128, 0.15); */
   position: relative;
   overflow: hidden;
 }
@@ -62,7 +63,7 @@
 }
 
 .on-page:hover {
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(163, 47, 128, 0.397);
 }
 
 .on-page:hover::before {
@@ -72,7 +73,7 @@
   top: 0;
   height: 100%;
   width: 5px;
-  background-color: white;
+  background-color: var(--secondary-color);
 }
 
 @media only screen and (max-width: 1400px){
@@ -140,7 +141,7 @@ display: none;
 
 .dropdown {
   position: relative;
-  margin-top: 16px;
+  margin-top: 15px;
   margin-left: 20px;
   width: 200px;
   z-index: 5;
@@ -155,7 +156,7 @@ display: none;
   cursor: pointer;
   border: 1.5px solid var(--border-color);
   border-radius: 5px;
-  height: 45px;
+  height: 44px;
   transition: 0.2s;
   width: 200.5;  /* margin-top: 15px; */
 }

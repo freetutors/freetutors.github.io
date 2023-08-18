@@ -87,6 +87,12 @@ if (window.location.pathname.indexOf("createQuestion") !== -1) { //if on the cre
           submitQuestion() //submits to database
           addUserQuestions(userId) //updates user stats
           alert("Question Submitted!")
+          //this is creating a 100 second cooldown from creating questions to fix a overwriting bug
+          var currentTime = new Date();
+          var expirationTime = new Date(currentTime.getTime() + 100000); // 100000 milliseconds = 100seconds
+          // Convert the expiration time to the appropriate format for cookies
+          var expirationString = expirationTime.toUTCString();
+          document.cookie = "createCooldown=NopeYouGottaAwait; expires=" + expirationString + "; path=/";
           setTimeout(function() { //3 sceond delay for lag
             window.location="/"
           }, 3000);
@@ -218,6 +224,7 @@ async function displayQuestion(){ //displays on view question.html
     <div class="title">${title}</div>
     <hr class="titleSep">
     <div class="question">
+      <div class="pfpRow">
       <img id = "pfp" src=${displayedImage} class="global_pfp" onclick="window.location = 'profile?username=${user.user[0].username}'">
       <div class="contributorStats">
         <div class ="title-box">
@@ -225,6 +232,7 @@ async function displayQuestion(){ //displays on view question.html
           <img class="${user.user[0].status}-icon" src="${icon}" alt="Verified Tutor" width="25px" height="25px"></img>
         </div>
         <p class="time">${date}</p>
+      </div>
       </div>
       <p class = "questionBody">${body}</p>
       <div class="rating-container">
@@ -266,6 +274,7 @@ async function displayQuestion(){ //displays on view question.html
           "beforeend",
           `
           <div class="answer">
+          <div class ="pfpRow">
           <img src=${displayedImage} class="global_pfp" onclick="window.location = 'profile?username=${author}'">
           <div class="contributorStats">
           <div class ="title-box">
@@ -273,6 +282,7 @@ async function displayQuestion(){ //displays on view question.html
             <img class="${user.user[0].status}-icon" src="${icon}" alt="Verified Tutor" width="25px" height="25px"></img>
           </div>
             <p class="time">${time}</p>
+          </div>
           </div>
           <p class="answerBody">${abody}</p>
           <div class="rating-container">
@@ -314,6 +324,10 @@ async function displayQuestion(){ //displays on view question.html
     var quill = initializeQuill();
     isQuillInitialized = true;
   }
+  if (!isQuillInitialized) {
+    var quill = initializeQuill();
+    isQuillInitialized = true;
+  }
   answerArea(questionList, quill)
   await ratingButtons(questionList)
 
@@ -334,7 +348,8 @@ async function answerArea(questionList, quill){
   });
   document.getElementById("answer-send").addEventListener("click", function() { //when answer send clicked
     const questionId = questionList[0].questionId
-    const answers = parseInt(questionList[0].answers) +1
+    let answers = parseInt(questionList[0].answers) +1
+    console.log(answers)
     const views = questionList[0].views
     const rating = questionList[0].rating
     const body = quill.root.innerHTML
@@ -343,6 +358,8 @@ async function answerArea(questionList, quill){
     ``
     quill = ""
     var username = localStorage.getItem(`CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser`)
+    
+    console.log(views, rating, body, author, username, answers)
     if (username !== null){
       checkUserVerification(username)
       .then(isVerified => { //checking if user is veriified
@@ -387,6 +404,7 @@ async function sendAnswer(questionId, body, author) { //sending answer to databa
 }
 
 async function sendUpdate(questionId, answers, updatedViews, rating){ //updating question stats
+  console.log(answers)
   const url = new URL(`${apiUrlupdate}?questionId=${questionId}&answers=${answers}&views=${updatedViews}&rating=${rating}`);
   const response = await fetch(url,  {
     mode: "cors",
@@ -505,12 +523,14 @@ async function ratingButtons(questionList){ //same as above, but updates questio
   let downclick = false
   let ratingUpdate = 0
   if (checkCookieExists("voted"+questionId)==false){
-    setCookie("voted"+questionId, "no", 365)
+    upclick = false
+    downclick = false
   }
   else{
     if (getCookie("voted"+questionId) === 'no') {
       upclick = false
       downclick = false
+      deleteCookie("voted"+questionId);
     }
     else if(getCookie("voted"+questionId)=== 'upvote') {
       upclick = true
@@ -632,6 +652,9 @@ if (!checkCookieExists(eventCookieName)) {
 
   // Set a cookie to indicate that the event has occurred for the current IP address
   setCookie(eventCookieName, 'true', expirationDays);
+}
+function deleteCookie(cookieName) {
+  document.cookie = cookieName + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 }
 if (window.location.pathname.indexOf("/viewQuestion") !== -1) {
   displayQuestion().then(() => {

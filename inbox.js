@@ -112,7 +112,7 @@ async function updateOnAnswer() {
   const questionAuthor = document.querySelector("#question-wrapper > div.question > div.contributorStats > div > p").innerHTML
   const questionUser = await getUser(questionAuthor)
   const messages = questionUser.user[0].InboxList
-  messages.push(['Your ' + '<a href=' + window.location.href + '>question</a>' + ' has been answered', getTimestamp()])
+  messages.push(['Your ' + '<a href=' + window.location.href + '>question</a>' + ' has been answered - ' + String(username), getTimestamp()])
   await updateListAttribute('Freetutor-Users', { username: questionAuthor }, 'InboxList', messages);
   await updateBooleanAttribute('Freetutor-Users', { username: questionAuthor }, 'isRead', false);
 }
@@ -174,9 +174,11 @@ async function updateBooleanAttribute(tableName, key, attributeName, attributeVa
   document.querySelector(".inboxButton").addEventListener("click", inboxDisplay)
   }
 
+if (username !== null) {
   if (pageName == 'viewQuestion') {
     document.getElementById("answer-send").addEventListener("click", updateOnAnswer)
   }
+}
 
 if (username !== null) {
   user = await getUser(username);
@@ -184,6 +186,9 @@ if (username !== null) {
     document.querySelector(".notif").style.display = "block"
   }
 }
+
+console.log(username)
+
 })();
 
 
