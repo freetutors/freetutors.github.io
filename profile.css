@@ -153,6 +153,7 @@ hr.pfp_line {
      float: left;
      margin-left: calc(50% - 320px);
      margin-right: 200px;
+     border-radius: 3px
  }
 
 .questions_list_profile {/*scroll area with questions. It is invisible*/
