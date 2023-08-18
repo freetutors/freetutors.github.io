@@ -5,8 +5,7 @@ const questionSend = document.querySelector('#sign_up_as_tutor_button');
 var path = window.location.pathname;
 var pageName = path.split("/").pop();
 
-const cognito = new AWS.CognitoIdentityServiceProvider();
-const username = /*'testUserForInbox'*/localStorage.getItem('CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser');
+const username = localStorage.getItem('CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser');
 
 if (username == null) {
   askQuestionButton.addEventListener('click', () => {
