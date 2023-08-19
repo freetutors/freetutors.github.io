@@ -207,7 +207,7 @@ if (file !== null){
         img.src = reader.result;
   
         img.onload = async function() {
-          const maxDimensions = 800;
+          const maxDimensions = 720;
           const squareSize = Math.min(img.width, img.height); //finds the smaller dismension, width or height
   
           // Check if the image dimensions exceed the maximum dimensions
