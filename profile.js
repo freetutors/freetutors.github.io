@@ -212,6 +212,7 @@ if (file !== null){
           const maxDimensions = 720;
           const maxDimensionsQuestion = 144;
           const squareSize = Math.min(img.width, img.height); //finds the smaller dismension, width or height
+          console.log(squareSize)
   
           // Check if the image dimensions exceed the maximum dimensions
           let width = img.width;
@@ -239,6 +240,29 @@ if (file !== null){
           const squarifiedDataUrl = canvas.toDataURL('image/jpeg', 0.9);//dowgrades to max
           profileImg.setAttribute('src', squarifiedDataUrl); //updates screen circle
 
+          if (width > maxDimensionsQuestion || height > maxDimensionsQuestion) {
+            if (width > height) {
+              height = (height / width) * maxDimensionsQuestion;
+              width = maxDimensionsQuestion;
+            } else {
+              width = (width / height) * maxDimensionsQuestion;
+              height = maxDimensionsQuestion;
+            } //basically this makes it the max quality our database can handle
+          }
+
+          const canvasQuestion = document.createElement('canvas');
+          canvasQuestion.width = squareSize; //this canvas code is for squaring
+          canvasQuestion.height = squareSize;
+
+          const contextQuestion = canvas.getContext('2d');
+          const offsetXQuestion = (img.width - squareSize) / 2; //centr the square
+          const offsetYQuestion = (img.height - squareSize) / 2;
+          context.drawImage(img, offsetXQuestion, offsetYQuestion, squareSize, squareSize, 0, 0, squareSize, squareSize);
+
+          const squarifiedDataUrlQuestion = canvas.toDataURL('image/jpeg', 0.9);//dowgrades to max
+
+          console.log(squarifiedDataUrlQuestion)
+          console.log(squarifiedDataUrlQuestion.length)
           console.log(squarifiedDataUrl)
           console.log(squarifiedDataUrl.length)
           console.log(img.width)

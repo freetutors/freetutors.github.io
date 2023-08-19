@@ -183,10 +183,16 @@ document.querySelector('.subject-list').addEventListener("click", function(e) {
     var target = e.target || e.srcElement,
         subject = target.textContent || target.innerText;
 
-    showQuestionColumn(subject.toLowerCase());
-    document.querySelector(`#subject${active}`).classList.remove("active")
-    active = subject
-    document.querySelector(`#subject${active}`).classList.add("active")
+    console.log(subject)
+    console.log(headerSubjects.includes(subject))
+    if (headerSubjects.includes(subject)) {
+      showQuestionColumn(subject.toLowerCase());
+      document.querySelector(`#subject${active}`).classList.remove("active")
+      active = subject
+      document.querySelector(`#subject${active}`).classList.add("active")
+    } else {
+      return "hi"
+    }
 });
 
 document.querySelector(`#subjectMath`).classList.add('active')
