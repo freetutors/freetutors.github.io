@@ -326,6 +326,7 @@ hr.pfp_line {
     font-size: 18px;
     margin-top: 0px;
     text-align: center;
+    overflow: ellipsis;
 }
 
 .info-label {
@@ -345,6 +346,10 @@ hr.pfp_line {
     font-size: 9pt;
     margin-left: -2.5px;
     transform: translateY(-12px);
+    width: 172.5px;
+    white-space: nowrap; /* Prevents text from wrapping */
+    overflow: hidden; /* Hides overflowed content */
+    text-overflow: ellipsis; /* Adds ellipsis for overflowed text */
 }
 
 .info_input_group:focus {
