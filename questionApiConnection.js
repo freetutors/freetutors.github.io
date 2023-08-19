@@ -305,7 +305,7 @@ async function displayQuestion(){ //displays on view question.html
   MathJax.Hub.Queue(['Typeset', MathJax.Hub, 'question-wrapper']); //latex addition
   MathJax.Hub.Queue(['Typeset', MathJax.Hub, 'answer-wrapper']);
 
-  if (window.location.pathname.indexOf() = "viewQuestion" ){ //if view question.html
+  if (window.location.pathname.indexOf("/viewQuestion") !== -1){ //if view question.html
     MathJax.Hub.Config({ //intializing latex + mathjax{used for latex}
       tex2jax: {
         inlineMath: [['$', '$'], ['\\(', '\\)']],
