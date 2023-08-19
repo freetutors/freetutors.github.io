@@ -169,6 +169,7 @@ const headerSubjects = [ //list of subjects, we can always add more
   "Foreign Language",
   "Computer Science",
   "Physical Education",
+  "Other"
 ];
 
 const subjectList = document.querySelector('.subject-list');
@@ -181,10 +182,13 @@ for (const subject of headerSubjects) {
   const formattedSubject = subject.replace(" ", "");
   subjectList.innerHTML += `<li class="subject" id="subject${formattedSubject}">${subject}</li>`;
 }
-for (const subject of headerSubjects) { //for some reason it has to be seperate or it doesn't register clicks idk bro
+for (var subject of headerSubjects) { //for some reason it has to be seperate or it doesn't register clicks idk bro
   const formattedSubject = subject.replace(" ", "");  
   const subjectElement = document.querySelector(`#subject${formattedSubject}`);
-
+  if (subject = "Other"){
+    subject = `select
+    subject`
+  }
   subjectElement.addEventListener("click", debounce(function() {
     console.log('Click event registered for:', subject);
     document.querySelector(`#subject${active}`).classList.remove("active")
