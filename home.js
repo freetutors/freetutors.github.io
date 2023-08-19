@@ -87,10 +87,9 @@ function addQuestionClickListeners(questionList) {
 function showQuestionColumn(subject) {
   (async () => {
     // const questionList = await getQuestionList(subject);
-
+    document.querySelector(".questions_list").innerHTML = ''
     const questionList = await getQuestionList(subject)
     const questionArray = questionList
-    document.querySelector(".questions_list").innerHTML = ''
     for (const question of questionArray) {
       var title = question.title //getting question data
       var author = question.author
@@ -149,6 +148,7 @@ function showQuestionColumn(subject) {
 
     // questionBoxContainer.innerHTML = html;
     // addQuestionClickListeners(questionList);
+    isEventListenerActive = true;
   })();
 }
 
@@ -191,16 +191,13 @@ for (var subject of headerSubjects) { //for some reason it has to be seperate or
   }
   subjectElement.addEventListener("click", debounce(function() {
     console.log('Click event registered for:', subject);
-    document.querySelector(`#subject${active}`).classList.remove("active")
-    active = formattedSubject
-    document.querySelector('.questions_list').innerHTML = ''
+
+
     document.querySelector(`#subject${active}`).classList.add("active")
     showQuestionColumn(subject.toLowerCase())
+    console.log(document.querySelector("body > div.questions_list.questions_list_profile").innerHTML)
   }, 200));
-}
-document.querySelector("#subjectComputerScience").addEventListener("click", () => {
-  console.log("adflh")
-})
+}*/
 document.querySelector(`#subjectMath`).classList.add('active')
 const scrollStep = 200; //variables for smooth scrolling
 const scrollDuration = 300;
@@ -316,10 +313,9 @@ if (localUser !== null) {
     }
   }
 
-
     animate(numQuestions, document.querySelector(".important_box_num1"), 'important_box_num1_digit')
     animate(numAnswers, document.querySelector(".important_box_num2"), 'important_box_num2_digit')
-    animate(Math.round(numAnswers/5), document.querySelector(".important_box_num3"), 'important_box_num3_digit')
+    /*animate(Math.round(numAnswers/5), document.querySelector(".important_box_num3"), 'important_box_num3_digit')*/
 
 
 })();
