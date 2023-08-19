@@ -241,6 +241,9 @@ if (file !== null){
           const squarifiedDataUrl = canvas.toDataURL('image/jpeg', 0.9);//dowgrades to max
           profileImg.setAttribute('src', squarifiedDataUrl); //updates screen circle
 
+          width = img.width;
+          height = img.height;
+
           if (width > maxDimensionsQuestion || height > maxDimensionsQuestion) {
             if (width > height) {
               height = (height / width) * maxDimensionsQuestion;
@@ -251,15 +254,13 @@ if (file !== null){
             } //basically this makes it the max quality our database can handle
           }
 
-          const canvasQuestion = document.createElement('canvasQuestion');
-          canvasQuestion.width = squareSize; //this canvas code is for squaring
-          canvasQuestion.height = squareSize;
+          canvas.width = squareSizeQuestion; //this canvas code is for squaring
+          canvas.height = squareSizeQuestion;
 
-
-          const contextQuestion = canvasQuestion.getContext('2d');
-          const offsetXQuestion = (img.width - squareSize) / 2; //centr the square
-          const offsetYQuestion = (img.height - squareSize) / 2;
-          context.drawImage(img, offsetXQuestion, offsetYQuestion, squareSizeQuestion, squareSizeQuestion, 0, 0, squareSizeQuestion, squareSizeQuestion);
+          const contextQuestion = canvas.getContext('2d');
+          const offsetXQuestion = (img.width - squareSizeQuestion) / 2; //centr the square
+          const offsetYQuestion = (img.height - squareSizeQuestion) / 2;
+          contextQuestion.drawImage(img, offsetXQuestion, offsetYQuestion, squareSizeQuestion, squareSizeQuestion, 0, 0, squareSizeQuestion, squareSizeQuestion);
 
           const squarifiedDataUrlQuestion = canvasQuestion.toDataURL('image/jpeg', 0.9);//dowgrades to max
 
