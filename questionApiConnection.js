@@ -90,7 +90,7 @@ if (window.location.pathname.indexOf("createQuestion") !== -1) { //if on the cre
             alert("Question Submitted!")
             //this is creating a 100 second cooldown from creating questions to fix a overwriting bug
             var currentTime = new Date();
-            var expirationTime = new Date(currentTime.getTime() + 100000); // 100000 milliseconds = 100seconds
+            var expirationTime = new Date(currentTime.getTime() + 300000); // 100000 milliseconds = 100seconds
             // Convert the expiration time to the appropriate format for cookies
             var expirationString = expirationTime.toUTCString();
             document.cookie = "createCooldown=NopeYouGottaAwait; expires=" + expirationString + "; path=/";
@@ -106,7 +106,7 @@ if (window.location.pathname.indexOf("createQuestion") !== -1) { //if on the cre
     }
     }
   else{
-    alert("Please wait 100 seconds before posting another question.")
+    alert("Please wait 5 minutes before posting another question.")
   }
   })
 }
