@@ -47,7 +47,9 @@
   width: 800px;
   margin: auto;
 }
-
+.staff-icon{
+  padding-top: 15px;
+}
 .questionBody {
   color: white;
   max-width: 800px;

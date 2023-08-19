@@ -197,7 +197,7 @@ for (var subject of headerSubjects) { //for some reason it has to be seperate or
     showQuestionColumn(subject.toLowerCase())
     console.log(document.querySelector("body > div.questions_list.questions_list_profile").innerHTML)
   }, 200));
-}*/
+}
 document.querySelector(`#subjectMath`).classList.add('active')
 const scrollStep = 200; //variables for smooth scrolling
 const scrollDuration = 300;
