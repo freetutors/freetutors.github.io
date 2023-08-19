@@ -192,7 +192,7 @@ for (const subject of headerSubjects) { //for some reason it has to be seperate 
     document.querySelector('.questions_list').innerHTML = ''
     document.querySelector(`#subject${active}`).classList.add("active")
     showQuestionColumn(subject.toLowerCase())
-  }, 200));
+  }, 250));
 }
 document.querySelector("#subjectComputerScience").addEventListener("click", () => {
   console.log("adflh")
