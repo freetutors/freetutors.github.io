@@ -375,7 +375,9 @@
   .search-bar {
      margin-right: 18px;
      width: 200px;
- }:root{ /*setting color variables incase we want to switch color scheme*/
+  }
+ }
+ :root{ /*setting color variables incase we want to switch color scheme*/
     --primary-color:#113265ff;
     --background-color:#08162bff;
     --header-color:#242424ff;
