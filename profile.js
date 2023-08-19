@@ -262,7 +262,7 @@ if (file !== null){
           const offsetYQuestion = (img.height - squareSizeQuestion) / 2;
           contextQuestion.drawImage(img, offsetXQuestion, offsetYQuestion, squareSizeQuestion, squareSizeQuestion, 0, 0, squareSizeQuestion, squareSizeQuestion);
 
-          const squarifiedDataUrlQuestion = canvasQuestion.toDataURL('image/jpeg', 0.9);//dowgrades to max
+          const squarifiedDataUrlQuestion = canvas.toDataURL('image/jpeg', 0.9);//dowgrades to max
 
           console.log(squarifiedDataUrlQuestion)
           console.log(squarifiedDataUrlQuestion.length)
