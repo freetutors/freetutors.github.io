@@ -255,7 +255,7 @@ transform: scale(1.01)
 transform: scale(1.01)
 }
 .tutor-info{
-height: 100px;
+height: 11vh;
 overflow: auto;
 resize: none;
 }
