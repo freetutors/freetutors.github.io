@@ -80,28 +80,33 @@ if (window.location.pathname.indexOf("createQuestion") !== -1) { //if on the cre
   document.querySelector(".question-send").addEventListener("click", () => { //when submit is clicked
     //cognito info is stored on local storage(ei. last auth user and tokens)
     var userId = localStorage.getItem(`CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser`)
-    if (userId !== null){
-      checkUserVerification(userId) //this is an async functino so that is why.then is needed
-      .then(isVerified => { //function returns a boolean for verified or not
-        if (isVerified) {
-          submitQuestion() //submits to database
-          addUserQuestions(userId) //updates user stats
-          alert("Question Submitted!")
-          //this is creating a 100 second cooldown from creating questions to fix a overwriting bug
-          var currentTime = new Date();
-          var expirationTime = new Date(currentTime.getTime() + 100000); // 100000 milliseconds = 100seconds
-          // Convert the expiration time to the appropriate format for cookies
-          var expirationString = expirationTime.toUTCString();
-          document.cookie = "createCooldown=NopeYouGottaAwait; expires=" + expirationString + "; path=/";
-          setTimeout(function() { //3 sceond delay for lag
-            window.location="/"
-          }, 3000);
-        } else {
-          if(window.confirm("Please verify your account to answer a question"));{
-            window.location = "/verification" //sends to verificatino if not verified
+    if (checkCookieExists("createCooldown") == false){
+      if (userId !== null){
+        checkUserVerification(userId) //this is an async functino so that is why.then is needed
+        .then(isVerified => { //function returns a boolean for verified or not
+          if (isVerified) {
+            submitQuestion() //submits to database
+            addUserQuestions(userId) //updates user stats
+            alert("Question Submitted!")
+            //this is creating a 100 second cooldown from creating questions to fix a overwriting bug
+            var currentTime = new Date();
+            var expirationTime = new Date(currentTime.getTime() + 100000); // 100000 milliseconds = 100seconds
+            // Convert the expiration time to the appropriate format for cookies
+            var expirationString = expirationTime.toUTCString();
+            document.cookie = "createCooldown=NopeYouGottaAwait; expires=" + expirationString + "; path=/";
+            setTimeout(function() { //3 sceond delay for lag
+              window.location="/"
+            }, 3000);
+          } else {
+            if(window.confirm("Please verify your account to answer a question"));{
+              window.location = "/verification" //sends to verificatino if not verified
+            }
           }
-        }
-      });
+        });
+    }
+    }
+  else{
+    alert("Please wait 100 seconds before posting another question.")
   }
   })
 }
