@@ -246,24 +246,24 @@ if (file !== null){
           const questionImg = new Image();
           // Set the source of the Image element to the Base64 image
           questionImg.src = squarifiedDataUrl;
+          questionImg.onload = function () {
+            console.log(squarifiedDataUrl)
 
-          console.log(squarifiedDataUrl)
+            const newWidth = 256;  // Adjust as needed
+            const newHeight = 144; // Adjust as needed
 
-          const newWidth = 256;  // Adjust as needed
-          const newHeight = 144; // Adjust as needed
+            // Set the canvas size to the new dimensions
+            canvas.width = newWidth;
+            canvas.height = newHeight;
 
-          // Set the canvas size to the new dimensions
-          canvas.width = newWidth;
-          canvas.height = newHeight;
+            // Draw the image on the canvas with the new dimensions
+            context.drawImage(questionImg, 0, 0, newHeight, newHeight);
 
-          // Draw the image on the canvas with the new dimensions
-          context.drawImage(questionImg, 0, 0, newHeight, newHeight);
+            // Convert the canvas content to a Base64 image
+            const resizedBase64Image = canvas.toDataURL('image/jpeg'); // Change to the appropriate format
 
-          // Convert the canvas content to a Base64 image
-          const resizedBase64Image = canvas.toDataURL('image/jpeg'); // Change to the appropriate format
-
-          console.log("Resized Base64 image:", resizedBase64Image);
-
+            console.log("Resized Base64 image:", resizedBase64Image);
+          }
 
           try {
             console.log(user)
