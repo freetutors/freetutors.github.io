@@ -33,16 +33,14 @@
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T474C4DT"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
-<div id="topbar">
-  <img id="logo" src="Logo.svg" alt="Logo" onclick="window.location='/'">
-  <!-- Add search bar -->
-  <input type="search" class="search-bar" placeholder="Search..">
-  <button class="button ask-question-button">Ask
-    Question
-  </button>
-  <div id="loginSignupArea">
+  <div id="topbar">
+    <img id="logo" src="Logo.svg" alt="Logo" onclick="window.location='/'">
+    <input type="search" class="search-bar" placeholder="Search.."
+           onkeydown="if (event.keyCode == 13) handleSearchTrigger()">
+    <button class="button ask-question-button" onclick="window.location='/createQuestion'">Ask Question</button>
+    <div class="possibleSearchResultContainer"></div>
+    <div id="loginSignupArea"></div>
   </div>
-</div>
 
 <div class="question_header">
   Search Results
