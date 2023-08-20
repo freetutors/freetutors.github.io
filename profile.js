@@ -241,18 +241,12 @@ if (file !== null){
           const squarifiedDataUrl = canvas.toDataURL('image/jpeg', 0.9);//dowgrades to max
           profileImg.setAttribute('src', squarifiedDataUrl); //updates screen circle
 
-          width = img.width;
-          height = img.height;
+          const fileData = squarifiedDataUrl.split(',')[1];
 
-          if (width > maxDimensionsQuestion || height > maxDimensionsQuestion) {
-            if (width > height) {
-              height = (height / width) * maxDimensionsQuestion;
-              width = maxDimensionsQuestion;
-            } else {
-              width = (width / height) * maxDimensionsQuestion;
-              height = maxDimensionsQuestion;
-            } //basically this makes it the max quality our database can handle
-          }
+          const img = new Image();
+
+          // Set the source of the Image element to the Base64 image
+          img.src = squarifiedDataUrl;
 
           const newWidth = 256;  // Adjust as needed
           const newHeight = 144; // Adjust as needed
@@ -262,14 +256,14 @@ if (file !== null){
           canvas.height = newHeight;
 
           // Draw the image on the canvas with the new dimensions
-          context.drawImage(img, 0, 0, newWidth, newHeight);
+          context.drawImage(img, 0, 0, newHeight, newHeight);
 
           // Convert the canvas content to a Base64 image
           const resizedBase64Image = canvas.toDataURL('image/jpeg'); // Change to the appropriate format
 
           console.log("Resized Base64 image:", resizedBase64Image);
 
-          const fileData = squarifiedDataUrl.split(',')[1];
+
           try {
             console.log(user)
             await updatepfp(username, fileData);
