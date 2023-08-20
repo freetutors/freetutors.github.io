@@ -283,7 +283,7 @@ if (file !== null){
             const resizedBase64Image = canvas.toDataURL('image/jpeg');
 
             console.log("Resized Base64 image:", resizedBase64Image);
-          }
+
 
           try {
             console.log(user)
@@ -303,6 +303,7 @@ if (file !== null){
           } catch (error) {
             console.error("Error updating profile picture:", error);
           }
+         }
         };
       });
       reader.readAsDataURL(choosedFile);
