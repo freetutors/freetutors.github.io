@@ -98,7 +98,26 @@ background-color: var(--primary-color)
  box-shadow: 0 1rem 3rem #000000;
  padding: 20px;
  display: flex;
-
+}
+@media only screen and (max-height: 870px) {
+  .signup-container{
+    width: 65vw;
+    max-width: 700px;
+    height: auto;
+    background-color: var(--header-color);
+    opacity: 0.95;
+    margin: auto;
+    position: relative;
+    left: 0;
+    margin-top:100px;
+    margin-left: calc((85% - 32.5vw));
+    /* transform: translate(-50%, -50%); */
+    flex-direction: column;
+    border-radius: .5rem;
+    box-shadow: 0 1rem 3rem #000000;
+    padding: 20px;
+    display: flex;
+   }
 }
 .verification-container {
   width: 500px;
