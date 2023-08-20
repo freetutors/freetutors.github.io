@@ -58,6 +58,7 @@ var toolbarOptions = [ //setting quill toolbar options and settings
   // Additional toolbar options...
 ];
 if (window.location.pathname.indexOf("createQuestion") !== -1) { //if on the create question page
+
   var quill = new Quill('#editor', { //creates a new quill editor for user
     placeholder: 'Provide any additional relevant details',
     theme: 'snow',
@@ -143,11 +144,17 @@ async function addUserAnswers(username){ //updating user answers stat, same as a
     })
   }).then(response => response.json());
 }
+
 async function submitQuestion() { //sends questions to database
     const title = document.getElementById('title').value; //pulling data values
     const body = quill.root.innerHTML;
     const author = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser");  
-    const subject =  document.querySelector(".dropbtn").textContent.toLocaleLowerCase();
+    const user = await getUser("humbalumba")
+    const pfp = user.user[0].pfp
+    var subject =  document.querySelector(".dropbtn").textContent.toLocaleLowerCase();
+    if (subject.indexOf("select") !== -1){
+      subject= 'other'
+    }
     const response = await fetch(apiUrlcreate, { //sending api call
       mode: 'cors',
       method: "POST",
@@ -158,7 +165,8 @@ async function submitQuestion() { //sends questions to database
         title:title,
         body: body,
         author: author,
-        subject: subject
+        subject: subject,
+        pfp: pfp
       })
     });
     if (response.ok) {

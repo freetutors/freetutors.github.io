@@ -159,6 +159,7 @@ const headerSubjects = [ //list of subjects, we can always add more
     "Foreign Language",
     "Computer Science",
     "Physical Education",
+    "Other"
 ];
 
 const subjectList = document.querySelector('.subject-list');
