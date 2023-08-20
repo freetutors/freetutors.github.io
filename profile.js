@@ -196,6 +196,7 @@ async function updateStringAttribute(tableName, key, stringAttributeName, newStr
   }
 }
 
+var resizedBase64Image
 const urlParams = new URLSearchParams(window.location.search); 
 const username = urlParams.get('username')//getting username from url
 const viewerUsername = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser") //getting viewer's username
