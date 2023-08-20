@@ -282,12 +282,13 @@ if (file !== null){
 
           try {
             await updatepfp(username, fileData);
+            // for (const question of await getQuestionListUser(user.user[0].username)) {
+            //   await updateStringAttribute('Freetutor-Question', { questionId: question.questionId }, 'pfp', resizedBase64Image);
+            // }
             user = await getUser(username); //updating page data without any reloading
             await changePageInfo(user.user[0]);
             await showQuestionColumn(user);
-            for (const question of await getQuestionListUser(user.user[0].username)) {
-              await updateStringAttribute('Freetutor-Question', { questionId: question.questionId }, 'pfp', resizedBase64Image);
-            }
+
             document.querySelector(".profilePicHome").setAttribute('src', `data:image/png;base64,${fileData}`);
             setTimeout(function() {
               // ...

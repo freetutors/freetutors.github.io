@@ -108,7 +108,9 @@ function showQuestionColumn(subject) {
             var rating = question.rating
             var timeAgo = getTimeDifference(question.timestamp)
             var views = question.views
-            var pfp = question.pfp
+            // var pfp = question.pfp
+            var user = await getUser(author)
+            var pfp = user.user[0].pfp
             var displayedImage = ""
             if (pfp == null) { //getting pfp, if pfp is none it will user default
                 displayedImage = "placeholder_pfp.png"
