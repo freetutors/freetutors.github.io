@@ -286,7 +286,7 @@ if (file !== null){
             await changePageInfo(user.user[0]);
             await showQuestionColumn(user);
             for (const question of await getQuestionListUser(user.user[0].username)) {
-              await updateStringAttribute('Freetutor-Question', { questionId: question.questionId }, 'pfp', fileData);
+              await updateStringAttribute('Freetutor-Question', { questionId: question.questionId }, 'pfp', resizedBase64Image);
             }
             document.querySelector(".profilePicHome").setAttribute('src', `data:image/png;base64,${fileData}`);
             setTimeout(function() {
