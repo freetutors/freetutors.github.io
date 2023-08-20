@@ -235,7 +235,6 @@ if (file !== null){
           const maxDimensionsQuestion = 144;
           const squareSize = Math.min(img.width, img.height); //finds the smaller dismension, width or height
           const squareSizeQuestion = 75
-          console.log(squareSize)
   
           // Check if the image dimensions exceed the maximum dimensions
           let width = img.width;
@@ -283,18 +282,13 @@ if (file !== null){
 
             // Convert the canvas content to a Base64 image
             resizedBase64Image = canvas.toDataURL('image/jpeg').split(',')[1];
-
-            console.log("Resized Base64 image:", resizedBase64Image);
           }
 
           try {
-            console.log(user)
             await updatepfp(username, fileData);
             for (const question of await getQuestionListUser(user.user[0].username)) {
               await updateStringAttribute('Freetutor-Question', { questionId: question.questionId }, 'pfp', resizedBase64Image);
             }
-            console.log("done")
-            console.log("Profile picture updated successfully");
             user = await getUser(username); //updating page data without any reloading
             await changePageInfo(user.user[0]);
             await showQuestionColumn(user);
