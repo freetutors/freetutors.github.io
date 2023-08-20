@@ -282,9 +282,11 @@ if (file !== null){
 
           try {
             await updatepfp(username, fileData);
+            console.log("a")
             for (const question of await getQuestionListUser(user.user[0].username)) {
               await updateStringAttribute('Freetutor-Question', { questionId: question.questionId }, 'pfp', resizedBase64Image);
             }
+            console.log("b")
             user = await getUser(username); //updating page data without any reloading
             await changePageInfo(user.user[0]);
             await showQuestionColumn(user);
