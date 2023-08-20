@@ -254,23 +254,20 @@ if (file !== null){
             } //basically this makes it the max quality our database can handle
           }
 
-          canvas.width = squareSizeQuestion; //this canvas code is for squaring
-          canvas.height = squareSizeQuestion;
+          const newWidth = 256;  // Adjust as needed
+          const newHeight = 144; // Adjust as needed
 
-          const contextQuestion = canvas.getContext('2d');
-          const offsetXQuestion = (img.width - squareSizeQuestion) / 2; //centr the square
-          const offsetYQuestion = (img.height - squareSizeQuestion) / 2;
-          contextQuestion.drawImage(img, offsetXQuestion, offsetYQuestion, squareSizeQuestion, squareSizeQuestion, 0, 0, squareSizeQuestion, squareSizeQuestion);
+          // Set the canvas size to the new dimensions
+          canvas.width = newWidth;
+          canvas.height = newHeight;
 
-          const squarifiedDataUrlQuestion = canvas.toDataURL('image/jpeg', 0.9);//dowgrades to max
+          // Draw the image on the canvas with the new dimensions
+          context.drawImage(img, 0, 0, newWidth, newHeight);
 
-          console.log(squarifiedDataUrlQuestion)
-          console.log(squarifiedDataUrlQuestion.length)
-          console.log(squarifiedDataUrl)
-          console.log(squarifiedDataUrl.length)
-          console.log(img.width)
-          console.log(img.height)
-          console.log(canvas.toDataURL('image/jpeg', 0.9))
+          // Convert the canvas content to a Base64 image
+          const resizedBase64Image = canvas.toDataURL('image/jpeg'); // Change to the appropriate format
+
+          console.log("Resized Base64 image:", resizedBase64Image);
 
           const fileData = squarifiedDataUrl.split(',')[1];
           try {
