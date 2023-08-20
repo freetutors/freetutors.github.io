@@ -191,7 +191,6 @@ async function updateStringAttribute(tableName, key, stringAttributeName, newStr
   };
   try {
     await docClient.update(params).promise();
-    console.log(`Updated ${stringAttributeName} attribute in ${tableName} table`);
   } catch (error) {
     console.error(`Error updating ${stringAttributeName} attribute in ${tableName} table`, error);
   }
@@ -266,7 +265,6 @@ if (file !== null){
           // Set the source of the Image element to the Base64 image
           questionImg.src = squarifiedDataUrl;
           questionImg.onload = function () {
-            console.log(squarifiedDataUrl)
 
             const newWidth = 144;  // Adjust as needed
             const newHeight = 144; // Adjust as needed
