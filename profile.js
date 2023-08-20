@@ -21,7 +21,7 @@ AWS.config.update({ //getting conection to IAM user
 var cognito = new AWS.CognitoIdentityServiceProvider(); //connection to cognito identiy
 
 async function showQuestionColumn(user){ //showing the questions the user asked
-  const questionList = await getQuestionListUser(/*user.user[0].username*/'rokkc')
+  const questionList = await getQuestionListUser(user.user[0].username)
     const questionArray = questionList
     document.querySelector(".questions_list").innerHTML = ''
     for (const question of questionArray) {
@@ -31,9 +31,9 @@ async function showQuestionColumn(user){ //showing the questions the user asked
       var rating = question.rating
       var timeAgo = getTimeDifference(question.timestamp)
       var views = question.views
-      const pfp = /*user.user[0].pfp*/null
+      const pfp = user.user[0].pfp
       var displayedImage = ""
-      if (pfp == null){ //getting pfp, if pfp is none it will user defaul
+      if (pfp == null){ //getting pfp, if pfp is none it will user default
         displayedImage = "placeholder_pfp.png"
       }
       else{
@@ -176,6 +176,26 @@ async function updateQuestionPfp(username, pfp) {
 
 }
 
+async function updateStringAttribute(tableName, key, stringAttributeName, newStringValue) {
+  const params = {
+    TableName: tableName,
+    Key: key,
+    UpdateExpression: 'SET #stringAttribute = :newStringValue',
+    ExpressionAttributeNames: {
+      '#stringAttribute': stringAttributeName
+    },
+    ExpressionAttributeValues: {
+      ':newStringValue': newStringValue
+    }
+  };
+  try {
+    await docClient.update(params).promise();
+    console.log(`Updated ${stringAttributeName} attribute in ${tableName} table`);
+  } catch (error) {
+    console.error(`Error updating ${stringAttributeName} attribute in ${tableName} table`, error);
+  }
+}
+
 const urlParams = new URLSearchParams(window.location.search); 
 const username = urlParams.get('username')//getting username from url
 const viewerUsername = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser") //getting viewer's username
@@ -260,7 +280,7 @@ if (file !== null){
             context.drawImage(questionImg, 0, 0, newHeight, newHeight);
 
             // Convert the canvas content to a Base64 image
-            const resizedBase64Image = canvas.toDataURL('image/jpeg'); // Change to the appropriate format
+            const resizedBase64Image = canvas.toDataURL('image/jpeg');
 
             console.log("Resized Base64 image:", resizedBase64Image);
           }
@@ -268,6 +288,10 @@ if (file !== null){
           try {
             console.log(user)
             await updatepfp(username, fileData);
+            for (const question of await getQuestionListUser(user.user[0].username)) {
+              await updateStringAttribute('Freetutor-Question', { questionId: question.questionId }, 'pfp', resizedBase64Image);
+            }
+            console.log("done")
             console.log("Profile picture updated successfully");
             user = await getUser(username); //updating page data without any reloading
             await changePageInfo(user.user[0]);
