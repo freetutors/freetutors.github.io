@@ -282,7 +282,7 @@ if (file !== null){
             context.drawImage(questionImg, 0, 0, newHeight, newHeight);
 
             // Convert the canvas content to a Base64 image
-            resizedBase64Image = canvas.toDataURL('image/jpeg');
+            resizedBase64Image = canvas.toDataURL('image/jpeg').split(',')[1];
 
             console.log("Resized Base64 image:", resizedBase64Image);
           }
