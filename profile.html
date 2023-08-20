@@ -34,6 +34,8 @@
   <link href='https://fonts.googleapis.com/css?family=Lexend' rel='stylesheet'>
   <link rel="stylesheet" href="profile.css"/>
   <link rel="stylesheet" href="root.css"/>
+<!-- Include the pica library from the CDN -->
+<script src="https://cdn.jsdelivr.net/npm/pica@5.0.0/dist/pica.min.js"></script>
   <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1101.0.min.js"></script>
   <script type="module" src='config.js'></script>
 
@@ -47,13 +49,11 @@
 <!-- End Google Tag Manager (noscript) -->
 <div id="topbar">
   <img id="logo" src="Logo.svg" alt="Logo" onclick="window.location='/'">
-  <!-- Add search bar -->
-  <input type="search" class="search-bar" placeholder="Search..">
-  <button class="button ask-question-button">Ask
-    Question
-  </button>
-  <div id="loginSignupArea">
-  </div>
+  <input type="search" class="search-bar" placeholder="Search.."
+         onkeydown="if (event.keyCode == 13) handleSearchTrigger()">
+  <button class="button ask-question-button" onclick="window.location='/createQuestion'">Ask Question</button>
+  <div class="possibleSearchResultContainer"></div>
+  <div id="loginSignupArea"></div>
 </div>
 
 <img class="banner" src="haikei-gradient.png">
@@ -119,7 +119,6 @@
 <script type="module" src="loginsignupbuttons.js"></script>
 <script src="https://unpkg.com/bowser@2.7.0/es5.js"></script>
 <script src="browserAndPageSizeChanges.js"></script>
-<script src="signin/signPopup.js"></script>
 <script type="module" src="profile.js"></script>
 </body>
 </html>

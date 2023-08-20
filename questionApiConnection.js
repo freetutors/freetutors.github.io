@@ -58,6 +58,7 @@ var toolbarOptions = [ //setting quill toolbar options and settings
   // Additional toolbar options...
 ];
 if (window.location.pathname.indexOf("createQuestion") !== -1) { //if on the create question page
+
   var quill = new Quill('#editor', { //creates a new quill editor for user
     placeholder: 'Provide any additional relevant details',
     theme: 'snow',
@@ -80,28 +81,33 @@ if (window.location.pathname.indexOf("createQuestion") !== -1) { //if on the cre
   document.querySelector(".question-send").addEventListener("click", () => { //when submit is clicked
     //cognito info is stored on local storage(ei. last auth user and tokens)
     var userId = localStorage.getItem(`CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser`)
-    if (userId !== null){
-      checkUserVerification(userId) //this is an async functino so that is why.then is needed
-      .then(isVerified => { //function returns a boolean for verified or not
-        if (isVerified) {
-          submitQuestion() //submits to database
-          addUserQuestions(userId) //updates user stats
-          alert("Question Submitted!")
-          //this is creating a 100 second cooldown from creating questions to fix a overwriting bug
-          var currentTime = new Date();
-          var expirationTime = new Date(currentTime.getTime() + 100000); // 100000 milliseconds = 100seconds
-          // Convert the expiration time to the appropriate format for cookies
-          var expirationString = expirationTime.toUTCString();
-          document.cookie = "createCooldown=NopeYouGottaAwait; expires=" + expirationString + "; path=/";
-          setTimeout(function() { //3 sceond delay for lag
-            window.location="/"
-          }, 3000);
-        } else {
-          if(window.confirm("Please verify your account to answer a question"));{
-            window.location = "/verification" //sends to verificatino if not verified
+    if (checkCookieExists("createCooldown") == false){
+      if (userId !== null){
+        checkUserVerification(userId) //this is an async functino so that is why.then is needed
+        .then(isVerified => { //function returns a boolean for verified or not
+          if (isVerified) {
+            submitQuestion() //submits to database
+            addUserQuestions(userId) //updates user stats
+            alert("Question Submitted!")
+            //this is creating a 100 second cooldown from creating questions to fix a overwriting bug
+            var currentTime = new Date();
+            var expirationTime = new Date(currentTime.getTime() + 300000); // 100000 milliseconds = 100seconds
+            // Convert the expiration time to the appropriate format for cookies
+            var expirationString = expirationTime.toUTCString();
+            document.cookie = "createCooldown=NopeYouGottaAwait; expires=" + expirationString + "; path=/";
+            setTimeout(function() { //3 sceond delay for lag
+              window.location="/"
+            }, 3000);
+          } else {
+            if(window.confirm("Please verify your account to answer a question"));{
+              window.location = "/verification" //sends to verificatino if not verified
+            }
           }
-        }
-      });
+        });
+    }
+    }
+  else{
+    alert("Please wait 5 minutes before posting another question.")
   }
   })
 }
@@ -138,11 +144,17 @@ async function addUserAnswers(username){ //updating user answers stat, same as a
     })
   }).then(response => response.json());
 }
+
 async function submitQuestion() { //sends questions to database
     const title = document.getElementById('title').value; //pulling data values
     const body = quill.root.innerHTML;
     const author = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser");  
-    const subject =  document.querySelector(".dropbtn").textContent.toLocaleLowerCase();
+    const user = await getUser("humbalumba")
+    const pfp = user.user[0].pfp
+    var subject =  document.querySelector(".dropbtn").textContent.toLocaleLowerCase();
+    if (subject.indexOf("select") !== -1){
+      subject= 'other'
+    }
     const response = await fetch(apiUrlcreate, { //sending api call
       mode: 'cors',
       method: "POST",
@@ -153,7 +165,8 @@ async function submitQuestion() { //sends questions to database
         title:title,
         body: body,
         author: author,
-        subject: subject
+        subject: subject,
+        pfp: pfp
       })
     });
     if (response.ok) {
@@ -300,7 +313,7 @@ async function displayQuestion(){ //displays on view question.html
   MathJax.Hub.Queue(['Typeset', MathJax.Hub, 'question-wrapper']); //latex addition
   MathJax.Hub.Queue(['Typeset', MathJax.Hub, 'answer-wrapper']);
 
-  if (window.location.pathname == "/freetutors.github.io/viewQuestion.html") { //if view question.html
+  if (window.location.pathname.indexOf("/viewQuestion") !== -1){ //if view question.html
     MathJax.Hub.Config({ //intializing latex + mathjax{used for latex}
       tex2jax: {
         inlineMath: [['$', '$'], ['\\(', '\\)']],

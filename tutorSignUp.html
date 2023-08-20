@@ -53,15 +53,12 @@
 <!-- End Google Tag Manager (noscript) -->
 <div id="topbar">
   <img id="logo" src="Logo.svg" alt="Logo" onclick="window.location='/'">
-  <!-- Add search bar -->
-  <input type="search" class="search-bar" placeholder="Search..">
-  <button class="button ask-question-button">Ask
-    Question
-  </button>
-  <div id="loginSignupArea">
-  </div>
+  <input type="search" class="search-bar" placeholder="Search.."
+         onkeydown="if (event.keyCode == 13) handleSearchTrigger()">
+  <button class="button ask-question-button" onclick="window.location='/createQuestion'">Ask Question</button>
+  <div class="possibleSearchResultContainer"></div>
+  <div id="loginSignupArea"></div>
 </div>
-
 <div class="box center signup-container">
   <div class="input-group-new">
     <label>Phone Number</label>

@@ -187,8 +187,6 @@ if (username !== null) {
   }
 }
 
-console.log(username)
-
 })();
 
 

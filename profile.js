@@ -17,6 +17,8 @@ AWS.config.update({ //getting conection to IAM user
   accessKeyId: accessKey,
   secretAccessKey: secretKey
 });
+
+const docClient = new AWS.DynamoDB.DocumentClient();
 var cognito = new AWS.CognitoIdentityServiceProvider(); //connection to cognito identiy
 
 async function showQuestionColumn(user){ //showing the questions the user asked
@@ -32,7 +34,7 @@ async function showQuestionColumn(user){ //showing the questions the user asked
       var views = question.views
       const pfp = user.user[0].pfp
       var displayedImage = ""
-      if (pfp == null){ //getting pfp, if pfp is none it will user defaul
+      if (pfp == null){ //getting pfp, if pfp is none it will user default
         displayedImage = "placeholder_pfp.png"
       }
       else{
@@ -112,7 +114,7 @@ async function changePageInfo(user){ //updating html values on page
   document.querySelector(".about-me-field").innerText = user.about
   document.getElementById('username_txt').innerText = user.username//user.username
   document.getElementById('pfp_inner').src = `data:image/png;base64,${user.pfp}`
-  document.querySelector(".signup-container_profile").innerHTML = 
+  document.querySelector(".signup-container_profile").innerHTML =
     `
     <div class="your_info_txt">Information</div>
     <p class="info-label">Username:</p>
@@ -122,9 +124,9 @@ async function changePageInfo(user){ //updating html values on page
     <p class="info-label">Email:</p>
     <p class="info_input_group" type=password">${cognitoInfo.UserAttributes[4].Value}</p>
     <p class="info-label">Questions Asked:</p>
-    <p class="info_input_group" type=password">${user.questions}</p>
+    <p class="info_input_group" type=password">${/*user.questions*/10}</p>
     <p class="info-label">Questions Answered:</p>
-    <p class="info_input_group" type=password">${user.answers}</p>
+    <p class="info_input_group" type=password">${/*user.answers*/10}</p>
     `
 }
 async function getUserCognito(username) { //getting email and name from cognito
@@ -140,6 +142,7 @@ async function getUserCognito(username) { //getting email and name from cognito
       alert("error:"+error+"Please log out and log in again")
   }
 }
+
 async function updateAbout(username){ //updating about me info
   const about = document.querySelector('.about-me-field').value
     const url = new URL(`${apiUrlupdateUser}`)
@@ -174,6 +177,26 @@ async function updateQuestionPfp(username, pfp) {
 
 }
 
+async function updateStringAttribute(tableName, key, stringAttributeName, newStringValue) {
+  const params = {
+    TableName: tableName,
+    Key: key,
+    UpdateExpression: 'SET #stringAttribute = :newStringValue',
+    ExpressionAttributeNames: {
+      '#stringAttribute': stringAttributeName
+    },
+    ExpressionAttributeValues: {
+      ':newStringValue': newStringValue
+    }
+  };
+  try {
+    await docClient.update(params).promise();
+  } catch (error) {
+    console.error(`Error updating ${stringAttributeName} attribute in ${tableName} table`, error);
+  }
+}
+
+var resizedBase64Image
 const urlParams = new URLSearchParams(window.location.search); 
 const username = urlParams.get('username')//getting username from url
 const viewerUsername = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser") //getting viewer's username
@@ -207,13 +230,13 @@ if (file !== null){
         img.src = reader.result;
   
         img.onload = async function() {
-          const maxDimensions = 800;
+          const maxDimensions = 720;
           const squareSize = Math.min(img.width, img.height); //finds the smaller dismension, width or height
   
           // Check if the image dimensions exceed the maximum dimensions
           let width = img.width;
           let height = img.height;
-  
+
           if (width > maxDimensions || height > maxDimensions) {
             if (width > height) {
               height = (height / width) * maxDimensions;
@@ -235,17 +258,41 @@ if (file !== null){
   
           const squarifiedDataUrl = canvas.toDataURL('image/jpeg', 0.9);//dowgrades to max
           profileImg.setAttribute('src', squarifiedDataUrl); //updates screen circle
-  
+
           const fileData = squarifiedDataUrl.split(',')[1];
+
+          const questionImg = new Image();
+          // Set the source of the Image element to the Base64 image
+          questionImg.src = squarifiedDataUrl;
+          questionImg.onload = function () {
+
+            const newWidth = 144;  // Adjust as needed
+            const newHeight = 144; // Adjust as needed
+
+            // Set the canvas size to the new dimensions
+            canvas.width = newWidth;
+            canvas.height = newHeight;
+
+            // Draw the image on the canvas with the new dimensions
+            context.drawImage(questionImg, 0, 0, newHeight, newHeight);
+
+            // Convert the canvas content to a Base64 image
+            resizedBase64Image = canvas.toDataURL('image/jpeg').split(',')[1];
+          }
+
           try {
             await updatepfp(username, fileData);
-            console.log("Profile picture updated successfully");
+            // for (const question of await getQuestionListUser(user.user[0].username)) {
+            //   await updateStringAttribute('Freetutor-Question', { questionId: question.questionId }, 'pfp', resizedBase64Image);
+            // }
             user = await getUser(username); //updating page data without any reloading
             await changePageInfo(user.user[0]);
             await showQuestionColumn(user);
+
             document.querySelector(".profilePicHome").setAttribute('src', `data:image/png;base64,${fileData}`);
             setTimeout(function() {
               // ...
+
             }, 3000);
           } catch (error) {
             console.error("Error updating profile picture:", error);
@@ -265,3 +312,26 @@ document.getElementById("sign-out").addEventListener("click",() => { //signout
   }
 })
 
+/*
+async function updateStringAttribute(tableName, key, stringAttributeName, newStringValue) {
+  const params = {
+    TableName: tableName,
+    Key: key,
+    UpdateExpression: 'SET #stringAttribute = :newStringValue',
+    ExpressionAttributeNames: {
+      '#stringAttribute': stringAttributeName
+    },
+    ExpressionAttributeValues: {
+      ':newStringValue': newStringValue
+    }
+  };
+  try {
+    await docClient.update(params).promise();
+    console.log(`Updated ${stringAttributeName} attribute in ${tableName} table`);
+  } catch (error) {
+    console.error(`Error updating ${stringAttributeName} attribute in ${tableName} table`, error);
+  }
+}
+
+await updateListAttribute('Freetutor-Question', { questionId: '656ee636-45ad-43d6-9ff1-7b946c378aae' }, 'pfp', "asdfasdasdasd");
+*/
