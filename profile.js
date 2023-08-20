@@ -243,10 +243,9 @@ if (file !== null){
 
           const fileData = squarifiedDataUrl.split(',')[1];
 
-          const img = new Image();
-
+          const questionImg = new Image();
           // Set the source of the Image element to the Base64 image
-          img.src = squarifiedDataUrl;
+          questionImg.src = squarifiedDataUrl;
 
           const newWidth = 256;  // Adjust as needed
           const newHeight = 144; // Adjust as needed
@@ -256,7 +255,7 @@ if (file !== null){
           canvas.height = newHeight;
 
           // Draw the image on the canvas with the new dimensions
-          context.drawImage(img, 0, 0, newHeight, newHeight);
+          context.drawImage(questionImg, 0, 0, newHeight, newHeight);
 
           // Convert the canvas content to a Base64 image
           const resizedBase64Image = canvas.toDataURL('image/jpeg'); // Change to the appropriate format
