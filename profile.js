@@ -18,6 +18,7 @@ AWS.config.update({ //getting conection to IAM user
   secretAccessKey: secretKey
 });
 
+const docClient = new AWS.DynamoDB.DocumentClient();
 var cognito = new AWS.CognitoIdentityServiceProvider(); //connection to cognito identiy
 
 async function showQuestionColumn(user){ //showing the questions the user asked
