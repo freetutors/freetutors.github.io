@@ -247,6 +247,8 @@ if (file !== null){
           // Set the source of the Image element to the Base64 image
           questionImg.src = squarifiedDataUrl;
 
+          console.log(squarifiedDataUrl)
+
           const newWidth = 256;  // Adjust as needed
           const newHeight = 144; // Adjust as needed
 
