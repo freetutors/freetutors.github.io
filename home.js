@@ -4,7 +4,22 @@ import config from "./config.js";
 // Extract API URLs from configuration
 const apiUrlget = config.apiUrlget;
 const apiUrlgetUser = config.apiUrlgetUser;
+const poolId =config.poolId //getting info from cognito
+const region = config.region
+const accessKey = config.accessKey
+const secretKey = config.secretKey
+AWS.config.region = region; //telling what region to search
+AWS.config.credentials = new AWS.CognitoIdentityCredentials({ //COnnecting to pool
+  IdentityPoolId: poolId 
+});
 
+AWS.config.update({ //getting conection to IAM user
+  region: region,
+  accessKeyId: accessKey,
+  secretAccessKey: secretKey
+});
+
+var cognito = new AWS.CognitoIdentityServiceProvider();
 // Select relevant DOM elements
 const questionBoxContainer = document.querySelector(".questions_list");
 const questionHeader = document.querySelector('.question_header');
@@ -80,17 +95,6 @@ function addQuestionClickListeners(questionList) {
     });
 }
 
-// async function getUser(username){ //getting user info from dynamo
-//   const url = new URL(`${apiUrlgetUser}?username=${username}`);
-//   const user = await fetch(url,  {
-//       mode: "cors",
-//       method: "GET",
-//       headers: {
-//       "Content-Type": "application/json",
-//       },
-//   }).then(response => response.json());
-//   return user
-// }
 function showQuestionColumn(subject) {
     (async () => {
         // const questionList = await getQuestionList(subject);
@@ -258,8 +262,19 @@ if (localUser !== null) {
 }
 
 (async () => {
-
-    const totalQuestions = await getQuestionList("all")
+    const listUserParams = { //getting total users from cognito
+        UserPoolId: poolId,
+        AttributesToGet: []
+    }
+    var numUsers = 0
+    const users = cognito.listUsers(listUserParams, (err,data) =>{ //async function to get list of all users
+        if (err) {
+            console.error('Error listing users:', err);
+          } else {
+            numUsers = data.Users.length; //sets global variable for num of users
+          }
+    })
+    const totalQuestions = await getQuestionList("all") //pulling all users(all subject)
     const numQuestions = totalQuestions.length
     var numAnswers = 0
 
@@ -271,10 +286,7 @@ if (localUser !== null) {
         numAnswers = numAnswers + answers
     }
 
-
-
-
-    function sleep(ms) {
+    function sleep(ms) { //yash likes the python way so this is a translation
         return new Promise(resolve => setTimeout(resolve, ms));
     }
 
@@ -311,5 +323,6 @@ if (localUser !== null) {
 
     animate(numQuestions, document.querySelector(".important_box_num1"), 'important_box_num1_digit')
     animate(numAnswers, document.querySelector(".important_box_num2"), 'important_box_num2_digit')
+    animate(numUsers, document.querySelector(".important_box_num3"), 'important_box_num3_digit')
 
 })();
