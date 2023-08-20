@@ -249,7 +249,7 @@ if (file !== null){
           questionImg.onload = function () {
             console.log(squarifiedDataUrl)
 
-            const newWidth = 256;  // Adjust as needed
+            const newWidth = 144;  // Adjust as needed
             const newHeight = 144; // Adjust as needed
 
             // Set the canvas size to the new dimensions
