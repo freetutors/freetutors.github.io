@@ -91,7 +91,7 @@ if (window.location.pathname.indexOf("createQuestion") !== -1) { //if on the cre
             alert("Question Submitted!")
             //this is creating a 100 second cooldown from creating questions to fix a overwriting bug
             var currentTime = new Date();
-            var expirationTime = new Date(currentTime.getTime() + 300000); // 100000 milliseconds = 100seconds
+            var expirationTime = new Date(currentTime.getTime() + 600000); // 100000 milliseconds = 100seconds
             // Convert the expiration time to the appropriate format for cookies
             var expirationString = expirationTime.toUTCString();
             document.cookie = "createCooldown=NopeYouGottaAwait; expires=" + expirationString + "; path=/";
