@@ -107,7 +107,7 @@ if (window.location.pathname.indexOf("createQuestion") !== -1) { //if on the cre
     }
     }
   else{
-    alert("Please wait 5 minutes before posting another question.")
+    alert("Please wait 10 minutes before posting another question.")
   }
   })
 }
