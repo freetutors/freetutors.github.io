@@ -124,9 +124,9 @@ async function changePageInfo(user){ //updating html values on page
     <p class="info-label">Email:</p>
     <p class="info_input_group" type=password">${cognitoInfo.UserAttributes[4].Value}</p>
     <p class="info-label">Questions Asked:</p>
-    <p class="info_input_group" type=password">${/*user.questions*/10}</p>
+    <p class="info_input_group" type=password">${user.questions}</p>
     <p class="info-label">Questions Answered:</p>
-    <p class="info_input_group" type=password">${/*user.answers*/10}</p>
+    <p class="info_input_group" type=password">${user.answers}</p>
     `
 }
 async function getUserCognito(username) { //getting email and name from cognito
