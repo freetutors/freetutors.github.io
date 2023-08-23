@@ -261,6 +261,9 @@
       font-size: 20px;
       color: white;
       cursor: pointer;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis; /* Adds ellipsis for overflowed text */
     }
 
     #text_box_question_content:hover {
@@ -410,7 +413,9 @@
    .arrows {
         left: calc(100% - 249px);
     }
-
+  #text_box_question_content{
+    max-width: 70%;
+  }
 }
 
 
@@ -438,6 +443,9 @@
   .arrows {
     left: calc(100% - 75px);
   }
+  #text_box_question_content{
+    max-width: 60%;
+  }
 }
 
 
@@ -459,5 +467,8 @@
 
   .arrows {
     left: calc(100% - 60px);
+  }
+  #text_box_question_content{
+    max-width: 50%;
   }
 }
