@@ -23,8 +23,9 @@ AWS.config.update({
 var cognito = new AWS.CognitoIdentityServiceProvider(); //connection to cognito identiy
  //connecting to cognito pool
 
-function signUpUser(params) { //function for signing up, this is already defined
-  let status = 'incomplete'
+function signUpUser(params) {
+  return new Promise((resolve, reject) => {
+    let status = 'incomplete'
   cognito.signUp(params, function(err, data) {
     
     if (err) { 
@@ -39,13 +40,37 @@ function signUpUser(params) { //function for signing up, this is already defined
         alert("At least one parameter is invalid.")
       }
       status ='no'
-      return status
+      reject(status)
     } else {
       status = 'ok'
-      console.log(data);
-      return status
+      // const username = document.getElementById("username").value; //getting values
+      console.log(status);
+      // const response = fetch(createUrl, { //sending user to database
+      //   mode: 'cors',
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify({
+      //     username: username.trim().toLowerCase()
+      //   })
+      // });
+      // if (response.ok) {
+      //   console.log(status)
+      //   if (status == "ok"){
+      //     window.location='/verification'
+      //   }
+      // } else {
+      //   alert("Error adding question, try again later")
+      //   console.log("Error calling API");
+      // }
+      // localStorage.setItem("signupEmail", email);
+      // localStorage.setItem("signupUsername", username);
+      resolve(status)
     }
   });
+  }) //function for signing up, this is already defined
+  
 }
 
 // checks if user with the same email exists
@@ -100,7 +125,8 @@ const username = document.getElementById("username").value; //getting values
         if (userExists) {
           alert('An account with the same email already exists.'); //will tell user if the funtion returns true
         } else {
-          const status = signUpUser(params); //Signing up users
+          var status = await signUpUser(params); //Signing up users
+          console.log(status)
           const response = await fetch(createUrl, { //sending user to database
             mode: 'cors',
             method: "POST",
@@ -114,9 +140,14 @@ const username = document.getElementById("username").value; //getting values
           if (response.ok) {
             const data = await response.json();
             console.log(data)
-            window.location='/verification'
+            console.log(status)
+            setTimeout(() => {
+              if (status == "ok"){
+                window.location='/verification'
+              }
+            }, 1000);
           } else {
-            alert("Error adding question, try again later")
+            alert("Error signing up, try again later")
             console.log("Error calling API");
           }
           localStorage.setItem("signupEmail", email);
