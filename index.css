@@ -444,7 +444,7 @@
     left: calc(100% - 75px);
   }
   #text_box_question_content{
-    max-width: 60%;
+    max-width: 70%;
   }
 }
 
