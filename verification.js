@@ -49,7 +49,7 @@ function verifyUser(username, verificationCode) { //verified account
       } else {
         console.log(data);
         alert('Verification successful! You can now sign in.');
-        window.location = `/profile?username=${username}`
+        window.location = `/login`
       }
     });
   }
