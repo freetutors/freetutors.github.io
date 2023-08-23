@@ -157,6 +157,7 @@ async function updateAbout(username){ //updating about me info
         "about":about,
       })
     }).then(response => response.json());
+  alert("About Me Updated!")
 }
 async function updatepfp(username, pfp){ //updating pfp for user
     const url = new URL(`${apiUrlupdateUser}`)
