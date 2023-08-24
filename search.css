@@ -106,7 +106,9 @@
         width: calc(100% - 400px);
         margin-left: 200px;
   }
-
+  #text_box_question_content{
+    max-width: 70%;
+  }
 }
 
 
@@ -121,6 +123,9 @@
         width: calc(100% - 225px);
         margin-right: 20px;
     }
+    #text_box_question_content{
+      max-width: 70%;
+    }
 }
 
 
@@ -134,5 +139,8 @@
   .questions_list {
     width: calc(100% - 50px);
     margin-left: 40px;
+  }
+  #text_box_question_content{
+    max-width: 50%;
   }
 }

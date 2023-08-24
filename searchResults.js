@@ -1,9 +1,20 @@
 import config from "./config.js"
 const apiUrlget = config.apiUrlget;
 const questionsList = document.querySelector(".questions_list")
+const apiUrlgetUser = config.apiUrlgetUser;
 
 const urlParams = new URLSearchParams(window.location.search)
-
+async function getUser(username){ //getting user info from dynamo
+  const url = new URL(`${apiUrlgetUser}?username=${username}`);
+  const user = await fetch(url,  {
+      mode: "cors",
+      method: "GET",
+      headers: {
+      "Content-Type": "application/json",
+      },
+  }).then(response => response.json());
+  return user
+}
 function getTimeDifference(timestamp) {
     const currentTime = new Date();
     const previousTime = new Date(timestamp);
@@ -91,9 +102,18 @@ const subjects = [
   for (const hit of search.hits.reverse()) {
     for (const question of questions) {
       if (question.questionId == hit.id) {
+        const user = await getUser(question.author)
+        const pfp = user.user[0].pfp
+        var displayedImage = ""
+        if (pfp == null){ //getting pfp, if pfp is none it will user default
+          displayedImage = "placeholder_pfp.png"
+        }
+        else{
+          displayedImage = `data:image/png;base64,${pfp}`
+        }
         questionsList.innerHTML +=
           `<div class="box text_box">
-             <img id="text_box_pfp" src="${"placeholder_pfp.png"}">
+             <img id="text_box_pfp" src="${displayedImage}">
              <div id="text_box_question_content">${question.title}</div>
              <div id="asked_by_line">asked by ${question.author}, ${getTimeDifference(question.timestamp)}</div>
              <div id="answered_by_line">Be the first to answer!</div>
