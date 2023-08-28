@@ -45,10 +45,11 @@ function verifyUser(username, verificationCode) { //verified account
       if (err) {
         console.log(err, err.stack);
         alert('Verification failed. Please try again.'); //verification details
-        localStorage.clear();
+        // localStorage.clear();
       } else {
         console.log(data);
         alert('Verification successful! You can now sign in.');
+        localStorage.clear()
         window.location = `/login`
       }
     });
