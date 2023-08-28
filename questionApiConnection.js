@@ -99,11 +99,16 @@ if (window.location.pathname.indexOf("createQuestion") !== -1) { //if on the cre
               window.location="/"
             }, 3000);
           } else {
-            if(window.confirm("Please verify your account to answer a question"));{
+            if(window.confirm("Please verify your account to post a question"));{
               window.location = "/verification" //sends to verificatino if not verified
             }
           }
         });
+    }
+    else{
+      if(window.confirm("Please login to post a question"));{
+        window.location = "/login" //sends to verificatino if not verified
+      }
     }
     }
   else{
