@@ -258,11 +258,14 @@ if (localUser !== null) {
   `
     }
 } else {
-    signUpTutor.innerHTML +=
-        `
-      <button id="sign_up_as_tutor_button" onclick="window.location='tutorSignUp'">Sign up as tutor</button>
-    `
+
+  signUpTutor.innerHTML +=
+      `
+        <button id="sign_up_as_tutor_button">Sign up as tutor</button>
+      `;
 }
+
+
 
 (async () => {
     const listUserParams = { //getting total users from cognito
