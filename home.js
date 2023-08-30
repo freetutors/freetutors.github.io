@@ -8,18 +8,29 @@ const poolId =config.poolId //getting info from cognito
 const region = config.region
 const accessKey = config.accessKey
 const secretKey = config.secretKey
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+while (typeof AWS == 'undefined') {
+    await sleep(10)
+}
+
 AWS.config.region = region; //telling what region to search
-AWS.config.credentials = new AWS.CognitoIdentityCredentials({ //COnnecting to pool
-  IdentityPoolId: poolId 
-});
+  AWS.config.credentials = new AWS.CognitoIdentityCredentials({ //COnnecting to pool
+    IdentityPoolId: poolId
+  });
 
-AWS.config.update({ //getting conection to IAM user
-  region: region,
-  accessKeyId: accessKey,
-  secretAccessKey: secretKey
-});
+  AWS.config.update({ //getting conection to IAM user
+    region: region,
+    accessKeyId: accessKey,
+    secretAccessKey: secretKey
+  });
 
-var cognito = new AWS.CognitoIdentityServiceProvider();
+  var cognito  = new AWS.CognitoIdentityServiceProvider();
+
+
 // Select relevant DOM elements
 const questionBoxContainer = document.querySelector(".questions_list");
 const questionHeader = document.querySelector('.question_header');
@@ -273,6 +284,12 @@ if (localUser !== null) {
         AttributesToGet: []
     }
     var numUsers = 0
+
+    while (typeof cognito == 'undefined') {
+      console.log("bye")
+      await sleep(10)
+    }
+
     const users = cognito.listUsers(listUserParams, (err,data) =>{ //async function to get list of all users
         if (err) {
             console.error('Error listing users:', err);
@@ -292,9 +309,7 @@ if (localUser !== null) {
         numAnswers = numAnswers + answers
     }
 
-    function sleep(ms) { //yash likes the python way so this is a translation
-        return new Promise(resolve => setTimeout(resolve, ms));
-    }
+
 
     async function animate(valToAnimate, container, gear) {
         const strVal = String(valToAnimate);
