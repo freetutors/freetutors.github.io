@@ -3,14 +3,25 @@ import config from "./config.js";
 var path = window.location.pathname;
 var pageName = path.split("/").pop();
 
+const poolId = config.poolId
+const region = config.region
+const accessKey = config.accessKey
+const secretKey = config.secretKey
 const questionBox = document.querySelector(".question_box")
 const commentsBox = document.querySelector(".comments_box")
 var dropbtn = document.querySelector(".dropbtn");
-
-AWS.config.update({
-  region: 'us-west-1',
-  credentials: new AWS.Credentials(config.accessKey, config.secretKey),
+AWS.config.region = region; //telling what region to search
+AWS.config.credentials = new AWS.CognitoIdentityCredentials({ //COnnecting to pool
+  IdentityPoolId: poolId 
 });
+
+AWS.config.update({ //getting conection to IAM user
+  region: region,
+  accessKeyId: accessKey,
+  secretAccessKey: secretKey
+});
+
+var cognito = new AWS.CognitoIdentityServiceProvider(); //connection to cognito identiy
 
 const sendEmailButton = document.querySelector(".buttons");
 
@@ -19,7 +30,7 @@ const functionName = 'sendEmail';
 const lambda = new AWS.Lambda();
 const username = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser")
 
-async function getUserCognito(username) { //getting cognito info
+async function getUserCognito(username) { //getting email and name from cognito
   try {
     const params = {
       UserPoolId: poolId,
@@ -29,8 +40,7 @@ async function getUserCognito(username) { //getting cognito info
     const user = await cognito.adminGetUser(params).promise();
     return user;
   } catch (error) {
-      alert("Please log in to contact us!")
-      window.location('/login')
+      alert("error:"+error+"Please log out and log in again")
   }
 }
 
@@ -44,13 +54,13 @@ const email = "          Account Email:" + user.UserAttributes[4].Value //lettin
     }
   }
   else{
-    if (pageName == 'suggestions.html') {
+    if (window.location.pathname.indexOf("/contactUs") !== -1) {
       var feedbackType = dropbtn.innerHTML + ": "
       var feedbackType = feedbackType.replace(/\r?\n|\r/g, '');
     } else {
       var feedbackType = ""
     }
-    
+    console.log("user")
   
     var subject = questionBox.value.trim().replace(/\r?\n|\r/g, '').replace(/"/g, "‟").replace(/"/g, '⁄').replace(/\\/g, '＼');
   
