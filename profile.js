@@ -262,37 +262,14 @@ if (file !== null){
 
           const fileData = squarifiedDataUrl.split(',')[1];
 
-          const questionImg = new Image();
-          // Set the source of the Image element to the Base64 image
-          questionImg.src = squarifiedDataUrl;
-          // questionImg.onload = function () {
-
-          //   const newWidth = 144;  // Adjust as needed
-          //   const newHeight = 144; // Adjust as needed
-
-          //   // Set the canvas size to the new dimensions
-          //   canvas.width = newWidth;
-          //   canvas.height = newHeight;
-
-          //   // Draw the image on the canvas with the new dimensions
-          //   context.drawImage(questionImg, 0, 0, newHeight, newHeight);
-
-          //   // Convert the canvas content to a Base64 image
-          //   resizedBase64Image = canvas.toDataURL('image/jpeg').split(',')[1];
-          // }
-
           try {
             await updatepfp(username, fileData);
-            // for (const question of await getQuestionListUser(user.user[0].username)) {
-              // await updateStringAttribute('Freetutor-Question', { questionId: question.questionId }, 'pfp', squarifiedDataUrl);
-            // }
-            user = await getUser(username); //updating page data without any reloading
+            user = await getUser(username);
             await changePageInfo(user.user[0]);
             await showQuestionColumn(user);
 
             document.querySelector(".profilePicHome").setAttribute('src', `data:image/png;base64,${fileData}`);
             setTimeout(function() {
-              // ...
 
             }, 3000);
           } catch (error) {
@@ -312,27 +289,3 @@ document.getElementById("sign-out").addEventListener("click",() => { //signout
     window.location ='/'
   }
 })
-
-/*
-async function updateStringAttribute(tableName, key, stringAttributeName, newStringValue) {
-  const params = {
-    TableName: tableName,
-    Key: key,
-    UpdateExpression: 'SET #stringAttribute = :newStringValue',
-    ExpressionAttributeNames: {
-      '#stringAttribute': stringAttributeName
-    },
-    ExpressionAttributeValues: {
-      ':newStringValue': newStringValue
-    }
-  };
-  try {
-    await docClient.update(params).promise();
-    console.log(`Updated ${stringAttributeName} attribute in ${tableName} table`);
-  } catch (error) {
-    console.error(`Error updating ${stringAttributeName} attribute in ${tableName} table`, error);
-  }
-}
-
-await updateListAttribute('Freetutor-Question', { questionId: '656ee636-45ad-43d6-9ff1-7b946c378aae' }, 'pfp', "asdfasdasdasd");
-*/
