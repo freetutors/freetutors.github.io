@@ -204,6 +204,7 @@ function formatDate(timestamp) { //turning the saved timestamp into a month, dat
 var isQuillInitialized = false; //this is making sure there is no duplicate quill sections on the page upon rating
 
 async function displayQuestion(){ //displays on view question.html
+  var pfpsToGet = []
   const urlParams = new URLSearchParams(window.location.search); //info for each unique question is sent in the acutal url
   const questionId = urlParams.get('questionId');
   const questionList = await getQuestionListId(questionId) //pulls question
@@ -229,21 +230,24 @@ async function displayQuestion(){ //displays on view question.html
     else {
       icon = "Blank.svg"
     }
-    const pfp = user.user[0].pfp //pulling pfp
-    var displayedImage = ""
-    if (pfp == null){
-      displayedImage = "placeholder_pfp.png" //if the user hasn't set one it will give this default one
+    if (!pfpsToGet.includes(author)) {
+      pfpsToGet.push(author);
     }
-    else{
-      displayedImage = `data:image/png;base64,${pfp}`//pfp is saved as long base 64 so it can be saved without extra charge
-    }
+    // const pfp = user.user[0].pfp //pulling pfp
+    // var displayedImage = ""
+    // if (pfp == null){
+    //   displayedImage = "placeholder_pfp.png" //if the user hasn't set one it will give this default one
+    // }
+    // else{
+    //   displayedImage = `data:image/png;base64,${pfp}`//pfp is saved as long base 64 so it can be saved without extra charge
+    // }
     document.getElementById("question-wrapper").innerHTML = //filling info in html class global_pfp squarifies image
     `
     <div class="title">${title}</div>
     <hr class="titleSep">
     <div class="question">
       <div class="pfpRow">
-      <img id = "pfp" src=${displayedImage} class="global_pfp" onclick="window.location = 'profile?username=${user.user[0].username}'">
+      <img id = "pfp" src="/placeholder_pfp.png" class="global_pfp pfp${author}" onclick="window.location = 'profile?username=${user.user[0].username}'">
       <div class="contributorStats">
         <div class ="title-box">
           <p class="username">${author}</p>
@@ -280,20 +284,24 @@ async function displayQuestion(){ //displays on view question.html
         else {
           icon = "Blank.svg"
         }
-        const pfp = user.user[0].pfp
-        var displayedImage = ""
-        if (pfp == null){ //if author has no pfp it will give a defaul
-          displayedImage = "placeholder_pfp.png"
+        // const pfp = user.user[0].pfp
+        // var displayedImage = ""
+        // if (pfp == null){ //if author has no pfp it will give a defaul
+        //   displayedImage = "placeholder_pfp.png"
+        // }
+        // else{
+        //   displayedImage = `data:image/png;base64,${pfp}`
+        // }
+        if (!pfpsToGet.includes(author)) {
+          pfpsToGet.push(author);
         }
-        else{
-          displayedImage = `data:image/png;base64,${pfp}`
-        }
+        console.log(pfpsToGet)
         document.querySelector(".answer-wrapper").insertAdjacentHTML(
           "beforeend",
           `
           <div class="answer">
           <div class ="pfpRow">
-          <img src=${displayedImage} class="global_pfp" onclick="window.location = 'profile?username=${author}'">
+          <img src="/placeholder_pfp.png" class="global_pfp pfp${author}" onclick="window.location = 'profile?username=${author}'">
           <div class="contributorStats">
           <div class ="title-box">
             <p class="username">${author}</p>
@@ -315,6 +323,7 @@ async function displayQuestion(){ //displays on view question.html
       }
     }
   }
+
   MathJax.Hub.Queue(['Typeset', MathJax.Hub, 'question-wrapper']); //latex addition
   MathJax.Hub.Queue(['Typeset', MathJax.Hub, 'answer-wrapper']);
 
@@ -347,8 +356,22 @@ async function displayQuestion(){ //displays on view question.html
     isQuillInitialized = true;
   }
   answerArea(questionList, quill)
-  await ratingButtons(questionList)
-
+  for (const i in pfpsToGet){
+    const author = pfpsToGet[i]
+    const user = await getUser(author)
+    const pfp = user.user[0].pfp
+    var displayedImage = ""
+    if (pfp == null){ //if author has no pfp it will give a defaul
+    displayedImage = "placeholder_pfp.png"
+    }
+    else{
+    displayedImage = `data:image/png;base64,${pfp}`
+    }
+    const images = document.querySelectorAll(`.pfp${author}`)
+    images.forEach(image => {
+      image.src = displayedImage;
+    });
+  }  await ratingButtons(questionList)
 
 }
 async function answerArea(questionList, quill){
