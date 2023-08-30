@@ -119,7 +119,6 @@ function showQuestionColumn(subject) {
             var rating = question.rating
             var timeAgo = getTimeDifference(question.timestamp)
             var views = question.views
-            // var pfp = question.pfp
             var user = await getUser(author)
             var pfp = user.user[0].pfp
             var displayedImage = ""
