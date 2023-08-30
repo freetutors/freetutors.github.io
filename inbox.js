@@ -14,16 +14,24 @@ const {
   secretKey
 } = config;
 
-AWS.config.region = region;
-AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-  IdentityPoolId: poolId
-});
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 
-AWS.config.update({
-  region: region,
-  accessKeyId: accessKey,
-  secretAccessKey: secretKey
-});
+while (typeof AWS == 'undefined') {
+    await sleep(10)
+}
+
+AWS.config.region = region; //telling what region to search
+  AWS.config.credentials = new AWS.CognitoIdentityCredentials({ //COnnecting to pool
+    IdentityPoolId: poolId
+  });
+
+  AWS.config.update({ //getting conection to IAM user
+    region: region,
+    accessKeyId: accessKey,
+    secretAccessKey: secretKey
+  });
 
 const docClient = new AWS.DynamoDB.DocumentClient();
 const cognito = new AWS.CognitoIdentityServiceProvider();

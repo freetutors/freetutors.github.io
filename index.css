@@ -221,7 +221,7 @@
 .questions_list {/*scroll area with questions. It is invisible*/
        overflow-y: scroll;
        overflow-x: hidden;
-       max-height: calc(100vh - 215px);
+       max-height: calc(100vh - 100px);
        width: var(--question_list_width);
        margin: auto;
        margin-top: 15px;

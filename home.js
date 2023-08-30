@@ -8,18 +8,29 @@ const poolId =config.poolId //getting info from cognito
 const region = config.region
 const accessKey = config.accessKey
 const secretKey = config.secretKey
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+while (typeof AWS == 'undefined') {
+    await sleep(10)
+}
+
 AWS.config.region = region; //telling what region to search
-AWS.config.credentials = new AWS.CognitoIdentityCredentials({ //COnnecting to pool
-  IdentityPoolId: poolId 
-});
+  AWS.config.credentials = new AWS.CognitoIdentityCredentials({ //COnnecting to pool
+    IdentityPoolId: poolId
+  });
 
-AWS.config.update({ //getting conection to IAM user
-  region: region,
-  accessKeyId: accessKey,
-  secretAccessKey: secretKey
-});
+  AWS.config.update({ //getting conection to IAM user
+    region: region,
+    accessKeyId: accessKey,
+    secretAccessKey: secretKey
+  });
 
-var cognito = new AWS.CognitoIdentityServiceProvider();
+  var cognito  = new AWS.CognitoIdentityServiceProvider();
+
+
 // Select relevant DOM elements
 const questionBoxContainer = document.querySelector(".questions_list");
 const questionHeader = document.querySelector('.question_header');
@@ -101,6 +112,7 @@ function showQuestionColumn(subject) {
         document.querySelector(".questions_list").innerHTML = ''
         const questionList = await getQuestionList(subject)
         const questionArray = questionList
+        var pfpsToGet = []
         for (const question of questionArray) {
             var title = question.title //getting question data
             var author = question.author
@@ -108,19 +120,21 @@ function showQuestionColumn(subject) {
             var rating = question.rating
             var timeAgo = getTimeDifference(question.timestamp)
             var views = question.views
-            // var pfp = question.pfp
-            var user = await getUser(author)
-            var pfp = user.user[0].pfp
-            var displayedImage = ""
-            if (pfp == null) { //getting pfp, if pfp is none it will user default
-                displayedImage = "placeholder_pfp.png"
-            } else {
-                displayedImage = `data:image/png;base64,${pfp}`
+            // var user = await getUser(author)
+            // var pfp = user.user[0].pfp
+            // var displayedImage = ""
+            // if (pfp == null) { //getting pfp, if pfp is none it will user default
+            //     displayedImage = "placeholder_pfp.png"
+            // } else {
+            //     displayedImage = `data:image/png;base64,${pfp}`
+            // }
+            if (!pfpsToGet.includes(author)) {
+                pfpsToGet.push(author);
             }
             document.querySelector(".questions_list").innerHTML += //sending html info
                 `<div class="box text_box">
         <!-- pfp -->
-        <img id="global_pfp" src="${displayedImage}">
+        <img id="global_pfp" class = "pfp${author}"src="/placeholder_pfp.png">
         <div id="text_box_question_content">${title}</div>
         <div id="asked_by_line">asked by ${author}, ${timeAgo}</div>
         <div id="answered_by_line">Be the first to answer!</div>
@@ -139,7 +153,22 @@ function showQuestionColumn(subject) {
                 window.location = `viewQuestion?questionId=${questionId}`;
             });
         });
-
+        for (const i in pfpsToGet){
+            const author = pfpsToGet[i]
+            const user = await getUser(author)
+            const pfp = user.user[0].pfp
+            var displayedImage = ""
+            if (pfp == null){ //if author has no pfp it will give a defaul
+                displayedImage = "placeholder_pfp.png"
+            }
+            else{
+                displayedImage = `data:image/png;base64,${pfp}`
+            }
+            const images = document.querySelectorAll(`.pfp${author}`)
+            images.forEach(image => {
+                image.src = displayedImage;
+            });
+        }
         isEventListenerActive = true;
     })();
 }
@@ -189,8 +218,6 @@ document.querySelector('.subject-list').addEventListener("click", function(e) {
     var target = e.target || e.srcElement,
         subject = target.textContent || target.innerText;
 
-    console.log(subject)
-    console.log(headerSubjects.includes(subject))
     if (headerSubjects.includes(subject)) {
       showQuestionColumn(subject.toLowerCase());
       document.querySelector(`#subject${active}`).classList.remove("active")
@@ -258,11 +285,14 @@ if (localUser !== null) {
   `
     }
 } else {
-    signUpTutor.innerHTML +=
-        `
-      <button id="sign_up_as_tutor_button" onclick="window.location='tutorSignUp'">Sign up as tutor</button>
-    `
+
+  signUpTutor.innerHTML +=
+      `
+        <button id="sign_up_as_tutor_button">Sign up as tutor</button>
+      `;
 }
+
+
 
 (async () => {
     const listUserParams = { //getting total users from cognito
@@ -270,6 +300,12 @@ if (localUser !== null) {
         AttributesToGet: []
     }
     var numUsers = 0
+
+    while (typeof cognito == 'undefined') {
+      console.log("bye")
+      await sleep(10)
+    }
+
     const users = cognito.listUsers(listUserParams, (err,data) =>{ //async function to get list of all users
         if (err) {
             console.error('Error listing users:', err);
@@ -289,9 +325,7 @@ if (localUser !== null) {
         numAnswers = numAnswers + answers
     }
 
-    function sleep(ms) { //yash likes the python way so this is a translation
-        return new Promise(resolve => setTimeout(resolve, ms));
-    }
+
 
     async function animate(valToAnimate, container, gear) {
         const strVal = String(valToAnimate);
