@@ -205,6 +205,7 @@ var isQuillInitialized = false; //this is making sure there is no duplicate quil
 
 async function displayQuestion(){ //displays on view question.html
   var pfpsToGet = []
+  var iconsToGet = []
   const urlParams = new URLSearchParams(window.location.search); //info for each unique question is sent in the acutal url
   const questionId = urlParams.get('questionId');
   const questionList = await getQuestionListId(questionId) //pulls question
@@ -220,19 +221,19 @@ async function displayQuestion(){ //displays on view question.html
     var rating = question.rating
     var date = formatDate(question.timestamp)
     const user = await getUser(author)
-    let icon //changing based on if someone is a tutor or not
-    if (user.user[0].status =="tutor"){
-      icon = "trace.svg"
-    }
-    else if (user.user[0].status =="staff"){
-      icon = "image2vector.svg"
-    }
-    else {
-      icon = "Blank.svg"
-    }
-    if (!pfpsToGet.includes(author)) {
-      pfpsToGet.push(author);
-    }
+    // let icon //changing based on if someone is a tutor or not
+    // if (user.user[0].status =="tutor"){
+    //   icon = "trace.svg"
+    // }
+    // else if (user.user[0].status =="staff"){
+    //   icon = "image2vector.svg"
+    // }
+    // else {
+    //   icon = "Blank.svg"
+    // }
+    // if (!pfpsToGet.includes(author)) {
+    //   pfpsToGet.push(author);
+    // }
     // const pfp = user.user[0].pfp //pulling pfp
     // var displayedImage = ""
     // if (pfp == null){
@@ -241,6 +242,9 @@ async function displayQuestion(){ //displays on view question.html
     // else{
     //   displayedImage = `data:image/png;base64,${pfp}`//pfp is saved as long base 64 so it can be saved without extra charge
     // }
+    if (!pfpsToGet.includes(author)) {
+      pfpsToGet.push(author);
+    }
     document.getElementById("question-wrapper").innerHTML = //filling info in html class global_pfp squarifies image
     `
     <div class="title">${title}</div>
@@ -249,9 +253,8 @@ async function displayQuestion(){ //displays on view question.html
       <div class="pfpRow">
       <img id = "pfp" src="/placeholder_pfp.png" class="global_pfp pfp${author}" onclick="window.location = 'profile?username=${user.user[0].username}'">
       <div class="contributorStats">
-        <div class ="title-box">
+        <div class ="title-box title${author}">
           <p class="username">${author}</p>
-          <img class="${user.user[0].status}-icon" src="${icon}" alt="Verified Tutor" width="25px" height="25px"></img>
         </div>
         <p class="time">${date}</p>
       </div>
@@ -273,7 +276,7 @@ async function displayQuestion(){ //displays on view question.html
         var answerId = answer.answerId
         var rating = answer.rating
         var time = formatDate(answer.timestamp) //formating date
-        const user = await getUser(author)
+        // const user = await getUser(author)
         let icon
         if (user.user[0].status =="tutor"){
           icon = "trace.svg"
@@ -295,7 +298,6 @@ async function displayQuestion(){ //displays on view question.html
         if (!pfpsToGet.includes(author)) {
           pfpsToGet.push(author);
         }
-        console.log(pfpsToGet)
         document.querySelector(".answer-wrapper").insertAdjacentHTML(
           "beforeend",
           `
@@ -303,9 +305,9 @@ async function displayQuestion(){ //displays on view question.html
           <div class ="pfpRow">
           <img src="/placeholder_pfp.png" class="global_pfp pfp${author}" onclick="window.location = 'profile?username=${author}'">
           <div class="contributorStats">
-          <div class ="title-box">
+          <div class ="title-box title${author}">
             <p class="username">${author}</p>
-            <img class="${user.user[0].status}-icon" src="${icon}" alt="Verified Tutor" width="25px" height="25px"></img>
+            <img class="${user.user[0].status}-icon" src="Blank.svg" alt="Verified Tutor" width="25px" height="25px"></img>
           </div>
             <p class="time">${time}</p>
           </div>
@@ -356,21 +358,41 @@ async function displayQuestion(){ //displays on view question.html
     isQuillInitialized = true;
   }
   answerArea(questionList, quill)
-  for (const i in pfpsToGet){
-    const author = pfpsToGet[i]
-    const user = await getUser(author)
-    const pfp = user.user[0].pfp
-    var displayedImage = ""
+  for (const i in pfpsToGet){ //everything that requires us to get user from database is at the end for optimization
+    const author = pfpsToGet[i] //for every user on the page it will replace pfp and icon if needed
+    const user = await getUser(author) //pulling here
+    const pfp = user.user[0].pfp //getting pfp
+    let displayedImage//setting empty global(in function) variable
     if (pfp == null){ //if author has no pfp it will give a defaul
     displayedImage = "placeholder_pfp.png"
     }
     else{
     displayedImage = `data:image/png;base64,${pfp}`
     }
-    const images = document.querySelectorAll(`.pfp${author}`)
-    images.forEach(image => {
+    const images = document.querySelectorAll(`.pfp${author}`) //pulling all pfps for the selected user
+    images.forEach(image => { //for each it will replace image
       image.src = displayedImage;
     });
+    let icon //global(in function variable)changing based on if someone is a tutor or not
+    if (user.user[0].status =="tutor"){
+      icon = "trace.svg"
+    }
+    else if (user.user[0].status =="staff"){
+      icon = "image2vector.svg"
+    }
+    else { //if no status then no icon
+      icon = "Blank.svg"
+    }
+    const iconUsers = document.querySelectorAll(`.title${author}`)//for everyone who needs an icon
+    iconUsers.forEach(title => {
+      console.log(author)
+      title.innerHTML = 
+      `
+      <p class="username">${author}</p>
+      <img class="${user.user[0].status}-icon" src="${icon}" alt="Verified Tutor" width="25px" height="25px"></img>
+      `
+    })
+
   }  await ratingButtons(questionList)
 
 }

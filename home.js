@@ -112,6 +112,7 @@ function showQuestionColumn(subject) {
         document.querySelector(".questions_list").innerHTML = ''
         const questionList = await getQuestionList(subject)
         const questionArray = questionList
+        var pfpsToGet = []
         for (const question of questionArray) {
             var title = question.title //getting question data
             var author = question.author
@@ -119,18 +120,21 @@ function showQuestionColumn(subject) {
             var rating = question.rating
             var timeAgo = getTimeDifference(question.timestamp)
             var views = question.views
-            var user = await getUser(author)
-            var pfp = user.user[0].pfp
-            var displayedImage = ""
-            if (pfp == null) { //getting pfp, if pfp is none it will user default
-                displayedImage = "placeholder_pfp.png"
-            } else {
-                displayedImage = `data:image/png;base64,${pfp}`
+            // var user = await getUser(author)
+            // var pfp = user.user[0].pfp
+            // var displayedImage = ""
+            // if (pfp == null) { //getting pfp, if pfp is none it will user default
+            //     displayedImage = "placeholder_pfp.png"
+            // } else {
+            //     displayedImage = `data:image/png;base64,${pfp}`
+            // }
+            if (!pfpsToGet.includes(author)) {
+                pfpsToGet.push(author);
             }
             document.querySelector(".questions_list").innerHTML += //sending html info
                 `<div class="box text_box">
         <!-- pfp -->
-        <img id="global_pfp" src="${displayedImage}">
+        <img id="global_pfp" class = "pfp${author}"src="/placeholder_pfp.png">
         <div id="text_box_question_content">${title}</div>
         <div id="asked_by_line">asked by ${author}, ${timeAgo}</div>
         <div id="answered_by_line">Be the first to answer!</div>
@@ -149,7 +153,22 @@ function showQuestionColumn(subject) {
                 window.location = `viewQuestion?questionId=${questionId}`;
             });
         });
-
+        for (const i in pfpsToGet){
+            const author = pfpsToGet[i]
+            const user = await getUser(author)
+            const pfp = user.user[0].pfp
+            var displayedImage = ""
+            if (pfp == null){ //if author has no pfp it will give a defaul
+                displayedImage = "placeholder_pfp.png"
+            }
+            else{
+                displayedImage = `data:image/png;base64,${pfp}`
+            }
+            const images = document.querySelectorAll(`.pfp${author}`)
+            images.forEach(image => {
+                image.src = displayedImage;
+            });
+        }
         isEventListenerActive = true;
     })();
 }
@@ -199,8 +218,6 @@ document.querySelector('.subject-list').addEventListener("click", function(e) {
     var target = e.target || e.srcElement,
         subject = target.textContent || target.innerText;
 
-    console.log(subject)
-    console.log(headerSubjects.includes(subject))
     if (headerSubjects.includes(subject)) {
       showQuestionColumn(subject.toLowerCase());
       document.querySelector(`#subject${active}`).classList.remove("active")
