@@ -530,7 +530,8 @@ async function answerRating(answer, questionId){ //rating function
             setCookie("voted"+answerId, "upvote", 365)
             document.getElementById(`rating-value${answerId}`).innerText = newRating
           }
-          else{ //if cancling upvote
+          else if(upclick==true){ //if cancling upvote
+            console.log('ca')
             document.getElementById("upvote"+answerId).style.borderBottom = '15px solid white'
             ratingUpdate = -1
             upclick = false

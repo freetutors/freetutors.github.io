@@ -45,9 +45,6 @@ async function getUserCognito(username) { //getting email and name from cognito
 }
 
 sendEmailButton.addEventListener("click", async () => {
-  const user = await getUserCognito(username) //getting user info with previous username
-const email = "          Account Email:" + user.UserAttributes[4].Value //letting us know ur email
-
   if (username == null){
     if(window.confirm("Please Log In to Contact Us"));{
       window.location = "/login"
@@ -60,6 +57,9 @@ const email = "          Account Email:" + user.UserAttributes[4].Value //lettin
     } else {
       var feedbackType = ""
     }
+  const user = await getUserCognito(username) //getting user info with previous username
+const email = "          Account Email:" + user.UserAttributes[4].Value //letting us know ur email
+
     console.log("user")
   
     var subject = questionBox.value.trim().replace(/\r?\n|\r/g, '').replace(/"/g, "‟").replace(/"/g, '⁄').replace(/\\/g, '＼');
