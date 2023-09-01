@@ -168,17 +168,14 @@ hr.line {
   padding-left: 10px;
   padding-top: 1px;
   padding-bottom: 1px;
-  margin-top: 20px ;
+  margin-top: 50px;
 }
 .leadership{
   width: 180px;
 }
 .staff{
-  width: 90px;
-  margin-top: 50px;
-  margin-left: auto;
-  text-align: right;
-  padding-right: 20px;
+  width: 180px;
+  text-align: center
 }
 .application{
   align-items: center;
