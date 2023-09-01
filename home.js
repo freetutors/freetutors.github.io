@@ -221,7 +221,7 @@ document.querySelector('.subject-list').addEventListener("click", function(e) {
     if (headerSubjects.includes(subject)) {
       showQuestionColumn(subject.toLowerCase());
       document.querySelector(`#subject${active}`).classList.remove("active")
-      active = subject
+      active = subject.replace(' ', '')
       document.querySelector(`#subject${active}`).classList.add("active")
     } else {
       return "hi"
