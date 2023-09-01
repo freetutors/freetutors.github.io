@@ -131,6 +131,7 @@ function showQuestionColumn(subject) {
             if (!pfpsToGet.includes(author)) {
                 pfpsToGet.push(author);
             }
+            author = author.replace(/\./g,"")
             document.querySelector(".questions_list").innerHTML += //sending html info
                 `<div class="box text_box">
         <!-- pfp -->
@@ -154,10 +155,11 @@ function showQuestionColumn(subject) {
             });
         });
         for (const i in pfpsToGet){
-            const author = pfpsToGet[i]
+            var author = pfpsToGet[i]
             const user = await getUser(author)
             const pfp = user.user[0].pfp
             var displayedImage = ""
+            author = author.replace(/\./g, "")
             if (pfp == null){ //if author has no pfp it will give a defaul
                 displayedImage = "placeholder_pfp.png"
             }

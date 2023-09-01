@@ -216,11 +216,17 @@ async function displayQuestion(){ //displays on view question.html
     var title = question.title
     let body = question.body.replace(/<p>/g, "").replace(/<\/p>/g, " ")
     var author = question.author
+    console.log(author)
+    if (!pfpsToGet.includes(author)) {
+      pfpsToGet.push(author);
+    }
+    const user = await getUser(author)
+    author = author.replace(/\./g,"")
+    console.log(author)
     var answerInfo = question.answersInfo
     var answers = question.answers
     var rating = question.rating
     var date = formatDate(question.timestamp)
-    const user = await getUser(author)
     // let icon //changing based on if someone is a tutor or not
     // if (user.user[0].status =="tutor"){
     //   icon = "trace.svg"
@@ -242,9 +248,6 @@ async function displayQuestion(){ //displays on view question.html
     // else{
     //   displayedImage = `data:image/png;base64,${pfp}`//pfp is saved as long base 64 so it can be saved without extra charge
     // }
-    if (!pfpsToGet.includes(author)) {
-      pfpsToGet.push(author);
-    }
     document.getElementById("question-wrapper").innerHTML = //filling info in html class global_pfp squarifies image
     `
     <div class="title">${title}</div>
@@ -272,21 +275,12 @@ async function displayQuestion(){ //displays on view question.html
 
       for(const answer of answerInfo) {  //pulling info from each answer
         var abody = answer.body.replace(/<p>/g, "").replace(/<\/p>/g, " ")
-        let author = answer.author
+        var author = answer.author
+        console.log(author)
         var answerId = answer.answerId
         var rating = answer.rating
         var time = formatDate(answer.timestamp) //formating date
         // const user = await getUser(author)
-        let icon
-        if (user.user[0].status =="tutor"){
-          icon = "trace.svg"
-        }
-        else if (user.user[0].status =="staff"){
-          icon = "image2vector.svg"
-        }
-        else {
-          icon = "Blank.svg"
-        }
         // const pfp = user.user[0].pfp
         // var displayedImage = ""
         // if (pfp == null){ //if author has no pfp it will give a defaul
@@ -298,6 +292,8 @@ async function displayQuestion(){ //displays on view question.html
         if (!pfpsToGet.includes(author)) {
           pfpsToGet.push(author);
         }
+        author = author.replace(/\./g,"")
+        console.log(author)
         document.querySelector(".answer-wrapper").insertAdjacentHTML(
           "beforeend",
           `
@@ -362,6 +358,7 @@ async function displayQuestion(){ //displays on view question.html
     const author = pfpsToGet[i] //for every user on the page it will replace pfp and icon if needed
     const user = await getUser(author) //pulling here
     const pfp = user.user[0].pfp //getting pfp
+    
     let displayedImage//setting empty global(in function) variable
     if (pfp == null){ //if author has no pfp it will give a defaul
     displayedImage = "placeholder_pfp.png"
@@ -369,7 +366,8 @@ async function displayQuestion(){ //displays on view question.html
     else{
     displayedImage = `data:image/png;base64,${pfp}`
     }
-    const images = document.querySelectorAll(`.pfp${author}`) //pulling all pfps for the selected user
+    const formattedAuthor = author.replace(/\./g, "")
+    const images = document.querySelectorAll(`.pfp${formattedAuthor}`) //pulling all pfps for the selected user
     images.forEach(image => { //for each it will replace image
       image.src = displayedImage;
     });
@@ -383,7 +381,7 @@ async function displayQuestion(){ //displays on view question.html
     else { //if no status then no icon
       icon = "Blank.svg"
     }
-    const iconUsers = document.querySelectorAll(`.title${author}`)//for everyone who needs an icon
+    const iconUsers = document.querySelectorAll(`.title${formattedAuthor}`)//for everyone who needs an icon
     iconUsers.forEach(title => {
       console.log(author)
       title.innerHTML = 
@@ -530,7 +528,8 @@ async function answerRating(answer, questionId){ //rating function
             setCookie("voted"+answerId, "upvote", 365)
             document.getElementById(`rating-value${answerId}`).innerText = newRating
           }
-          else{ //if cancling upvote
+          else if(upclick==true){ //if cancling upvote
+            console.log('ca')
             document.getElementById("upvote"+answerId).style.borderBottom = '15px solid white'
             ratingUpdate = -1
             upclick = false
