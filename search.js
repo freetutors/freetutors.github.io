@@ -54,6 +54,8 @@ const subjects = [
   "math",
 ];
 
+const searchBar = document.querySelector('.search-bar');
+
 (async () => {
     const questions = await getAllQuestions();
 
@@ -76,12 +78,16 @@ const subjects = [
     const index = client.index('questionListIndex')
     let response = await index.addDocuments(questions)
 
-    const searchBar = document.querySelector('.search-bar');
+
     searchBar.addEventListener('input', (event) => {
         performLiveSearch(event.target.value);
     });
 
 })();
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 document.addEventListener('click', function(e) {
   var clickedElement = (e.target)
