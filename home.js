@@ -131,10 +131,11 @@ function showQuestionColumn(subject) {
             if (!pfpsToGet.includes(author)) {
                 pfpsToGet.push(author);
             }
+            author = author.replace(/\./g,"")
             document.querySelector(".questions_list").innerHTML += //sending html info
                 `<div class="box text_box">
         <!-- pfp -->
-        <img id="global_pfp" class = "pfp${author}"src="/placeholder_pfp.png">
+        <img id="global_pfp" class = "pfp${author}" src="/placeholder_pfp.png" alt="user_pfp">
         <div id="text_box_question_content">${title}</div>
         <div id="asked_by_line">asked by ${author}, ${timeAgo}</div>
         <div id="answered_by_line">Be the first to answer!</div>
@@ -154,10 +155,11 @@ function showQuestionColumn(subject) {
             });
         });
         for (const i in pfpsToGet){
-            const author = pfpsToGet[i]
+            var author = pfpsToGet[i]
             const user = await getUser(author)
             const pfp = user.user[0].pfp
             var displayedImage = ""
+            author = author.replace(/\./g, "")
             if (pfp == null){ //if author has no pfp it will give a defaul
                 displayedImage = "placeholder_pfp.png"
             }
@@ -221,7 +223,7 @@ document.querySelector('.subject-list').addEventListener("click", function(e) {
     if (headerSubjects.includes(subject)) {
       showQuestionColumn(subject.toLowerCase());
       document.querySelector(`#subject${active}`).classList.remove("active")
-      active = subject
+      active = subject.replace(' ', '')
       document.querySelector(`#subject${active}`).classList.add("active")
     } else {
       return "hi"

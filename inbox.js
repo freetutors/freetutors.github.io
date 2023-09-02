@@ -37,8 +37,6 @@ const docClient = new AWS.DynamoDB.DocumentClient();
 const cognito = new AWS.CognitoIdentityServiceProvider();
 const username = /*'testUserForInbox'*/localStorage.getItem('CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser');
 var user = await getUser(username);
-const questionRating = document.querySelector("#question-wrapper > div.question > div.rating-container > div.rating-value")
-
 
 async function getUser(username) {
   try {
@@ -161,6 +159,7 @@ async function updateBooleanAttribute(tableName, key, attributeName, attributeVa
 
   const inbox = document.querySelector(".inbox")
 
+
   if (username !== null) {
     if (user.user[0].InboxList == undefined) {
       await updateListAttribute('Freetutor-Users', { username: username }, 'InboxList', [["Welcome to FreeTutors!", getTimestamp()]]);
@@ -181,6 +180,8 @@ async function updateBooleanAttribute(tableName, key, attributeName, attributeVa
 
   document.querySelector(".inboxButton").addEventListener("click", inboxDisplay)
   }
+
+
 
 if (username !== null) {
   if (pageName == 'viewQuestion') {
