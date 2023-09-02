@@ -135,7 +135,7 @@ function showQuestionColumn(subject) {
             document.querySelector(".questions_list").innerHTML += //sending html info
                 `<div class="box text_box">
         <!-- pfp -->
-        <img id="global_pfp" class = "pfp${author}"src="/placeholder_pfp.png">
+        <img id="global_pfp" class = "pfp${author}" src="/placeholder_pfp.png" alt="user_pfp">
         <div id="text_box_question_content">${title}</div>
         <div id="asked_by_line">asked by ${author}, ${timeAgo}</div>
         <div id="answered_by_line">Be the first to answer!</div>
