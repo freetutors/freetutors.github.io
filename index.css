@@ -40,7 +40,7 @@
   padding-right: 7px;
   padding-top: 2px;
   padding-bottom: 2px;
-  width: calc(var(--question_list_width) - 10px);
+  width: calc(var(--question_list_width) - 15px);
   height: 30px;
   margin-right: 215px;
   background-color: var(--text-box-bar-color);
@@ -135,7 +135,7 @@
      align-items: center;
      width: 165px;
      padding-bottom: 17px;
-     margin-top: -32px;
+     margin-top: -37px;
      left: calc(50% + var(--question_list_width)/2 + 35px);
      background-color: var(--secondary-color);
      transform: translateX(calc(var(--translate_len) - 2px));
@@ -221,7 +221,7 @@
 .questions_list {/*scroll area with questions. It is invisible*/
        overflow-y: scroll;
        overflow-x: hidden;
-       max-height: calc(100vh - 100px);
+       max-height: calc(100vh - 142.5px);
        width: var(--question_list_width);
        margin: auto;
        margin-top: 15px;
