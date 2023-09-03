@@ -39,7 +39,7 @@ function getTimeDifference(timestamp) {
         return `${seconds} second${seconds !== 1 ? 's' : ''} ago`;
     }
     }
-var query = urlParams.get('query');
+var query = urlParams.get('query')
 
 async function getAllQuestions() {
   const questions = [];
@@ -123,10 +123,6 @@ const subjects = [
              <div id="question_stats_items">${question.rating} rating</div>
           </div>`
           console.log(question)
-
-          question.addEventListener('click', () => {
-            console.log("hi")
-          });
       }
     }
   }

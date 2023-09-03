@@ -132,7 +132,22 @@ function showQuestionColumn(subject) {
                 pfpsToGet.push(author);
             }
             author = author.replace(/\./g,"")
-            document.querySelector(".questions_list").innerHTML += //sending html info
+            if (answers !== 0){
+                document.querySelector(".questions_list").innerHTML += //sending html info
+                `<div class="box text_box">
+        <!-- pfp -->
+        <img id="global_pfp" class = "pfp${author}" src="/placeholder_pfp.png" alt="user_pfp">
+        <div id="text_box_question_content">${title}</div>
+        <div id="asked_by_line">asked by ${author}, ${timeAgo}</div>
+        <div id="answered_by_line">Add to the converstation!</div>
+        <div class="question_stats">
+          <div id="question_stats_items">${answers} Answers</div>
+          <div id="question_stats_items">${views} views</div>
+          <div id="question_stats_items">${rating} rating</div>
+        </div>`
+            }
+            else{
+                document.querySelector(".questions_list").innerHTML += //sending html info
                 `<div class="box text_box">
         <!-- pfp -->
         <img id="global_pfp" class = "pfp${author}" src="/placeholder_pfp.png" alt="user_pfp">
@@ -145,6 +160,8 @@ function showQuestionColumn(subject) {
           <div id="question_stats_items">${rating} rating</div>
         </div>`
         }
+            }
+
         const questionBoxes = document.querySelectorAll(".box.text_box");
 
         questionBoxes.forEach((box, index) => { //when click will go to view Question.html
