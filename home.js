@@ -146,7 +146,8 @@ function showQuestionColumn(subject) {
           <div id="question_stats_items">${rating} rating</div>
         </div>`
             }
-            document.querySelector(".questions_list").innerHTML += //sending html info
+            else{
+                document.querySelector(".questions_list").innerHTML += //sending html info
                 `<div class="box text_box">
         <!-- pfp -->
         <img id="global_pfp" class = "pfp${author}" src="/placeholder_pfp.png" alt="user_pfp">
@@ -159,6 +160,8 @@ function showQuestionColumn(subject) {
           <div id="question_stats_items">${rating} rating</div>
         </div>`
         }
+            }
+
         const questionBoxes = document.querySelectorAll(".box.text_box");
 
         questionBoxes.forEach((box, index) => { //when click will go to view Question.html
