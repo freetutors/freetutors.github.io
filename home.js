@@ -324,18 +324,19 @@ if (localUser !== null) {
       console.log("bye")
       await sleep(10)
     }
+    setTimeout(() => {
+    cognito.listUsers(listUserParams, (err,data) =>{ //async function to get list of all users
+    if (err) {
+        console.error('Error listing users:', err);
+        } else {
+        numUsers = data.Users.length; //sets global variable for num of users
+        }
+}) 
+    }, 300);
 
-    const users = cognito.listUsers(listUserParams, (err,data) =>{ //async function to get list of all users
-        if (err) {
-            console.error('Error listing users:', err);
-          } else {
-            numUsers = data.Users.length; //sets global variable for num of users
-          }
-    })
     const totalQuestions = await getQuestionList("all") //pulling all users(all subject)
     const numQuestions = totalQuestions.length
     var numAnswers = 0
-
     for (const question of totalQuestions) {
         var answers = 0
         if (question.answersInfo) {

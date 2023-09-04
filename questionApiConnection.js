@@ -97,7 +97,7 @@ if (window.location.pathname.indexOf("createQuestion") !== -1) { //if on the cre
             document.cookie = "createCooldown=NopeYouGottaAwait; expires=" + expirationString + "; path=/";
             setTimeout(function() { //3 sceond delay for lag
               window.location="/"
-            }, 3000);
+            }, 500);
           } else {
             if(window.confirm("Please verify your account to post a question"));{
               window.location = "/verification" //sends to verificatino if not verified
