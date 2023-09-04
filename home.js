@@ -115,6 +115,7 @@ function showQuestionColumn(subject) {
         var pfpsToGet = []
         for (const question of questionArray) {
             var title = question.title //getting question data
+            var unformattedAuthor = question.author
             var author = question.author
             var answers = question.answers
             var rating = question.rating
@@ -138,7 +139,7 @@ function showQuestionColumn(subject) {
         <!-- pfp -->
         <img id="global_pfp" class = "pfp${author}" src="/placeholder_pfp.png" alt="user_pfp">
         <div id="text_box_question_content">${title}</div>
-        <div id="asked_by_line">asked by <a href="https://www.freetutors.net/profile?username=${author}">${author}</a>, ${timeAgo}</div>
+        <div id="asked_by_line">asked by <a href="https://www.freetutors.net/profile?username=${unformattedAuthor}">${author}</a>, ${timeAgo}</div>
         <div id="answered_by_line">Add to the converstation!</div>
         <div class="question_stats">
           <div id="question_stats_items">${answers} Answers</div>
@@ -152,7 +153,7 @@ function showQuestionColumn(subject) {
         <!-- pfp -->
         <img id="global_pfp" class = "pfp${author}" src="/placeholder_pfp.png" alt="user_pfp">
         <div id="text_box_question_content">${title}</div>
-        <div id="asked_by_line">asked by <a href="https://www.freetutors.net/profile?username=${author}">${author}</a>, ${timeAgo}</div>
+        <div id="asked_by_line">asked by <a href="https://www.freetutors.net/profile?username=${unformattedAuthor}">${author}</a>, ${timeAgo}</div>
         <div id="answered_by_line">Be the first to answer!</div>
         <div class="question_stats">
           <div id="question_stats_items">${answers} Answers</div>
