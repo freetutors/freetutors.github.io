@@ -117,6 +117,10 @@ if (window.location.pathname.indexOf("createQuestion") !== -1) { //if on the cre
   })
 }
 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 async function addUserQuestions(username){ //updating user questions stat
   const user = await getUser(username) //pulls user with 
   const questions = parseInt(user.user[0].questions) + 1 //adding questions
@@ -322,6 +326,11 @@ async function displayQuestion(){ //displays on view question.html
       }
     }
   }
+
+
+  while (typeof MathJax == 'undefined') {
+      await sleep(10)
+    }
 
   MathJax.Hub.Queue(['Typeset', MathJax.Hub, 'question-wrapper']); //latex addition
   MathJax.Hub.Queue(['Typeset', MathJax.Hub, 'answer-wrapper']);
