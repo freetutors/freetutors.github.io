@@ -276,6 +276,7 @@ async function displayQuestion(){ //displays on view question.html
       for(const answer of answerInfo) {  //pulling info from each answer
         var abody = answer.body.replace(/<p>/g, "").replace(/<\/p>/g, " ")
         var author = answer.author
+        var unformattedAuthor = answer.author
         console.log(author)
         var answerId = answer.answerId
         var rating = answer.rating
@@ -299,10 +300,10 @@ async function displayQuestion(){ //displays on view question.html
           `
           <div class="answer">
           <div class ="pfpRow">
-          <img src="/placeholder_pfp.png" class="global_pfp pfp${author}" onclick="window.location = 'profile?username=${author}'">
+          <img src="/placeholder_pfp.png" class="global_pfp pfp${author}" onclick="window.location = 'profile?username=${unformattedAuthor}'">
           <div class="contributorStats">
           <div class ="title-box title${author}">
-            <p class="username" onclick="window.location='/profile?username=${author}'">${author}</p>
+            <p class="username" onclick="window.location='/profile?username=${unformattedAuthor}'">${author}</p>
             <img class="${user.user[0].status}-icon" src="Blank.svg" alt="Verified Tutor" width="25px" height="25px"></img>
           </div>
             <p class="time">${time}</p>
