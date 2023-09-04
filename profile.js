@@ -114,6 +114,20 @@ async function changePageInfo(user){ //updating html values on page
   document.querySelector(".about-me-field").innerText = user.about
   document.getElementById('username_txt').innerText = user.username//user.username
   document.getElementById('pfp_inner').src = `data:image/png;base64,${user.pfp}`
+  const username = urlParams.get('username')//getting username from url
+  const viewerUsername = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser") //getting viewer's username
+  if(username != viewerUsername){
+    document.querySelector(".signup-container_profile").innerHTML =
+    `
+    <div class="your_info_txt">Information</div>
+    <p class="info-label">Username:</p>
+    <p class="username info_input_group">${user.username}</p>
+    <p class="info-label">Questions Asked:</p>
+    <p class="info_input_group" type=password">${user.questions}</p>
+    <p class="info-label">Questions Answered:</p>
+    <p class="info_input_group" type=password">${user.answers}</p>
+    `
+}else{
   document.querySelector(".signup-container_profile").innerHTML =
     `
     <div class="your_info_txt">Information</div>
@@ -128,6 +142,7 @@ async function changePageInfo(user){ //updating html values on page
     <p class="info-label">Questions Answered:</p>
     <p class="info_input_group" type=password">${user.answers}</p>
     `
+}
 }
 async function getUserCognito(username) { //getting email and name from cognito
   try {
