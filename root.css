@@ -537,7 +537,10 @@
     justify-content: center;
     align-items: center;
 }
-
+a {
+  text-decoration: none;
+  color: white;
+}
  #topbar {
    background-color: var(--header-color);
    width: 100%;

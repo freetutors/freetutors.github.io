@@ -262,7 +262,7 @@ hr.pfp_line {
   top: 813px;
   left: calc(50% - 569px);
   width: 170px;
-  height: 380px;
+  height: auto;
   background-color: var(--header-color);
   opacity: 0.95;
   border-radius: .5rem;

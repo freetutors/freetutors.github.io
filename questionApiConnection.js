@@ -257,7 +257,7 @@ async function displayQuestion(){ //displays on view question.html
       <img id = "pfp" src="/placeholder_pfp.png" class="global_pfp pfp${author}" onclick="window.location = 'profile?username=${user.user[0].username}'">
       <div class="contributorStats">
         <div class ="title-box title${author}">
-          <p class="username">${author}</p>
+          <p class="username" onclick="window.location='/profile?username=${author}'">${author}</p>
         </div>
         <p class="time">${date}</p>
       </div>
@@ -302,7 +302,7 @@ async function displayQuestion(){ //displays on view question.html
           <img src="/placeholder_pfp.png" class="global_pfp pfp${author}" onclick="window.location = 'profile?username=${author}'">
           <div class="contributorStats">
           <div class ="title-box title${author}">
-            <p class="username">${author}</p>
+            <p class="username" onclick="window.location='/profile?username=${author}'">${author}</p>
             <img class="${user.user[0].status}-icon" src="Blank.svg" alt="Verified Tutor" width="25px" height="25px"></img>
           </div>
             <p class="time">${time}</p>
@@ -386,7 +386,7 @@ async function displayQuestion(){ //displays on view question.html
       console.log(author)
       title.innerHTML = 
       `
-      <p class="username">${author}</p>
+      <p class="username" onclick="window.location='/profile?username=${author}'">${author}</p>
       <img class="${user.user[0].status}-icon" src="${icon}" alt="Verified Tutor" width="25px" height="25px"></img>
       `
     })
