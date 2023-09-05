@@ -307,7 +307,7 @@
   list-style-type: none;
   position: absolute;
   cursor: pointer;
-  padding:0;
+  padding-left: -2px;
 
   /* left: calc(50% - var(--question_list_width)/2 - 227.5px); */
   color: white;
@@ -322,7 +322,7 @@
   margin-left: -13px;
   padding-top: 3px;
   padding-bottom: 3px;
-  padding-left: 10px;
+  padding-left: 8px;
   margin-top: 5px;
   border-radius: 0 7px 7px 0; /* creating a straight edge for showing the selected area */
   background-color: transparent;
