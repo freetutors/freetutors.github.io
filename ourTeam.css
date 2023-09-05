@@ -131,7 +131,7 @@ details summary::-webkit-details-marker {
 }
 
 .container{
-    width: 80%;
+    width: 65%;
     height: auto;
     margin: auto;
     background-color: var(--header-color);
