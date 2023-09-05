@@ -131,8 +131,9 @@ details summary::-webkit-details-marker {
 }
 
 .container{
-    width: 50%;
+    width: 80%;
     height: auto;
+    margin: auto;
     background-color: var(--header-color);
     opacity: 0.95;
     margin-top: 50px;
@@ -140,7 +141,7 @@ details summary::-webkit-details-marker {
     border-radius: .5rem;
     box-shadow: 0 1rem 2rem #000000;
     padding: 20px;
-    padding-right: 0;
+    padding-right: 20px;
   }
 .full-text{
   width: 1000px;
