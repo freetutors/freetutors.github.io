@@ -140,7 +140,7 @@ function showQuestionColumn(subject) {
         <img id="global_pfp" class = "pfp${author}" src="/placeholder_pfp.png" alt="user_pfp">
         <div id="text_box_question_content">${title}</div>
         <div id="asked_by_line">asked by <a href="https://www.freetutors.net/profile?username=${unformattedAuthor}">${author}</a>, ${timeAgo}</div>
-        <div id="answered_by_line">Add to the converstation!</div>
+        <div id="answered_by_line">Add to the conversation!</div>
         <div class="question_stats">
           <div id="question_stats_items">${answers} Answers</div>
           <div id="question_stats_items">${views} views</div>
