@@ -321,7 +321,6 @@ if (localUser !== null) {
     var numUsers = 0
 
     while (typeof cognito == 'undefined') {
-      console.log("bye")
       await sleep(10)
     }
     setTimeout(() => {
@@ -378,6 +377,10 @@ if (localUser !== null) {
         }
     }
 
+    while (numUsers == 0) {
+      console.log("hi")
+      await sleep(10)
+    }
     animate(numQuestions, document.querySelector(".important_box_num1"), 'important_box_num1_digit')
     animate(numAnswers, document.querySelector(".important_box_num2"), 'important_box_num2_digit')
     animate(numUsers, document.querySelector(".important_box_num3"), 'important_box_num3_digit')
