@@ -136,7 +136,6 @@ details summary::-webkit-details-marker {
     background-color: var(--header-color);
     opacity: 0.95;
     margin-top: 50px;
-    margin-bottom: 50px
     flex-direction: column;
     border-radius: .5rem;
     box-shadow: 0 1rem 2rem #000000;
