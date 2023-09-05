@@ -307,8 +307,8 @@
   list-style-type: none;
   position: absolute;
   cursor: pointer;
-  padding:0;
-
+  padding-left: -2px;
+  left: -13px;
   /* left: calc(50% - var(--question_list_width)/2 - 227.5px); */
   color: white;
   margin-top: -1px;
