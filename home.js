@@ -378,7 +378,6 @@ if (localUser !== null) {
     }
 
     while (numUsers == 0) {
-      console.log("hi")
       await sleep(10)
     }
     animate(numQuestions, document.querySelector(".important_box_num1"), 'important_box_num1_digit')

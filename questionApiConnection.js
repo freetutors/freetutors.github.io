@@ -431,6 +431,7 @@ async function answerArea(questionList, quill){
     var username = localStorage.getItem(`CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser`)
     
     console.log(views, rating, body, author, username, answers)
+    console.log(quill.root.innerHTML, document.querySelector(".ql-editor").innerHTML, quill.container.firstChild.innerHTML, quill.root.textContent)
     if (username !== null){
       checkUserVerification(username)
       .then(isVerified => { //checking if user is veriified
