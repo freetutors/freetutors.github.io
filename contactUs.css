@@ -138,13 +138,6 @@ display: none;
   left: calc(50% - 473px);
 }
 
-.spacing {
-  position: relative;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  width: 100%;
-  background-color: var(--background-color);
-}
 /* for dropdown */
 
 .dropdown {
