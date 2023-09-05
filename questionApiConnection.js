@@ -696,9 +696,9 @@ function getCookie(name) {
   }
   return null;
 }
-function initializeQuill(){ //setting quill(used sometimes for quill not always)
+function initializeQuill() {
   var toolbarOptions = [
-    ['bold', 'italic', 'underline', 'link', 'image'], // Customize the toolbar elements here
+    ['bold', 'italic', 'underline', 'link', 'image'],
     // Additional toolbar options...
   ];
 
@@ -707,14 +707,43 @@ function initializeQuill(){ //setting quill(used sometimes for quill not always)
     theme: 'snow',
     modules: {
       toolbar: toolbarOptions,
-      imageResize: {
-        modules: ['Resize']
-      },
       imageDrop: true,
     },
   });
-  return quill
+
+  // Listen to the editor's content-change event
+  quill.on('text-change', function () {
+    checkImageSize(quill);
+  });
+
+  return quill;
 }
+
+function checkImageSize(quill) {
+  const limitWidth = 720; // Maximum width
+  const limitHeight = 720; // Maximum height
+
+  const editor = quill.editor;
+  const images = editor.container.querySelectorAll('img');
+
+  images.forEach((img) => {
+    const width = img.width;
+    const height = img.height;
+
+    if (width > limitWidth || height > limitHeight) {
+      // If the image exceeds the size limit, resize it
+      if (width > limitWidth) {
+        img.width = limitWidth;
+        img.height = (height * limitWidth) / width;
+      }
+      if (height > limitHeight) {
+        img.height = limitHeight;
+        img.width = (width * limitHeight) / height;
+      }
+    }
+  });
+}
+
 // Check if the event has already occurred for the current IP address
 const eventCookieName = 'eventOccurred';
 const expirationDays = 365;
