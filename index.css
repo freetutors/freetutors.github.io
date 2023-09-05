@@ -276,6 +276,10 @@
         font-size: 13px;
     }
 
+   #asked_by_line:hover {
+      text-decoration: underline;
+   }
+
     #answered_by_line {
         color: white;
         font-size: 14px;
