@@ -708,6 +708,9 @@ function initializeQuill() {
     modules: {
       toolbar: toolbarOptions,
       imageDrop: true,
+      imageResize: {
+        modules: ['Resize'],
+      },
     },
   });
 
