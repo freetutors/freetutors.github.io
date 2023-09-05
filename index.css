@@ -307,6 +307,8 @@
   list-style-type: none;
   position: absolute;
   cursor: pointer;
+  padding:0;
+
   /* left: calc(50% - var(--question_list_width)/2 - 227.5px); */
   color: white;
   margin-top: -1px;
@@ -449,7 +451,6 @@
     max-width: 70%;
   }
 }
-
 
 @media only screen and (max-width: 800px) {
 
