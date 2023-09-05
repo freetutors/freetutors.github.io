@@ -131,7 +131,7 @@ details summary::-webkit-details-marker {
 }
 
 .container{
-    width: 100%;
+    width: 50%;
     height: auto;
     background-color: var(--header-color);
     opacity: 0.95;
@@ -169,12 +169,15 @@ hr.line {
   padding-top: 1px;
   padding-bottom: 1px;
 }
+/*
 .leadership{
   width: 180px;
 }
 .staff{
   width: 180px;
 }
+Commmenting this out for later use if necessary
+*/
 .application{
   align-items: center;
   height: 60px;
