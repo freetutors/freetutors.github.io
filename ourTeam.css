@@ -87,8 +87,6 @@ display: none;
     font-size: 40px;
     text-align: center;
     margin-top: 40px;
-    box-shadow: 0 1rem 2rem #000000;
-    text-decoration: underline;
 }
 .page-heading{
   margin-left: calc(50% - 125px);
@@ -131,8 +129,9 @@ details summary::-webkit-details-marker {
 }
 
 .container{
-    width: 100%;
+    width: 65%;
     height: auto;
+    margin: auto;
     background-color: var(--header-color);
     opacity: 0.95;
     margin-top: 50px;
@@ -140,7 +139,8 @@ details summary::-webkit-details-marker {
     border-radius: .5rem;
     box-shadow: 0 1rem 2rem #000000;
     padding: 20px;
-    padding-right: 0;
+    padding-right: 20px;
+    padding-bottom: 20px;
   }
 .full-text{
   width: 1000px;
@@ -168,15 +168,16 @@ hr.line {
   padding-left: 10px;
   padding-top: 1px;
   padding-bottom: 1px;
-  margin-top: 50px;
 }
+/*
 .leadership{
   width: 180px;
 }
 .staff{
   width: 180px;
-  text-align: center
 }
+Commmenting this out for later use if necessary
+*/
 .application{
   align-items: center;
   height: 60px;

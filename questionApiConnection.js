@@ -97,7 +97,7 @@ if (window.location.pathname.indexOf("createQuestion") !== -1) { //if on the cre
             document.cookie = "createCooldown=NopeYouGottaAwait; expires=" + expirationString + "; path=/";
             setTimeout(function() { //3 sceond delay for lag
               window.location="/"
-            }, 3000);
+            }, 500);
           } else {
             if(window.confirm("Please verify your account to post a question"));{
               window.location = "/verification" //sends to verificatino if not verified
@@ -115,6 +115,10 @@ if (window.location.pathname.indexOf("createQuestion") !== -1) { //if on the cre
     alert("Please wait 5 minutes before posting another question.")
   }
   })
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 async function addUserQuestions(username){ //updating user questions stat
@@ -276,6 +280,7 @@ async function displayQuestion(){ //displays on view question.html
       for(const answer of answerInfo) {  //pulling info from each answer
         var abody = answer.body.replace(/<p>/g, "").replace(/<\/p>/g, " ")
         var author = answer.author
+        var unformattedAuthor = answer.author
         console.log(author)
         var answerId = answer.answerId
         var rating = answer.rating
@@ -299,10 +304,10 @@ async function displayQuestion(){ //displays on view question.html
           `
           <div class="answer">
           <div class ="pfpRow">
-          <img src="/placeholder_pfp.png" class="global_pfp pfp${author}" onclick="window.location = 'profile?username=${author}'">
+          <img src="/placeholder_pfp.png" class="global_pfp pfp${author}" onclick="window.location = 'profile?username=${unformattedAuthor}'">
           <div class="contributorStats">
           <div class ="title-box title${author}">
-            <p class="username" onclick="window.location='/profile?username=${author}'">${author}</p>
+            <p class="username" onclick="window.location='/profile?username=${unformattedAuthor}'">${author}</p>
             <img class="${user.user[0].status}-icon" src="Blank.svg" alt="Verified Tutor" width="25px" height="25px"></img>
           </div>
             <p class="time">${time}</p>
@@ -321,6 +326,11 @@ async function displayQuestion(){ //displays on view question.html
       }
     }
   }
+
+
+  while (typeof MathJax == 'undefined') {
+      await sleep(10)
+    }
 
   MathJax.Hub.Queue(['Typeset', MathJax.Hub, 'question-wrapper']); //latex addition
   MathJax.Hub.Queue(['Typeset', MathJax.Hub, 'answer-wrapper']);
@@ -686,9 +696,9 @@ function getCookie(name) {
   }
   return null;
 }
-function initializeQuill(){ //setting quill(used sometimes for quill not always)
+function initializeQuill() {
   var toolbarOptions = [
-    ['bold', 'italic', 'underline', 'link', 'image'], // Customize the toolbar elements here
+    ['bold', 'italic', 'underline', 'link', 'image'],
     // Additional toolbar options...
   ];
 
@@ -697,14 +707,46 @@ function initializeQuill(){ //setting quill(used sometimes for quill not always)
     theme: 'snow',
     modules: {
       toolbar: toolbarOptions,
-      imageResize: {
-        modules: ['Resize']
-      },
       imageDrop: true,
+      imageResize: {
+        modules: ['Resize'],
+      },
     },
   });
-  return quill
+
+  // Listen to the editor's content-change event
+  quill.on('text-change', function () {
+    checkImageSize(quill);
+  });
+
+  return quill;
 }
+
+function checkImageSize(quill) {
+  const limitWidth = 720; // Maximum width
+  const limitHeight = 720; // Maximum height
+
+  const editor = quill.editor;
+  const images = editor.container.querySelectorAll('img');
+
+  images.forEach((img) => {
+    const width = img.width;
+    const height = img.height;
+
+    if (width > limitWidth || height > limitHeight) {
+      // If the image exceeds the size limit, resize it
+      if (width > limitWidth) {
+        img.width = limitWidth;
+        img.height = (height * limitWidth) / width;
+      }
+      if (height > limitHeight) {
+        img.height = limitHeight;
+        img.width = (width * limitHeight) / height;
+      }
+    }
+  });
+}
+
 // Check if the event has already occurred for the current IP address
 const eventCookieName = 'eventOccurred';
 const expirationDays = 365;

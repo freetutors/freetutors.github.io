@@ -43,29 +43,6 @@ function signUpUser(params) {
       reject(status)
     } else {
       status = 'ok'
-      // const username = document.getElementById("username").value; //getting values
-      console.log(status);
-      // const response = fetch(createUrl, { //sending user to database
-      //   mode: 'cors',
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify({
-      //     username: username.trim().toLowerCase()
-      //   })
-      // });
-      // if (response.ok) {
-      //   console.log(status)
-      //   if (status == "ok"){
-      //     window.location='/verification'
-      //   }
-      // } else {
-      //   alert("Error adding question, try again later")
-      //   console.log("Error calling API");
-      // }
-      // localStorage.setItem("signupEmail", email);
-      // localStorage.setItem("signupUsername", username);
       resolve(status)
     }
   });
