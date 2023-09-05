@@ -140,7 +140,8 @@ display: none;
 
 .spacing {
   position: relative;
-  height: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   width: 100%;
   background-color: var(--background-color);
 }
