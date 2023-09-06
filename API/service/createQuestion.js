@@ -6,8 +6,28 @@ AWS.config.update({
 })
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 const tableName = 'Freetutor-Question' // connection to database and user table
-const questionId = uuidv4()
-
+const questionId = randomizeUUIDv4()
+function randomizeUUIDv4() {
+    // Generate a new UUIDv4
+    const originalUUID = uuidv4();
+  
+    // Convert the UUID to an array of characters
+    const uuidArray = originalUUID.split('');
+  
+    // Iterate through the characters and replace them with random hexadecimal digits
+    for (let i = 0; i < uuidArray.length; i++) {
+      if (/[0-9a-f]/.test(uuidArray[i])) {
+        // Randomly choose a new hexadecimal digit (0-9 or a-f)
+        const randomHexDigit = Math.floor(Math.random() * 16).toString(16);
+        uuidArray[i] = randomHexDigit;
+      }
+    }
+  
+    // Join the modified array back into a UUID string
+    const randomizedUUID = uuidArray.join('');
+  
+    return randomizedUUID;
+  }
 const util = require('../utils/util'); // every period shows how much higher you have to go on file levels. this has to periods because u have to go outside of the folder, one means that is in the same folder
 
 async function createQuestion(questionData) {
