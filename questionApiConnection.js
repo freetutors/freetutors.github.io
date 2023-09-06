@@ -282,12 +282,8 @@ async function displayQuestion(){ //displays on view question.html
 
       for(const answer of answerInfo) {  //pulling info from each answer
         var abody = answer.body
-        console.log(abody)
-        console.log(answer.body)
-        console.log(answer)
         var author = answer.author
         var unformattedAuthor = answer.author
-        console.log(author)
         var answerId = answer.answerId
         var rating = answer.rating
         var time = formatDate(answer.timestamp) //formating date
@@ -304,7 +300,6 @@ async function displayQuestion(){ //displays on view question.html
           pfpsToGet.push(author);
         }
         author = author.replace(/\./g,"")
-        console.log(author)
         document.querySelector(".answer-wrapper").insertAdjacentHTML(
           "beforeend",
           `
@@ -399,7 +394,6 @@ async function displayQuestion(){ //displays on view question.html
     }
     const iconUsers = document.querySelectorAll(`.title${formattedAuthor}`)//for everyone who needs an icon
     iconUsers.forEach(title => {
-      console.log(author)
       title.innerHTML = 
       `
       <p class="username" onclick="window.location='/profile?username=${author}'">${author}</p>
@@ -426,18 +420,15 @@ async function answerArea(questionList, quill){
   document.getElementById("answer-send").addEventListener("click", function() { //when answer send clicked
     const questionId = questionList[0].questionId
     let answers = parseInt(questionList[0].answers) +1
-    console.log(answers)
     const views = questionList[0].views
     const rating = questionList[0].rating
     const body = quill.root.innerHTML
-    console.log(quill.root.textContent)
     quill.root.textContent = quill.root.textContent.replace(/\n/g, "<br>");
     const author = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser")
     document.querySelector(".answer-wrapper").innerHTML = 
     ``
     quill = ""
     var username = localStorage.getItem(`CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser`)
-    console.log(views, rating, body, author, username, answers)
 
     if (username !== null){
       checkUserVerification(username)
