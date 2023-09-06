@@ -81,6 +81,14 @@
 display: none;   
 }
 }
+
+.title_text {
+    color: white;
+    text-align: center;
+    padding: 7px;
+    margin-top: 40px;
+    font-size: 60px;
+}
 .our_team_text {
     color: white;
     padding: 7px;
