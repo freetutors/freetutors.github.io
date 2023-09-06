@@ -221,7 +221,7 @@ async function displayQuestion(){ //displays on view question.html
     // const users = [question.author, question.answersInfo.map(answer => answer.author)]
     // console.log(users)
     var title = question.title
-    let body = question.body.replace(/<p>/g, "").replace(/<\/p>/g, " ")
+    let body = question.body
     var author = question.author
     console.log(author)
     if (!pfpsToGet.includes(author)) {
