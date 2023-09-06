@@ -203,12 +203,12 @@ const headerSubjects = [ //list of subjects, we can always add more
     "Math",
     "Chemistry",
     "Biology",
+    "Physics",
     "English",
     "History",
     "Geography",
     "Foreign Language",
     "Computer Science",
-    "Physical Education",
     "Other"
 ];
 
