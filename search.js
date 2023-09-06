@@ -11,19 +11,6 @@ async function getAllQuestions() {
     }
   return questions;
 }
-// async function getAllQuestions() {
-//   const questions = [];
-//   for (const subject of subjects) {
-//     const subjectQuestionList = await getQuestionListSubject(subject);
-//     console.log("1")
-//     for (const question of subjectQuestionList) {
-//       questions.push(question);
-//     }
-//   }
-//   console.log("2")
-//   return questions;
-// }
-//old function so you can test speed diff
 
 function handleSearchTrigger() {
   window.location = 'search.html?query=' + searchBar.value.trim()
@@ -75,7 +62,7 @@ const searchBar = document.querySelector('.search-bar');
       }
     }
 
-    const index = client.index('questionListIndex')
+    const index = client.index('questionListIndex2')
     let response = await index.addDocuments(questions)
 
 
@@ -108,27 +95,3 @@ searchBar.addEventListener("keydown", function(event) {
     handleSearchTrigger()
   }
 });
-
-/*
-
-chmod 400 meilisearchKeyPair.pem
-ssh -i meilisearchKeyPair.pem admin@54.183.227.34
-ssh -i meilisearchKeyPair.pem -L 7700:127.0.0.1:7700 ec2-user@54.183.227.34
-
-http://54.183.227.34
-
-https://54.183.227.34.nip.io
-
-54.183.227.34.nip.io {
-    reverse_proxy localhost:8000
-}
-
-54.183.227.34.nip.io {
-    reverse_proxy localhost:8000
-}
-
- sudo lsof -i :80
-
-sudo nano /etc/caddy/Caddyfile
-
-*/

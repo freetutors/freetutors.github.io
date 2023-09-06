@@ -49,19 +49,7 @@ async function getAllQuestions() {
     }
   return questions;
   }
-// async function getAllQuestions() {
-//   const questions = [];
-//   for (const subject of subjects) {
-//     const subjectQuestionList = await getQuestionListSubject(subject);
-//     console.log("1")
-//     for (const question of subjectQuestionList) {
-//       questions.push(question);
-//     }
-//   }
-//   console.log("2")
-//   return questions;
-// }
-//old function so you can test speed diff
+
 async function getQuestionListSubject(subject) {
   const url = new URL(`${apiUrlget}?subject=${subject}`);
   const questionList = await fetch(url, {
@@ -95,13 +83,16 @@ const subjects = [
         apiKey: config.searchKey,
     });
 
-  const index = client.index('questionListIndex')
+  const index = client.index('questionListIndex2')
   await index.addDocuments(questions)
   const search = await index.search(query);
 
+  console.log("hi")
   for (const hit of search.hits.reverse()) {
+  console.log(hit.id)
     for (const question of questions) {
       if (question.questionId == hit.id) {
+        console.log(question)
         const user = await getUser(question.author)
         const pfp = user.user[0].pfp
         var displayedImage = ""
