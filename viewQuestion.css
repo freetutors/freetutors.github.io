@@ -160,6 +160,12 @@
   margin: auto;
 }
 
+.p {
+  color: white;
+  font-family: Lexend;
+  line-height: 27.5px;
+}
+
 .answerBody {
   font-family: Lexend;
   color: white;
