@@ -281,7 +281,7 @@ async function displayQuestion(){ //displays on view question.html
     if (answerInfo != null){ //wont run upon no answers
 
       for(const answer of answerInfo) {  //pulling info from each answer
-        var abody = answer.body
+        var abody = answer.body.replace(/<p>/g, "").replace(/<\/p>/g, " ")
         console.log(abody)
         console.log(answer.body)
         console.log(answer)
