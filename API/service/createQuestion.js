@@ -31,7 +31,7 @@ function randomizeUUIDv4() {
 
   async function getQuestionById(questionId) {
     const params = {
-      TableName: questionTable,
+      TableName: tableName,
       KeyConditionExpression: "#Id = :questionId",
       ExpressionAttributeNames: {
         "#Id": "questionId"
