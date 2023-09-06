@@ -423,7 +423,6 @@ async function answerArea(questionList, quill){
     const views = questionList[0].views
     const rating = questionList[0].rating
     const body = quill.root.innerHTML
-    quill.root.textContent = quill.root.textContent.replace(/\n/g, "<br>");
     const author = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser")
     document.querySelector(".answer-wrapper").innerHTML = 
     ``
