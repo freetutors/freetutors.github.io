@@ -424,13 +424,13 @@ async function answerArea(questionList, quill){
     const views = questionList[0].views
     const rating = questionList[0].rating
     const body = quill.root.innerHTML
-    console.log(quill.root.innerHTML, quill.root.textContent)
+    console.log(String(quill.root.innerHTML))
+    console.log(String(quill.root.textContent))
     const author = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser")
     document.querySelector(".answer-wrapper").innerHTML = 
     ``
     quill = ""
     var username = localStorage.getItem(`CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser`)
-    
     console.log(views, rating, body, author, username, answers)
 
     if (username !== null){
