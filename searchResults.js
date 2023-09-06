@@ -112,6 +112,15 @@ const subjects = [
              <div id="question_stats_items">${question.rating} rating</div>
           </div>`
       }
+
+      const questionBoxes = document.querySelectorAll(".box.text_box");
+
+        questionBoxes.forEach((box, index) => { //when click will go to view Question.html
+            box.addEventListener("click", function() {
+                const questionId = questions[index].questionId; // Retrieve the questionId
+                window.location = `viewQuestion?questionId=${questionId}`;
+            });
+        });
     }
   }
 })();
