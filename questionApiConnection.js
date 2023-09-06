@@ -72,6 +72,7 @@ if (window.location.pathname.indexOf("createQuestion") !== -1) { //if on the cre
   });
   function updatePreviewBody() { //updates for latex
     var content = quill.root.innerHTML;
+    console.log(content)
     previewContainer.innerHTML = content;
     MathJax.Hub.Queue(['Typeset', MathJax.Hub, previewContainer]);
   }
@@ -140,6 +141,7 @@ async function addUserQuestions(username){ //updating user questions stat
 async function addUserAnswers(username){ //updating user answers stat, same as above
   const user = await getUser(username)
   const answers = user.user[0].answers +1
+  console.log(answers)
   const url = new URL(`${apiUrlupdateUserAnswer}`)
   const response = await fetch(url,  {
     mode: "cors",
@@ -208,6 +210,7 @@ function formatDate(timestamp) { //turning the saved timestamp into a month, dat
 var isQuillInitialized = false; //this is making sure there is no duplicate quill sections on the page upon rating
 
 async function displayQuestion(){ //displays on view question.html
+
   var pfpsToGet = []
   var iconsToGet = []
   const urlParams = new URLSearchParams(window.location.search); //info for each unique question is sent in the acutal url
@@ -218,7 +221,7 @@ async function displayQuestion(){ //displays on view question.html
     // const users = [question.author, question.answersInfo.map(answer => answer.author)]
     // console.log(users)
     var title = question.title
-    let body = question.body.replace(/<p>/g, "").replace(/<\/p>/g, " ")
+    let body = question.body
     var author = question.author
     console.log(author)
     if (!pfpsToGet.includes(author)) {
@@ -278,10 +281,9 @@ async function displayQuestion(){ //displays on view question.html
     if (answerInfo != null){ //wont run upon no answers
 
       for(const answer of answerInfo) {  //pulling info from each answer
-        var abody = answer.body.replace(/<p>/g, "").replace(/<\/p>/g, " ")
+        var abody = answer.body
         var author = answer.author
         var unformattedAuthor = answer.author
-        console.log(author)
         var answerId = answer.answerId
         var rating = answer.rating
         var time = formatDate(answer.timestamp) //formating date
@@ -298,7 +300,6 @@ async function displayQuestion(){ //displays on view question.html
           pfpsToGet.push(author);
         }
         author = author.replace(/\./g,"")
-        console.log(author)
         document.querySelector(".answer-wrapper").insertAdjacentHTML(
           "beforeend",
           `
@@ -348,7 +349,7 @@ async function displayQuestion(){ //displays on view question.html
   var updatedViews = 0
   if (checkCookieExists(questionId) == false) { //checking cookies for views and updating
     setCookie(questionId)
-    updatedViews= questionList[0].views+1
+    updatedViews= /*questionList[0].views+1*/6
     var newRating = parseInt(questionList[0].rating)
     var answers= questionList[0].answers
     sendUpdate(questionId, answers, updatedViews, newRating) //sending update for cookies
@@ -393,7 +394,6 @@ async function displayQuestion(){ //displays on view question.html
     }
     const iconUsers = document.querySelectorAll(`.title${formattedAuthor}`)//for everyone who needs an icon
     iconUsers.forEach(title => {
-      console.log(author)
       title.innerHTML = 
       `
       <p class="username" onclick="window.location='/profile?username=${author}'">${author}</p>
@@ -420,7 +420,6 @@ async function answerArea(questionList, quill){
   document.getElementById("answer-send").addEventListener("click", function() { //when answer send clicked
     const questionId = questionList[0].questionId
     let answers = parseInt(questionList[0].answers) +1
-    console.log(answers)
     const views = questionList[0].views
     const rating = questionList[0].rating
     const body = quill.root.innerHTML
@@ -429,8 +428,7 @@ async function answerArea(questionList, quill){
     ``
     quill = ""
     var username = localStorage.getItem(`CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser`)
-    
-    console.log(views, rating, body, author, username, answers)
+
     if (username !== null){
       checkUserVerification(username)
       .then(isVerified => { //checking if user is veriified
@@ -727,7 +725,7 @@ function checkImageSize(quill) {
   const limitHeight = 720; // Maximum height
 
   const editor = quill.editor;
-  const images = editor.container.querySelectorAll('img');
+  const images = /*editor.container.querySelectorAll('img');*/[]
 
   images.forEach((img) => {
     const width = img.width;
