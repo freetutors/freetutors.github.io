@@ -83,7 +83,7 @@ const subjects = [
         apiKey: config.searchKey,
     });
 
-  const index = client.index('questionListIndex2')
+  const index = client.index('questionListIndex3')
   await index.addDocuments(questions)
   const search = await index.search(query);
 
