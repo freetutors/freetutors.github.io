@@ -62,7 +62,7 @@ const searchBar = document.querySelector('.search-bar');
       }
     }
 
-    const index = client.index('questionListIndex')
+    const index = client.index('questionListIndex2')
     let response = await index.addDocuments(questions)
 
 
