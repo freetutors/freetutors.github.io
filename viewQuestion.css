@@ -142,7 +142,7 @@
 
 .username {
   font-size: 20px;
-  transform: translateX(10.5px) translateY(20.5px);
+  transform: translateX(10.5px) translateY(23px);
 }
 
 .username:hover {
