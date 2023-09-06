@@ -72,6 +72,7 @@ if (window.location.pathname.indexOf("createQuestion") !== -1) { //if on the cre
   });
   function updatePreviewBody() { //updates for latex
     var content = quill.root.innerHTML;
+    console.log(content)
     previewContainer.innerHTML = content;
     MathJax.Hub.Queue(['Typeset', MathJax.Hub, previewContainer]);
   }
@@ -140,6 +141,7 @@ async function addUserQuestions(username){ //updating user questions stat
 async function addUserAnswers(username){ //updating user answers stat, same as above
   const user = await getUser(username)
   const answers = user.user[0].answers +1
+  console.log(answers)
   const url = new URL(`${apiUrlupdateUserAnswer}`)
   const response = await fetch(url,  {
     mode: "cors",
@@ -208,6 +210,7 @@ function formatDate(timestamp) { //turning the saved timestamp into a month, dat
 var isQuillInitialized = false; //this is making sure there is no duplicate quill sections on the page upon rating
 
 async function displayQuestion(){ //displays on view question.html
+
   var pfpsToGet = []
   var iconsToGet = []
   const urlParams = new URLSearchParams(window.location.search); //info for each unique question is sent in the acutal url
@@ -279,6 +282,9 @@ async function displayQuestion(){ //displays on view question.html
 
       for(const answer of answerInfo) {  //pulling info from each answer
         var abody = answer.body.replace(/<p>/g, "").replace(/<\/p>/g, " ")
+        console.log(abody)
+        console.log(answer.body)
+        console.log(answer)
         var author = answer.author
         var unformattedAuthor = answer.author
         console.log(author)
@@ -348,7 +354,7 @@ async function displayQuestion(){ //displays on view question.html
   var updatedViews = 0
   if (checkCookieExists(questionId) == false) { //checking cookies for views and updating
     setCookie(questionId)
-    updatedViews= questionList[0].views+1
+    updatedViews= /*questionList[0].views+1*/6
     var newRating = parseInt(questionList[0].rating)
     var answers= questionList[0].answers
     sendUpdate(questionId, answers, updatedViews, newRating) //sending update for cookies
@@ -424,8 +430,8 @@ async function answerArea(questionList, quill){
     const views = questionList[0].views
     const rating = questionList[0].rating
     const body = quill.root.innerHTML
-    console.log(String(quill.root.innerHTML))
-    console.log(String(quill.root.textContent))
+    console.log(quill.root.textContent)
+    quill.root.textContent = quill.root.textContent.replace(/\n/g, "<br>");
     const author = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser")
     document.querySelector(".answer-wrapper").innerHTML = 
     ``
@@ -729,7 +735,7 @@ function checkImageSize(quill) {
   const limitHeight = 720; // Maximum height
 
   const editor = quill.editor;
-  const images = editor.container.querySelectorAll('img');
+  const images = /*editor.container.querySelectorAll('img');*/[]
 
   images.forEach((img) => {
     const width = img.width;
