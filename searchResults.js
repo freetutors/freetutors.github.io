@@ -99,9 +99,12 @@ const subjects = [
   await index.addDocuments(questions)
   const search = await index.search(query);
 
+  console.log("hi")
   for (const hit of search.hits.reverse()) {
+  console.log(hit.id)
     for (const question of questions) {
       if (question.questionId == hit.id) {
+        console.log(question)
         const user = await getUser(question.author)
         const pfp = user.user[0].pfp
         var displayedImage = ""
