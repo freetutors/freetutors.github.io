@@ -54,7 +54,7 @@ const searchBar = document.querySelector('.search-bar');
     async function performLiveSearch(inputValue) {
       const search = await index.search(inputValue);
       possibleSearchResultContainer.innerHTML = ''
-      for (const searchResult of search.hits.reverse().slice(0, 5)) {
+      for (const searchResult of search.hits.slice(0, 5)) {
         possibleSearchResultContainer.innerHTML +=
         `
           <div class="possibleSearchResult">${searchResult.title}</div>
