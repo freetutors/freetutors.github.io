@@ -76,6 +76,9 @@
   width: 5px;
   background-color: var(--secondary-color);
 }
+.aboutUsText{
+  margin-left: calc(50vw - 30vw);
+}
 @media only screen and (max-width: 1400px){
    .menu {
 display: none;   
