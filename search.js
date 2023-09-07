@@ -53,6 +53,9 @@ const searchBar = document.querySelector('.search-bar');
 
     async function performLiveSearch(inputValue) {
       const search = await index.search(inputValue);
+      /*const docToRemove = await index.search("test")
+      let response = await index.deleteDocument(docToRemove)
+      console.log(response)*/
       possibleSearchResultContainer.innerHTML = ''
       for (const searchResult of search.hits.slice(0, 5)) {
         possibleSearchResultContainer.innerHTML +=
@@ -62,9 +65,10 @@ const searchBar = document.querySelector('.search-bar');
       }
     }
 
-    const index = client.index('questionListIndex3')
-    let response = await index.addDocuments(questions)
 
+
+    const index = client.index('questionListIndex3')
+    let response = await index.updateDocuments(questions)
 
     searchBar.addEventListener('input', (event) => {
         performLiveSearch(event.target.value);
