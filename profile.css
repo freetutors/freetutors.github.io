@@ -203,6 +203,10 @@ hr.pfp_line {
       font-size: 20px;
       color: white;
       cursor: pointer;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 30vw;
     }
 
     #text_box_question_content:hover {
