@@ -3,6 +3,20 @@ const apiUrlget = config.apiUrlget;
 const questionsList = document.querySelector(".questions_list")
 const apiUrlgetUser = config.apiUrlgetUser;
 
+AWS.config.update({
+  region: config.region,
+  accessKeyId: config.accessKet,
+  secretAccessKey: config.secretKey,
+});
+
+document.addEventListener('click', function(e) {
+  var clickedElement = (e.target)
+  if (clickedElement.className == "box text_box") {
+    const id = clickedElement.getAttribute('alt')
+    window.location = `viewQuestion?questionId=${id}`;
+  }
+}, false);
+
 const urlParams = new URLSearchParams(window.location.search)
 async function getUser(username){ //getting user info from dynamo
   const url = new URL(`${apiUrlgetUser}?username=${username}`);
@@ -39,61 +53,60 @@ function getTimeDifference(timestamp) {
         return `${seconds} second${seconds !== 1 ? 's' : ''} ago`;
     }
     }
-var query = urlParams.get('query')
 
-async function getAllQuestions() {
-  const questions = [];
-    const subjectQuestionList = await getQuestionListSubject("all");
-    for (const question of subjectQuestionList) {
-      questions.push(question);
-    }
-  return questions;
-  }
-
-async function getQuestionListSubject(subject) {
-  const url = new URL(`${apiUrlget}?subject=${subject}`);
-  const questionList = await fetch(url, {
-    mode: "cors",
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  }).then((response) => response.json());
-  return questionList.questionList;
-}
-
-const subjects = [
-  "chemistry",
-  "biology",
-  "physics",
-  "english",
-  "history",
-  "geography",
-  "foreign language",
-  "computer science",
-  "physical education",
-  "math",
-];
+var query = urlParams.get('query');
 
 (async () => {
-  const questions = await getAllQuestions();
-
     const client = new MeiliSearch({
         host: config.searchHost,
         apiKey: config.searchKey,
     });
 
   const index = client.index('questionListIndex3')
-  await index.addDocuments(questions)
   const search = await index.search(query);
 
-  for (const hit of search.hits) {
-    for (const question of questions) {
-      if (question.questionId == hit.id) {
-        console.log(question)
-        const user = await getUser(question.author)
-        const pfp = user.user[0].pfp
-        var displayedImage = ""
+  let idList = []
+  for (const id of search.hits) {
+    idList.push(id.id)
+  }
+
+  const dynamodb = new AWS.DynamoDB.DocumentClient();
+
+  var table = "Freetutor-Question";
+
+  const tableName = 'Freetutor-Question';
+  const itemIds = idList;
+  const params = {
+    RequestItems: {
+      [tableName]: {
+        Keys: itemIds.map(questionId => ({ questionId })),
+      },
+    },
+  };
+
+  dynamodb.batchGet(params, function(err, data) {
+      if (err) {
+          console.error("Unable to read item. Error JSON:", JSON.stringify(err,
+                  null, 2));
+      } else {
+          const items = data.Responses[tableName].map(item => item);
+
+          items.sort((a, b) => {
+            const indexA = idList.indexOf(a.questionId);
+            const indexB = idList.indexOf(b.questionId);
+
+            return indexA - indexB;
+          });
+
+          placeQuestionBoxes(items)
+      }
+  });
+
+async function placeQuestionBoxes(items) {
+  for (const question of items) {
+    const user = await getUser(question.author)
+    const pfp = user.user[0].pfp
+    var displayedImage = ""
         if (pfp == null){ //getting pfp, if pfp is none it will user default
           displayedImage = "placeholder_pfp.png"
         }
@@ -101,7 +114,7 @@ const subjects = [
           displayedImage = `data:image/png;base64,${pfp}`
         }
         questionsList.innerHTML +=
-          `<div class="box text_box">
+          `<div class="box text_box" alt="${question.questionId}">
              <img id="text_box_pfp" src="${displayedImage}">
              <div id="text_box_question_content">${question.title}</div>
              <div id="asked_by_line">asked by ${question.author}, ${getTimeDifference(question.timestamp)}</div>
@@ -111,18 +124,10 @@ const subjects = [
              <div id="question_stats_items">${question.views} views</div>
              <div id="question_stats_items">${question.rating} rating</div>
           </div>`
-      }
-
-      const questionBoxes = document.querySelectorAll(".box.text_box");
-
-        questionBoxes.forEach((box, index) => { //when click will go to view Question.html
-            box.addEventListener("click", function() {
-                const questionId = questions[index].questionId; // Retrieve the questionId
-                window.location = `viewQuestion?questionId=${questionId}`;
-            });
-        });
-    }
   }
+}
+
 })();
+
 
 
