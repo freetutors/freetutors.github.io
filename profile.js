@@ -28,7 +28,12 @@ async function showQuestionColumn(user){ //showing the questions the user asked
     for (const question of questionArray) {
       var title = question.title //getting question data
       var author = question.author
-      var answers = question.answers
+      if (!question.answersInfo){
+        var answers = 0
+
+      }else{
+          var answers = question.answersInfo.length
+      }
       var rating = question.rating
       var timeAgo = getTimeDifference(question.timestamp)
       var views = question.views
