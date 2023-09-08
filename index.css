@@ -259,6 +259,7 @@
       font-size: 20px;
       color: white;
       cursor: pointer;
+      max-width: 40vw;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis; /* Adds ellipsis for overflowed text */
