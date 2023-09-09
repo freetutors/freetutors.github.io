@@ -349,7 +349,7 @@ async function displayQuestion(){ //displays on view question.html
   var updatedViews = 0
   if (checkCookieExists(questionId) == false) { //checking cookies for views and updating
     setCookie(questionId)
-    updatedViews= /*questionList[0].views+1*/6
+    updatedViews= questionList[0].views+1
     var newRating = parseInt(questionList[0].rating)
     var answers= questionList[0].answers
     sendUpdate(questionId, answers, updatedViews, newRating) //sending update for cookies
