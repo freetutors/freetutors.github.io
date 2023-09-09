@@ -40,13 +40,17 @@
 }
 
 #text_box_question_content {
-  position: absolute;
-  top: 15px;
-  left: 77px;
-  font-size: 20px;
-  color: white;
-  cursor: pointer;
-}
+      position: absolute;
+      top: 15px;
+      left: 77px;
+      font-size: 20px;
+      color: white;
+      cursor: pointer;
+      max-width: 40vw;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis; /* Adds ellipsis for overflowed text */
+    }
 
 #text_box_question_content:hover {
     text-decoration: underline;
