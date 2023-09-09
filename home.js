@@ -8,7 +8,6 @@ const poolId =config.poolId //getting info from cognito
 const region = config.region
 const accessKey = config.accessKey
 const secretKey = config.secretKey
-
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }

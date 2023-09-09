@@ -13,7 +13,9 @@ async function getUser(username){ //pulling user info
   }).then(response => response.json());
   return user
 }
-
+window.onhashchange = function() {
+  location.reload()
+};
 
 if (username != null) { //if nothing in localStorage
   const user = await getUser(username)
