@@ -313,9 +313,7 @@ if (localUser !== null) {
       `
         <button id="sign_up_as_tutor_button">Sign up as tutor</button>
       `;
-    document.getElementById("sign_up_as_tutor_button").addEventListener("click", () =>{
-        alert("Please sign up to become a tutor.")
-    })
+
 }
 
 
