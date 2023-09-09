@@ -234,27 +234,7 @@ async function displayQuestion(){ //displays on view question.html
     var answers = question.answers
     var rating = question.rating
     var date = formatDate(question.timestamp)
-    // let icon //changing based on if someone is a tutor or not
-    // if (user.user[0].status =="tutor"){
-    //   icon = "trace.svg"
-    // }
-    // else if (user.user[0].status =="staff"){
-    //   icon = "image2vector.svg"
-    // }
-    // else {
-    //   icon = "Blank.svg"
-    // }
-    // if (!pfpsToGet.includes(author)) {
-    //   pfpsToGet.push(author);
-    // }
-    // const pfp = user.user[0].pfp //pulling pfp
-    // var displayedImage = ""
-    // if (pfp == null){
-    //   displayedImage = "placeholder_pfp.png" //if the user hasn't set one it will give this default one
-    // }
-    // else{
-    //   displayedImage = `data:image/png;base64,${pfp}`//pfp is saved as long base 64 so it can be saved without extra charge
-    // }
+
     document.getElementById("question-wrapper").innerHTML = //filling info in html class global_pfp squarifies image
     `
     <div class="title">${title}</div>
@@ -287,15 +267,6 @@ async function displayQuestion(){ //displays on view question.html
         var answerId = answer.answerId
         var rating = answer.rating
         var time = formatDate(answer.timestamp) //formating date
-        // const user = await getUser(author)
-        // const pfp = user.user[0].pfp
-        // var displayedImage = ""
-        // if (pfp == null){ //if author has no pfp it will give a defaul
-        //   displayedImage = "placeholder_pfp.png"
-        // }
-        // else{
-        //   displayedImage = `data:image/png;base64,${pfp}`
-        // }
         if (!pfpsToGet.includes(author)) {
           pfpsToGet.push(author);
         }
@@ -546,6 +517,17 @@ async function answerRating(answer, questionId){ //rating function
             setCookie("voted"+answerId, "no", 365)
             document.getElementById(`rating-value${answerId}`).innerText = newRating
           }
+          else if(downclick==true){ //if cancling upvote
+            console.log('ca')
+            document.getElementById("downvote"+answerId).style.borderTop = '15px solid white'
+            ratingUpdate = 1
+            upclick = false
+            downclick = false
+            newRating += parseInt(ratingUpdate)
+            updateAnswer(questionId, answerId, newRating)
+            setCookie("voted"+answerId, "no", 365)
+            document.getElementById(`rating-value${answerId}`).innerText = newRating
+          }
         resolve(ratingUpdate)
         }
         else { 
@@ -568,6 +550,17 @@ async function answerRating(answer, questionId){ //rating function
         else if(downclick == true && upclick == false) {
           document.getElementById("downvote"+answerId).style.borderTop = '15px solid white'
           ratingUpdate = 1
+          downclick = false
+          newRating += parseInt(ratingUpdate)
+          updateAnswer(questionId, answerId, newRating)
+          setCookie("voted"+answerId, "no", 365)
+          document.getElementById(`rating-value${answerId}`).innerText = newRating
+        }
+        else if(upclick==true){ //if cancling upvote
+          console.log('ca')
+          document.getElementById("upvote"+answerId).style.borderBottom = '15px solid white'
+          ratingUpdate = -1
+          upclick = false
           downclick = false
           newRating += parseInt(ratingUpdate)
           updateAnswer(questionId, answerId, newRating)
@@ -634,6 +627,15 @@ async function ratingButtons(questionList){ //same as above, but updates questio
           setCookie("voted"+questionId, "no", 365)
           document.querySelector(".rating-value").innerText = newRating
         }
+        else if(upclick==true){ //if cancling upvote
+          document.querySelector(".upvote").style.borderBottom = '15px solid white'
+          ratingUpdate = -1
+          upclick = false
+          newRating += parseInt(ratingUpdate)
+          sendUpdate(questionId, answers, updatedViews, newRating)
+          setCookie("voted"+questionId, "no", 365)
+          document.querySelector(".rating-value").innerText = newRating
+        }
         resolve(ratingUpdate)
       }
       else {
@@ -657,6 +659,15 @@ async function ratingButtons(questionList){ //same as above, but updates questio
             document.querySelector(".upvote").style.borderBottom = '15px solid white'
             ratingUpdate = -1
             upclick = false
+            newRating += parseInt(ratingUpdate)
+            sendUpdate(questionId, answers, updatedViews, newRating)
+            setCookie("voted"+questionId, "no", 365)
+            document.querySelector(".rating-value").innerText = newRating
+          }
+          else if(downclick==true){ //if cancling upvote
+            document.querySelector(".downvote").style.borderTop = '15px solid white'
+            ratingUpdate = 1
+            downclick = false
             newRating += parseInt(ratingUpdate)
             sendUpdate(questionId, answers, updatedViews, newRating)
             setCookie("voted"+questionId, "no", 365)
