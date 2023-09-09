@@ -168,10 +168,10 @@ function showQuestionColumn(subject) {
         }
             }
 
-        const questionBoxes = document.querySelectorAll(".box.text_box");
-
+        const questionBoxes = document.querySelectorAll("#text_box_question_content");
         questionBoxes.forEach((box, index) => { //when click will go to view Question.html
             box.addEventListener("click", function() {
+                console.log('a')
                 const questionId = questionList[index].questionId; // Retrieve the questionId
                 localStorage.setItem("QuestionID", JSON.stringify(questionId));
                 window.location = `viewQuestion?questionId=${questionId}`;
