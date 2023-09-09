@@ -126,12 +126,15 @@ async function placeQuestionBoxes(items) {
              <div id="asked_by_line">asked by ${question.author}, ${getTimeDifference(question.timestamp)}</div>
              <div id="answered_by_line">Be the first to answer!</div>
              <div class="question_stats">
-             <div id="question_stats_items">${answers}} Answers</div>
+             <div id="question_stats_items">${answers} Answers</div>
              <div id="question_stats_items">${question.views} views</div>
              <div id="question_stats_items">${question.rating} rating</div>
           </div>`
+          console.log(question)
+          console.log(question.answerInfo)
   }
 }
+
 
 })();
 
