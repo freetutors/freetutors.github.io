@@ -52,6 +52,7 @@ if (username == null) {
     `;
     signPopUp.style.display = 'block';
   });
+
 if (pageName = 'index.html') {
   while (document.querySelector("#sign_up_as_tutor_button") == null) {
         await sleep(10)
@@ -95,7 +96,11 @@ if (pageName == 'contactUs'){
 }
 } else {
   askQuestionButton.addEventListener('click', () => {
-    window.location.href = "createQuestion";
+    if (checkCookieExists('createCooldown')){
+      alert("Pleast wait 5 minutes before posting another question.")
+    }else{
+      window.location = "/createQuestion"
+    }
   });
   if (pageName = 'index.html') {
   while (document.querySelector("#sign_up_as_tutor_button") == null) {

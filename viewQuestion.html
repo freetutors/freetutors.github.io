@@ -112,7 +112,19 @@
   }
 
 </script>
+<script>
+  window.onload = function () {
+  document.addEventListener('copy', function (e) {
+      selectedText = window.getSelection().toString();
+      if (window.clipboardData) {
+          window.clipboardData.setData("Text", selectedText);
+      } else {
+          e.clipboardData.setData('text/plain', selectedText);
+      }
 
+      e.preventDefault();
+  });}
+</script>
 <!-- Add rest of content here -->
 <script type='module' src="loginsignupbuttons.js"></script>
 <script type="module" src="questionApiConnection.js"></script>

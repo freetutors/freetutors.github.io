@@ -274,7 +274,11 @@
   color: white;
   font-size: 15px;
   cursor: pointer;
+  overflow: hidden;
+  white-space: nowrap; /* Prevent text from wrapping */
+  text-overflow: ellipsis; /* Truncate with ellipsis */
 }
+
 
 .signPopUp{
   display: none;

@@ -99,9 +99,9 @@ var query = urlParams.get('query');
           });
 
           placeQuestionBoxes(items)
+          
       }
   });
-
 async function placeQuestionBoxes(items) {
   for (const question of items) {
     const user = await getUser(question.author)
@@ -119,17 +119,49 @@ async function placeQuestionBoxes(items) {
       }else{
           var answers = question.answersInfo.length
       }
-        questionsList.innerHTML +=
-          `<div class="box text_box" alt="${question.questionId}">
-             <img id="text_box_pfp" src="${displayedImage}">
-             <div id="text_box_question_content">${question.title}</div>
-             <div id="asked_by_line">asked by ${question.author}, ${getTimeDifference(question.timestamp)}</div>
-             <div id="answered_by_line">Be the first to answer!</div>
-             <div class="question_stats">
-             <div id="question_stats_items">${answers} Answers</div>
-             <div id="question_stats_items">${question.views} views</div>
-             <div id="question_stats_items">${question.rating} rating</div>
-          </div>`
+      var author = question.author
+      var unformattedAuthor = question.author      
+      author = author.replace(/\./g,"")
+      if (answers != 0){
+        questionsList.innerHTML += //sending html info
+        `<div class="box text_box">
+        <!-- pfp -->
+        <img id="global_pfp" class = "pfp${author}" src="${displayedImage}" alt="user_pfp" onclick="window.location='/profile?username=${unformattedAuthor}'">
+        <div id="text_box_question_content" onclick="window.location = '/viewQuestion?questionId=${question.questionId}'">${question.title}</div>
+        <div id="asked_by_line">asked by <a href="https://www.freetutors.net/profile?username=${unformattedAuthor}">${author}, ${getTimeDifference(question.timestamp)}</a></div>
+        <div id="answered_by_line">Add to the conversation!</div>
+        <div class="question_stats">
+          <div id="question_stats_items">${answers} Answers</div>
+          <div id="question_stats_items">${question.views} views</div>
+          <div id="question_stats_items">${question.rating} rating</div>
+        </div>`
+          }
+          else{
+              questionsList.innerHTML += //sending html info
+              `<div class="box text_box">
+      <!-- pfp -->
+      <img id="global_pfp" class = "pfp${author}" src="${displayedImage}" alt="user_pfp" onclick="window.location='/profile?username=${unformattedAuthor}'">
+      <div id="text_box_question_content" onclick="window.location = '/viewQuestion?questionId=${question.questionId}&title=${title}'">${question.title}</div>
+      <div id="asked_by_line">asked by <a href="https://www.freetutors.net/profile?username=${unformattedAuthor}">${author}, ${getTimeDifference(question.timestamp)}</a></div>
+      <div id="answered_by_line">Be the first to answer!</div>
+      <div class="question_stats">
+        <div id="question_stats_items">${answers} Answers</div>
+        <div id="question_stats_items">${question.views} views</div>
+        <div id="question_stats_items">${question.rating} rating</div>
+      </div>`
+      }
+
+        // questionsList.innerHTML +=
+        //   `<div class="box text_box" alt="${question.questionId}">
+        //      <img id="text_box_pfp" src="${displayedImage}">
+        //      <div id="text_box_question_content">${question.title}</div>
+        //      <div id="asked_by_line">asked by ${question.author}, ${getTimeDifference(question.timestamp)}</div>
+        //      <div id="answered_by_line">Be the first to answer!</div>
+        //      <div class="question_stats">
+        //      <div id="question_stats_items">${answers} Answers</div>
+        //      <div id="question_stats_items">${question.views} views</div>
+        //      <div id="question_stats_items">${question.rating} rating</div>
+        //   </div>`
           console.log(question)
           console.log(question.answerInfo)
   }
