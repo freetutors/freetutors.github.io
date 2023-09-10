@@ -131,6 +131,19 @@
 
 
 </script>
+<script>
+  window.onload = function () {
+  document.addEventListener('copy', function (e) {
+      selectedText = window.getSelection().toString();
+      if (window.clipboardData) {
+          window.clipboardData.setData("Text", selectedText);
+      } else {
+          e.clipboardData.setData('text/plain', selectedText);
+      }
+
+      e.preventDefault();
+  });}
+</script>
 <script src="https://sdk.amazonaws.com/js/aws-sdk-2.964.0.min.js"></script>
 <script src="https://unpkg.com/bowser@2.7.0/es5.js"></script>
 <script type="module" src="browserAndPageSizeChanges.js"></script>
