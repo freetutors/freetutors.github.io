@@ -82,7 +82,7 @@ async function showQuestionColumn(user){ //showing the questions the user asked
         box.addEventListener("click", function () {
           const questionId = questionList[index].questionId; // Retrieve the questionId
           localStorage.setItem("QuestionID", JSON.stringify(questionId));
-          window.location = `viewQuestion?questionId=${questionId}`;
+          window.location = `viewQuestion?questionId=${questionId}&title=${title}`;
         });
       });
     };
