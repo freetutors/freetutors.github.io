@@ -155,9 +155,9 @@ function showQuestionColumn(subject) {
                 document.querySelector(".questions_list").innerHTML += //sending html info
                 `<div class="box text_box">
         <!-- pfp -->
-        <img id="global_pfp" class = "pfp${author}" src="/placeholder_pfp.png" alt="user_pfp">
+        <img id="global_pfp" class = "pfp${author}" src="/placeholder_pfp.png" alt="user_pfp" onclick="window.location='/profile?username=${unformattedAuthor}'">
         <div id="text_box_question_content">${title}</div>
-        <div id="asked_by_line">asked by <a href="https://www.freetutors.net/profile?username=${unformattedAuthor}">${author}</a>, ${timeAgo}</div>
+        <div id="asked_by_line">asked by <a href="https://www.freetutors.net/profile?username=${unformattedAuthor}">${author}, ${timeAgo}</a></div>
         <div id="answered_by_line">Be the first to answer!</div>
         <div class="question_stats">
           <div id="question_stats_items">${answers} Answers</div>
@@ -313,9 +313,7 @@ if (localUser !== null) {
       `
         <button id="sign_up_as_tutor_button">Sign up as tutor</button>
       `;
-    document.getElementById("sign_up_as_tutor_button").addEventListener("click", () =>{
-        alert("Please sign up to become a tutor.")
-    })
+
 }
 
 
