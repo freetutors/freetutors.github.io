@@ -99,9 +99,9 @@ var query = urlParams.get('query');
           });
 
           placeQuestionBoxes(items)
+          
       }
   });
-
 async function placeQuestionBoxes(items) {
   for (const question of items) {
     const user = await getUser(question.author)
@@ -127,7 +127,7 @@ async function placeQuestionBoxes(items) {
               `<div class="box text_box" alt="${question.questionId}">
       <!-- pfp -->
       <img id="global_pfp" class = "pfp${question.author}" src="${displayedImage}" alt="user_pfp" onclick="window.location='/profile?username=${unformattedAuthor}'">
-      <div id="text_box_question_content">${question.title}</div>
+      <div id="text_box_question_content" onclick="window.location = '/viewQuestion?questionId=${question.questionId}'";${question.title}</div>
       <div id="asked_by_line">asked by <a href="https://www.freetutors.net/profile?username=${unformattedAuthor}">${author}, ${getTimeDifference(question.timestamp)}</a></div>
       <div id="answered_by_line">Add to the conversation!</div>
       <div class="question_stats">
@@ -141,7 +141,7 @@ async function placeQuestionBoxes(items) {
               `<div class="box text_box">
       <!-- pfp -->
       <img id="global_pfp" class = "pfp${author}" src="${displayedImage}" alt="user_pfp" onclick="window.location='/profile?username=${unformattedAuthor}'">
-      <div id="text_box_question_content">${question.title}</div>
+      <div id="text_box_question_content" onclick="window.location = '/viewQuestion?questionId=${question.questionId}'">${question.title}</div>
       <div id="asked_by_line">asked by <a href="https://www.freetutors.net/profile?username=${unformattedAuthor}">${author}, ${getTimeDifference(question.timestamp)}</a></div>
       <div id="answered_by_line">Be the first to answer!</div>
       <div class="question_stats">
@@ -150,7 +150,7 @@ async function placeQuestionBoxes(items) {
         <div id="question_stats_items">${question.rating} rating</div>
       </div>`
       }
-    
+
         // questionsList.innerHTML +=
         //   `<div class="box text_box" alt="${question.questionId}">
         //      <img id="text_box_pfp" src="${displayedImage}">
