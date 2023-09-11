@@ -7,19 +7,41 @@
    --border-color: #474b4eff;
    --text-color:white;
    --ask-question-button: #2c74b3ff;
-   --question_list_width: 1000px;
    --translate_len: -15px;
 }
 .home-box{
   display: flex;
 }
 .questions{
-  margin-left: 50px;
+  margin-left: 70px;
+  max-height: calc(100vh - 142.5px);
+  width: 60%
 }
-.right-box{
+.left-box{
   display: flex;
   flex-direction: column; /* Stack the elements vertically */
   align-items: left; /* Center the elements horizontally */
+}
+.topQuestionsBox{
+  margin-top:0px;
+}
+.top-question-header{
+  color: white;
+  text-align: center;
+  font-size: 14pt;
+  padding-left: 7px;
+  padding-right: 7px;
+  padding-top: 7px;
+  padding-bottom: 2px;
+  height: 30px;
+  background-color: var(--secondary-color);
+  border: 1.5px solid var(--border-color);
+  margin-left: 0px;
+  border-radius: 5px;
+}
+.top-question{
+  width: 23vw;
+  height:500px
 }
  .box {/*setting generic box details*/
    background-color: var(--primary-color);
@@ -50,7 +72,6 @@
   padding-right: 7px;
   padding-top: 2px;
   padding-bottom: 2px;
-  width: calc(var(--question_list_width) - 15px);
   height: 30px;
   margin-right: 215px;
   background-color: var(--text-box-bar-color);
@@ -230,8 +251,6 @@
 .questions_list {/*scroll area with questions. It is invisible*/
        overflow-y: scroll;
        overflow-x: hidden;
-       max-height: calc(100vh - 142.5px);
-       width: var(--question_list_width);
        margin: auto;
        margin-top: 15px;
        transform: translateX(var(--translate_len));
