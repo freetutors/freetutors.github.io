@@ -10,7 +10,17 @@
    --question_list_width: 1000px;
    --translate_len: -15px;
 }
-
+.home-box{
+  display: flex;
+}
+.questions{
+  margin-left: 50px;
+}
+.right-box{
+  display: flex;
+  flex-direction: column; /* Stack the elements vertically */
+  align-items: left; /* Center the elements horizontally */
+}
  .box {/*setting generic box details*/
    background-color: var(--primary-color);
    border-radius: 22px;
@@ -49,6 +59,7 @@
   margin-top: 15px;
   transform: translateX(var(--translate_len));
   display: flex;
+  margin-left: 0;
 }
 .subject-list {
   z-index: 10;
@@ -127,14 +138,14 @@
 }
 
    .important_box {/*sub class of box*/
-     position: absolute;
      display: flex;
      flex-direction: column;
      align-items: center;
      width: 165px;
      padding-bottom: 17px;
-     margin-top: -37px;
-     left: calc(50% + var(--question_list_width)/2 + 35px);
+     margin-top: 0;
+     margin-left:60px;
+     /* left: calc(50% + var(--question_list_width)/2 + 35px); */
      background-color: var(--secondary-color);
      transform: translateX(calc(var(--translate_len) - 2px));
    }
@@ -225,7 +236,8 @@
        margin-top: 15px;
        transform: translateX(var(--translate_len));
        scrollbar-color: var(--text-box-bar-color) var(--background-color);
-    }
+       margin-left: 0;
+      }
 
     .questions_list::-webkit-scrollbar {/*custom scroll bar width*/
        width: 13px; /* Adjust the width as needed */
@@ -306,7 +318,6 @@
 
 .menu {
   list-style-type: none;
-  position: absolute;
   cursor: pointer;
   padding-left: -2px;
   left: -13px;
@@ -396,15 +407,15 @@
 
 
 @media only screen and (max-width: 1400px) {
-
+  .questions{
+    width: calc(100%);
+   }
    .question_header {
         width: calc(100% - 410px);
-        margin-left: 200px;
    }
 
   .questions_list {
         width: calc(100% - 400px);
-        margin-left: 200px;
   }
 
    .menu {
@@ -412,7 +423,7 @@
    }
 
    .important_box {
-     left: calc(100% - 165px);
+width: 155px;
    }
 
    .arrows {
@@ -427,22 +438,21 @@
 @media only screen and (max-width: 1000px) {
 
   .important_box {
-     display: none;
-   }
-
+    width: 155px;
+       }
    .menu {
      top: 43px;
      left: -27px;
    }
-
+   .questions{
+    width: calc(100%)
+   }
    .question_header {
         width: calc(100% - 235px);
-        margin-right: 20px;
  }
 
   .questions_list {
         width: calc(100% - 225px);
-        margin-right: 20px;
     }
 
   .arrows {
@@ -458,15 +468,18 @@
   .menu {
     display: none;
   }
-
+  .important_box {
+    display: none;
+  }
+  .questions{
+    width: calc(100% - 60px);
+   }
  .question_header {
      width: calc(100% - 60px);
-     margin-left: 40px;
  }
 
   .questions_list {
     width: calc(100% - 50px);
-    margin-left: 40px;
   }
 
   .arrows {
