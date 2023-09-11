@@ -60,13 +60,21 @@
 #uploadBtn{
   display: none;
   position: absolute;
-  height: fit-content;
-  width: fit-content;
+  /* height: fit-content;
+  width: fit-content; */
   z-index: 3;
-  font-size: 7px;
+  /* padding-top:46px;
+  padding-bottom:46px;
+  padding-left: 5px;
+  padding-right: 5px; */
+  border-radius: 50%;
+  font-size: 8px;
   inset: 0;
-  margin: auto;
-  margin-top: 45px;
+  text-align: center;
+  width: 90px;
+  height: 90px;
+  padding: 5px;
+  padding-top: 45px;
   color: white;
   cursor: pointer;
 }

@@ -173,7 +173,7 @@ function showQuestionColumn(subject) {
                 console.log('a')
                 const questionId = questionList[index].questionId; // Retrieve the questionId
                 localStorage.setItem("QuestionID", JSON.stringify(questionId));
-                window.location = `viewQuestion?questionId=${questionId}`;
+                window.location = `viewQuestion?questionId=${questionId}&title=${title}`;
             });
         });
         for (const i in pfpsToGet){
