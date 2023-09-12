@@ -53,12 +53,12 @@ async function showQuestionColumn(user){ //showing the questions the user asked
       <!-- pfp -->
       <img id="global_pfp" class = "pfp${author}" src="${displayedImage}" alt="user_pfp" onclick="window.location='/profile?username=${unformattedAuthor}'">
       <div id="text_box_question_content">${title}</div>
-      <div id="asked_by_line">asked by <a href="https://www.freetutors.net/profile?username=${unformattedAuthor}">${author}, ${timeAgo}</a></div>
+      <div id="asked_by_line"><a href="https://www.freetutors.net/profile?username=${unformattedAuthor}">asked by ${author}, ${timeAgo}</a></div>
       <div id="answered_by_line">Add to the conversation!</div>
       <div class="question_stats">
         <div id="question_stats_items">${answers} Answers</div>
-        <div id="question_stats_items">${views} views</div>
-        <div id="question_stats_items">${rating} rating</div>
+        <div id="question_stats_items">${views} Views</div>
+        <div id="question_stats_items">${rating} Rating</div>
       </div>`
           }
           else{
@@ -67,12 +67,12 @@ async function showQuestionColumn(user){ //showing the questions the user asked
       <!-- pfp -->
       <img id="global_pfp" class = "pfp${author}" src="${displayedImage}" alt="user_pfp" onclick="window.location='/profile?username=${unformattedAuthor}'">
       <div id="text_box_question_content">${title}</div>
-      <div id="asked_by_line">asked by <a href="https://www.freetutors.net/profile?username=${unformattedAuthor}">${author}, ${timeAgo}</a></div>
+      <div id="asked_by_line"><a href="https://www.freetutors.net/profile?username=${unformattedAuthor}">asked by ${author}, ${timeAgo}</a></div>
       <div id="answered_by_line">Be the first to answer!</div>
       <div class="question_stats">
         <div id="question_stats_items">${answers} Answers</div>
-        <div id="question_stats_items">${views} views</div>
-        <div id="question_stats_items">${rating} rating</div>
+        <div id="question_stats_items">${views} Views</div>
+        <div id="question_stats_items">${rating} Rating</div>
       </div>`
       }
     }

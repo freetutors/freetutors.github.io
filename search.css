@@ -52,9 +52,6 @@
       text-overflow: ellipsis; /* Adds ellipsis for overflowed text */
     }
 
-#text_box_question_content:hover {
-    text-decoration: underline;
-}
 
 #asked_by_line {
     position: absolute;
@@ -62,6 +59,11 @@
     left: 77px;
     color: white;
     font-size: 13px;
+}
+
+#asked_by_line:hover {
+    text-decoration: underline;
+    cursor: pointer
 }
 
 #answered_by_line {
@@ -98,7 +100,19 @@
    margin-top: 15px;
    transform: translateX(var(--translate_len));
 }
+#text_box_question_content:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--secondary-color);
+  /* text-underline-offset: 0.2em; Adjust this value to control the distance */
+  text-decoration-thickness: 3px;
+}
 
+#asked_by_line:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--secondary-color);
+  text-underline-offset: 0.2em; /* Adjust this value to control the distance */
+  text-decoration-thickness: 3px;
+}
 @media only screen and (max-width: 1400px) {
 
    .question_header {
