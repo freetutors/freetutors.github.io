@@ -132,8 +132,8 @@ async function placeQuestionBoxes(items) {
         <div id="answered_by_line">Add to the conversation!</div>
         <div class="question_stats">
           <div id="question_stats_items">${answers} Answers</div>
-          <div id="question_stats_items">${question.views} views</div>
-          <div id="question_stats_items">${question.rating} rating</div>
+          <div id="question_stats_items">${question.views} Views</div>
+          <div id="question_stats_items">${question.rating} Rating</div>
         </div>`
           }
           else{
@@ -146,8 +146,8 @@ async function placeQuestionBoxes(items) {
       <div id="answered_by_line">Be the first to answer!</div>
       <div class="question_stats">
         <div id="question_stats_items">${answers} Answers</div>
-        <div id="question_stats_items">${question.views} views</div>
-        <div id="question_stats_items">${question.rating} rating</div>
+        <div id="question_stats_items">${question.views} Views</div>
+        <div id="question_stats_items">${question.rating} Rating</div>
       </div>`
       }
 

@@ -147,8 +147,8 @@ function showQuestionColumn(subject) {
         <div id="answered_by_line">Add to the conversation!</div>
         <div class="question_stats">
           <div id="question_stats_items">${answers} Answers</div>
-          <div id="question_stats_items">${views} views</div>
-          <div id="question_stats_items">${rating} rating</div>
+          <div id="question_stats_items">${views} Views</div>
+          <div id="question_stats_items">${rating} Rating</div>
         </div>`
             }
             else{
@@ -161,8 +161,8 @@ function showQuestionColumn(subject) {
         <div id="answered_by_line">Be the first to answer!</div>
         <div class="question_stats">
           <div id="question_stats_items">${answers} Answers</div>
-          <div id="question_stats_items">${views} views</div>
-          <div id="question_stats_items">${rating} rating</div>
+          <div id="question_stats_items">${views} Views</div>
+          <div id="question_stats_items">${rating} Rating</div>
         </div>`
         }
             }
