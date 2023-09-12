@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z9E3QD9J4Y"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Z9E3QD9J4Y');
+
+  </script>
+  <title>Free Tutors - Contact Us</title>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-T474C4DT');
+  </script>
+  <!-- End Google Tag Manager -->
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HYTQ49YRWP"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-HYTQ49YRWP');
+
+  </script>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href='https://fonts.googleapis.com/css?family=Lexend|Lexend:400,700' rel='stylesheet'>
+  <link rel="stylesheet" href="contactUs.css"/>
+  <link rel="stylesheet" href="root.css"/>
+
+  <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+  <script type="module" src='config.js'></script>
+  <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1301.0.min.js"></script>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript>
+  <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T474C4DT"
+          height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
+<div id="topbar">
+  <img id="logo" src="Logo.svg" alt="Logo" onclick="window.location='/'">
+  <input type="search" class="search-bar" placeholder="Search..."
+         onkeydown="if (event.keyCode == 13) handleSearchTrigger()">
+  <button class="button ask-question-button" onclick="window.location='/createQuestion'">Ask Question</button>
+  <div class="possibleSearchResultContainer"></div>
+  <div id="loginSignupArea"></div>
+</div>
+<div class="menu"><!--nav area-->
+  <ul>
+    <li class="menu_item" onclick="window.location='/'">Home</li>
+    <li class="menu_item" onclick="window.location='ourTeam'">About Us</li>
+    <li class="on-page" onclick="window.location='contactUs'">Contact Us</li>
+    <!-- <li class="menu_item" onclick="window.location='suggestions'">Suggestions</li> -->
+    <li class="menu_item" onclick="window.location='help'">Help</li>
+  </ul>
+</div>
+<h1>Refer Your Friends</h1>
+
+  </div>
+</div>
+
+  <!DOCTYPE html>
+<html>
+<head>
+  <title>Refer Your Friends</title>
+</head>
+
+<!-- Referral Box -->
+<div id="referralBox">
+  <h2>Refer your friends and earn up to 5 volunteer hours!</h2>
+  <h3>Each user will earn you 0.5 volunteer hours. For more information, see the Help section.</h3>
+  <p>Generate your referral link:</p>
+  <input type="text" id="referralLink" readonly>
+  <button onclick="generateReferralLink()">Generate</button>
+  
+  <!-- Button to copy the referral code -->
+  <button onclick="copyToClipboard()">Copy Code</button>
+</div>
+
+<!-- JavaScript to generate the referral link and copy to clipboard -->
+<script>
+  function generateReferralLink() {
+      // To create the referral link
+      const referralCode = Math.random().toString(36).substring(7);
+      const referralLink = `https://example.com/referral?code=${referralCode}`;
+      document.getElementById('referralLink').value = referralLink;
+  }
+
+  function copyToClipboard() {
+      // To be able to copy the link
+      const referralLink = document.getElementById('referralLink');
+      referralLink.select();
+      document.execCommand('copy');
+      
+      // Replace the "Generate" button text with "Referral Code Copied"
+      document.querySelector('#referralBox button').innerText = 'Referral Code Copied';
+  }
+</script>
+
+</html>
+
+<!-- for dropdown -->
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var dropdown = document.querySelector(".dropdown");
+        var dropdownContent = document.querySelector(".dropdown-content");
+        var dropbtn = document.querySelector(".dropbtn");
+
+        dropbtn.addEventListener("click", function() {
+          dropdownContent.style.display = dropdownContent.style.display === "block" ? "none" : "block"
+        });
+
+        dropdownContent.addEventListener("click", function(event) {
+          if (event.target.classList.contains("subject")) {
+            dropbtn.textContent = event.target.textContent;
+            dropdownContent.style.display = "none"; // Always hide content after selecting an item
+          }
+        });
+      });
+
+
+
+</script>
+
+<script>
+  function goBack() {
+    if (document.referrer.includes(window.location.hostname)) {
+      window.history.back();
+    } else {
+      alert("Sorry, the previous page is not within this website.");
+    }
+  }
+
+</script>
+
+<script type="module" src="questionApiConnection.js"></script>
+<script type="module" src="loginsignupbuttons.js"></script>
+<script src="https://unpkg.com/bowser@2.7.0/es5.js"></script>
+<script src="browserAndPageSizeChanges.js"></script>
+<script src="signin/signPopup.js"></script>
+<script type="module" src="emails.js"></script>
+<script type="module" src="search.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/meilisearch@latest/dist/bundles/meilisearch.umd.js" defer></script>
+<script type="module" src="inbox.js" defer></script>
+</body>
+</html>
