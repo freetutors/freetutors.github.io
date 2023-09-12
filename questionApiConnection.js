@@ -292,6 +292,7 @@ async function displayQuestion(){ //displays on view question.html
             <div class="downvote" id="downvote${answerId}"></div>
           </div>
         </div>
+        <hr class="questionSep">
           `
         )
         answerRating(answer, questionId)
