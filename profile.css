@@ -78,6 +78,13 @@
   color: white;
   cursor: pointer;
 }
+
+#asked_by_line:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--secondary-color);
+  text-underline-offset: 0.2em; /* Adjust this value to control the distance */
+  text-decoration-thickness: 3px;
+}
 #file{
   display: none;
   size: 0px;
@@ -218,8 +225,12 @@ hr.pfp_line {
     }
 
     #text_box_question_content:hover {
-        text-decoration: underline;
+      text-decoration: underline;
+      text-decoration-color: var(--secondary-color);
+      /* text-underline-offset: 0.2em; Adjust this value to control the distance */
+      text-decoration-thickness: 3px;
     }
+
 
     #asked_by_line {
         position: absolute;

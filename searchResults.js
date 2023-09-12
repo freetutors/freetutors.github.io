@@ -136,7 +136,7 @@ var query = urlParams.get('query');
         <!-- pfp -->
         <img id="global_pfp" class = "pfp${author}" src="${displayedImage}" alt="user_pfp" onclick="window.location='/profile?username=${unformattedAuthor}'">
         <div id="text_box_question_content" onclick="window.location = '/viewQuestion?questionId=${question.questionId}'">${question.title}</div>
-        <div id="asked_by_line">asked by <a href="https://www.freetutors.net/profile?username=${unformattedAuthor}">${author}, ${getTimeDifference(question.timestamp)}</a></div>
+        <div id="asked_by_line"><a href="https://www.freetutors.net/profile?username=${unformattedAuthor}">asked by ${author}, ${getTimeDifference(question.timestamp)}</a></div>
         <div id="answered_by_line">Add to the conversation!</div>
         <div class="question_stats">
           <div id="question_stats_items">${answers} Answers</div>
@@ -149,8 +149,8 @@ var query = urlParams.get('query');
               `<div class="box text_box">
       <!-- pfp -->
       <img id="global_pfp" class = "pfp${author}" src="${displayedImage}" alt="user_pfp" onclick="window.location='/profile?username=${unformattedAuthor}'">
-      <div id="text_box_question_content" onclick="window.location = '/viewQuestion?questionId=${question.questionId}&title=${title}'">${question.title}</div>
-      <div id="asked_by_line">asked by <a href="https://www.freetutors.net/profile?username=${unformattedAuthor}">${author}, ${getTimeDifference(question.timestamp)}</a></div>
+      <div id="text_box_question_content" onclick="window.location = '/viewQuestion?questionId=${question.questionId}&title=${question.title}'">${question.title}</div>
+      <div id="asked_by_line"><a href="https://www.freetutors.net/profile?username=${unformattedAuthor}">asked by ${author}, ${getTimeDifference(question.timestamp)}</a></div>
       <div id="answered_by_line">Be the first to answer!</div>
       <div class="question_stats">
         <div id="question_stats_items">${answers} Answers</div>

@@ -272,6 +272,12 @@
       text-decoration-thickness: 3px;
     }
 
+    #asked_by_line:hover {
+      text-decoration: underline;
+      text-decoration-color: var(--secondary-color);
+      text-underline-offset: 0.2em; /* Adjust this value to control the distance */
+      text-decoration-thickness: 3px;
+   }
     #asked_by_line {
         position: absolute;
         top: 47px;
@@ -280,12 +286,6 @@
         font-size: 13px;
     }
 
-   #asked_by_line:hover {
-      text-decoration: underline;
-      text-decoration-color: var(--secondary-color);
-      text-underline-offset: 0.2em; /* Adjust this value to control the distance */
-      text-decoration-thickness: 3px;
-   }
 
     #answered_by_line {
         color: white;
