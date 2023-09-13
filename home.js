@@ -48,7 +48,18 @@ async function getQuestionList(subject) {
     const data = await response.json();
     return data.questionList;
 }
-
+async function getQuestionListViews(views) {
+    const url = new URL(`${apiUrlget}?views=${views}`);
+    const response = await fetch(url, {
+        mode: "cors",
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
+    const data = await response.json();
+    return data.questionList;
+}
 // Fetch user information using username
 async function getUser(username) {
     const url = new URL(`${apiUrlgetUser}?username=${username}`);
@@ -105,7 +116,22 @@ function addQuestionClickListeners(questionList) {
         }
     });
 }
-
+async function topQuestions(){
+    const questions = await getQuestionListViews("top")
+    questions.sort((a, b) => b.views - a.views);
+    const top5Questions = questions.slice(0, 5);
+    for (const i in top5Questions){
+        const question = questions[i]
+        console.log(question)
+        document.querySelector(".top-questions-box").innerHTML += 
+            `
+            <div class = "top-question">
+            <p class="tp-title" onclick = "window.location = '/viewQuestion?questionId=${question.questionId}&title=${question.title}'">${question.title}</p>
+            <p class="tp-info">${question.answers} Answers &#8226 ${question.views} Views &#8226 ${question.rating} Rating </p>
+          </div>`
+        
+    }
+}
 function showQuestionColumn(subject) {
     (async () => {
         // const questionList = await getQuestionList(subject);
@@ -393,3 +419,4 @@ if (localUser !== null) {
     animate(numUsers, document.querySelector(".important_box_num3"), 'important_box_num3_digit')
 
 })();
+await topQuestions()
