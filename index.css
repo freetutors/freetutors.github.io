@@ -322,7 +322,7 @@
         text-decoration: underline;
               text-decoration-color: var(--secondary-color);
       /* text-underline-offset: 3px;  */
-      text-decoration-thickness: 3px;
+      text-decoration-thickness: 2px;
     }
 
     #asked_by_line {
@@ -337,7 +337,7 @@
       text-decoration: underline;
             text-decoration-color: var(--secondary-color);
       text-underline-offset: 0.3em; 
-      text-decoration-thickness: 3px;
+      text-decoration-thickness: 2px;
    }
 
     #answered_by_line {
