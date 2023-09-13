@@ -25,8 +25,9 @@
 .right-box{
   margin-top:20px;
   color: white;
-  width: 15vw;
-  margin-left: 5vw;
+  width: 100%;
+  margin-left: 6vw;
+  margin-right: 6vw;
 }
 .top-question-header{
   color: white;
@@ -214,7 +215,7 @@
 .important_box_num2,
 .important_box_num3 {
       display: flex;
-      font-size: 25px;
+      font-size: 30px;
       color: white;
       position: relative;
       text-align: center;
@@ -261,7 +262,7 @@
 
   #important_box_text {
     /* display: flex; */
-        font-size: 20px;
+        font-size: 1.5em;
         color: white;
         position: relative;
         text-align: center;
@@ -336,7 +337,7 @@
    #asked_by_line:hover {
       text-decoration: underline;
             text-decoration-color: var(--secondary-color);
-      text-underline-offset: 0.3em; 
+      text-underline-offset: 0.15em; 
       text-decoration-thickness: 2px;
    }
 
