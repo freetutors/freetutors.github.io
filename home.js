@@ -1,6 +1,6 @@
 // Import configuration from external file
 import config from "./config.js";
-
+const qotwId = '0b2ca0c0-8477-03ba-4233-5e9c0fbf5717' //put the id of the weekly question
 // Extract API URLs from configuration
 const apiUrlget = config.apiUrlget;
 const apiUrlgetUser = config.apiUrlgetUser;
@@ -34,6 +34,17 @@ AWS.config.region = region; //telling what region to search
 const questionBoxContainer = document.querySelector(".questions_list");
 const questionHeader = document.querySelector('.question_header');
 
+async function getQuestionListId(questionId) { //pulls question by id
+  const url = new URL(`${apiUrlget}?questionId=${questionId}`); //sending info through the url because a get call does not support body
+  const questionList = await fetch(url,  {
+    mode: "cors",
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then(response => response.json());
+  return questionList.questionList
+}
 // Fetch question list for a given subject
 async function getQuestionList(subject) {
     const url = new URL(`${apiUrlget}?subject=${subject}`);
@@ -47,7 +58,18 @@ async function getQuestionList(subject) {
     const data = await response.json();
     return data.questionList;
 }
-
+async function getQuestionListViews(views) {
+    const url = new URL(`${apiUrlget}?views=${views}`);
+    const response = await fetch(url, {
+        mode: "cors",
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
+    const data = await response.json();
+    return data.questionList;
+}
 // Fetch user information using username
 async function getUser(username) {
     const url = new URL(`${apiUrlgetUser}?username=${username}`);
@@ -104,7 +126,29 @@ function addQuestionClickListeners(questionList) {
         }
     });
 }
-
+async function topQuestions(){
+    var qotw = await getQuestionListId(qotwId) //question of the week = qotw
+    qotw = qotw[0]
+    console.log(qotw)
+    document.querySelector(".top-questions-box").innerHTML += //making top question the qotw
+    `<div class = "top-question qotw" onclick = "window.location = '/viewQuestion?questionId=${qotw.questionId}&title=${qotw.title}'">
+    <p class="tp-title" >${qotw.title}</p>
+    <p class="tp-info">${qotw.answers} Answers &#8226 ${qotw.views} Views &#8226 ${qotw.rating} Rating </p>
+  </div>`
+    const questions = await getQuestionListViews("top") //getting all questions
+    questions.sort((a, b) => b.views - a.views); //getting top five views b/c bakcend cant do this for some reason
+    const top5Questions = questions.slice(0, 5);
+    for (const i in top5Questions){
+        const question = questions[i] //for each question it'll add to the section
+        document.querySelector(".top-questions-box").innerHTML += 
+            `
+            <div class = "top-question"  onclick = "window.location = '/viewQuestion?questionId=${question.questionId}&title=${question.title}'">
+            <p class="tp-title">${question.title}</p>
+            <p class="tp-info">${question.answers} Answers &#8226 ${question.views} Views &#8226 ${question.rating} Rating </p>
+          </div>`
+        
+    }
+}
 function showQuestionColumn(subject) {
     (async () => {
         // const questionList = await getQuestionList(subject);
@@ -390,3 +434,4 @@ if (localUser !== null) {
     animate(numUsers, document.querySelector(".important_box_num3"), 'important_box_num3_digit')
 
 })();
+await topQuestions()

@@ -35,33 +35,57 @@
   <div id="loginSignupArea"></div>
 </div>
 
-<div class="menu">
-  <ul>
-    <li class="on-page" onclick="window.location='/'">Home</li>
-    <li class="menu_item" onclick="window.location='ourTeam'">About Us</li>
-    <li class="menu_item" onclick="window.location='contactUs'">Contact Us</li>
-    <li class="menu_item" onclick="window.location='help'">Help</li>
-  </ul>
+
+<div class = "home-box">
+  <div class = "left-box">
+    <div class="menu">
+      <ul>
+        <li class="on-page" onclick="window.location='/'">Home</li>
+        <li class="menu_item" onclick="window.location='ourTeam'">About Us</li>
+        <li class="menu_item" onclick="window.location='contactUs'">Contact Us</li>
+        <li class="menu_item" onclick="window.location='help'">Help</li>
+      </ul>
+    </div>
+  </div>
+  <div class = "questions">
+    <div class="question_header">
+      <div id="arrow-left"></div>
+      <ul class="subject-list"></ul>
+      <div id="arrow-right"></div>
+    </div>
+    
+    <div class="questions_list questions_list_profile"></div>
+    <div class="signPopUp"></div>
+  </div>
+  <div class = "right-box">
+    <div id="tutorSignUp" class="box important_box">
+      <div id="important_box_text">Total Site Questions:<div class="important_box_num1"></div></div>
+      <div id="important_box_text">Total Site Answers:<div class="important_box_num2"></div></div>
+      <div id="important_box_text">Users: <div class="important_box_num3"></div> </div>
+    </div>
+    <div class = "top-questions-box">
+      <p class= "top-question-header">Top Questions:</p>
+      
+      <!-- <div class = "top-question">
+        <p class="tp-title"> How do I do smth fun?</p>
+        <p class="tp-info">4 Answers &#8226 28 Views &#8226 3 Rating </p>
+      </div>
+      <div class = "top-question">
+        <p class="tp-title"> How do I do smth fun?</p>
+        <p class="tp-info">4 Answers &#8226 28 Views &#8226 3 Rating </p>
+      </div>
+      <div class = "top-question">
+        <p class="tp-title"> How do I do smth fun?</p>
+        <p class="tp-info">4 Answers &#8226 28 Views &#8226 3 Rating </p>
+      </div>
+      <div class = "top-question">
+        <p class="tp-title"> How do I do smth fun?</p>
+        <p class="tp-info">4 Answers &#8226 28 Views &#8226 3 Rating </p>
+      </div> -->
+    </div>
+  </div>
 </div>
 
-<div class="question_header">
-  <div id="arrow-left"></div>
-  <ul class="subject-list"></ul>
-  <div id="arrow-right"></div>
-</div>
-
-
-<div id="tutorSignUp" class="box important_box">
-  <div class="important_box_num1"></div>
-  <div id="important_box_text">Total Site Questions</div>
-  <div class="important_box_num2"></div>
-  <div id="important_box_text">Total Site Answers</div>
-  <div class="important_box_num3"></div>
-  <div id="important_box_text">Users</div>
-</div>
-
-<div class="questions_list questions_list_profile"></div>
-<div class="signPopUp"></div>
 
 
 <script src="https://unpkg.com/bowser@2.7.0/es5.js"></script>
