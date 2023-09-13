@@ -8,7 +8,6 @@ const poolId =config.poolId //getting info from cognito
 const region = config.region
 const accessKey = config.accessKey
 const secretKey = config.secretKey
-
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -186,39 +185,39 @@ function showQuestionColumn(subject) {
                 document.querySelector(".questions_list").innerHTML += //sending html info
                 `<div class="box text_box">
         <!-- pfp -->
-        <img id="global_pfp" class = "pfp${author}" src="/placeholder_pfp.png" alt="user_pfp">
+        <img id="global_pfp" class = "pfp${author}" src="/placeholder_pfp.png" alt="user_pfp" onclick="window.location='/profile?username=${unformattedAuthor}'">
         <div id="text_box_question_content">${title}</div>
-        <div id="asked_by_line">asked by <a href="https://www.freetutors.net/profile?username=${unformattedAuthor}">${author}</a>, ${timeAgo}</div>
+        <div id="asked_by_line"><a href="https://www.freetutors.net/profile?username=${unformattedAuthor}">asked by ${author}, ${timeAgo}</a></div>
         <div id="answered_by_line">Add to the conversation!</div>
         <div class="question_stats">
           <div id="question_stats_items">${answers} Answers</div>
-          <div id="question_stats_items">${views} views</div>
-          <div id="question_stats_items">${rating} rating</div>
+          <div id="question_stats_items">${views} Views</div>
+          <div id="question_stats_items">${rating} Rating</div>
         </div>`
             }
             else{
                 document.querySelector(".questions_list").innerHTML += //sending html info
                 `<div class="box text_box">
         <!-- pfp -->
-        <img id="global_pfp" class = "pfp${author}" src="/placeholder_pfp.png" alt="user_pfp">
+        <img id="global_pfp" class = "pfp${author}" src="/placeholder_pfp.png" alt="user_pfp" onclick="window.location='/profile?username=${unformattedAuthor}'">
         <div id="text_box_question_content">${title}</div>
-        <div id="asked_by_line">asked by <a href="https://www.freetutors.net/profile?username=${unformattedAuthor}">${author}</a>, ${timeAgo}</div>
+        <div id="asked_by_line"><a href="https://www.freetutors.net/profile?username=${unformattedAuthor}">asked by ${author}, ${timeAgo}</a></div>
         <div id="answered_by_line">Be the first to answer!</div>
         <div class="question_stats">
           <div id="question_stats_items">${answers} Answers</div>
-          <div id="question_stats_items">${views} views</div>
-          <div id="question_stats_items">${rating} rating</div>
+          <div id="question_stats_items">${views} Views</div>
+          <div id="question_stats_items">${rating} Rating</div>
         </div>`
         }
             }
 
-        const questionBoxes = document.querySelectorAll(".box.text_box");
-
+        const questionBoxes = document.querySelectorAll("#text_box_question_content");
         questionBoxes.forEach((box, index) => { //when click will go to view Question.html
             box.addEventListener("click", function() {
+                console.log('a')
                 const questionId = questionList[index].questionId; // Retrieve the questionId
                 localStorage.setItem("QuestionID", JSON.stringify(questionId));
-                window.location = `viewQuestion?questionId=${questionId}`;
+                window.location = `viewQuestion?questionId=${questionId}&title=${title}`;
             });
         });
         for (const i in pfpsToGet){
@@ -358,9 +357,7 @@ if (localUser !== null) {
       `
         <button id="sign_up_as_tutor_button">Sign up as tutor</button>
       `;
-    document.getElementById("sign_up_as_tutor_button").addEventListener("click", () =>{
-        alert("Please sign up to become a tutor.")
-    })
+
 }
 
 

@@ -28,6 +28,7 @@ async function showQuestionColumn(user){ //showing the questions the user asked
     for (const question of questionArray) {
       var title = question.title //getting question data
       var author = question.author
+      var unformattedAuthor = question.author
       if (!question.answersInfo){
         var answers = 0
 
@@ -45,26 +46,43 @@ async function showQuestionColumn(user){ //showing the questions the user asked
       else{
         displayedImage = `data:image/png;base64,${pfp}`
       }
-      document.querySelector(".questions_list").innerHTML += //sending html info
-        `<div class="box text_box">
-        <!-- pfp -->
-        <img id="global_pfp" src="${displayedImage}">
-        <div id="text_box_question_content">${title}</div>
-        <div id="asked_by_line">asked by ${author}, ${timeAgo}</div>
-        <div id="answered_by_line">Be the first to answer!</div>
-        <div class="question_stats">
-          <div id="question_stats_items">${answers} Answers</div>
-          <div id="question_stats_items">${views} views</div>
-          <div id="question_stats_items">${rating} rating</div>
-        </div>`
+      author = author.replace(/\./g,"")
+      if (answers != 0){
+        document.querySelector(".questions_list").innerHTML += //sending html info
+              `<div class="box text_box">
+      <!-- pfp -->
+      <img id="global_pfp" class = "pfp${author}" src="${displayedImage}" alt="user_pfp" onclick="window.location='/profile?username=${unformattedAuthor}'">
+      <div id="text_box_question_content">${title}</div>
+      <div id="asked_by_line"><a href="https://www.freetutors.net/profile?username=${unformattedAuthor}">asked by ${author}, ${timeAgo}</a></div>
+      <div id="answered_by_line">Add to the conversation!</div>
+      <div class="question_stats">
+        <div id="question_stats_items">${answers} Answers</div>
+        <div id="question_stats_items">${views} Views</div>
+        <div id="question_stats_items">${rating} Rating</div>
+      </div>`
+          }
+          else{
+              document.querySelector(".questions_list").innerHTML += //sending html info
+              `<div class="box text_box">
+      <!-- pfp -->
+      <img id="global_pfp" class = "pfp${author}" src="${displayedImage}" alt="user_pfp" onclick="window.location='/profile?username=${unformattedAuthor}'">
+      <div id="text_box_question_content">${title}</div>
+      <div id="asked_by_line"><a href="https://www.freetutors.net/profile?username=${unformattedAuthor}">asked by ${author}, ${timeAgo}</a></div>
+      <div id="answered_by_line">Be the first to answer!</div>
+      <div class="question_stats">
+        <div id="question_stats_items">${answers} Answers</div>
+        <div id="question_stats_items">${views} Views</div>
+        <div id="question_stats_items">${rating} Rating</div>
+      </div>`
       }
-      const questionBoxes = document.querySelectorAll(".box.text_box");
+    }
+      const questionBoxes = document.querySelectorAll("#text_box_question_content");
       
       questionBoxes.forEach((box, index) => { //when click will go to view Question.html
         box.addEventListener("click", function () {
           const questionId = questionList[index].questionId; // Retrieve the questionId
           localStorage.setItem("QuestionID", JSON.stringify(questionId));
-          window.location = `viewQuestion?questionId=${questionId}`;
+          window.location = `viewQuestion?questionId=${questionId}&title=${title}`;
         });
       });
     };

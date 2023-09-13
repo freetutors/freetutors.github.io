@@ -336,12 +336,18 @@
     }
 
     #text_box_question_content:hover {
-        text-decoration: underline;
-              text-decoration-color: var(--secondary-color);
-      /* text-underline-offset: 3px;  */
-      text-decoration-thickness: 2px;
+      text-decoration: underline;
+      /* text-decoration-color: var(--secondary-color);
+      text-underline-offset: 0.2em;
+      text-decoration-thickness: 3px; */
     }
 
+    #asked_by_line:hover {
+      text-decoration: underline;
+      /* text-decoration-color: var(--secondary-color);
+      text-underline-offset: 0.2em; 
+      text-decoration-thickness: 3px; */
+   }
     #asked_by_line {
         position: absolute;
         top: 47px;
@@ -350,11 +356,9 @@
         font-size: 13px;
     }
 
+
    #asked_by_line:hover {
       text-decoration: underline;
-            text-decoration-color: var(--secondary-color);
-      text-underline-offset: 0.15em; 
-      text-decoration-thickness: 2px;
    }
 
     #answered_by_line {

@@ -30,18 +30,18 @@ function getCookie(name) {
   return null;
 }
 
-if (!checkCookieExists("usage") || getCookie("usage") == "new"){
-  // setCookie('usage', 'first', 365) //un comment this when the popup is ready this is for testing
-  console.log('hi')
-  signPopUp.innerHTML = `
-      <p class="welcomeText welcome">Welcome To FreeTutors!</p>
-      <p class="welcomeText">We're a free to use q and a website for all of you. All you have to do is ask 
-      a question and get answers from other users. You can also sign up to be a verified tutor, and in the future you can earn volunteer hours(not yet though)
-      <img class ="welcomeLogo" id="logo" src="Logo.svg" alt="Logo">
-      <div class="signPopUpX" onclick="document.querySelector('.signPopUp').style.display='none'"></div>
-    `;
-    signPopUp.style.display = 'block';
-}
+// if (!checkCookieExists("usage") || getCookie("usage") == "new"){
+//   setCookie('usage', 'first', 365) //un comment this when the popup is ready this is for testing
+//   console.log('hi')
+//   signPopUp.innerHTML = `
+//       <p class="welcomeText welcome">Welcome To FreeTutors!</p>
+//       <p class="welcomeText">We're a free to use q and a website for all of you. All you have to do is ask 
+//       a question and get answers from other users. You can also sign up to be a verified tutor, and in the future you can earn volunteer hours(not yet though)
+//       <img class ="welcomeLogo" id="logo" src="Logo.svg" alt="Logo">
+//       <div class="signPopUpX" onclick="document.querySelector('.signPopUp').style.display='none'"></div>
+//     `;
+//     signPopUp.style.display = 'block';
+// }
 if (username == null) {
   askQuestionButton.addEventListener('click', () => {
     signPopUp.innerHTML = `
@@ -52,6 +52,7 @@ if (username == null) {
     `;
     signPopUp.style.display = 'block';
   });
+
 if (pageName = 'index.html') {
   while (document.querySelector("#sign_up_as_tutor_button") == null) {
         await sleep(10)
@@ -95,7 +96,11 @@ if (pageName == 'contactUs'){
 }
 } else {
   askQuestionButton.addEventListener('click', () => {
-    window.location.href = "createQuestion";
+    if (checkCookieExists('createCooldown')){
+      alert("Pleast wait 5 minutes before posting another question.")
+    }else{
+      window.location = "/createQuestion"
+    }
   });
   if (pageName = 'index.html') {
   while (document.querySelector("#sign_up_as_tutor_button") == null) {

@@ -60,15 +60,30 @@
 #uploadBtn{
   display: none;
   position: absolute;
-  height: fit-content;
-  width: fit-content;
+  /* height: fit-content;
+  width: fit-content; */
   z-index: 3;
-  font-size: 7px;
+  /* padding-top:46px;
+  padding-bottom:46px;
+  padding-left: 5px;
+  padding-right: 5px; */
+  border-radius: 50%;
+  font-size: 8px;
   inset: 0;
-  margin: auto;
-  margin-top: 45px;
+  text-align: center;
+  width: 90px;
+  height: 90px;
+  padding: 5px;
+  padding-top: 45px;
   color: white;
   cursor: pointer;
+}
+
+#asked_by_line:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--secondary-color);
+  text-underline-offset: 0.2em; /* Adjust this value to control the distance */
+  text-decoration-thickness: 3px;
 }
 #file{
   display: none;
@@ -210,8 +225,12 @@ hr.pfp_line {
     }
 
     #text_box_question_content:hover {
-        text-decoration: underline;
+      text-decoration: underline;
+      /* text-decoration-color: var(--secondary-color);
+      text-underline-offset: 0.2em;
+      text-decoration-thickness: 3px; */
     }
+
 
     #asked_by_line {
         position: absolute;
