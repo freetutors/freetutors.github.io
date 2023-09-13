@@ -12,6 +12,14 @@ async function getQuestionList(event) {
   const username = event.queryStringParameters.username
   const subject = event.queryStringParameters.subject
     const questionId = event.queryStringParameters.questionId
+    if(views =="top"){
+      console.log("top-views")
+      const result = await topQuestions()
+      const response = {
+        questionList: result
+      }
+      return util.buildResponse(200, response)
+    }
     if(subject=="all"){
       result = await getAllQuestions()
       const response = {
@@ -139,4 +147,24 @@ async function getQuestionByUser(author) {
 // Return the questions.
     return result.Items;
 }
+async function topQuestions(){
+  const params = {
+    TableName: questionTable,
+    IndexName: "viewsIndex",
+    KeyConditionExpression: "#v > :views",
+    ExpressionAttributeNames:{
+      '#v':"views"
+    },
+    ExpressionAttributeValues:{
+      ":views":0
+    },
+    Limit: 5,
+    ScanIndexForward: false
+  };
+  const result = await dynamodb.query(params).promise();
+
+  return result.Items;
+}
+
+
 module.exports.getQuestionList = getQuestionList;
