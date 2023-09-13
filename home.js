@@ -1,6 +1,6 @@
 // Import configuration from external file
 import config from "./config.js";
-
+const qotwId = '0b2ca0c0-8477-03ba-4233-5e9c0fbf5717'
 // Extract API URLs from configuration
 const apiUrlget = config.apiUrlget;
 const apiUrlgetUser = config.apiUrlgetUser;
@@ -117,6 +117,8 @@ function addQuestionClickListeners(questionList) {
     });
 }
 async function topQuestions(){
+    
+
     const questions = await getQuestionListViews("top")
     questions.sort((a, b) => b.views - a.views);
     const top5Questions = questions.slice(0, 5);
