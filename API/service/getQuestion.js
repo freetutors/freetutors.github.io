@@ -13,8 +13,7 @@ async function getQuestionList(event) {
   const subject = event.queryStringParameters.subject
     const questionId = event.queryStringParameters.questionId
     if(views =="top"){
-      console.log("top-views")
-      const result = await topQuestions()
+      result = await getAllQuestions()
       const response = {
         questionList: result
       }
