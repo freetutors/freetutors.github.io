@@ -73,7 +73,7 @@
   cursor: pointer;
   background-color: rgba(230, 230, 255, 0.1);
   border: rgb(119, 119, 167) solid;
-  border-width: 3px;
+  border-width: 0px;
 }
 /* .top-question:last-child{
   margin-bottom: 0;
