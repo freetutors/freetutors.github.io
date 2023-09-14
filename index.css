@@ -474,6 +474,23 @@
 
 }
 
+@media only screen and (min-height: 1080px) {
+  .text_box{
+    height:11.5vh;
+  }
+  #text_box_question_content{
+    font-size: 1.7vh;
+  }
+  #asked_by_line{
+    font-size: 1.3vh;
+  }
+  #answered_by_line{
+    font-size: 1.45vh;
+  }
+  .question_stats{
+    font-size: 1.75;
+  }
+}
 
 @media only screen and (max-width: 1400px) {
 
