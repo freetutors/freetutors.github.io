@@ -30,18 +30,22 @@ function getCookie(name) {
   return null;
 }
 
-// if (!checkCookieExists("usage") || getCookie("usage") == "new"){
-//   setCookie('usage', 'first', 365) //un comment this when the popup is ready this is for testing
-//   console.log('hi')
-//   signPopUp.innerHTML = `
-//       <p class="welcomeText welcome">Welcome To FreeTutors!</p>
-//       <p class="welcomeText">We're a free to use q and a website for all of you. All you have to do is ask 
-//       a question and get answers from other users. You can also sign up to be a verified tutor, and in the future you can earn volunteer hours(not yet though)
-//       <img class ="welcomeLogo" id="logo" src="Logo.svg" alt="Logo">
-//       <div class="signPopUpX" onclick="document.querySelector('.signPopUp').style.display='none'"></div>
-//     `;
-//     signPopUp.style.display = 'block';
-// }
+if (!checkCookieExists("usage") || getCookie("usage") == "new"){
+   setCookie('usage', 'first', 365) //un comment this when the popup is ready this is for testing
+   console.log('hi')
+   signPopUp.innerHTML = `
+       <p class="welcomeText welcome"><b>Welcome to FreeTutors.net!</b></p>
+       <img class ="welcomeMascot left" id="mascot" src="final_mascot.svg" alt="mascot" style="position: absolute; left: 10px; up: 10px;">
+       <div class="welcomeText right" style="padding-left: 200px; right:10px; up:50px; left:100px; font-size:24px; text-align:center; overflow-wrap:break-word; word-wrap:break-word;">We're a <b>free</b> to use Q&A site for all your school needs.
+        
+       <b>NO SUBSCRIPTIONS.</b> 
+       It's simple. Just ask any question and get answers
+       </div>
+       <p class="welcomeText end">Need volunteer hours? <b>Coming soon on FreeTutors!</b></p>
+       <div class="signPopUpX" onclick="document.querySelector('.signPopUp').style.display='none'"></div>
+     `;
+     signPopUp.style.display = 'block';
+ }
 if (username == null) {
   askQuestionButton.addEventListener('click', () => {
     signPopUp.innerHTML = `
