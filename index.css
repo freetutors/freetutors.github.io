@@ -15,7 +15,7 @@
 }
 .questions{
   margin-left: 30px;
-  max-height: calc(100vh - 142.5px);
+  max-height: calc(100% - 242.5px);
   width: 55vw
 }
 .left-box{
@@ -303,6 +303,7 @@
        transform: translateX(var(--translate_len));
        scrollbar-color: var(--text-box-bar-color) var(--background-color);
        margin-left: 0;
+       max-height: calc(100vh - 130px);
       }
 
     .questions_list::-webkit-scrollbar {/*custom scroll bar width*/
