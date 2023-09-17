@@ -496,7 +496,7 @@ width: 100%;
 
 }
 
-@media only screen and (min-height: 1200px) {
+/* @media only screen and (min-height: 1200px) {
  .text_box{
    transform: scale(1.5)
  }
@@ -517,7 +517,7 @@ width: 100%;
 
    transform: scale(1.5)
  }
-}
+} */
 @media only screen and (max-width: 1750px) {
 .questions{
   width: 60%;
