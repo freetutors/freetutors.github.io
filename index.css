@@ -24,6 +24,8 @@
   /* align-items: left; Center the elements horizontally */
   width: 20vw;
   min-width: 155px;
+  position: relative;
+
 }
 .right-box{
   display: flex;
@@ -390,12 +392,14 @@
 
 
 .menu {
+  position: absolute;
   max-width: 185px;
   width: 18vw;
   list-style-type: none;
   cursor: pointer;
   padding-left: -2px;
-  left: -13px;
+  right: 10px;
+  top: 10px;
   /* left: calc(50% - var(--question_list_width)/2 - 227.5px); */
   color: white;
   margin-top: -1px;
@@ -553,8 +557,7 @@ width: 20vw;
     margin-right: 20px;
   }
    .menu {
-     top: 43px;
-     left: -27px;
+     left: 0;
    }
    .questions{
     width: 75%;
