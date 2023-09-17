@@ -280,7 +280,7 @@
 
   #important_box_text {
     /* display: flex; */
-        font-size: 1.5em;
+        font-size: 1.2em;
         color: white;
         position: relative;
         text-align: center;
@@ -523,23 +523,36 @@ width: 20vw;
     max-width: 70%;
   }
   .questions{
-    width: 55vw;
+    width: 77%;
     margin-right: 30px;
+  }
+  .left-box{
+    width: 15px;
+    padding-right: 50px;
+  }
+  .important_box{
+    width: 155px;
+    margin-right: 20px;
   }
 }
 
 
 @media only screen and (max-width: 1000px) {
-
-  .important_box {
+  .left-box{
+    width: 15px;
+    padding-right: 50px;
+  }
+  .important_box{
     width: 155px;
-       }
+    margin-right: 20px;
+  }
    .menu {
      top: 43px;
      left: -27px;
    }
    .questions{
-    width: 70vw;
+    width: 75%;
+    margin-right: 0;
    }
 
   .arrows {
@@ -551,6 +564,7 @@ width: 20vw;
   .right-box{
     display: none;
     }
+
 }
 
 @media only screen and (max-width: 800px) {
