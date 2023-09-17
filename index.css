@@ -23,7 +23,7 @@ width: 100%;
  display: flex;
  flex-direction: column; /* Stack the elements vertically */
  /* align-items: left; Center the elements horizontally */
- width: 20vw;
+ width: 300px;
  min-width: 155px;
  position: relative;
 
@@ -33,11 +33,11 @@ width: 100%;
  flex-direction: column;
  margin-top: 20px;
  color: white;
- width: 20vw;
+ width: 25vw;
  padding-left: 2vw;
  padding-right: 2vw;
  min-width: 200px;
- max-width: 300px;
+ max-width: 400px;
 }
 .qt-title{
  color: rgba(255,255,255,1);
@@ -72,8 +72,7 @@ width: 100%;
  padding-bottom: 10px;
  background-color: rgba(17, 51, 101, 0.507);
  border-radius: 22px;
- transform-origin: top left;
- transform: scale(0.8);
+
 }
 .top-question{
  color: var(--text-color);
