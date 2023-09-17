@@ -478,21 +478,25 @@
 
 }
 
-@media only screen and (min-height: 1080px) {
+@media only screen and (min-height: 1200px) {
   .text_box{
-    height:11.5vh;
+    transform: scale(1.5)
   }
   #text_box_question_content{
-    font-size: 1.7vh;
+
+    transform: scale(1.5)
   }
   #asked_by_line{
-    font-size: 1.3vh;
+
+    transform: scale(1.5)
   }
   #answered_by_line{
-    font-size: 1.45vh;
+
+    transform: scale(1.5)
   }
   .question_stats{
-    font-size: 1.75;
+
+    transform: scale(1.5)
   }
 }
 
