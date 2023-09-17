@@ -15,9 +15,10 @@
 .questions{
   margin-left: 30px;
   max-height: calc(100vh - 142.5px);
-width: 65vw;
+width: 100%;
 }
 .left-box{
+  position: relative;
   display: flex;
   flex-direction: column; /* Stack the elements vertically */
   /* align-items: left; Center the elements horizontally */
@@ -52,7 +53,7 @@ width: 65vw;
 }
 .top-questions-box{
   margin-right: 0;
-  margin-top: 30px;
+  margin-top: 90px;
   width: 100%;
   height:auto;
   padding-bottom: 10px;
@@ -223,33 +224,43 @@ width: 65vw;
 
 }
 
-   .important_box {/*sub class of box*/
+   .important_box {
      display: flex;
      flex-direction: column;
      align-items: center;
-     width: 100%;
+     width: 80%;
      padding-bottom: 17px;
      margin-top: 0;
      margin-left:15px;
-     /* left: calc(50% + var(--question_list_width)/2 + 35px); */
      background-color: var(--secondary-color);
-     transform: translateX(calc(var(--translate_len) - 2px));
+     transform-origin: top left;
+     transform: translateX(calc(var(--translate_len) - 2px))scale(1.25);
    }
+   /* .important_box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    padding-bottom: 17px;
+    margin-left:15px;
+    margin-bottom: 15px;
+    background-color: var(--secondary-color);
+    transform-origin: top left;
+    transform: translateX(calc(var(--translate_len) - 2px))scale(1.25);
+  } */
 
 .important_box_num1,
 .important_box_num2,
 .important_box_num3 {
-      display: flex;
-      font-size: 30px;
-      color: white;
-      position: relative;
-      text-align: center;
-      /* margin-top: 16px; */
-      justify-content: center;
-      height: 30px;
-      overflow: hidden;
-      margin-left: 10px;
-      margin-top: -2px;
+  display: flex;
+  font-size: 25px;
+  color: white;
+  position: relative;
+  text-align: center;
+  margin-top: 16px;
+  justify-content: center;
+  height: 30px;
+  overflow: hidden;
  }
 
 .important_box_num1_digit {
@@ -286,12 +297,10 @@ width: 65vw;
  }
 
   #important_box_text {
-    /* display: flex; */
-        font-size: 1.5em;
-        color: white;
-        position: relative;
-        text-align: center;
-        margin-top: 10px;
+    font-size: 18px;
+    color: white;
+    position: relative;
+    text-align: center;
   }
 
 
@@ -394,11 +403,12 @@ width: 65vw;
 
 
 .menu {
+  position: absolute;
   width: 100%;
   list-style-type: none;
   cursor: pointer;
-  padding-left: -2px;
-  left: -13px;
+  top: 10;
+  right: 10;
   /* left: calc(50% - var(--question_list_width)/2 - 227.5px); */
   color: white;
   margin-top: -1px;
