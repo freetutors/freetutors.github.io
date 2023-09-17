@@ -132,7 +132,7 @@ async function topQuestions(){
     console.log(qotw)
     document.querySelector(".top-questions-box").innerHTML += //making top question the qotw
     `<div class = "top-question qotw" onclick = "window.location = '/viewQuestion?questionId=${qotw.questionId}&title=${qotw.title}'">
-    <p class="qt-title">Question of the Week</p>
+    <p class="qt-title">Question of the Week:</p>
     <p class="tp-title" >${qotw.title}</p>
     <p class="tp-info">${qotw.answers} Answers &#8226 ${qotw.views} Views &#8226 ${qotw.rating} Rating </p>
   </div>`
