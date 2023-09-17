@@ -247,19 +247,6 @@
      outline: none;
  }
 
-.ask-question-button {
-  margin-left: calc(100vw - 345px);
-  height: 20px;
-  width: 124px;
-  background-color: var(--ask-question-button);
-  position: absolute;
-  font-size: 13px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.3s ease-in-out;
-}
-
 .possibleSearchResultContainer {
   display: block;
   position: absolute;
