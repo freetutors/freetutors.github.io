@@ -357,8 +357,8 @@
   color: white;
   content: '\2715';
   font-size: 17px;
-  top: 7px;
-  left: 472px;
+  top: 3px;
+  right: 3px;
   cursor: pointer;
 }
 
@@ -744,8 +744,8 @@ a {
   color: white;
   content: '\2715';
   font-size: 17px;
-  top: 7px;
-  left: 472px;
+  top: 3px;
+  right: 5px;
   cursor: pointer;
 }
 
