@@ -76,8 +76,6 @@ width: 100%;
   padding-bottom: 10px;
   background-color: rgba(17, 51, 101, 0.507);
   border-radius: 22px;
-  transform-origin: top left;
-  transform: scale(0.8);
 }
 .top-question{
   color: var(--text-color);
