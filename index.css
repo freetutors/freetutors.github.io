@@ -411,7 +411,7 @@ width: 100%;
  cursor: pointer;
  top: 10;
  right: 10;
-
+  max-width: 165px;
  /* left: calc(50% - var(--question_list_width)/2 - 227.5px); */
  color: white;
  margin-top: -1px;
