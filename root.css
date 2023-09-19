@@ -67,6 +67,7 @@ align-items: center;
 float: right;
  /* Align items vertically in the center */
 }
+
 .tutor-icon{
 margin-top: 27px;
 margin-left: 10px;
@@ -199,20 +200,6 @@ transition: transform 0.3s ease-in-out;
   transform: scale(1.06);
 }
 
-.button {/*setting main button object*/
- font-family: 'Lexend', sans-serif;
- border: none;
- color: var(--text-color);
- background-color: var(--primary-color);
- padding: 6.5px 17px;
- text-align: center;
- text-decoration: none;
- display: inline-block;
- font-size: 14px;
- cursor: pointer;
- border-radius: 6px;
-}
-
 .login-button {/*sub-class of button*/
  margin-right: 8px;
  background-color: var(--primary-color);
@@ -301,7 +288,7 @@ text-overflow: ellipsis; /* Truncate with ellipsis */
 display: flex;
 margin-top: 10px;
 margin-bottom: 10px;
-margin-left: 30px;
+margin-left: 55px;
 }
 .button-column{
 display: flex;
@@ -382,11 +369,13 @@ color: white;
 text-align: center;
 max-width: 475px;
 font-size: 17px;
-padding-left: 10px;
+padding-left: 20px;
 padding-right: 10px;
 padding-bottom: 0;
 margin: 10px;
 margin-top: 20px;
+margin-bottom: 10px;
+margin-left: 10px;
 }
 .welcome{
 font-size: 35px;
@@ -434,7 +423,16 @@ cursor: pointer;
 margin-bottom: 3px;
 margin-left: 3px;
 }
-
+.popup-right{
+  text-align: left;
+  padding-left: 170px; 
+  right:10px; 
+  left:100px; 
+  margin-right: 20px;
+  font-size:24px; 
+  overflow-wrap:break-word; 
+  word-wrap:break-word;
+}
 .notif {
 display: none;
 position: absolute;
@@ -744,58 +742,4 @@ line-height: 35px;
 color: white;
 font-size: 15px;
 cursor: pointer;
-}
-
-
-
-.notif {
-display: none;
-position: absolute;
-background-color: var(--secondary-color);
-width: 10px;
-height: 10px;
-border-radius: 5px;
-z-index: 11;
-margin-left: 8.5px;
-}
-
-
-@media only screen and (max-width: 800px) {
-  .menu {
-  display: none;
-}
-.login-button {
-  display: none;
-}
-
-.signup-button {
-  display: none;
-}
-
-.profileButton{
-  display: none;
-}
-
-.inbox{
-  display: none;
-}
-
-.search-bar {
-   margin-right: 18px;
-   width: 200px;
-}
-
-.ask-question-button {
-    left: 197px;
-}
-
-
-.ask-question-button {
-    left: 197px;
-}
-
-.possibleSearchResultContainer {
-width: calc(100% - 210px);
-}
-
 }
