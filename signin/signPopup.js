@@ -31,7 +31,7 @@ function getCookie(name) {
 }
 
 if (!checkCookieExists("usage") || getCookie("usage") == "new"){
-   setCookie('usage', 'first', 365) //un comment this when the popup is ready this is for testing
+  //  setCookie('usage', 'first', 365) //un comment this when the popup is ready this is for testing
    console.log('hi')
    signPopUp.innerHTML = `
        <p class="welcomeText welcome"><b>Welcome to FreeTutors.net!</b></p>
@@ -43,8 +43,16 @@ if (!checkCookieExists("usage") || getCookie("usage") == "new"){
        It's simple. Just ask any question and get answers
        </p>
        <p class="welcomeText end" style="font-size:24px;">Need volunteer hours? <b>Coming soon on FreeTutors!</b></p>
-       <div class="signPopUpX" onclick="document.querySelector('.signPopUp').style.display='none'"></div>
-     `;
+       <div class="buttons">
+       <div class="button sign-up-button" onclick="window.location='/signup'">Sign Up</div>
+       <div class="button-column">
+         <div class="button contact-button"onclick="window.location='/contactUs'">Contact Us</div>
+         <div class="button about-button"onclick="window.location='/ourTeam'">About Us</div>
+       </div>
+     </div>
+     <p class="popup-link">Follow us <a class="insta" href = "https://www.instagram.com/freetutorsdotnet/">@freetutorsdotnet </a>for more updates</p>
+     <div class="signPopUpX" onclick="document.querySelector('.signPopUp').style.display='none'"></div>
+       `;
      signPopUp.style.display = 'block';
  }
 if (username == null) {

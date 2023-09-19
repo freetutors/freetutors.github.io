@@ -9,7 +9,19 @@
     --text-color:white;
     --ask-question-button: #2c74b3ff;
  }
-
+ .button {/*setting main button object*/
+  font-family: 'Lexend', sans-serif;
+  border: none;
+  color: var(--text-color);
+  background-color: var(--primary-color);
+  padding: 6.5px 17px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 6px;
+}
  /* Creates a standard for an object being centered */
  .center{
      display: flex;
@@ -285,16 +297,74 @@
   text-overflow: ellipsis; /* Truncate with ellipsis */
 }
 
-
-.signPopUp{
-  display: none;
-  /* position: absolute; */
-  height: auto;
-  background-color: var(--secondary-color);
-  border-radius: 12.5px; 
-  /* width: 5000px; */
-  /* margin: auto;*/
+.buttons{
+  display: flex;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 30px;
 }
+.button-column{
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+}
+.contact-button{
+  width: 190px;
+  height: 23.5px;
+  font-size: 20px;
+  transition: transform 0.3s ease-in-out;
+}
+
+ .contact-button:hover {
+   transform: scale(1.06);
+ }
+
+.about-button{
+  width: 190px;
+  height: 23.5px;
+  font-size: 20px;
+  margin-top: 10px;
+  transition: transform 0.3s ease-in-out;
+}
+.about-button:hover{
+  transform: scale(1.06);
+}
+.sign-up-button{
+  width: 190px;
+  height: 60px;
+  padding: 5px;
+  padding-top: 17px;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  font-size: 30px;
+  transition: transform 0.3s ease-in-out;
+}
+.sign-up-button:hover {
+  transform: scale(1.06);
+}
+#signPopUp{
+  display: none;
+  position: absolute;
+  height: fit-content;
+  inset: 0;
+  /* max-height: 500px; */
+  min-height: 200px;
+  background-color: var(--header-color);
+  border-radius: 12.5px; 
+  padding-bottom: 20px;
+  /* width: 5000px; */
+  margin: auto;
+  text-align: center;
+}
+.insta:hover{
+  text-decoration: underline;
+  text-decoration-color: var(--text-color);
+  cursor: pointer;
+}
+.popup-link{
+  color: rgba(255,255,255,0.7);
+}
+
 
 .signPopUpText {
   position: absolute;
@@ -316,6 +386,7 @@
   padding-right: 10px;
   padding-bottom: 0;
   margin: 10px;
+  margin-top: 20px;
 }
 .welcome{
   font-size: 35px;
@@ -360,6 +431,8 @@
   top: 3px;
   right: 3px;
   cursor: pointer;
+  margin-bottom: 3px;
+  margin-left: 3px;
 }
 
 .notif {
@@ -590,19 +663,7 @@ a {
     transform: scale(1.06);
 }
 
- .button {/*setting main button object*/
-   font-family: 'Lexend', sans-serif;
-   border: none;
-   color: var(--text-color);
-   background-color: var(--primary-color);
-   padding: 6.5px 17px;
-   text-align: center;
-   text-decoration: none;
-   display: inline-block;
-   font-size: 14px;
-   cursor: pointer;
-   border-radius: 6px;
- }
+
 
  .login-button {/*sub-class of button*/
    margin-right: 8px;
@@ -685,69 +746,7 @@ a {
   cursor: pointer;
 }
 
-.signPopUp {
-  display: none;
-  position: absolute;
-  background-color: var(--header-color);
-  border-radius: 12.5px;
-  height: 190px;
-  width: 500px;
-  inset: 0;
-  margin: auto;
-}
 
-.signPopUpText {
-  position: absolute;
-  color: white;
-  inset: 0;
-  margin: auto;
-  margin-top: 25px;
-  height: fit-content;
-  width: fit-content;
-  font-size: 20px;
-}
-
-.signPopUpLogin {
-  position: absolute;
-  color: white;
-  inset: 0;
-  margin-top: 80px;
-  margin-left: 55px;
-  margin-right: 55px;
-  height: 32.5px;
-  line-height: 30px;
-  font-size: 16px;
-  background: var(--primary-color);
-  text-align: center;
-  border-radius: 4px;
-  cursor: pointer;
-  }
-
-.signPopUpSignup {
-  position: absolute;
-  color: white;
-  inset: 0;
-  margin-top: 127.5px;
-  margin-left: 55px;
-  margin-right: 55px;
-  height: 32.5px;
-  line-height: 30px;
-  font-size: 16px;
-  background: var(--secondary-color);
-  text-align: center;
-  border-radius: 4px;
-  cursor: pointer;
-  }
-
-.signPopUpX::before {
-  position: absolute;
-  color: white;
-  content: '\2715';
-  font-size: 17px;
-  top: 3px;
-  right: 5px;
-  cursor: pointer;
-}
 
 .notif {
   display: none;
