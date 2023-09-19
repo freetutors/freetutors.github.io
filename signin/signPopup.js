@@ -1,4 +1,5 @@
 const signPopUp = document.querySelector('.signPopUp');
+const welcomePopUp = document.querySelector('.welcomePopUp')
 const askQuestionButton = document.querySelector('.ask-question-button')
 var path = window.location.pathname;
 var pageName = path.split("/").pop();
@@ -33,10 +34,10 @@ function getCookie(name) {
 if (!checkCookieExists("usage") || getCookie("usage") == "new"){
   //  setCookie('usage', 'first', 365) //un comment this when the popup is ready this is for testing
    console.log('hi')
-   signPopUp.innerHTML = `
+   welcomePopUp.innerHTML = `
        <p class="welcomeText welcome"><b>Welcome to FreeTutors.net!</b></p>
-       <img class ="welcomeMascot left" id="mascot" src="final_mascot.svg" alt="mascot" style="position: absolute; left: 10px; up: 10px;">
-       <p class="welcomeText right" style="padding-left: 200px; right:10px; up:50px; left:100px; font-size:24px; text-align:center; overflow-wrap:break-word; word-wrap:break-word;">We're a <b>FREE</b> to use Q&A site for all your school needs.
+       <img class ="welcomeMascot left" id="mascot" src="final_mascot.svg" alt="mascot" style="left: 10px; up: 10px;">
+       <p class="signPopUpText" style="position: relative; padding-left: 160px; up: 500px; padding-bottom: 0px; font-size:24px; text-align: center; overflow-wrap:break-word; word-wrap:break-word; width: auto; vertical-align: top;">We're a <b>FREE</b> to use Q&A site for all your school needs.
        <br/>
        <b>NO SUBSCRIPTIONS.</b>
        <br/> 
