@@ -3,10 +3,11 @@
   list-style-type: none;
   position: absolute;
   cursor: pointer;
-  left: calc(50% - var(--question_list_width)/2 - 227.5px);
+  left: 50;
   color: white;
   margin-top: -1px;
   transform: translateX(calc(-1*var(--translate_len)));
+  margin-left: 15px;
 }
 
 .menu_item {
