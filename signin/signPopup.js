@@ -31,7 +31,7 @@ function getCookie(name) {
 }
 
 if (!checkCookieExists("usage") || getCookie("usage") == "new"){
-  //  setCookie('usage', 'first', 365) //un comment this when the popup is ready this is for testing
+   setCookie('usage', 'first', 365) //un comment this when the popup is ready this is for testing
    console.log('hi')
    signPopUp.innerHTML = `
        <p class="welcomeText welcome"><b>Welcome to FreeTutors.net!</b></p>
