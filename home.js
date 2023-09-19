@@ -138,7 +138,7 @@ async function topQuestions(){
   </div>`
     const questions = await getQuestionListViews("top") //getting all questions
     questions.sort((a, b) => b.views - a.views); //getting top five views b/c bakcend cant do this for some reason
-    const top5Questions = questions.slice(0, 5);
+    const top5Questions = questions.slice(0, 4);
     for (const i in top5Questions){
         const question = questions[i] //for each question it'll add to the section
         document.querySelector(".top-questions-box").innerHTML += 
