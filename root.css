@@ -1,55 +1,42 @@
 /* this stuff will stay common from page to page */
 :root{ /*setting color variables incase we want to switch color scheme*/
-    --primary-color:#113265ff;
-    --background-color:#08162bff;
-    --header-color:#242424ff;
-    --text-box-bar-color: #424242ff;
-    --secondary-color:#a32f80ff;
-    --border-color: #474b4eff;
-    --text-color:white;
-    --ask-question-button: #2c74b3ff;
- }
- .button {/*setting main button object*/
-  font-family: 'Lexend', sans-serif;
-  border: none;
-  color: var(--text-color);
-  background-color: var(--primary-color);
-  padding: 6.5px 17px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 14px;
-  cursor: pointer;
-  border-radius: 6px;
+  --primary-color:#113265ff;
+  --background-color:#08162bff;
+  --header-color:#242424ff;
+  --text-box-bar-color: #424242ff;
+  --secondary-color:#a32f80ff;
+  --border-color: #474b4eff;
+  --text-color:white;
+  --ask-question-button: #2c74b3ff;
 }
- /* Creates a standard for an object being centered */
- .center{
-     display: flex;
-     justify-content: center;
-     align-items: center;
- }
- 
- body {
-   font-family: 'Lexend', sans-serif;
-   background-color: var(--background-color);
-   margin: 0;
-   padding: 0;
-   overflow-x: hidden;
- }
- #global_pfp{
-    height: 50px;
-    width: 50px;
-    margin-top: 15px;
-    margin-left: 15px;
-    cursor: pointer;
-    overflow: hidden;
-    align-self: center;
-    z-index: 20;
-    /* border: solid var(--secondary-color);
-    border-width: 3px; */
+.button {/*setting main button object*/
+font-family: 'Lexend', sans-serif;
+border: none;
+color: var(--text-color);
+background-color: var(--primary-color);
+padding: 6.5px 17px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 14px;
+cursor: pointer;
+border-radius: 6px;
+}
+/* Creates a standard for an object being centered */
+.center{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
 
-  }
- .global_pfp{
+body {
+ font-family: 'Lexend', sans-serif;
+ background-color: var(--background-color);
+ margin: 0;
+ padding: 0;
+ overflow-x: hidden;
+}
+#global_pfp{
   height: 50px;
   width: 50px;
   margin-top: 15px;
@@ -58,463 +45,458 @@
   overflow: hidden;
   align-self: center;
   z-index: 20;
-  border: var(--secondary-color);
-  border-width: 2px;
+  /* border: solid var(--secondary-color);
+  border-width: 3px; */
+
+}
+.global_pfp{
+height: 50px;
+width: 50px;
+margin-top: 15px;
+margin-left: 15px;
+cursor: pointer;
+overflow: hidden;
+align-self: center;
+z-index: 20;
+border: var(--secondary-color);
+border-width: 2px;
 }
 .title-box {
-  display: flex; /* Use flexbox to create a horizontal layout */
-  align-items: center;
-  float: right;
-   /* Align items vertically in the center */
+display: flex; /* Use flexbox to create a horizontal layout */
+align-items: center;
+float: right;
+ /* Align items vertically in the center */
 }
 .tutor-icon{
-  margin-top: 27px;
-  margin-left: 10px;
+margin-top: 27px;
+margin-left: 10px;
 }
 .staff-icon{
-  scale: 1.5;
-  margin-top: 18px;
-  margin-left: 20px;
+scale: 1.5;
+margin-top: 18px;
+margin-left: 20px;
 }
-  .profileButton{
-    width: 175px;
-    height: 30.5px;
-    align-items:center;
-    position: absolute;
-    z-index: 100;
-    float: right;
-    margin-top: -15px;
-    transform: translateX(-173px);
-  }
-
-  .userInfoContainerHome {
-    position: absolute;
-    margin-left: 35px;
-    max-width: 110px;
-    transition: transform 0.3s ease-in-out;
-
-  }
-
-  .usernameOnProfileButton{
-    font-size: 17.5px;
-    margin-top: -28px;
-    margin-left: 31px;
-    text-align: top;
-    color: var(--text-color);
-    overflow: hidden;
-    text-overflow: ellipsis;
-    word-wrap:none;
-    cursor: pointer;
-  }
-
-  .profilePicHome{
-    margin-top: 3px;
-    width: 25px;
-    height: 25px;
-    align-items: center;
-    border-radius: 3px;
-    cursor: pointer;
-  }
-
-  .inboxButton{
-    position: absolute;
-    margin-top: 2.5px;
-    margin-left: -7.5px;
-    margin-right: 130px;
-    width: 25px;
-    height: 25px;
-    align-items: center;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: transform 0.3s ease-in-out;
-    z-index: 10;
-  }
-
-  .inbox {
-    max-height: 500px;
-    overflow-y: scroll;
-    display: none;
-    position: absolute;
-    left: calc(100% - 320px);
-    width: 300px;
-    margin-top: 42.5px;
-    height: fit-content;
-    background-color: var(--header-color);
-    border: 1px solid var(--border-color);
-    z-index: 10;
-  }
-
-  .inboxLetters {
-    color: white;
-    padding: 5px 10px 5px 10px;
-    font-size: 13px;
-    word-wrap: break-word;
-  }
-
-  .inboxTime {
-    color: blue;
-    padding: 0px 10px 2px 10px;
-    font-size: 11px;
-    color: var(--ask-question-button);
-  }
-
-  hr.inboxLine {
-    overflow-y: scroll;
-    border: 0.5px solid var(--secondary-color);
-    margin: 0 5px 0 5px;
-  }
-
-  .userInfoContainerHome:hover{
-    transform: scale(1.06);
-  }
-
-  .inboxHome:hover{
-    transform: scale(1.06);
-  }
-
-  .center{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.profileButton{
+  width: 175px;
+  height: 30.5px;
+  align-items:center;
+  position: absolute;
+  z-index: 100;
+  float: right;
+  margin-top: -15px;
+  transform: translateX(-173px);
 }
 
- #topbar {
-   background-color: var(--header-color);
-   width: 100%;
-   height: 43px;
-   display: flex; /* Use flexbox to position elements within #topbar */
-   align-items: center; /* Vertically center elements within #topbar */
- }
+.userInfoContainerHome {
+  position: absolute;
+  margin-left: 35px;
+  max-width: 110px;
+  transition: transform 0.3s ease-in-out;
 
+}
 
-#logo {
-  height: 115%;
-  margin-top: -1px;
-  margin-left: 9px;
+.usernameOnProfileButton{
+  font-size: 17.5px;
+  margin-top: -28px;
+  margin-left: 31px;
+  text-align: top;
+  color: var(--text-color);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap:none;
+  cursor: pointer;
+}
+
+.profilePicHome{
+  margin-top: 3px;
+  width: 25px;
+  height: 25px;
+  align-items: center;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.inboxButton{
+  position: absolute;
+  margin-top: 2.5px;
+  margin-left: -7.5px;
+  margin-right: 130px;
+  width: 25px;
+  height: 25px;
+  align-items: center;
+  border-radius: 6px;
   cursor: pointer;
   transition: transform 0.3s ease-in-out;
-}
-
-#logo:hover {
-    transform: scale(1.06);
-}
-
- .button {/*setting main button object*/
-   font-family: 'Lexend', sans-serif;
-   border: none;
-   color: var(--text-color);
-   background-color: var(--primary-color);
-   padding: 6.5px 17px;
-   text-align: center;
-   text-decoration: none;
-   display: inline-block;
-   font-size: 14px;
-   cursor: pointer;
-   border-radius: 6px;
- }
-
- .login-button {/*sub-class of button*/
-   margin-right: 8px;
-   background-color: var(--primary-color);
-   transition: transform 0.3s ease-in-out;
- }
-
-  .login-button:hover {
-    transform: scale(1.06);
-  }
-
- .signup-button {
-    margin-right: 12px;
-    background-color: var(--secondary-color);
-    transition: transform 0.3s ease-in-out;
- }
-
- .signup-button:hover {
-    transform: scale(1.06);
-  }
-
- .search-bar {
-     font-family: 'Lexend';
-     flex-grow: 1;
-     margin-left: -10px;
-     margin-right: 215px;
-     height: 30.5px;
-     background-color: #363636ff;
-     border-radius: 6px;
-     color: white;
-     padding-left: 13px;
-     padding-right: 140px;
-     border: 1.5px solid var(--border-color);
- }
-
- .search-bar::placeholder {
-   font-family: 'Lexend';
-   color: white;
- }
- .search-bar::-webkit-search-cancel-button {
-   display: none;
- }
-
- .search-bar:focus {
-     outline: none;
- }
-
-.ask-question-button {
-  margin-left: calc(100vw - 345px);
-  height: 20px;
-  width: 124px;
-  background-color: var(--ask-question-button);
-  position: absolute;
-  font-size: 13px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.3s ease-in-out;
-}
-
-.possibleSearchResultContainer {
-  display: block;
-  position: absolute;
-  top: 37px;
-  left: 192px;
-  height: fit-content;
-  width: calc(100% - 409px);
-  background-color: var(--header-color);
-  border-radius: 6px;
   z-index: 10;
 }
 
-.possibleSearchResult {
-  height: 37.5px;
-  padding-left: 10px;
-  vertical-align: middle;
-  line-height: 35px;
+.inbox {
+  max-height: 500px;
+  overflow-y: scroll;
+  display: none;
+  position: absolute;
+  left: calc(100% - 320px);
+  width: 300px;
+  margin-top: 42.5px;
+  height: fit-content;
+  background-color: var(--header-color);
+  border: 1px solid var(--border-color);
+  z-index: 10;
+}
+
+.inboxLetters {
   color: white;
-  font-size: 15px;
-  cursor: pointer;
-  overflow: hidden;
-  white-space: nowrap; /* Prevent text from wrapping */
-  text-overflow: ellipsis; /* Truncate with ellipsis */
+  padding: 5px 10px 5px 10px;
+  font-size: 13px;
+  word-wrap: break-word;
+}
+
+.inboxTime {
+  color: blue;
+  padding: 0px 10px 2px 10px;
+  font-size: 11px;
+  color: var(--ask-question-button);
+}
+
+hr.inboxLine {
+  overflow-y: scroll;
+  border: 0.5px solid var(--secondary-color);
+  margin: 0 5px 0 5px;
+}
+
+.userInfoContainerHome:hover{
+  transform: scale(1.06);
+}
+
+.inboxHome:hover{
+  transform: scale(1.06);
+}
+
+.center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#topbar {
+ background-color: var(--header-color);
+ width: 100%;
+ height: 43px;
+ display: flex; /* Use flexbox to position elements within #topbar */
+ align-items: center; /* Vertically center elements within #topbar */
+}
+
+
+#logo {
+height: 115%;
+margin-top: -1px;
+margin-left: 9px;
+cursor: pointer;
+transition: transform 0.3s ease-in-out;
+}
+
+#logo:hover {
+  transform: scale(1.06);
+}
+
+.button {/*setting main button object*/
+ font-family: 'Lexend', sans-serif;
+ border: none;
+ color: var(--text-color);
+ background-color: var(--primary-color);
+ padding: 6.5px 17px;
+ text-align: center;
+ text-decoration: none;
+ display: inline-block;
+ font-size: 14px;
+ cursor: pointer;
+ border-radius: 6px;
+}
+
+.login-button {/*sub-class of button*/
+ margin-right: 8px;
+ background-color: var(--primary-color);
+ transition: transform 0.3s ease-in-out;
+}
+
+.login-button:hover {
+  transform: scale(1.06);
+}
+
+.signup-button {
+  margin-right: 12px;
+  background-color: var(--secondary-color);
+  transition: transform 0.3s ease-in-out;
+}
+
+.signup-button:hover {
+  transform: scale(1.06);
+}
+
+.search-bar {
+   font-family: 'Lexend';
+   flex-grow: 1;
+   margin-left: -10px;
+   margin-right: 215px;
+   height: 30.5px;
+   background-color: #363636ff;
+   border-radius: 6px;
+   color: white;
+   padding-left: 13px;
+   padding-right: 140px;
+   border: 1.5px solid var(--border-color);
+}
+
+.search-bar::placeholder {
+ font-family: 'Lexend';
+ color: white;
+}
+.search-bar::-webkit-search-cancel-button {
+ display: none;
+}
+
+.search-bar:focus {
+   outline: none;
+}
+
+.ask-question-button {
+margin-left: calc(100vw - 345px);
+height: 20px;
+width: 124px;
+background-color: var(--ask-question-button);
+position: absolute;
+font-size: 13px;
+display: flex;
+align-items: center;
+justify-content: center;
+transition: transform 0.3s ease-in-out;
+}
+
+.possibleSearchResultContainer {
+display: block;
+position: absolute;
+top: 37px;
+left: 192px;
+height: fit-content;
+width: calc(100% - 409px);
+background-color: var(--header-color);
+border-radius: 6px;
+z-index: 10;
+}
+
+.possibleSearchResult {
+height: 37.5px;
+padding-left: 10px;
+vertical-align: middle;
+line-height: 35px;
+color: white;
+font-size: 15px;
+cursor: pointer;
+overflow: hidden;
+white-space: nowrap; /* Prevent text from wrapping */
+text-overflow: ellipsis; /* Truncate with ellipsis */
 }
 
 .buttons{
-  display: flex;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  margin-left: 30px;
+display: flex;
+margin-top: 10px;
+margin-bottom: 10px;
+margin-left: 30px;
 }
 .button-column{
-  display: flex;
-  flex-direction: column;
-  margin-left: 20px;
+display: flex;
+flex-direction: column;
+margin-left: 20px;
 }
 .contact-button{
-  width: 190px;
-  height: 23.5px;
-  font-size: 20px;
-  transition: transform 0.3s ease-in-out;
+width: 190px;
+height: 23.5px;
+font-size: 20px;
+transition: transform 0.3s ease-in-out;
 }
 
- .contact-button:hover {
-   transform: scale(1.06);
- }
+.contact-button:hover {
+ transform: scale(1.06);
+}
 
 .about-button{
-  width: 190px;
-  height: 23.5px;
-  font-size: 20px;
-  margin-top: 10px;
-  transition: transform 0.3s ease-in-out;
+width: 190px;
+height: 23.5px;
+font-size: 20px;
+margin-top: 10px;
+transition: transform 0.3s ease-in-out;
 }
 .about-button:hover{
-  transform: scale(1.06);
+transform: scale(1.06);
 }
 .sign-up-button{
-  width: 190px;
-  height: 60px;
-  padding: 5px;
-  padding-top: 17px;
-  background-color: var(--secondary-color);
-  color: var(--text-color);
-  font-size: 30px;
-  transition: transform 0.3s ease-in-out;
+width: 190px;
+height: 60px;
+padding: 5px;
+padding-top: 17px;
+background-color: var(--secondary-color);
+color: var(--text-color);
+font-size: 30px;
+transition: transform 0.3s ease-in-out;
 }
 .sign-up-button:hover {
-  transform: scale(1.06);
+transform: scale(1.06);
 }
 #signPopUp{
-  display: none;
-  position: absolute;
-  height: fit-content;
-  inset: 0;
-  /* max-height: 500px; */
-  min-height: 200px;
-  background-color: var(--header-color);
-  border-radius: 12.5px; 
-  padding-bottom: 20px;
-  /* width: 5000px; */
-  margin: auto;
-  text-align: center;
+display: none;
+position: absolute;
+height: fit-content;
+inset: 0;
+/* max-height: 500px; */
+min-height: 200px;
+background-color: var(--header-color);
+border-radius: 12.5px; 
+padding-bottom: 20px;
+/* width: 5000px; */
+margin: auto;
+text-align: center;
 }
 .insta:hover{
-  text-decoration: underline;
-  text-decoration-color: var(--text-color);
-  cursor: pointer;
+text-decoration: underline;
+text-decoration-color: var(--text-color);
+cursor: pointer;
 }
 .popup-link{
-  color: rgba(255,255,255,0.7);
+color: rgba(255,255,255,0.7);
 }
-
-
-.welcomePopUp{
-  display: none;
-  height: 400px;
-  background-color: var(--header-color);
-  border-radius: 12.5px;
-}
-
 
 
 .signPopUpText {
-  position: absolute;
-  color: white;
-  margin: auto;
-  margin-top: 25px;
-  height: fit-content;
-  width: fit-content;
-  font-size: 20px;
+position: absolute;
+color: white;
+inset: 0;
+margin: auto;
+margin-top: 25px;
+height: fit-content;
+width: fit-content;
+font-size: 20px;
 }
 
 .welcomeText {
-  color: white;
-  text-align: center;
-  max-width: 475px;
-  font-size: 17px;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-bottom: 0;
-  margin: 10px;
-  margin-top: 20px;
+color: white;
+text-align: center;
+max-width: 475px;
+font-size: 17px;
+padding-left: 10px;
+padding-right: 10px;
+padding-bottom: 0;
+margin: 10px;
+margin-top: 20px;
 }
 .welcome{
-  font-size: 35px;
+font-size: 35px;
 }
 .signPopUpLogin {
-  position: absolute;
-  color: white;
-  inset: 0;
-  margin-top: 80px;
-  margin-left: 55px;
-  margin-right: 55px;
-  height: 32.5px;
-  line-height: 30px;
-  font-size: 16px;
-  background: var(--primary-color);
-  text-align: center;
-  border-radius: 4px;
-  cursor: pointer;
-  }
+position: absolute;
+color: white;
+inset: 0;
+margin-top: 80px;
+margin-left: 55px;
+margin-right: 55px;
+height: 32.5px;
+line-height: 30px;
+font-size: 16px;
+background: var(--primary-color);
+text-align: center;
+border-radius: 4px;
+cursor: pointer;
+}
 
 .signPopUpSignup {
-  position: absolute;
-  color: white;
-  inset: 0;
-  margin-top: 127.5px;
-  margin-left: 55px;
-  margin-right: 55px;
-  height: 32.5px;
-  line-height: 30px;
-  font-size: 16px;
-  background: var(--secondary-color);
-  text-align: center;
-  border-radius: 4px;
-  cursor: pointer;
-  }
+position: absolute;
+color: white;
+inset: 0;
+margin-top: 127.5px;
+margin-left: 55px;
+margin-right: 55px;
+height: 32.5px;
+line-height: 30px;
+font-size: 16px;
+background: var(--secondary-color);
+text-align: center;
+border-radius: 4px;
+cursor: pointer;
+}
 
 .signPopUpX::before {
-  position: absolute;
-  color: white;
-  content: '\2715';
-  font-size: 17px;
-  top: 3px;
-  right: 3px;
-  cursor: pointer;
-  margin-bottom: 3px;
-  margin-left: 3px;
+position: absolute;
+color: white;
+content: '\2715';
+font-size: 17px;
+top: 3px;
+right: 3px;
+cursor: pointer;
+margin-bottom: 3px;
+margin-left: 3px;
 }
 
 .notif {
-  display: none;
-  position: absolute;
-  background-color: var(--secondary-color);
-  width: 10px;
-  height: 10px;
-  border-radius: 5px;
-  z-index: 11;
-  margin-left: 8.5px;
+display: none;
+position: absolute;
+background-color: var(--secondary-color);
+width: 10px;
+height: 10px;
+border-radius: 5px;
+z-index: 11;
+margin-left: 8.5px;
 }
 
 
 @media only screen and (max-width: 800px) {
-    .menu {
-    display: none;
-  }
-  .login-button {
-    display: none;
-  }
+  .menu {
+  display: none;
+}
+.login-button {
+  display: none;
+}
 
-  .signup-button {
-    display: none;
-  }
+.signup-button {
+  display: none;
+}
 
-  .profileButton{
-    display: none;
-  }
+.profileButton{
+  display: none;
+}
 
-  .inbox{
-    display: none;
-  }
+.inbox{
+  display: none;
+}
 
-  .search-bar {
-     margin-right: 18px;
-     width: 200px;
-  }
- }
- :root{ /*setting color variables incase we want to switch color scheme*/
-    --primary-color:#113265ff;
-    --background-color:#08162bff;
-    --header-color:#242424ff;
-    --text-box-bar-color: #424242ff;
-    --secondary-color:#a32f80ff;
-    --border-color: #474b4eff;
-    --text-color:white;
-    --ask-question-button: #2c74b3ff;
- }
- /* Creates a standard for an object being centered */
- .center{
-     display: flex;
-     justify-content: center;
-     align-items: center;
- }
+.search-bar {
+   margin-right: 18px;
+   width: 200px;
+}
+}
+:root{ /*setting color variables incase we want to switch color scheme*/
+  --primary-color:#113265ff;
+  --background-color:#08162bff;
+  --header-color:#242424ff;
+  --text-box-bar-color: #424242ff;
+  --secondary-color:#a32f80ff;
+  --border-color: #474b4eff;
+  --text-color:white;
+  --ask-question-button: #2c74b3ff;
+}
+/* Creates a standard for an object being centered */
+.center{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
 
- body {
-   font-family: 'Lexend', sans-serif;
-   background-color: var(--background-color);
-   margin: 0;
-   padding: 0;
-   overflow-x: hidden;
- }
- #global_pfp{
-    height: 50px;
-    width: 50px;
-    margin-top: 15px;
-    margin-left: 15px;
-    cursor: pointer;
-    overflow: hidden;
-    align-self: center;
-    z-index: 20;
-  }
- .global_pfp{
+body {
+ font-family: 'Lexend', sans-serif;
+ background-color: var(--background-color);
+ margin: 0;
+ padding: 0;
+ overflow-x: hidden;
+}
+#global_pfp{
   height: 50px;
   width: 50px;
   margin-top: 15px;
@@ -524,286 +506,296 @@
   align-self: center;
   z-index: 20;
 }
+.global_pfp{
+height: 50px;
+width: 50px;
+margin-top: 15px;
+margin-left: 15px;
+cursor: pointer;
+overflow: hidden;
+align-self: center;
+z-index: 20;
+}
 .title-box {
-  display: flex; /* Use flexbox to create a horizontal layout */
-  align-items: center;
-  float: right;
-   /* Align items vertically in the center */
+display: flex; /* Use flexbox to create a horizontal layout */
+align-items: center;
+float: right;
+ /* Align items vertically in the center */
 }
 .tutor-icon{
-  margin-top: 27px;
-  margin-left: 10px;
+margin-top: 27px;
+margin-left: 10px;
 }
 .staff-icon{
-  scale: 1.5;
-  margin-top: 18px;
-  margin-left: 20px;
+scale: 1.5;
+margin-top: 18px;
+margin-left: 20px;
 }
-  .profileButton{
-    width: 175px;
-    height: 30.5px;
-    align-items:center;
-    position: absolute;
-    z-index: 100;
-    float: right;
-    margin-top: -15px;
-    transform: translateX(-173px);
-  }
-
-  .userInfoContainerHome {
-    position: absolute;
-    margin-left: 35px;
-    max-width: 110px;
-    transition: transform 0.3s ease-in-out;
-
-  }
-
-  .usernameOnProfileButton{
-    font-size: 17.5px;
-    margin-top: -28px;
-    margin-left: 31px;
-    text-align: top;
-    color: var(--text-color);
-    overflow: hidden;
-    text-overflow: ellipsis;
-    word-wrap:none;
-    cursor: pointer;
-  }
-
-  .profilePicHome{
-    margin-top: 3px;
-    width: 25px;
-    height: 25px;
-    align-items: center;
-    border-radius: 3px;
-    cursor: pointer;
-  }
-
-  .inboxButton{
-    position: absolute;
-    margin-top: 2.5px;
-    margin-left: -7.5px;
-    margin-right: 130px;
-    width: 25px;
-    height: 25px;
-    align-items: center;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: transform 0.3s ease-in-out;
-    z-index: 10;
-  }
-
-  .inbox {
-    max-height: 500px;
-    overflow-y: scroll;
-    display: none;
-    position: absolute;
-    left: calc(100% - 320px);
-    width: 300px;
-    margin-top: 42.5px;
-    height: fit-content;
-    background-color: var(--header-color);
-    border: 1px solid var(--border-color);
-    z-index: 10;
-  }
-
-  .inboxLetters {
-    color: white;
-    padding: 5px 10px 5px 10px;
-    font-size: 13px;
-    word-wrap: break-word;
-  }
-
-  .inboxTime {
-    color: blue;
-    padding: 0px 10px 2px 10px;
-    font-size: 11px;
-    color: var(--ask-question-button);
-  }
-
-  hr.inboxLine {
-    overflow-y: scroll;
-    border: 0.5px solid var(--secondary-color);
-    margin: 0 5px 0 5px;
-  }
-
-  .userInfoContainerHome:hover{
-    transform: scale(1.06);
-  }
-
-  .inboxHome:hover{
-    transform: scale(1.06);
-  }
-
-  .center{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.profileButton{
+  width: 175px;
+  height: 30.5px;
+  align-items:center;
+  position: absolute;
+  z-index: 100;
+  float: right;
+  margin-top: -15px;
+  transform: translateX(-173px);
 }
-a {
-  text-decoration: none;
-  color: white;
+
+.userInfoContainerHome {
+  position: absolute;
+  margin-left: 35px;
+  max-width: 110px;
+  transition: transform 0.3s ease-in-out;
+
 }
- #topbar {
-   background-color: var(--header-color);
-   width: 100%;
-   height: 43px;
-   display: flex; /* Use flexbox to position elements within #topbar */
-   align-items: center; /* Vertically center elements within #topbar */
- }
 
+.usernameOnProfileButton{
+  font-size: 17.5px;
+  margin-top: -28px;
+  margin-left: 31px;
+  text-align: top;
+  color: var(--text-color);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap:none;
+  cursor: pointer;
+}
 
-#logo {
-  height: 115%;
-  margin-top: -1px;
-  margin-left: 9px;
+.profilePicHome{
+  margin-top: 3px;
+  width: 25px;
+  height: 25px;
+  align-items: center;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.inboxButton{
+  position: absolute;
+  margin-top: 2.5px;
+  margin-left: -7.5px;
+  margin-right: 130px;
+  width: 25px;
+  height: 25px;
+  align-items: center;
+  border-radius: 6px;
   cursor: pointer;
   transition: transform 0.3s ease-in-out;
-}
-.welcomeLogo {
-  height: 115%;
-  margin-top: -1px;
-  margin-left: 9px;
-  padding-left: 3lvb;
-}
-
-#logo:hover {
-    transform: scale(1.06);
-}
-
-
-
- .login-button {/*sub-class of button*/
-   margin-right: 8px;
-   background-color: var(--primary-color);
-   transition: transform 0.3s ease-in-out;
- }
-
-  .login-button:hover {
-    transform: scale(1.06);
-  }
-
- .signup-button {
-    margin-right: 12px;
-    background-color: var(--secondary-color);
-    transition: transform 0.3s ease-in-out;
- }
-
- .signup-button:hover {
-    transform: scale(1.06);
-  }
-
- .search-bar {
-     font-family: 'Lexend';
-     flex-grow: 1;
-     margin-left: -10px;
-     margin-right: 215px;
-     height: 30.5px;
-     background-color: #363636ff;
-     border-radius: 6px;
-     color: white;
-     padding-left: 13px;
-     padding-right: 140px;
-     border: 1.5px solid var(--border-color);
- }
-
- .search-bar::placeholder {
-   font-family: 'Lexend';
-   color: white;
- }
- .search-bar::-webkit-search-cancel-button {
-   display: none;
- }
-
- .search-bar:focus {
-     outline: none;
- }
-
-.ask-question-button {
-  margin-left: calc(100vw - 345px);
-  height: 20px;
-  width: 124px;
-  background-color: var(--ask-question-button);
-  position: absolute;
-  font-size: 13px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.3s ease-in-out;
-}
-
-.possibleSearchResultContainer {
-  display: block;
-  position: absolute;
-  top: 37px;
-  left: 192px;
-  height: fit-content;
-  width: calc(100% - 409px);
-  background-color: var(--header-color);
-  border-radius: 6px;
   z-index: 10;
 }
 
-.possibleSearchResult {
-  height: 37.5px;
-  padding-left: 10px;
-  vertical-align: middle;
-  line-height: 35px;
+.inbox {
+  max-height: 500px;
+  overflow-y: scroll;
+  display: none;
+  position: absolute;
+  left: calc(100% - 320px);
+  width: 300px;
+  margin-top: 42.5px;
+  height: fit-content;
+  background-color: var(--header-color);
+  border: 1px solid var(--border-color);
+  z-index: 10;
+}
+
+.inboxLetters {
   color: white;
-  font-size: 15px;
-  cursor: pointer;
+  padding: 5px 10px 5px 10px;
+  font-size: 13px;
+  word-wrap: break-word;
+}
+
+.inboxTime {
+  color: blue;
+  padding: 0px 10px 2px 10px;
+  font-size: 11px;
+  color: var(--ask-question-button);
+}
+
+hr.inboxLine {
+  overflow-y: scroll;
+  border: 0.5px solid var(--secondary-color);
+  margin: 0 5px 0 5px;
+}
+
+.userInfoContainerHome:hover{
+  transform: scale(1.06);
+}
+
+.inboxHome:hover{
+  transform: scale(1.06);
+}
+
+.center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+a {
+text-decoration: none;
+color: white;
+}
+#topbar {
+ background-color: var(--header-color);
+ width: 100%;
+ height: 43px;
+ display: flex; /* Use flexbox to position elements within #topbar */
+ align-items: center; /* Vertically center elements within #topbar */
+}
+
+
+#logo {
+height: 115%;
+margin-top: -1px;
+margin-left: 9px;
+cursor: pointer;
+transition: transform 0.3s ease-in-out;
+}
+.welcomeLogo {
+height: 115%;
+margin-top: -1px;
+margin-left: 9px;
+padding-left: 3lvb;
+}
+
+#logo:hover {
+  transform: scale(1.06);
+}
+
+
+
+.login-button {/*sub-class of button*/
+ margin-right: 8px;
+ background-color: var(--primary-color);
+ transition: transform 0.3s ease-in-out;
+}
+
+.login-button:hover {
+  transform: scale(1.06);
+}
+
+.signup-button {
+  margin-right: 12px;
+  background-color: var(--secondary-color);
+  transition: transform 0.3s ease-in-out;
+}
+
+.signup-button:hover {
+  transform: scale(1.06);
+}
+
+.search-bar {
+   font-family: 'Lexend';
+   flex-grow: 1;
+   margin-left: -10px;
+   margin-right: 215px;
+   height: 30.5px;
+   background-color: #363636ff;
+   border-radius: 6px;
+   color: white;
+   padding-left: 13px;
+   padding-right: 140px;
+   border: 1.5px solid var(--border-color);
+}
+
+.search-bar::placeholder {
+ font-family: 'Lexend';
+ color: white;
+}
+.search-bar::-webkit-search-cancel-button {
+ display: none;
+}
+
+.search-bar:focus {
+   outline: none;
+}
+
+.ask-question-button {
+margin-left: calc(100vw - 345px);
+height: 20px;
+width: 124px;
+background-color: var(--ask-question-button);
+position: absolute;
+font-size: 13px;
+display: flex;
+align-items: center;
+justify-content: center;
+transition: transform 0.3s ease-in-out;
+}
+
+.possibleSearchResultContainer {
+display: block;
+position: absolute;
+top: 37px;
+left: 192px;
+height: fit-content;
+width: calc(100% - 409px);
+background-color: var(--header-color);
+border-radius: 6px;
+z-index: 10;
+}
+
+.possibleSearchResult {
+height: 37.5px;
+padding-left: 10px;
+vertical-align: middle;
+line-height: 35px;
+color: white;
+font-size: 15px;
+cursor: pointer;
 }
 
 
 
 .notif {
-  display: none;
-  position: absolute;
-  background-color: var(--secondary-color);
-  width: 10px;
-  height: 10px;
-  border-radius: 5px;
-  z-index: 11;
-  margin-left: 8.5px;
+display: none;
+position: absolute;
+background-color: var(--secondary-color);
+width: 10px;
+height: 10px;
+border-radius: 5px;
+z-index: 11;
+margin-left: 8.5px;
 }
 
 
 @media only screen and (max-width: 800px) {
-    .menu {
-    display: none;
-  }
-  .login-button {
-    display: none;
-  }
+  .menu {
+  display: none;
+}
+.login-button {
+  display: none;
+}
 
-  .signup-button {
-    display: none;
-  }
+.signup-button {
+  display: none;
+}
 
-  .profileButton{
-    display: none;
-  }
+.profileButton{
+  display: none;
+}
 
-  .inbox{
-    display: none;
-  }
+.inbox{
+  display: none;
+}
 
-  .search-bar {
-     margin-right: 18px;
-     width: 200px;
- }
+.search-bar {
+   margin-right: 18px;
+   width: 200px;
+}
 
- .ask-question-button {
-      left: 197px;
- }
+.ask-question-button {
+    left: 197px;
+}
 
 
- .ask-question-button {
-      left: 197px;
- }
+.ask-question-button {
+    left: 197px;
+}
 
- .possibleSearchResultContainer {
-  width: calc(100% - 210px);
+.possibleSearchResultContainer {
+width: calc(100% - 210px);
 }
 
 }
