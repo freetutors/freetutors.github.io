@@ -296,6 +296,15 @@
   /* margin: auto;*/
 }
 
+.welcomePopUp{
+  display: none;
+  height: 400px;
+  background-color: var(--header-color);
+  border-radius: 12.5px;
+}
+
+
+
 .signPopUpText {
   position: absolute;
   color: white;
