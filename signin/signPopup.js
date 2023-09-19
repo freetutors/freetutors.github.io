@@ -35,12 +35,12 @@ if (!checkCookieExists("usage") || getCookie("usage") == "new"){
    console.log('hi')
    signPopUp.innerHTML = `
        <p class="welcomeText welcome"><b>Welcome to FreeTutors.net!</b></p>
-       <img class ="welcomeMascot left" id="mascot" src="final_mascot.svg" alt="mascot" style="position: absolute; left: 10px; up: 10px;">
-       <p class="welcomeText right" style="padding-left: 200px; right:10px; up:50px; left:100px; font-size:24px; text-align:center; overflow-wrap:break-word; word-wrap:break-word;">We're a <b>FREE</b> to use Q&A site for all your school needs.
+       <img class ="welcomeMascot left" id="mascot" src="final_mascot.svg" alt="mascot" style="position: absolute; margin-left: 20px; left:10px; up: 10px; width: 130px;">
+       <p class="welcomeText right" style="padding-left: 200px; right:10px; up:50px; left:100px; font-size:24px; text-align:center; overflow-wrap:break-word; word-wrap:break-word;">We are a <b>FREE</b> to use Q&A site for all your school needs.
        <br/>
        <b>NO SUBSCRIPTIONS.</b>
        <br/> 
-       It's simple. Just ask any question and get answers
+       It's simple. Just ask any question and get answers.
        </p>
        <p class="welcomeText end" style="font-size:24px;">Need volunteer hours? <b>Coming soon on FreeTutors!</b></p>
        <div class="buttons">
