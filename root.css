@@ -200,20 +200,6 @@ transition: transform 0.3s ease-in-out;
   transform: scale(1.06);
 }
 
-.button {/*setting main button object*/
- font-family: 'Lexend', sans-serif;
- border: none;
- color: var(--text-color);
- background-color: var(--primary-color);
- padding: 6.5px 17px;
- text-align: center;
- text-decoration: none;
- display: inline-block;
- font-size: 14px;
- cursor: pointer;
- border-radius: 6px;
-}
-
 .login-button {/*sub-class of button*/
  margin-right: 8px;
  background-color: var(--primary-color);

@@ -125,17 +125,19 @@ display: none;
     transform: scale(1.06);
 }
 
-.buttons {
+.submit-buttons {
   position: relative;
   padding: 12px;
   font-size: 15px;
   height: 40px;
-  width: 947.5px;
+  width: 907.5px;
   background-color: var(--primary-color);
   outline: none;
   cursor: pointer;
   margin: auto;
   left: calc(50% - 473px);
+  text-align: center;
+  margin-top: 13px;
 }
 
 /* for dropdown */
@@ -253,7 +255,7 @@ h1{
   width: calc(100% - 130px);
 }
 
-.buttons {
+.submit-buttons {
   left: 50px;
   width: calc(100% - 104px);
 }
