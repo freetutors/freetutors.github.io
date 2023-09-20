@@ -30,18 +30,34 @@ function getCookie(name) {
   return null;
 }
 
-// if (!checkCookieExists("usage") || getCookie("usage") == "new"){
-//   setCookie('usage', 'first', 365) //un comment this when the popup is ready this is for testing
-//   console.log('hi')
-//   signPopUp.innerHTML = `
-//       <p class="welcomeText welcome">Welcome To FreeTutors!</p>
-//       <p class="welcomeText">We're a free to use q and a website for all of you. All you have to do is ask 
-//       a question and get answers from other users. You can also sign up to be a verified tutor, and in the future you can earn volunteer hours(not yet though)
-//       <img class ="welcomeLogo" id="logo" src="Logo.svg" alt="Logo">
-//       <div class="signPopUpX" onclick="document.querySelector('.signPopUp').style.display='none'"></div>
-//     `;
-//     signPopUp.style.display = 'block';
-// }
+if (!checkCookieExists("usage") || getCookie("usage") == "new"){
+   setCookie('usage', 'first', 365) //un comment this when the popup is ready this is for testing
+   console.log('hi')
+   signPopUp.innerHTML = `
+       <p class="welcomeText welcome" style="margin-left:30px"><b>Welcome to FreeTutors!</b></p>
+       <img class ="welcomeMascot left" id="mascot" src="final_mascot.svg" alt="mascot" style="position: absolute; margin-left: 10px; left:10px; up: 10px; width: 150px;">
+       <p class="welcomeText popup-right" style="">We are a <b>FREE</b> to use Q&A site for all your school needs.
+       <br/>
+       <b>NO SUBSCRIPTIONS.</b>
+       <br> 
+       It's simple. Just ask any question and get answers.
+      <br>
+      <br>
+      Need volunteer hours? <b>Coming soon on FreeTutors!
+       </p>
+       <p class="welcomeText right" style="font-size:24px;"></b></p>
+       <div class="buttons">
+       <div class="button sign-up-button" onclick="window.location='/signup'">Sign Up</div>
+       <div class="button-column">
+         <div class="button contact-button"onclick="window.location='/contactUs'">Contact Us</div>
+         <div class="button about-button"onclick="window.location='/ourTeam'">About Us</div>
+       </div>
+     </div>
+     <p class="popup-link">Follow us <a class="insta" href = "https://www.instagram.com/freetutorsdotnet/">@freetutorsdotnet </a>for more updates</p>
+     <div class="signPopUpX" onclick="document.querySelector('.signPopUp').style.display='none'"></div>
+       `;
+     signPopUp.style.display = 'block';
+ }
 if (username == null) {
   askQuestionButton.addEventListener('click', () => {
     signPopUp.innerHTML = `

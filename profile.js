@@ -76,7 +76,7 @@ async function showQuestionColumn(user){ //showing the questions the user asked
       </div>`
       }
     }
-      const questionBoxes = document.querySelectorAll(".box.text_box");
+      const questionBoxes = document.querySelectorAll("#text_box_question_content");
       
       questionBoxes.forEach((box, index) => { //when click will go to view Question.html
         box.addEventListener("click", function () {

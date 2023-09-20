@@ -44,7 +44,7 @@
     transform: scale(1.06);
 }
 
-.buttons {
+.submit-buttons {
   position: relative;
   padding: 12px;
   font-size: 15px;
@@ -55,6 +55,7 @@
   cursor: pointer;
   margin: auto;
   left: calc(50% - 460px);
+  margin-top: 15px;
 }
 
 /* for dropdown */
@@ -140,7 +141,7 @@
   width: calc(100% - 120px);
 }
 
-.buttons {
+.submit-buttons {
     left: 50px;
     width: calc(100% - 100px);
 }

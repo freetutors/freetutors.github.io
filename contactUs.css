@@ -3,10 +3,11 @@
   list-style-type: none;
   position: absolute;
   cursor: pointer;
-  left: calc(50% - var(--question_list_width)/2 - 227.5px);
+  left: 50;
   color: white;
   margin-top: -1px;
   transform: translateX(calc(-1*var(--translate_len)));
+  margin-left: 15px;
 }
 
 .menu_item {
@@ -125,7 +126,7 @@ display: none;
     transform: scale(1.06);
 }
 
-.buttons {
+.submit-buttons {
   position: relative;
   padding: 12px;
   font-size: 15px;
@@ -136,6 +137,8 @@ display: none;
   cursor: pointer;
   margin: auto;
   left: calc(50% - 473px);
+  text-align: center;
+  margin-top: 13px;
 }
 
 /* for dropdown */
@@ -253,7 +256,7 @@ h1{
   width: calc(100% - 130px);
 }
 
-.buttons {
+.submit-buttons {
   left: 50px;
   width: calc(100% - 104px);
 }
