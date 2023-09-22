@@ -34,17 +34,28 @@ if (!checkCookieExists("usage") || getCookie("usage") == "new"){
    setCookie('usage', 'first', 365) //un comment this when the popup is ready this is for testing
    console.log('hi')
    signPopUp.innerHTML = `
-       <p class="welcomeText welcome"><b>Welcome to FreeTutors.net!</b></p>
-       <img class ="welcomeMascot left" id="mascot" src="final_mascot.svg" alt="mascot" style="position: absolute; left: 10px; up: 10px;">
-       <p class="welcomeText right" style="padding-left: 200px; right:10px; up:50px; left:100px; font-size:24px; text-align:center; overflow-wrap:break-word; word-wrap:break-word;">We're a <b>FREE</b> to use Q&A site for all your school needs.
+       <p class="welcomeText welcome" style="margin-left:30px"><b>Welcome to FreeTutors!</b></p>
+       <img class ="welcomeMascot left" id="mascot" src="final_mascot.svg" alt="mascot" style="position: absolute; margin-left: 10px; left:10px; up: 10px; width: 150px;">
+       <p class="welcomeText popup-right" style="">We are a <b>FREE</b> to use Q&A site for all your school needs.
        <br/>
        <b>NO SUBSCRIPTIONS.</b>
-       <br/> 
-       It's simple. Just ask any question and get answers
+       <br> 
+       It's simple. Just ask any question and get answers.
+      <br>
+      <br>
+      Need volunteer hours? <b>Coming soon on FreeTutors!
        </p>
-       <p class="welcomeText end" style="font-size:24px;">Need volunteer hours? <b>Coming soon on FreeTutors!</b></p>
-       <div class="signPopUpX" onclick="document.querySelector('.signPopUp').style.display='none'"></div>
-     `;
+       <p class="welcomeText right" style="font-size:24px;"></b></p>
+       <div class="buttons">
+       <div class="button sign-up-button" onclick="window.location='/signup'">Sign Up</div>
+       <div class="button-column">
+         <div class="button contact-button"onclick="window.location='/contactUs'">Contact Us</div>
+         <div class="button about-button"onclick="window.location='/ourTeam'">About Us</div>
+       </div>
+     </div>
+     <p class="popup-link">Follow us <a class="insta" href = "https://www.instagram.com/freetutorsdotnet/">@freetutorsdotnet </a>for more updates</p>
+     <div class="signPopUpX" onclick="document.querySelector('.signPopUp').style.display='none'"></div>
+       `;
      signPopUp.style.display = 'block';
  }
 if (username == null) {

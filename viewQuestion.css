@@ -195,7 +195,7 @@ p {
     margin-left: calc(50% - 460px);
  }
 
-.buttons {
+.submit-buttons {
   position: relative;
   padding: 12px;
   font-size: 15px;
@@ -220,7 +220,7 @@ p {
     margin-bottom: 22px;
 }
 
-.buttons {
+.submit-buttons {
   margin: auto;
   width: 800px;
   transform: translateX(60px);
@@ -254,7 +254,7 @@ p {
     margin-bottom: 22px;
 }
 
-.buttons {
+.submit-buttons {
   width: calc(100% - 100px);
   left: -10px;
 }
