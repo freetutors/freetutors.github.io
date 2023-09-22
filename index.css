@@ -313,7 +313,7 @@ width: 100%;
       transform: translateX(var(--translate_len));
       scrollbar-color: var(--text-box-bar-color) var(--background-color);
       margin-left: 0;
-      max-height: calc(100vh - 130px);
+      max-height: calc(100vh - 80px);
      }
 
    .questions_list::-webkit-scrollbar {/*custom scroll bar width*/
