@@ -25,12 +25,38 @@ if (username != null) { //if nothing in localStorage
   profileButton.innerHTML = `
     <div class="notif"></div>
     <img class="inboxButton" src="inbox.png">
-    <div class="userInfoContainerHome" onclick="window.location = 'profile?username=${username}'">
+    <div class="userInfoContainerHome">
       <img class="profilePicHome" src="data:image/png;base64,${pfp}">
       <p class="usernameOnProfileButton">${username}</p>
+      <div class="dropdown-profile">
+      <button class="center dropbtn-profile" onclick="document.querySelector('.dropbtn-profile').classList.toggle('rotate-after');">Select
+        Subject
+      </button>
+      <div class="dropdown-content-profile">
+        <a href="#" class="option">Profile</a>
+        <a href="#" class="option">Light Mode</a>
+        <a href="#" class="option">Log Out</a>
+      </div>
+      </div>
     </div>
   `;
+  document.addEventListener("DOMContentLoaded", function() {
+      var dropdown = document.querySelector(".dropdown-profile");
+      var dropdownContent = document.querySelector(".dropdown-content-profile");
+      var dropbtn = document.querySelector(".dropbtn-profile");
 
+      dropbtn.addEventListener("click", function() {
+        console.log("hi")
+        dropdownContent.style.display = dropdownContent.style.display === "block" ? "none" : "block"
+      });
+
+      dropdownContent.addEventListener("click", function(event) {
+        if (event.target.classList.contains("option")) {
+          dropbtn.textContent = event.target.textContent;
+          dropdownContent.style.display = "none"; // Always hide content after selecting an item
+        }
+      });
+    });
   const inbox = document.createElement('div'); //showing inbox
   inbox.classList.add('inbox');
 
