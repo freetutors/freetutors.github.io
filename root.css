@@ -61,6 +61,70 @@ z-index: 20;
 border: var(--secondary-color);
 border-width: 2px;
 }
+/*Dropdowns on profile*/
+.dropdown-profile {
+  margin-top: 15px;
+  width: 100px;
+  z-index: 5;
+}
+
+.dropbtn-profile {
+  font-family: 'Lexend';
+  background-color: #363636ff;
+  color: white;
+  padding: 10px;
+  font-size: 12.5pt;
+  cursor: pointer;
+  border: 1.5px solid var(--border-color);
+  border-radius: 5px;
+  height: 44px;
+  transition: 0.2s;
+  width: 200.5;  /* margin-top: 15px; */
+}
+
+.dropdown-content-profile {
+  display: none;
+  position: absolute;
+  background-color: #363636ff;
+  width: 187.5;
+  font-size: 8pt;
+  box-shadow: 0px 8px 16px 0px var(--secondary-color);
+  z-index: 1;
+  border: 1.5px solid var(--border-color);
+  border-radius: 5px;
+  top: 100%;
+  left: 0;
+  transform: translateY(1px);
+}
+.dropdown-content-profile.block-above {
+  bottom: 100%;
+}
+
+.dropdown-content-profile a {
+  color: white;
+  padding: 8.75px 16px;
+  text-decoration: none;
+  display: block;
+  font-size: 9.5pt;
+}
+
+.dropdown-content-profile a:hover {
+  background-color: #5e5e5eff;
+}
+
+.dropbtn-profile::after {
+    margin-left: 7px;
+    content: '\203A';
+    font-size: 22px;
+    transform: translateY(-1.5px);
+}
+
+.rotate-after-profile::after {
+    transform: rotate(90deg) translateY(-4px) translateX(1px);
+}
+.rotate-after-profile::after {
+    transform: rotate(90deg) translateY(-4px) translateX(1px);
+}
 .title-box {
 display: flex; /* Use flexbox to create a horizontal layout */
 align-items: center;
