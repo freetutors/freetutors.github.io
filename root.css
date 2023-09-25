@@ -1,6 +1,6 @@
 /* this stuff will stay common from page to page */
 :root{ /*setting color variables incase we want to switch color scheme*/
-  --primary-color:#113265ff;
+  --primary-color:rgba(17, 51, 101, 0.707);
   --background-color:#08162bff;
   --header-color:#242424ff;
   --text-box-bar-color: #424242ff;
