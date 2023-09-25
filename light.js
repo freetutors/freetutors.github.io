@@ -15,6 +15,9 @@ if (theme=="light"){
     document.documentElement.style.setProperty('--subject-hover-color', 'rgb(154, 192, 255)')
     document.documentElement.style.setProperty('--menu-hover-color', 'rgb(141, 216, 255, 0.475)');
     document.documentElement.style.setProperty('--profile-box-color', 'rgb(137, 178, 255)');
+    document.documentElement.style.setProperty('--top-questions-box', '#ffdaa2ff');
+    document.documentElement.style.setProperty('--qotw-hover-color', 'rgb(141, 216, 255, 0.275)');
+    document.documentElement.style.setProperty('--top-questions-hover', 'rgb(141, 216, 255, 0.275)');
     ;
     // --primary-color:#113265ff;
     // --background-color:#08162bff;
