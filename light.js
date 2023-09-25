@@ -19,12 +19,7 @@ if (theme=="light"){
     document.documentElement.style.setProperty('--qotw-hover-color', 'rgb(141, 216, 255, 0.275)');
     document.documentElement.style.setProperty('--top-questions-hover', 'rgb(141, 216, 255, 0.275)');
     ;
-    // --primary-color:#113265ff;
-    // --background-color:#08162bff;
-    // --header-color:#242424ff;
-    // --text-box-bar-color: #424242ff;
-    // --secondary-color:#a32f80ff;
-    // --border-color: #474b4eff;
-    // --text-color:white;
-    // --ask-question-button: #2c74b3ff;
+}
+else{
+    localStorage.setItem('theme', "dark")
 }
