@@ -6,8 +6,11 @@
   --text-box-bar-color: #424242ff;
   --secondary-color:#a32f80ff;
   --border-color: #474b4eff;
-  --text-color:white;
+  --text-color: white;
   --ask-question-button: #2c74b3ff;
+  --search-bar: #363636ff;
+  --subject-hover-color: rgb(53, 53, 53);
+  --menu-hover-color:rgba(163, 47, 128, 0.397);
 }
 .button {/*setting main button object*/
 font-family: 'Lexend', sans-serif;
@@ -63,15 +66,14 @@ border-width: 2px;
 }
 /*Dropdowns on profile*/
 .dropdown-profile {
-  margin-top: 15px;
-  width: 100px;
+  width: 150px;
   z-index: 5;
 }
 
 .dropbtn-profile {
   font-family: 'Lexend';
   background-color: #363636ff;
-  color: white;
+  color: var(--text-color);
   padding: 10px;
   font-size: 12.5pt;
   cursor: pointer;
@@ -85,29 +87,35 @@ border-width: 2px;
 .dropdown-content-profile {
   display: none;
   position: absolute;
-  background-color: #363636ff;
-  width: 187.5;
+  background-color: var(--header-color);
+  width: 100%;
   font-size: 8pt;
-  box-shadow: 0px 8px 16px 0px var(--secondary-color);
   z-index: 1;
-  border: 1.5px solid var(--border-color);
-  border-radius: 5px;
-  top: 100%;
+  border-radius: 0 0 5px 5px;
   left: 0;
   transform: translateY(1px);
+  margin-top: -8px;
 }
 .dropdown-content-profile.block-above {
   bottom: 100%;
 }
 
 .dropdown-content-profile a {
-  color: white;
+  color: var(--text-color);
   padding: 8.75px 16px;
   text-decoration: none;
   display: block;
   font-size: 9.5pt;
+  border-bottom: var(--border-color) solid;
 }
-
+.dropdown-content-profile a:last-child {
+  color: var(--text-color);
+  padding: 8.75px 16px;
+  text-decoration: none;
+  display: block;
+  font-size: 9.5pt;
+  border-bottom: none;
+}
 .dropdown-content-profile a:hover {
   background-color: #5e5e5eff;
 }
@@ -124,6 +132,9 @@ border-width: 2px;
 }
 .rotate-after-profile::after {
     transform: rotate(90deg) translateY(-4px) translateX(1px);
+}
+.option{
+  border-bottom: var(--border-color);
 }
 .title-box {
 display: flex; /* Use flexbox to create a horizontal layout */
@@ -156,7 +167,6 @@ margin-left: 20px;
   position: absolute;
   margin-left: 35px;
   max-width: 110px;
-  transition: transform 0.3s ease-in-out;
 
 }
 
@@ -210,7 +220,7 @@ margin-left: 20px;
 }
 
 .inboxLetters {
-  color: white;
+  color: var(--text-color);
   padding: 5px 10px 5px 10px;
   font-size: 13px;
   word-wrap: break-word;
@@ -229,9 +239,6 @@ hr.inboxLine {
   margin: 0 5px 0 5px;
 }
 
-.userInfoContainerHome:hover{
-  transform: scale(1.06);
-}
 
 .inboxHome:hover{
   transform: scale(1.06);
@@ -290,9 +297,9 @@ transition: transform 0.3s ease-in-out;
    margin-left: -10px;
    margin-right: 215px;
    height: 30.5px;
-   background-color: #363636ff;
+   background-color: var(--search-bar);
    border-radius: 6px;
-   color: white;
+   color: var(--text-color);
    padding-left: 13px;
    padding-right: 140px;
    border: 1.5px solid var(--border-color);
@@ -300,7 +307,7 @@ transition: transform 0.3s ease-in-out;
 
 .search-bar::placeholder {
  font-family: 'Lexend';
- color: white;
+ color: var(--text-color);
 }
 .search-bar::-webkit-search-cancel-button {
  display: none;
@@ -340,7 +347,7 @@ height: 37.5px;
 padding-left: 10px;
 vertical-align: middle;
 line-height: 35px;
-color: white;
+color: var(--text-color);
 font-size: 15px;
 cursor: pointer;
 overflow: hidden;
@@ -419,7 +426,7 @@ color: rgba(255,255,255,0.7);
 
 .signPopUpText {
 position: absolute;
-color: white;
+color: var(--text-color);
 inset: 0;
 margin: auto;
 margin-top: 25px;
@@ -429,7 +436,7 @@ font-size: 20px;
 }
 
 .welcomeText {
-color: white;
+color: var(--text-color);
 text-align: center;
 max-width: 475px;
 font-size: 17px;
@@ -446,7 +453,7 @@ font-size: 35px;
 }
 .signPopUpLogin {
 position: absolute;
-color: white;
+color: var(--text-color);
 inset: 0;
 margin-top: 80px;
 margin-left: 55px;
@@ -462,7 +469,7 @@ cursor: pointer;
 
 .signPopUpSignup {
 position: absolute;
-color: white;
+color: var(--text-color);
 inset: 0;
 margin-top: 127.5px;
 margin-left: 55px;
@@ -478,7 +485,7 @@ cursor: pointer;
 
 .signPopUpX::before {
 position: absolute;
-color: white;
+color: var(--text-color);
 content: '\2715';
 font-size: 17px;
 top: 3px;
@@ -534,276 +541,8 @@ margin-left: 8.5px;
    width: 200px;
 }
 }
-:root{ /*setting color variables incase we want to switch color scheme*/
-  --primary-color:#113265ff;
-  --background-color:#08162bff;
-  --header-color:#242424ff;
-  --text-box-bar-color: #424242ff;
-  --secondary-color:#a32f80ff;
-  --border-color: #474b4eff;
-  --text-color:white;
-  --ask-question-button: #2c74b3ff;
-}
-/* Creates a standard for an object being centered */
-.center{
-   display: flex;
-   justify-content: center;
-   align-items: center;
-}
 
-body {
- font-family: 'Lexend', sans-serif;
- background-color: var(--background-color);
- margin: 0;
- padding: 0;
- overflow-x: hidden;
-}
-#global_pfp{
-  height: 50px;
-  width: 50px;
-  margin-top: 15px;
-  margin-left: 15px;
-  cursor: pointer;
-  overflow: hidden;
-  align-self: center;
-  z-index: 20;
-}
-.global_pfp{
-height: 50px;
-width: 50px;
-margin-top: 15px;
-margin-left: 15px;
-cursor: pointer;
-overflow: hidden;
-align-self: center;
-z-index: 20;
-}
-.title-box {
-display: flex; /* Use flexbox to create a horizontal layout */
-align-items: center;
-float: right;
- /* Align items vertically in the center */
-}
-.tutor-icon{
-margin-top: 27px;
-margin-left: 10px;
-}
-.staff-icon{
-scale: 1.5;
-margin-top: 18px;
-margin-left: 20px;
-}
-.profileButton{
-  width: 175px;
-  height: 30.5px;
-  align-items:center;
-  position: absolute;
-  z-index: 100;
-  float: right;
-  margin-top: -15px;
-  transform: translateX(-173px);
-}
-
-.userInfoContainerHome {
-  position: absolute;
-  margin-left: 35px;
-  max-width: 110px;
-  transition: transform 0.3s ease-in-out;
-
-}
-
-.usernameOnProfileButton{
-  font-size: 17.5px;
-  margin-top: -28px;
-  margin-left: 31px;
-  text-align: top;
-  color: var(--text-color);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  word-wrap:none;
-  cursor: pointer;
-}
-
-.profilePicHome{
-  margin-top: 3px;
-  width: 25px;
-  height: 25px;
-  align-items: center;
-  border-radius: 3px;
-  cursor: pointer;
-}
-
-.inboxButton{
-  position: absolute;
-  margin-top: 2.5px;
-  margin-left: -7.5px;
-  margin-right: 130px;
-  width: 25px;
-  height: 25px;
-  align-items: center;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: transform 0.3s ease-in-out;
-  z-index: 10;
-}
-
-.inbox {
-  max-height: 500px;
-  overflow-y: scroll;
-  display: none;
-  position: absolute;
-  left: calc(100% - 320px);
-  width: 300px;
-  margin-top: 42.5px;
-  height: fit-content;
-  background-color: var(--header-color);
-  border: 1px solid var(--border-color);
-  z-index: 10;
-}
-
-.inboxLetters {
-  color: white;
-  padding: 5px 10px 5px 10px;
-  font-size: 13px;
-  word-wrap: break-word;
-}
-
-.inboxTime {
-  color: blue;
-  padding: 0px 10px 2px 10px;
-  font-size: 11px;
-  color: var(--ask-question-button);
-}
-
-hr.inboxLine {
-  overflow-y: scroll;
-  border: 0.5px solid var(--secondary-color);
-  margin: 0 5px 0 5px;
-}
-
-.userInfoContainerHome:hover{
-  transform: scale(1.06);
-}
-
-.inboxHome:hover{
-  transform: scale(1.06);
-}
-
-.center{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 a {
 text-decoration: none;
-color: white;
-}
-#topbar {
- background-color: var(--header-color);
- width: 100%;
- height: 43px;
- display: flex; /* Use flexbox to position elements within #topbar */
- align-items: center; /* Vertically center elements within #topbar */
-}
-
-
-#logo {
-height: 115%;
-margin-top: -1px;
-margin-left: 9px;
-cursor: pointer;
-transition: transform 0.3s ease-in-out;
-}
-.welcomeLogo {
-height: 115%;
-margin-top: -1px;
-margin-left: 9px;
-padding-left: 3lvb;
-}
-
-#logo:hover {
-  transform: scale(1.06);
-}
-
-
-
-.login-button {/*sub-class of button*/
- margin-right: 8px;
- background-color: var(--primary-color);
- transition: transform 0.3s ease-in-out;
-}
-
-.login-button:hover {
-  transform: scale(1.06);
-}
-
-.signup-button {
-  margin-right: 12px;
-  background-color: var(--secondary-color);
-  transition: transform 0.3s ease-in-out;
-}
-
-.signup-button:hover {
-  transform: scale(1.06);
-}
-
-.search-bar {
-   font-family: 'Lexend';
-   flex-grow: 1;
-   margin-left: -10px;
-   margin-right: 215px;
-   height: 30.5px;
-   background-color: #363636ff;
-   border-radius: 6px;
-   color: white;
-   padding-left: 13px;
-   padding-right: 140px;
-   border: 1.5px solid var(--border-color);
-}
-
-.search-bar::placeholder {
- font-family: 'Lexend';
- color: white;
-}
-.search-bar::-webkit-search-cancel-button {
- display: none;
-}
-
-.search-bar:focus {
-   outline: none;
-}
-
-.ask-question-button {
-margin-left: calc(100vw - 345px);
-height: 20px;
-width: 124px;
-background-color: var(--ask-question-button);
-position: absolute;
-font-size: 13px;
-display: flex;
-align-items: center;
-justify-content: center;
-transition: transform 0.3s ease-in-out;
-}
-
-.possibleSearchResultContainer {
-display: block;
-position: absolute;
-top: 37px;
-left: 192px;
-height: fit-content;
-width: calc(100% - 409px);
-background-color: var(--header-color);
-border-radius: 6px;
-z-index: 10;
-}
-
-.possibleSearchResult {
-height: 37.5px;
-padding-left: 10px;
-vertical-align: middle;
-line-height: 35px;
-color: white;
-font-size: 15px;
-cursor: pointer;
+color: var(--text-color);
 }

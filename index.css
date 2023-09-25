@@ -1,14 +1,4 @@
-:root{ /*setting color variables incase we want to switch color scheme*/
-  --primary-color:#113265ff;
-  --background-color:#08162bff;
-  --header-color:#242424ff;
-  --text-box-bar-color: #424242ff;
-  --secondary-color:#a32f80ff;
-  --border-color: #474b4eff;
-  --text-color:white;
-  --ask-question-button: #2c74b3ff;
-  --translate_len: -15px;
-}
+
 .home-box{
  display: flex;
  margin-bottom: 30px;
@@ -32,7 +22,7 @@ width: 100%;
  display: flex;
  flex-direction: column;
  margin-top: 20px;
- color: white;
+ color: var(--text-color);
  width: 25vw;
  padding-left: 2vw;
  padding-right: 2vw;
@@ -40,7 +30,7 @@ width: 100%;
  max-width: 400px;
 }
 .qt-title{
- color: rgba(255,255,255,1);
+ color: var(--text-color);
  font-size: 15px;
  text-align: center;
  margin:0;
@@ -48,7 +38,7 @@ width: 100%;
  margin-bottom: 5px;
 }
 .top-question-header{
- color: white;
+ color: var(--text-color);
  text-align: center;
  font-size: 18pt;
  /* padding-left: 7px;
@@ -66,8 +56,8 @@ width: 100%;
 }
 .top-questions-box{
  margin-right: 0;
- margin-top: 90px;
  width: 100%;
+ margin-top: 80px;
  height:auto;
  padding-bottom: 10px;
  background-color: rgba(17, 51, 101, 0.507);
@@ -127,7 +117,7 @@ width: 100%;
   border-radius: 22px;
 }
 #sign_up_as_tutor_button {
- color: white;
+ color: var(--text-color);
  font-family: Lexend;
  background-color: black;
  border: none;
@@ -146,7 +136,7 @@ width: 100%;
  transform: scale(1.06);
 }
 .question_header { /*divider based on subject*/
- color: white;
+ color: var(--text-color);
  padding-left: 7px;
  padding-right: 7px;
  padding-top: 2px;
@@ -154,7 +144,6 @@ width: 100%;
  height: 30px;
  margin-right: 21px;
  background-color: var(--text-box-bar-color);
- border: 1.5px solid var(--border-color);
  /* margin: auto; */
  margin-top: 15px;
  transform: translateX(var(--translate_len));
@@ -194,7 +183,7 @@ width: 100%;
 
 .subject a {
  display: block;
- color: white;
+ color: var(--text-color);
  text-align: center;
  padding: 14px 16px;
  text-decoration: none;
@@ -203,7 +192,7 @@ width: 100%;
 /* Change the link color to #111 (black) on hover */
 .subject:hover {
  cursor: pointer;
- background-color: rgb(53, 53, 53);
+ background-color: var(--subject-hover-color);
  border-radius: 3px;
 }
 .active{
@@ -220,7 +209,7 @@ width: 100%;
  display: inline-block;
  border-top: 14px solid transparent;
  border-bottom: 14px solid transparent;
- border-left: 12px solid white;
+ border-left: 12px solid var(--text-color);
  border-radius: 3px;
  z-index: 15;
  /* margin-left: 3px;
@@ -230,7 +219,7 @@ width: 100%;
   display: inline-block;
   border-top: 14px solid transparent;
   border-bottom: 14px solid transparent;
-  border-right: 12px solid white;
+  border-right: 12px solid var(--text-color);
   border-radius: 3px;
   z-index: 15;
 
@@ -244,10 +233,9 @@ width: 100%;
     width: 80%;
     padding-bottom: 17px;
     margin-top: 0;
-    margin-left:15px;
     background-color: var(--secondary-color);
     transform-origin: top left;
-    transform: translateX(calc(var(--translate_len) - 2px))scale(1.25);
+    transform: scale(1.25);
   }
   /* .important_box {
    display: flex;
@@ -267,7 +255,7 @@ width: 100%;
 .important_box_num3 {
  display: flex;
  font-size: 25px;
- color: white;
+ color: var(--text-color);
  position: relative;
  text-align: center;
  margin-top: 16px;
@@ -281,7 +269,7 @@ width: 100%;
 .important_box_num3_digit{
  display: inline-block;
  font-size: 23px;
- color: white;
+ color: var(--text-color);
  transition: transform 2s ease;
  
 }
@@ -291,7 +279,7 @@ width: 100%;
 
 #important_box_nums {
      font-size: 210px;
-     color: white;
+     color: var(--text-color);
      position: relative;
      text-align: center;
      margin-top: 16px;
@@ -299,7 +287,7 @@ width: 100%;
 
  #important_box_text {
    font-size: 14px;
-   color: white;
+   color: var(--text-color);
    position: relative;
    text-align: center;
  }
@@ -347,7 +335,7 @@ width: 100%;
      top: 15px;
      left: 77px;
      font-size: 20px;
-     color: white;
+     color: var(--text-color);
      cursor: pointer;
      max-width: 40vw;
      white-space: nowrap;
@@ -372,7 +360,7 @@ width: 100%;
        position: absolute;
        top: 47px;
        left: 77px;
-       color: white;
+       color: var(--text-color);
        font-size: 13px;
    }
 
@@ -382,7 +370,7 @@ width: 100%;
   }
 
    #answered_by_line {
-       color: white;
+       color: var(--text-color);
        font-size: 14px;
        margin-top: 13px;
        margin-left: 25px;
@@ -390,7 +378,7 @@ width: 100%;
 
    .question_stats {
        position: absolute;
-       color: white;
+       color: var(--text-color);
        font-size: 17px;
        right: 25px;
        top: 5px;
@@ -413,7 +401,7 @@ width: 100%;
  right: 10;
   max-width: 165px;
  /* left: calc(50% - var(--question_list_width)/2 - 227.5px); */
- color: white;
+ color: var(--text-color);
  margin-top: -1px;
  transform: translateX(calc(-1*var(--translate_len)));
 }
@@ -434,7 +422,7 @@ width: 100%;
 }
 
 .menu_item:hover {
- background-color: rgba(163, 47, 128, 0.397);
+ background-color: var(--menu-hover-color);
 }
 
 .menu_item:hover::before {
@@ -473,7 +461,7 @@ width: 100%;
 }
 
 .on-page:hover {
- background-color: rgba(163, 47, 128, 0.397);
+ background-color: var(--menu-hover-color);
 }
 
 .on-page:hover::before {
@@ -534,21 +522,6 @@ width: 100%;
   .menu {
      left: -27px;
   }
-
-  /* .right-box{
-   width: 30%;
-  }
-  .important_box{
-   width: 100%;
-  }
-  #important_box_text{
-   font-size: 1em;
-  }
-  .important_box_num1,
-.important_box_num2,
-.important_box_num3 {
- font-size: 1em;
-} */
 
   .arrows {
        left: calc(100% - 249px);

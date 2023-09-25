@@ -21,6 +21,22 @@ if (username != null) { //if nothing in localStorage
   const user = await getUser(username)
   const pfp = user.user[0].pfp
   const profileButton = document.createElement('div');
+  const theme = localStorage.getItem("theme")
+  let themeChange
+  let themeChangeText
+  if (!theme){
+    localStorage.setItem('theme', 'dark')
+  }
+  else if (theme=="dark"){
+    themeChange = "light"
+    themeChangeText = "Light Mode"
+  }
+  else{
+    themeChange = "dark"
+    themeChangeText = "Dark Mode"
+  }
+  
+  console.log(theme, themeChange, themeChangeText)
   profileButton.classList.add('profileButton');//info for profile click button
   profileButton.innerHTML = `
     <div class="notif"></div>
@@ -29,21 +45,21 @@ if (username != null) { //if nothing in localStorage
       <img class="profilePicHome" src="data:image/png;base64,${pfp}">
       <p class="usernameOnProfileButton">${username}</p>
       <div class="dropdown-profile">
-      <button class="center dropbtn-profile" onclick="document.querySelector('.dropbtn-profile').classList.toggle('rotate-after');">Select
-        Subject
-      </button>
       <div class="dropdown-content-profile">
-        <a href="#" class="option">Profile</a>
-        <a href="#" class="option">Light Mode</a>
+        <a href="#" class="option" onclick = "window.location='/profile'">Profile</a>
+        <a href="#" class="option" id="theme-change">${themeChangeText}</a>
         <a href="#" class="option">Log Out</a>
       </div>
       </div>
     </div>
   `;
-  document.addEventListener("DOMContentLoaded", function() {
-      var dropdown = document.querySelector(".dropdown-profile");
-      var dropdownContent = document.querySelector(".dropdown-content-profile");
-      var dropbtn = document.querySelector(".dropbtn-profile");
+  profileButton.querySelector("#theme-change").addEventListener("click", () =>{
+    localStorage.setItem("theme", themeChange)
+    location.reload()
+  })
+      var dropdown = profileButton.querySelector(".dropdown-profile");
+      var dropdownContent = profileButton.querySelector(".dropdown-content-profile");
+      var dropbtn = profileButton.querySelector(".userInfoContainerHome");
 
       dropbtn.addEventListener("click", function() {
         console.log("hi")
@@ -51,12 +67,12 @@ if (username != null) { //if nothing in localStorage
       });
 
       dropdownContent.addEventListener("click", function(event) {
-        if (event.target.classList.contains("option")) {
+        if (event.target.classList.contains(".option")) {
           dropbtn.textContent = event.target.textContent;
           dropdownContent.style.display = "none"; // Always hide content after selecting an item
         }
       });
-    });
+  
   const inbox = document.createElement('div'); //showing inbox
   inbox.classList.add('inbox');
 
