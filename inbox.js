@@ -171,12 +171,21 @@ async function updateBooleanAttribute(tableName, key, attributeName, attributeVa
   const messages = user.user[0].InboxList.reverse()
 
   for (const message of messages) {
-    document.querySelector(".inbox").innerHTML +=
-    `
-      <div class="inboxLetters">${message[0]}</div>
-      <div class="inboxTime">${getTimeDifference(message[1])}</div>
-      <hr class="inboxLine">
-    `
+    if (messages.indexOf(message) == 0) {
+      document.querySelector(".inbox").innerHTML +=
+      `
+        <div class="inboxLetters">${message[0]}</div>
+        <div class="inboxTime">${getTimeDifference(message[1])}</div>
+      `
+    }
+    else{
+      document.querySelector(".inbox").innerHTML +=
+      `
+        <hr class="inboxLine">
+        <div class="inboxLetters">${message[0]}</div>
+        <div class="inboxTime">${getTimeDifference(message[1])}</div>
+      `
+    }
   }
 
   document.querySelector(".inboxButton").addEventListener("click", inboxDisplay)
