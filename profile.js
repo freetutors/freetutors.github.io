@@ -320,10 +320,3 @@ if (file !== null){
   })
 }
 
-document.getElementById("sign-out").addEventListener("click",() => { //signout
-  if (confirm("Do you want sign out?") == true){
-    localStorage.clear()
-    sessionStorage.clear()
-    window.location ='/'
-  }
-})

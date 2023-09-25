@@ -48,7 +48,7 @@ if (username != null) { //if nothing in localStorage
       <div class="dropdown-content-profile">
         <a href="#" class="option" onclick = "window.location='/profile'">Profile</a>
         <a href="#" class="option" id="theme-change">${themeChangeText}</a>
-        <a href="#" class="option">Log Out</a>
+        <a href="#" id="sign-out" class="option">Log Out</a>
       </div>
       </div>
     </div>
@@ -56,6 +56,13 @@ if (username != null) { //if nothing in localStorage
   profileButton.querySelector("#theme-change").addEventListener("click", () =>{
     localStorage.setItem("theme", themeChange)
     location.reload()
+  })
+  profileButton.querySelector("#sign-out").addEventListener("click",() => { //signout
+    if (confirm("Do you want sign out?") == true){
+      localStorage.clear()
+      sessionStorage.clear()
+      window.location ='/'
+    }
   })
       var dropdown = profileButton.querySelector(".dropdown-profile");
       var dropdownContent = profileButton.querySelector(".dropdown-content-profile");

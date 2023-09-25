@@ -11,6 +11,7 @@
   --search-bar: #363636ff;
   --subject-hover-color: rgb(53, 53, 53);
   --menu-hover-color:rgba(163, 47, 128, 0.397);
+  --profile-box-color:#242424ff;
 }
 .button {/*setting main button object*/
 font-family: 'Lexend', sans-serif;
