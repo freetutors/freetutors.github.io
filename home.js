@@ -1,6 +1,6 @@
 // Import configuration from external file
 import config from "./config.js";
-const qotwId = '0b2ca0c0-8477-03ba-4233-5e9c0fbf5717' //put the id of the weekly question
+const qotwId = 'bcbb4292-68a9-90f3-a129-9a40e6994471' //put the id of the weekly question
 // Extract API URLs from configuration
 const apiUrlget = config.apiUrlget;
 const apiUrlgetUser = config.apiUrlgetUser;
@@ -131,7 +131,7 @@ async function topQuestions(){
     qotw = qotw[0]
     console.log(qotw)
     document.querySelector(".top-questions-box").innerHTML += //making top question the qotw
-    `<div class = "top-question qotw" onclick = "window.location = '/viewQuestion?questionId=${qotw.questionId}&title=${qotw.title}'">
+    `<div class = "top-question qotw" onclick = "window.location = '/viewQuestion?questionId=${qotw.questionId}'">
     <p class="qt-title">Question of the Week:</p>
     <p class="tp-title" >${qotw.title}</p>
     <p class="tp-info">${qotw.answers} Answers &#8226 ${qotw.views} Views &#8226 ${qotw.rating} Rating </p>
