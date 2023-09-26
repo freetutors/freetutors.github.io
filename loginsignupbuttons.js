@@ -46,7 +46,7 @@ if (username != null) { //if nothing in localStorage
       <p class="usernameOnProfileButton">${username}</p>
       <div class="dropdown-profile">
       <div class="dropdown-content-profile">
-        <a href="#" class="option" onclick = "window.location='/profile'">Profile</a>
+        <a href="#" class="option" onclick = "window.location='/profile?username=${username}'">Profile</a>
         <a href="#" class="option" id="theme-change">${themeChangeText}</a>
         <a href="#" id="sign-out" class="option">Log Out</a>
       </div>
