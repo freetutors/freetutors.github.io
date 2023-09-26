@@ -211,6 +211,7 @@ margin-left: 20px;
 
 .inbox {
   max-height: 500px;
+  overflow-y: auto;
   display: none;
   position: absolute;
   left: calc(100% - 320px);
