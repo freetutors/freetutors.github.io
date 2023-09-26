@@ -210,18 +210,29 @@ margin-left: 20px;
 }
 
 .inbox {
-  max-height: 500px;
-  overflow-y: auto;
-  display: none;
-  position: absolute;
-  left: calc(100% - 320px);
-  width: 300px;
-  margin-top: 42.5px;
-  height: fit-content;
-  background-color: var(--header-color);
-  border: 1px solid var(--border-color);
-  z-index: 10;
-}
+    max-height: 500px;
+    scrollbar-color: var(--text-box-bar-color) var(--background-color);
+    overflow-y: auto;
+    display: none;
+    position: absolute;
+    left: calc(100% - 320px);
+    width: 300px;
+    margin-top: 42.5px;
+    height: fit-content;
+    background-color: var(--header-color);
+    border: 1px solid var(--border-color);
+    z-index: 10;
+  }
+  .inbox::-webkit-scrollbar {/*custom scroll bar width*/
+    width: 8px; /* Adjust the width as needed */
+ }
+
+ .inbox::-webkit-scrollbar-thumb {/*custom scroll bar thumb(the scrolling thing)*/
+    width: 8px; /* Set the width of the thumb to 12px */
+    min-width: 8px; /* Ensure the minimum width of the thumb */
+    background-color: var(--text-box-bar-color);
+    border-radius: 2px;
+ }
 
 .inboxLetters {
   color: var(--text-color);
@@ -243,6 +254,11 @@ hr.inboxLine {
   margin: 0 5px 0 5px;
 }
 
+.inboxScroll {
+  width: 0px;
+  
+  /* Will be used in order to set up custom scroll bar for inbox */
+}
 
 .inboxHome:hover{
   transform: scale(1.06);
