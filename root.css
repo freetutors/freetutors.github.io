@@ -445,31 +445,7 @@ margin-left: 8.5px;
 }
 
 
-@media only screen and (max-width: 800px) {
-  .menu {
-  display: none;
-}
-.login-button {
-  display: none;
-}
 
-.signup-button {
-  display: none;
-}
-
-.profileButton{
-  display: none;
-}
-
-.inbox{
-  display: none;
-}
-
-.search-bar {
-   margin-right: 18px;
-   width: 200px;
-}
-}
 :root{ /*setting color variables incase we want to switch color scheme*/
   --primary-color:#113265ff;
   --background-color:#08162bff;
@@ -735,11 +711,53 @@ z-index: 10;
 }
 
 .possibleSearchResult {
-height: 37.5px;
-padding-left: 10px;
-vertical-align: middle;
-line-height: 35px;
-color: white;
-font-size: 15px;
-cursor: pointer;
+    height: 37.5px;
+    padding-left: 10px;
+    vertical-align: middle;
+    line-height: 35px;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 800px) {
+    .menu {
+        display: none;
+    }
+    .login-button {
+        display: none;
+    }
+
+    .signup-button {
+        display: none;
+    }
+
+    .profileButton{
+        display: none;
+    }
+
+    .inbox{
+        display: none;
+    }
+
+    .search-bar {
+        margin-right: 18px;
+        width: 200px;
+    }
+
+    .ask-question-button {
+        display: none;
+    }
+
+    .possibleSearchResultContainer {
+        display: block;
+        position: absolute;
+        top: 37px;
+        left: 192px;
+        height: fit-content;
+        width: calc(100% - 222.5px);
+        background-color: var(--header-color);
+        border-radius: 6px;
+        z-index: 10;
+    }
 }
