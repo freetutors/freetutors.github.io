@@ -4,16 +4,16 @@
   --background-color:#08162bff;
   --header-color:#242424ff;
   --text-box-bar-color: #424242ff;
-  --secondary-color:#4b59a8;
+  --secondary-color:#2842a0;
   --border-color: #474b4eff;
   --text-color: white;
   --ask-question-button: #2c74b3ff;
   --search-bar: #363636ff;
   --subject-hover-color: rgb(53, 53, 53);
-  --menu-hover-color:rgba(17, 51, 101, 0.397);
+  --menu-hover-color:rgba(17, 51, 101, 0.541);
   --profile-box-color:#242424ff;
   --top-questions-box:rgba(17, 51, 101, 0.507);
-  --qotw-hover-color:rgba(51, 88, 139, 0.521);
+  --qotw-hover-color:rgba(51, 88, 139, 0.342);
   --top-questions-hover:rgba(230, 230, 255, 0.1);
 }
 .button {/*setting main button object*/
