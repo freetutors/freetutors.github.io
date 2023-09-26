@@ -10,10 +10,10 @@
   --ask-question-button: #2c74b3ff;
   --search-bar: #363636ff;
   --subject-hover-color: rgb(53, 53, 53);
-  --menu-hover-color:rgba(163, 47, 128, 0.397);
+  --menu-hover-color:rgba(17, 51, 101, 0.397);
   --profile-box-color:#242424ff;
   --top-questions-box:rgba(17, 51, 101, 0.507);
-  --qotw-hover-color:rgba(163, 47, 128, 0.223);
+  --qotw-hover-color:rgba(51, 88, 139, 0.521);
   --top-questions-hover:rgba(230, 230, 255, 0.1);
 }
 .button {/*setting main button object*/
