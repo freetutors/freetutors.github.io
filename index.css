@@ -171,7 +171,6 @@ width: 100%;
  overflow-x: hidden;
  overflow-y: hidden;
  white-space: nowrap;
- user-select: none;
  width: 100%;
 }
 .subject-list::-webkit-scrollbar {/*custom scroll bar width*/
