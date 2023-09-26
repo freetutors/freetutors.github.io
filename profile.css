@@ -280,7 +280,9 @@ hr.pfp_line {
   box-shadow: 0 1rem 3rem #000000;
   padding: 20px;
 }
-
+::placeholder{
+  color:var(--text-color);
+}
 .about-me{
   position: absolute;
   top: 366px;
@@ -301,7 +303,7 @@ hr.pfp_line {
   padding: 15px;
   border-radius: .5rem;
   border: 2px solid var(--secondary-color);
-  background-color: #47474759;
+  background-color: var(--about-me-color);
   color: var(--text-color);
   font-family: 'Lexend', sans-serif;
   resize: none;
