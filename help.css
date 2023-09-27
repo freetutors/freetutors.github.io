@@ -4,7 +4,7 @@
   position: absolute;
   cursor: pointer;
   left: 50;
-  color: white;
+  color: var(--text-color);
   margin-top: -1px;
   transform: translateX(calc(-1*var(--translate_len)));
   margin-left: 15px;
@@ -85,7 +85,7 @@ display: none;
 }
 
 .HelpTXT {
-    color: white;
+    color: var(--text-color);
     text-align: center;
     margin-top: 50px;
     font-size: 40px;
@@ -95,7 +95,7 @@ display: none;
 
 details > summary {
   font-size: 20px;
-  color: white;
+  color: var(--text-color);
   padding: 9px;
   border: none;
   cursor: pointer;
@@ -106,12 +106,12 @@ details > summary {
 details > p {
   padding: 4px;
   margin: 0;
-  color: white;
+  color: var(--text-color);
 }
 
 .FAQ_text {
     text-align: center;
-    color: white;
+    color: var(--text-color);
     font-size: 20px;
     margin-bottom: 35px;
     text-decoration: underline;
@@ -133,7 +133,7 @@ details summary::-webkit-details-marker {
 }
 
 .sidenote {
-    color: white;
+    color: var(--text-color);
     text-align: center;
     margin-top: 15px;
 }
@@ -153,10 +153,10 @@ details summary::-webkit-details-marker {
   }
 
 hr.line {
-  border-top: 0.5px solid var(--secondary-color);
-  border-bottom: 0.5px solid var(--secondary-color);
-  border-right: 0.5px solid var(--secondary-color);
-  border-left: 0.5px solid var(--secondary-color);
+  border-top: 0.5px solid var(--profile-box-color);
+  border-bottom: 0.5px solid var(--profile-box-color);
+  border-right: 0.5px solid var(--profile-box-color);
+  border-left: 0.5px solid var(--profile-box-color);
 }
 
 @media only screen and (max-width: 1200px) {

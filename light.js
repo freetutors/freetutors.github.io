@@ -19,6 +19,8 @@ if (theme=="light"){
     document.documentElement.style.setProperty('--qotw-hover-color', 'rgb(141, 216, 255, 0.275)');
     document.documentElement.style.setProperty('--top-questions-hover', 'rgb(141, 216, 255, 0.275)');
     document.documentElement.style.setProperty('--about-me-color', 'rgba(175, 175, 175, 0.349)');
+    document.documentElement.style.setProperty('--tool-bar', '#ffbf5f');
+
     ;
 }
 else{

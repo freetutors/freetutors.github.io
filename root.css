@@ -16,7 +16,8 @@
   --qotw-hover-color:rgba(51, 88, 139, 0.342);
   --top-questions-hover:rgba(230, 230, 255, 0.1);
   --about-me-color:#6d6d6d59;
-  --testing-color:rgba(175, 175, 175, 0.349);
+  --testing-color:#ffbf5f;
+  --tool-bar: #242424ff
 }
 
 .button {/*setting main button object*/

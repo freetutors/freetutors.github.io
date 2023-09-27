@@ -24,6 +24,14 @@ AWS.config.update({ //getting conection to IAM user
   accessKeyId: accessKey,
   secretAccessKey: secretKey
 });
+let theme
+const browserTheme = localStorage.getItem('theme')
+if (browserTheme=='light'){
+  theme = 'snow'
+}
+else{
+  theme = 'snow'
+}
 var cognito = new AWS.CognitoIdentityServiceProvider(); //connection to cognito identiy
 
 async function getUser(username){ //pulls user from database with details
@@ -61,7 +69,7 @@ if (window.location.pathname.indexOf("createQuestion") !== -1) { //if on the cre
 
   var quill = new Quill('#editor', { //creates a new quill editor for user
     placeholder: 'Provide any additional relevant details',
-    theme: 'snow',
+    theme: theme,
     modules: {
       toolbar: toolbarOptions,
       imageResize: {
@@ -510,7 +518,7 @@ async function answerRating(answer, questionId){ //rating function
           }
           else if(upclick==true){ //if cancling upvote
             console.log('ca')
-            document.getElementById("upvote"+answerId).style.borderBottom = '15px solid white'
+            document.getElementById("upvote"+answerId).style.borderBottom = '15px solid var(--text-color)'
             ratingUpdate = -1
             upclick = false
             newRating += parseInt(ratingUpdate)
@@ -520,7 +528,7 @@ async function answerRating(answer, questionId){ //rating function
           }
           else if(downclick==true){ //if cancling upvote
             document.getElementById("upvote"+answerId).style.borderBottom = '15px solid var(--secondary-color)'
-            document.getElementById("downvote"+answerId).style.borderTop = '15px solid white'
+            document.getElementById("downvote"+answerId).style.borderTop = '15px solid var(--text-color)'
             ratingUpdate = 2
             upclick = true
             downclick = false
@@ -549,7 +557,7 @@ async function answerRating(answer, questionId){ //rating function
 
       }
         else if(downclick == true && upclick == false) {
-          document.getElementById("downvote"+answerId).style.borderTop = '15px solid white'
+          document.getElementById("downvote"+answerId).style.borderTop = '15px solid var(--text-color)'
           ratingUpdate = 1
           downclick = false
           newRating += parseInt(ratingUpdate)
@@ -558,7 +566,7 @@ async function answerRating(answer, questionId){ //rating function
           document.getElementById(`rating-value${answerId}`).innerText = newRating
         }
         else if(upclick==true){ //if cancling upvote
-          document.getElementById("upvote"+answerId).style.borderBottom = '15px solid white'
+          document.getElementById("upvote"+answerId).style.borderBottom = '15px solid var(--text-color)'
           document.getElementById("downvote"+answerId).style.borderTop = '15px solid var(--secondary-color)'
           ratingUpdate = -2
           upclick = false
@@ -620,7 +628,7 @@ async function ratingButtons(questionList){ //same as above, but updates questio
         document.querySelector(".rating-value").innerText = newRating
         }
         else if(downclick == true && upclick == false) {
-          document.querySelector(".downvote").style.borderTop = '15px solid white'
+          document.querySelector(".downvote").style.borderTop = '15px solid var(--text-color)'
           ratingUpdate = 1
           downclick = false
           newRating += parseInt(ratingUpdate)
@@ -629,7 +637,7 @@ async function ratingButtons(questionList){ //same as above, but updates questio
           document.querySelector(".rating-value").innerText = newRating
         }
         else if(upclick==true){ //if cancling upvote
-          document.querySelector(".upvote").style.borderBottom = '15px solid white'
+          document.querySelector(".upvote").style.borderBottom = '15px solid var(--text-color)'
           document.querySelector(".downvote").style.borderTop = '15px solid var(--secondary-color)'
           ratingUpdate = -2
           downclick = true
@@ -659,7 +667,7 @@ async function ratingButtons(questionList){ //same as above, but updates questio
             document.querySelector(".rating-value").innerText = newRating
           }
           else if (upclick == true && downclick == false) {
-            document.querySelector(".upvote").style.borderBottom = '15px solid white'
+            document.querySelector(".upvote").style.borderBottom = '15px solid var(--text-color)'
             ratingUpdate = -1
             upclick = false
             newRating += parseInt(ratingUpdate)
@@ -668,7 +676,7 @@ async function ratingButtons(questionList){ //same as above, but updates questio
             document.querySelector(".rating-value").innerText = newRating
           }
           else if(downclick==true){ //if cancling upvote
-            document.querySelector(".downvote").style.borderTop = '15px solid white'
+            document.querySelector(".downvote").style.borderTop = '15px solid var(--text-color)'
             document.querySelector(".upvote").style.borderBottom = '15px solid var(--secondary-color)'
             ratingUpdate = 2
             downclick = false
@@ -718,7 +726,7 @@ function initializeQuill() {
 
   var quill = new Quill('#editor', {
     placeholder: 'Type your answer here',
-    theme: 'snow',
+    theme: theme,
     modules: {
       toolbar: toolbarOptions,
       imageDrop: true,
