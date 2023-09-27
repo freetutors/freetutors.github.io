@@ -18,7 +18,7 @@
 .ql-editor p {
   font-family: 'Lexend';
   font-size: 15px;
-  color: white;
+  color: var(--text-color);
 }
 
 .ql-toolbar {
@@ -63,7 +63,7 @@
 }
 
 #preview-container {
-  color: white;
+  color: var(--text-color);
   position: relative;
   width: 920px;
   height: fit-content;
