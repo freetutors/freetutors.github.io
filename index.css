@@ -117,7 +117,7 @@ width: 100%;
 #sign_up_as_tutor_button {
  color: var(--text-color);
  font-family: Lexend;
- background-color: black;
+ background-color: var(--tutor-sign-up);
  border: none;
  height: 35px;
  width: 90%;
@@ -197,7 +197,7 @@ width: 100%;
  text-decoration: underline;
 }
 .subject {
- border-right: 1px solid #bbb;
+ border-right: 2px solid #bbb;
 }
 
 .subject:last-child {

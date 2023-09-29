@@ -15,9 +15,12 @@
   --top-questions-box:rgba(17, 51, 101, 0.507);
   --qotw-hover-color:rgba(51, 88, 139, 0.342);
   --top-questions-hover:rgba(230, 230, 255, 0.1);
+  --sign-up-button: #2842a0;
+  --tutor-sign-up: black;
   --about-me-color:#6d6d6d59;
   --testing-color:#ffbf5f;
   --tool-bar: #242424ff
+
 }
 
 .button {/*setting main button object*/
@@ -307,7 +310,7 @@ transition: transform 0.3s ease-in-out;
 
 .signup-button {
   margin-right: 12px;
-  background-color: var(--secondary-color);
+  background-color: var(--sign-up-button);
   transition: transform 0.3s ease-in-out;
 }
 
@@ -416,7 +419,7 @@ width: 190px;
 height: 60px;
 padding: 5px;
 padding-top: 17px;
-background-color: var(--secondary-color);
+background-color: var(--sign-up-button);
 color: var(--text-color);
 font-size: 30px;
 transition: transform 0.3s ease-in-out;
@@ -444,7 +447,7 @@ text-decoration-color: var(--text-color);
 cursor: pointer;
 }
 .popup-link{
-color: rgba(255,255,255,0.7);
+color: var(--text-color);
 }
 
 
@@ -501,7 +504,7 @@ margin-right: 55px;
 height: 32.5px;
 line-height: 30px;
 font-size: 16px;
-background: var(--secondary-color);
+background: var(--sign-up-button);
 text-align: center;
 border-radius: 4px;
 cursor: pointer;

@@ -86,7 +86,7 @@ background-color: var(--primary-color)
  width: 65vw;
  max-width: 700px;
  height: auto;
- background-color: var(--header-color);
+ background-color: var(--profile-box-color);
  opacity: 0.95;
  margin: auto;
  position: absolute;
@@ -266,7 +266,7 @@ padding-top: -1rem;
 .forgotPwd{
 color: var(--text-color);
 cursor: pointer;
-transition: transform 0.3s
+transition: transform 0.3s;
 }
 .forgotPwd:hover{
 transform: scale(1.2)

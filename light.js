@@ -20,6 +20,8 @@ if (theme=="light"){
     document.documentElement.style.setProperty('--top-questions-hover', 'rgb(141, 216, 255, 0.275)');
     document.documentElement.style.setProperty('--about-me-color', 'rgba(175, 175, 175, 0.349)');
     document.documentElement.style.setProperty('--tool-bar', '#ffbf5f');
+    document.documentElement.style.setProperty('--sign-up-button', '#6d9ffdff');
+    document.documentElement.style.setProperty('--tutor-sign-up', '#6d9ffdff');
 
     ;
 }

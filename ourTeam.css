@@ -144,7 +144,7 @@ details summary::-webkit-details-marker {
     width: 65%;
     height: auto;
     margin: auto;
-    background-color: var(--header-color);
+    background-color: var(--profile-box-color);
     opacity: 0.95;
     margin-top: 50px;
     flex-direction: column;
