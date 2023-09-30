@@ -1,4 +1,8 @@
-
+.non-profit{
+  bottom: 10;
+  color: var(--text-color);
+  margin-top: 30px;
+}
 .home-box{
  display: flex;
  margin-bottom: 30px;
