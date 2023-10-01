@@ -24,6 +24,8 @@
 }
 .color-change-icon{
   cursor: pointer;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 .button {/*setting main button object*/
 font-family: 'Lexend', sans-serif;
@@ -327,8 +329,8 @@ transition: transform 0.3s ease-in-out;
 .search-bar {
    font-family: 'Lexend';
    flex-grow: 1;
-   margin-right: 10px;
    margin-left: -10px;
+   margin-right: 215px;
    height: 30.5px;
    background-color: var(--search-bar);
    border-radius: 6px;
@@ -350,7 +352,7 @@ transition: transform 0.3s ease-in-out;
 }
 
 .ask-question-button {
-margin-left: calc(100vw - 345px);
+margin-left: calc(100vw - 365px);
 height: 20px;
 width: 124px;
 background-color: var(--ask-question-button);

@@ -15,7 +15,9 @@ const banner = document.querySelector('.banner');
 const infoInputGroupElements = document.getElementsByClassName('info_input_group');
 
 if (usernameBandPSC == null) {
-  searchBar.style.marginRight = '30px';
+  searchBar.style.marginRight = '10px';
+}else{
+    askQuestionButton.style.marginLeft = 'calc(100vw - 345px)';
 }
 
 function checkVSChrome() {

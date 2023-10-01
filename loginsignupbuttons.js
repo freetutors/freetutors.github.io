@@ -97,7 +97,7 @@ if (username != null) { //if nothing in localStorage
      <button class="button signup-button">Sign up</button>`;  
   }else{
     document.getElementById("loginSignupArea").innerHTML = //other wise it will show login and signup buttons
-    `<img class="color-change-icon" src="partly-sunny.svg" width='30px' height='30px'></img>
+    `<img class="color-change-icon" src="moon.svg" width='25px' height='25px' style='margin-top: 2.3px;'></img>
     <button class="button login-button">Log in</button>
      <button class="button signup-button">Sign up</button>`;  
   }
