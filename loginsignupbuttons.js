@@ -90,10 +90,34 @@ if (username != null) { //if nothing in localStorage
 
 
 } else {
-  document.getElementById("loginSignupArea").innerHTML = //other wise it will show login and signup buttons
-  `<button class="button login-button">Log in</button>
-   <button class="button signup-button">Sign up</button>`;
-
+  if (theme == "light"){
+    document.getElementById("loginSignupArea").innerHTML = //other wise it will show login and signup buttons
+    `<img class="color-change-icon" src="sunny.svg" width='30px' height='30px'></img>
+    <button class="button login-button">Log in</button>
+     <button class="button signup-button">Sign up</button>`;  
+  }else{
+    document.getElementById("loginSignupArea").innerHTML = //other wise it will show login and signup buttons
+    `<img class="color-change-icon" src="partly-sunny.svg" width='30px' height='30px'></img>
+    <button class="button login-button">Log in</button>
+     <button class="button signup-button">Sign up</button>`;  
+  }
+  let themeChange
+  let themeChangeText
+  if (!theme){
+    localStorage.setItem('theme', 'dark')
+  }
+  else if (theme=="dark"){
+    themeChange = "light"
+    themeChangeText = "Light Mode"
+  }
+  else{
+    themeChange = "dark"
+    themeChangeText = "Dark Mode"
+  }
+  document.querySelector(".color-change-icon").addEventListener("click", () =>{
+    localStorage.setItem("theme", themeChange)
+    location.reload()
+  })
   document.querySelector(".login-button").addEventListener("click", () => {
     window.location = 'login';
   });

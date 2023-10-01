@@ -22,7 +22,9 @@
   --tool-bar: #242424ff
 
 }
-
+.color-change-icon{
+  cursor: pointer;
+}
 .button {/*setting main button object*/
 font-family: 'Lexend', sans-serif;
 border: none;
@@ -297,9 +299,13 @@ transition: transform 0.3s ease-in-out;
 #logo:hover {
   transform: scale(1.06);
 }
+#loginSignupArea{
+  display: flex;
+}
 
 .login-button {/*sub-class of button*/
  margin-right: 8px;
+ margin-left: 5px;
  background-color: var(--primary-color);
  transition: transform 0.3s ease-in-out;
 }
@@ -321,14 +327,13 @@ transition: transform 0.3s ease-in-out;
 .search-bar {
    font-family: 'Lexend';
    flex-grow: 1;
+   margin-right: 10px;
    margin-left: -10px;
-   margin-right: 215px;
    height: 30.5px;
    background-color: var(--search-bar);
    border-radius: 6px;
    color: var(--text-color);
    padding-left: 13px;
-   padding-right: 140px;
    border: 1.5px solid var(--border-color);
 }
 
@@ -366,7 +371,7 @@ height: fit-content;
 width: calc(100% - 409px);
 background-color: var(--header-color);
 border-radius: 6px;
-z-index: 10;
+z-index: 20;
 }
 
 .possibleSearchResult {
