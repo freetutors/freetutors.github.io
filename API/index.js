@@ -5,7 +5,7 @@ const getPath = '/getquestion';
 const updatePath = '/updatequestion';
 const answerPath = '/createanswer'
 const updateAnswerPath = '/updateanswer'
-const questionRatedrPath = '/questionrated'
+const questionRatedPath = '/questionrated'
 
 // initiallized all of the things to check 
 
@@ -28,7 +28,6 @@ exports.handler = async(event) => {
         case event.httpMethod === 'GET' && event.path === healthPath:
             response = util.buildResponse(200); // 200=sucess so that means everything went well
             break;
-          
         case event.httpMethod === 'POST' && event.path === createPath:
             const createBody = JSON.parse(event.body);
             response = await createService.createQuestion(createBody); //register() defined in register.js all the other functions are done the same way in the service folder

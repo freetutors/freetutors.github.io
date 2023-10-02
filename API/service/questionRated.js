@@ -21,7 +21,21 @@ async function updateQuestion(event) {
         user: user,
         ratingValue: ratingValue,
     }
-    ratedQuestion.Item.userRatings.push(rating);
+    if (!ratedQuestion.Item.userRatings) {
+        ratedQuestion.Item.userRatings = [];
+      }
+    // Check if an entry with the provided user already exists
+    const existingRatingIndex = ratedQuestion.Item.userRatings.findIndex(
+        (entry) => entry.user === user
+    );
+
+    if (existingRatingIndex !== -1) {
+        // If the user already rated, update the existing entry
+        ratedQuestion.Item.userRatings[existingRatingIndex] = rating;
+    } else {
+        // If the user hasn't rated before, add a new entry
+        ratedQuestion.Item.userRatings.push(rating);
+    }
 
     const updateParams = {
         TableName: tableName,
@@ -31,7 +45,7 @@ async function updateQuestion(event) {
     await dynamodb.put(updateParams).promise();
     const response = {
         question: ratedQuestion,
-        answer: newAnswer
+        ratingValue: rating
     }
     return util.buildResponse(200, response);
 }

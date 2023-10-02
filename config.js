@@ -1,5 +1,4 @@
 let data
-// import {from} from 'rxjs'
 async function getOptimizeConfig() {
     try {
         const response = await fetch('./optimize.json');
@@ -20,6 +19,7 @@ function processJSONData(data) {
         apiUrlanswer  : data.apiUrlanswer,
         apiUrlanswerUpdate  : data.apiUrlanswerUpdate,
         apiUrlgetUser  : data.apiUrlgetUser,
+        apiUrlupdateUserRating: data.apiUrlupdateUserRating,
         // Import the necessary AWS SDK components
         poolId  : data.poolId, //getting info from cognito
         clientId  :data.clientId,
