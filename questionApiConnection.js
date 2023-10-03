@@ -474,6 +474,7 @@ async function sendUpdate(questionId, answers, updatedViews, rating){ //updating
 
     },
   }).then(response => response.json());
+  console.log(response)
 }
 
 async function updateAnswer(questionId, answerId, rating){ //updating when answer is rated
@@ -606,38 +607,38 @@ async function ratingButtons(questionList){ //same as above, but updates questio
   let upclick = false
   let downclick = false
   let ratingUpdate = 0
+  var voteStatus = 'no'
   const user = localStorage.getItem('CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser')
   var question = await getQuestionListId(questionId)
   const userRatings = question[0].userRatings
-  const existingRatingIndex = userRatings.findIndex(
-    (entry) => entry.user === user
-  );
-  if (existingRatingIndex !== -1) {
-    console.log()
-    setCookie("voted"+questionId, userRatings[existingRatingIndex].ratingValue, 365)
-
-  } else {
-    setCookie("voted"+questionId, 'aaa', 0)
+  let existingRatingIndex
+  console.log(question[0].rating)
+  if (userRatings){
+    existingRatingIndex = userRatings.findIndex(
+      (entry) => entry.user === user
+      );
   }
-  if (checkCookieExists("voted"+questionId)==false){
+  console.log(userRatings, existingRatingIndex)
+  if (!userRatings){
     upclick = false
     downclick = false
   }
-  else{
-    if (getCookie("voted"+questionId) === 'no') {
+  else if (existingRatingIndex !== -1) {
+    console.log(userRatings[existingRatingIndex].ratingValue)
+    if (userRatings[existingRatingIndex].ratingValue === 'no'){
       upclick = false
       downclick = false
-      deleteCookie("voted"+questionId);
-    }
-    else if(getCookie("voted"+questionId)=== 'upvote') {
+    }else if (userRatings[existingRatingIndex].ratingValue === 'upvote'){
+      voteStatus = 'upvote'  
       upclick = true
       downclick = false
       document.querySelector(".upvote").style.borderBottom = '15px solid var(--secondary-color)'
-    }
-    else if(getCookie("voted"+questionId) === 'downvote') {
-      downclick = true
+    }else if(userRatings[existingRatingIndex].ratingValue === 'downvote'){
+      voteStatus = 'downvote'
       upclick = false
+      downclick = true
       document.querySelector(".downvote").style.borderTop = '15px solid var(--secondary-color)'
+
     }
   }
   return new Promise((resolve) => {
@@ -647,20 +648,22 @@ async function ratingButtons(questionList){ //same as above, but updates questio
           document.querySelector(".downvote").style.borderTop = '15px solid var(--secondary-color)'
           downclick = true
           ratingUpdate = -1
+          voteStatus = 'downvote'
         newRating += parseInt(ratingUpdate)
+        // updateQuestionRatingWithUser(questionId,user,"downvote")
         sendUpdate(questionId, answers, updatedViews, newRating)
-        setCookie("voted"+questionId, "downvote", 365)
-        updateQuestionRatingWithUser(questionId,user,"downvote")
+        sendUpdate(questionId, answers, updatedViews, newRating)
         document.querySelector(".rating-value").innerText = newRating
         }
         else if(downclick == true && upclick == false) {
           document.querySelector(".downvote").style.borderTop = '15px solid var(--text-color)'
           ratingUpdate = 1
           downclick = false
+          voteStatus = 'no'
           newRating += parseInt(ratingUpdate)
+          // updateQuestionRatingWithUser(questionId,user,"no")
           sendUpdate(questionId, answers, updatedViews, newRating)
-          setCookie("voted"+questionId, "no", 365)
-          updateQuestionRatingWithUser(questionId,user,"no")
+          sendUpdate(questionId, answers, updatedViews, newRating)
           document.querySelector(".rating-value").innerText = newRating
         }
         else if(upclick==true){ //if cancling upvote
@@ -669,13 +672,15 @@ async function ratingButtons(questionList){ //same as above, but updates questio
           ratingUpdate = -2
           downclick = true
           upclick = false
+          voteStatus = 'downvote'
           newRating += parseInt(ratingUpdate)
+          // updateQuestionRatingWithUser(questionId,user,"downvote")
           sendUpdate(questionId, answers, updatedViews, newRating)
-          setCookie("voted"+questionId, "downvote", 365)
-          updateQuestionRatingWithUser(questionId,user,"downvote")
+          sendUpdate(questionId, answers, updatedViews, newRating)
           document.querySelector(".rating-value").innerText = newRating
         }
         resolve(ratingUpdate)
+        updateQuestionRatingWithUser(questionId,user,voteStatus)
       }
       else {
         alert("Please log in to leave a rating.")
@@ -689,20 +694,22 @@ async function ratingButtons(questionList){ //same as above, but updates questio
             document.querySelector(".upvote").style.borderBottom = '15px solid var(--secondary-color)'
             upclick = true
             ratingUpdate = 1
+            voteStatus = 'upvote'
             newRating += parseInt(ratingUpdate)
+            // updateQuestionRatingWithUser(questionId,user,"upvote")
             sendUpdate(questionId, answers, updatedViews, newRating)
-            setCookie("voted"+questionId, "upvote", 365)
-            updateQuestionRatingWithUser(questionId,user,"upvote")
+            sendUpdate(questionId, answers, updatedViews, newRating)
             document.querySelector(".rating-value").innerText = newRating
           }
           else if (upclick == true && downclick == false) {
             document.querySelector(".upvote").style.borderBottom = '15px solid var(--text-color)'
             ratingUpdate = -1
             upclick = false
+            voteStatus = 'no'
             newRating += parseInt(ratingUpdate)
+            // updateQuestionRatingWithUser(questionId,user,"no")
             sendUpdate(questionId, answers, updatedViews, newRating)
-            setCookie("voted"+questionId, "no", 365)
-            updateQuestionRatingWithUser(questionId,user,"no")
+            sendUpdate(questionId, answers, updatedViews, newRating)
             document.querySelector(".rating-value").innerText = newRating
           }
           else if(downclick==true){ //if cancling downvote
@@ -711,14 +718,16 @@ async function ratingButtons(questionList){ //same as above, but updates questio
             ratingUpdate = 2
             downclick = false
             upclick=true
+            voteStatus="upvote"
             newRating += parseInt(ratingUpdate)
             sendUpdate(questionId, answers, updatedViews, newRating)
-            setCookie("voted"+questionId, "upvote", 365)
-            updateQuestionRatingWithUser(questionId,user,"upvote")
+            sendUpdate(questionId, answers, updatedViews, newRating)
             document.querySelector(".rating-value").innerText = newRating
           }
         }
         resolve(ratingUpdate)
+        updateQuestionRatingWithUser(questionId,user,voteStatus)
+
     }
     else {
       alert("Please log in to leave a rating.")
