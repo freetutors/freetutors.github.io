@@ -8,6 +8,7 @@ const apiUrlanswerUpdate = config.apiUrlanswerUpdate;
 const apiUrlgetUser = config.apiUrlgetUser;
 const apiUrlupdateUser = config.apiUrlupdateUser
 const apiUrlupdateUserAnswer = config.apiUrlupdateUserAnswer
+const apiUrlupdateUserRating = config.apiUrlupdateUserRating
 
 // Import the necessary AWS SDK components
 const poolId =config.poolId //getting info from cognito
@@ -60,6 +61,16 @@ async function checkUserVerification(userId) {
     console.error('Error checking user verification:', error.message, error.stack);
     return false;
   }
+}
+async function updateQuestionRatingWithUser(questionId, user, rating){
+  const url = new URL(`${apiUrlupdateUserRating}?questionId=${questionId}&user=${user}&rating${rating}`);
+  const response = await fetch(url,  {
+      mode: "cors",
+      method: "POST",
+      headers: {
+      "Content-Type": "application/json",
+      }
+  }).then(response => response.json());
 }
 var toolbarOptions = [ //setting quill toolbar options and settings
   ['bold', 'italic', 'underline', 'link', 'image'], // Customize the toolbar elements here
@@ -639,6 +650,7 @@ async function ratingButtons(questionList){ //same as above, but updates questio
         newRating += parseInt(ratingUpdate)
         sendUpdate(questionId, answers, updatedViews, newRating)
         setCookie("voted"+questionId, "downvote", 365)
+        updateQuestionRatingWithUser(questionId,user,"downvote")
         document.querySelector(".rating-value").innerText = newRating
         }
         else if(downclick == true && upclick == false) {
@@ -648,6 +660,7 @@ async function ratingButtons(questionList){ //same as above, but updates questio
           newRating += parseInt(ratingUpdate)
           sendUpdate(questionId, answers, updatedViews, newRating)
           setCookie("voted"+questionId, "no", 365)
+          updateQuestionRatingWithUser(questionId,user,"no")
           document.querySelector(".rating-value").innerText = newRating
         }
         else if(upclick==true){ //if cancling upvote
@@ -659,6 +672,7 @@ async function ratingButtons(questionList){ //same as above, but updates questio
           newRating += parseInt(ratingUpdate)
           sendUpdate(questionId, answers, updatedViews, newRating)
           setCookie("voted"+questionId, "downvote", 365)
+          updateQuestionRatingWithUser(questionId,user,"downvote")
           document.querySelector(".rating-value").innerText = newRating
         }
         resolve(ratingUpdate)
@@ -678,6 +692,7 @@ async function ratingButtons(questionList){ //same as above, but updates questio
             newRating += parseInt(ratingUpdate)
             sendUpdate(questionId, answers, updatedViews, newRating)
             setCookie("voted"+questionId, "upvote", 365)
+            updateQuestionRatingWithUser(questionId,user,"upvote")
             document.querySelector(".rating-value").innerText = newRating
           }
           else if (upclick == true && downclick == false) {
@@ -687,9 +702,10 @@ async function ratingButtons(questionList){ //same as above, but updates questio
             newRating += parseInt(ratingUpdate)
             sendUpdate(questionId, answers, updatedViews, newRating)
             setCookie("voted"+questionId, "no", 365)
+            updateQuestionRatingWithUser(questionId,user,"no")
             document.querySelector(".rating-value").innerText = newRating
           }
-          else if(downclick==true){ //if cancling upvote
+          else if(downclick==true){ //if cancling downvote
             document.querySelector(".downvote").style.borderTop = '15px solid var(--text-color)'
             document.querySelector(".upvote").style.borderBottom = '15px solid var(--secondary-color)'
             ratingUpdate = 2
@@ -698,6 +714,7 @@ async function ratingButtons(questionList){ //same as above, but updates questio
             newRating += parseInt(ratingUpdate)
             sendUpdate(questionId, answers, updatedViews, newRating)
             setCookie("voted"+questionId, "upvote", 365)
+            updateQuestionRatingWithUser(questionId,user,"upvote")
             document.querySelector(".rating-value").innerText = newRating
           }
         }
