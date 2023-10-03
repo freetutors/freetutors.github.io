@@ -63,7 +63,7 @@ async function checkUserVerification(userId) {
   }
 }
 async function updateQuestionRatingWithUser(questionId, user, rating){
-  const url = new URL(`${apiUrlupdateUserRating}?questionId=${questionId}&user=${user}&rating${rating}`);
+  const url = new URL(`${apiUrlupdateUserRating}?user=${user}&rating=${rating}&questionId=${questionId}`);
   const response = await fetch(url,  {
       mode: "cors",
       method: "POST",
