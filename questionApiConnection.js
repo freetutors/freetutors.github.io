@@ -481,6 +481,7 @@ async function answerRating(answer, questionId){ //rating function
   let upclick = false
   let downclick = false
   let ratingUpdate = 0
+
   if (checkCookieExists("voted"+answerId)==false){ //checking if previously voted
     setCookie("voted"+answerId, "no", 365)
   }
@@ -594,6 +595,19 @@ async function ratingButtons(questionList){ //same as above, but updates questio
   let upclick = false
   let downclick = false
   let ratingUpdate = 0
+  const user = localStorage.getItem('CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser')
+  var question = await getQuestionListId(questionId)
+  const userRatings = question[0].userRatings
+  const existingRatingIndex = userRatings.findIndex(
+    (entry) => entry.user === user
+  );
+  if (existingRatingIndex !== -1) {
+    console.log()
+    setCookie("voted"+questionId, userRatings[existingRatingIndex].ratingValue, 365)
+
+  } else {
+    setCookie("voted"+questionId, 'aaa', 0)
+  }
   if (checkCookieExists("voted"+questionId)==false){
     upclick = false
     downclick = false
