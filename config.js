@@ -20,6 +20,7 @@ function processJSONData(data) {
         apiUrlanswerUpdate  : data.apiUrlanswerUpdate,
         apiUrlgetUser  : data.apiUrlgetUser,
         apiUrlupdateUserRating: data.apiUrlupdateUserRating,
+        apiUrlupdateAnswerRating: data.apiUrlupdateAnswerRating,
         // Import the necessary AWS SDK components
         poolId  : data.poolId, //getting info from cognito
         clientId  :data.clientId,

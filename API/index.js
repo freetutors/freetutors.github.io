@@ -6,7 +6,7 @@ const updatePath = '/updatequestion';
 const answerPath = '/createanswer'
 const updateAnswerPath = '/updateanswer'
 const questionRatedPath = '/questionrated'
-
+const answerRatedPath = '/answerrated'
 // initiallized all of the things to check 
 
 const createService = require('./service/createQuestion.js');
@@ -15,6 +15,7 @@ const updateService = require('./service/updateQuestion.js')
 const answerService = require('./service/answer.js')
 const updateAnswerService = require("./service/updateAnswer.js")
 const questionRatedService = require("./service/questionRated.js")
+const answerRatedService = require("./service/answerRated.js")
 
 const util = require('./utils/util');//this is for a common return function we can use from file to file
 
@@ -50,6 +51,10 @@ exports.handler = async(event) => {
         case event.httpMethod === 'POST' && event.path === questionRatedPath:
             const questionRatedBody = JSON.parse(event.body);
             response = await questionRatedService.updateQuestion(event); //register() defined in register.js all the other functions are done the same way in the service folder
+            break;
+        case event.httpMethod === 'POST' && event.path === answerRatedPath:
+            const answerRatedBody = JSON.parse(event.body);
+            response = await answerRatedService.updateQuestion(event); //register() defined in register.js all the other functions are done the same way in the service folder
             break;
         default:
             response = util.buildResponse(404, '404 Not Found')

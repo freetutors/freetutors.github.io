@@ -9,7 +9,7 @@ const apiUrlgetUser = config.apiUrlgetUser;
 const apiUrlupdateUser = config.apiUrlupdateUser
 const apiUrlupdateUserAnswer = config.apiUrlupdateUserAnswer
 const apiUrlupdateUserRating = config.apiUrlupdateUserRating
-
+const apiUrlupdateAnswerRating = config.apiUrlupdateAnswerRating
 // Import the necessary AWS SDK components
 const poolId =config.poolId //getting info from cognito
 const region = config.region
@@ -71,6 +71,17 @@ async function updateQuestionRatingWithUser(questionId, user, rating){
       "Content-Type": "application/json",
       }
   }).then(response => response.json());
+}
+async function updateAnswerRatingWithUser(questionId, answerId, user, rating){
+  const url = new URL(`${apiUrlupdateAnswerRating}?user=${user}&rating=${rating}&questionId=${questionId}&answerId=${answerId}`);
+  const response = await fetch(url,  {
+      mode: "cors",
+      method: "POST",
+      headers: {
+      "Content-Type": "application/json",
+      }
+  }).then(response => response.json());
+  console.log(response)
 }
 var toolbarOptions = [ //setting quill toolbar options and settings
   ['bold', 'italic', 'underline', 'link', 'image'], // Customize the toolbar elements here
@@ -486,6 +497,7 @@ async function updateAnswer(questionId, answerId, rating){ //updating when answe
       "Content-Type": "application/json",
     },
   }).then(response => response.json());
+  console.log(response)
 }
 async function answerRating(answer, questionId){ //rating function
   var answerId = answer.answerId
@@ -493,30 +505,41 @@ async function answerRating(answer, questionId){ //rating function
   let upclick = false
   let downclick = false
   let ratingUpdate = 0
-
-  if (checkCookieExists("voted"+answerId)==false){ //checking if previously voted
-    setCookie("voted"+answerId, "no", 365)
+  const user = localStorage.getItem('CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser')
+  var question = await getQuestionListId(questionId)
+  console.log(question)
+  const answerRatings = question[0].answerRatings
+  console.log(answerRatings)
+  let existingAnswerIndex
+  if (answerRatings){
+    existingAnswerIndex = answerRatings.findIndex(
+      (entry) => entry.answerId === answerId && entry.user === user
+      );
   }
-  else{
-    if (getCookie("voted"+answerId) === 'no') {
+  console.log(existingAnswerIndex)
+  var answerUserRating = answerRatings[existingAnswerIndex]
+  console.log(answerUserRating)
+  var voteStatus = 'no'
+  if (!answerUserRating){
+    upclick = false
+    downclick = false
+  }
+  else if (existingAnswerIndex !== -1) {
+    if (answerUserRating.ratingValue === 'no'){
       upclick = false
       downclick = false
-    }
-    else if(getCookie("voted"+answerId)=== 'upvote') {
+    }else if (answerUserRating.ratingValue === 'upvote'){
+      voteStatus = 'upvote'  
       upclick = true
       downclick = false
       document.getElementById("upvote"+answerId).style.borderBottom = '15px solid var(--secondary-color)'
-    }
-    else if(getCookie("voted"+answerId) === 'downvote') {
-      downclick = true
+    }else if(answerUserRating.ratingValue === 'downvote'){
+      voteStatus = 'downvote'
       upclick = false
+      downclick = true
       document.getElementById("downvote"+answerId).style.borderTop = '15px solid var(--secondary-color)'
     }
   }
-  window.addEventListener('beforeunload', function (event) {
-    sendUpdate(questionId, answers, updatedViews, newRating)
-    localStorage.setItem("test","yes")
-  });
   return new Promise((resolve) => { //code for updating live, sending cookies and update
     document.getElementById("upvote"+answerId).addEventListener("click", event => { //if upvote clicked
       if (localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser") != null){ //signup check
@@ -524,33 +547,36 @@ async function answerRating(answer, questionId){ //rating function
             document.getElementById("upvote"+answerId).style.borderBottom = '15px solid var(--secondary-color)'
             upclick = true
             ratingUpdate = 1
+            voteStatus = 'upvote'  
             newRating += parseInt(ratingUpdate)
             updateAnswer(questionId, answerId, newRating)
-            setCookie("voted"+answerId, "upvote", 365)
+            updateAnswer(questionId, answerId, newRating)
             document.getElementById(`rating-value${answerId}`).innerText = newRating
           }
           else if(upclick==true){ //if cancling upvote
-            console.log('ca')
             document.getElementById("upvote"+answerId).style.borderBottom = '15px solid var(--text-color)'
             ratingUpdate = -1
+            voteStatus = 'no'
             upclick = false
             newRating += parseInt(ratingUpdate)
             updateAnswer(questionId, answerId, newRating)
-            setCookie("voted"+answerId, "no", 365)
+            updateAnswer(questionId, answerId, newRating)
             document.getElementById(`rating-value${answerId}`).innerText = newRating
           }
           else if(downclick==true){ //if cancling upvote
             document.getElementById("upvote"+answerId).style.borderBottom = '15px solid var(--secondary-color)'
             document.getElementById("downvote"+answerId).style.borderTop = '15px solid var(--text-color)'
             ratingUpdate = 2
+            voteStatus = 'upvote'
             upclick = true
             downclick = false
             newRating += parseInt(ratingUpdate)
             updateAnswer(questionId, answerId, newRating)
-            setCookie("voted"+answerId, "upvote", 365)
+            updateAnswer(questionId, answerId, newRating)
             document.getElementById(`rating-value${answerId}`).innerText = newRating
           }
         resolve(ratingUpdate)
+        updateAnswerRatingWithUser(questionId, answerId, user, voteStatus)
         }
         else { 
           alert("Please log in to leave a rating.")
@@ -563,9 +589,10 @@ async function answerRating(answer, questionId){ //rating function
           document.getElementById("downvote"+answerId).style.borderTop = '15px solid var(--secondary-color)'
           downclick = true
           ratingUpdate = -1
+          voteStatus = 'downvote'  
         newRating += parseInt(ratingUpdate)
         updateAnswer(questionId, answerId, newRating)
-        setCookie("voted"+answerId, "downvote", 365)
+        updateAnswer(questionId, answerId, newRating)
         document.getElementById(`rating-value${answerId}`).innerText = newRating
 
       }
@@ -573,9 +600,10 @@ async function answerRating(answer, questionId){ //rating function
           document.getElementById("downvote"+answerId).style.borderTop = '15px solid var(--text-color)'
           ratingUpdate = 1
           downclick = false
+          voteStatus = 'no'
           newRating += parseInt(ratingUpdate)
           updateAnswer(questionId, answerId, newRating)
-          setCookie("voted"+answerId, "no", 365)
+          updateAnswer(questionId, answerId, newRating)
           document.getElementById(`rating-value${answerId}`).innerText = newRating
         }
         else if(upclick==true){ //if cancling upvote
@@ -584,12 +612,14 @@ async function answerRating(answer, questionId){ //rating function
           ratingUpdate = -2
           upclick = false
           downclick = true
+          voteStatus = 'downvote'  
           newRating += parseInt(ratingUpdate)
           updateAnswer(questionId, answerId, newRating)
-          setCookie("voted"+answerId, "downvote", 365)
+          updateAnswer(questionId, answerId, newRating)
           document.getElementById(`rating-value${answerId}`).innerText = newRating
         }
         resolve(ratingUpdate)
+        updateAnswerRatingWithUser(questionId, answerId, user, voteStatus)
       }
       else {
         alert("Please log in to leave a rating.")
@@ -638,7 +668,6 @@ async function ratingButtons(questionList){ //same as above, but updates questio
       upclick = false
       downclick = true
       document.querySelector(".downvote").style.borderTop = '15px solid var(--secondary-color)'
-
     }
   }
   return new Promise((resolve) => {
