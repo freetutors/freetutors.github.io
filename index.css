@@ -12,13 +12,20 @@
     --translate_len: -103px;
 }
 
-body::-webkit-scrollbar {
+
+
+.home {
+    position: relative;
+    overflow-x: hidden;
+}
+
+.home::-webkit-scrollbar {
     /* Custom scroll bar width */
     width: 13px;
     /* Adjust the width as needed */
 }
 
-body::-webkit-scrollbar-thumb {
+.home::-webkit-scrollbar-thumb {
     /* Custom scroll bar thumb (the scrolling thing) */
     width: 12px;
     /* Set the width of the thumb to 12px */
@@ -26,11 +33,6 @@ body::-webkit-scrollbar-thumb {
     /* Ensure the minimum width of the thumb */
     background-color: var(--text-box-bar-color);
     border-radius: 2px;
-}
-
-.home {
-    position: relative;
-    overflow-x: hidden;
 }
 
 .box {
