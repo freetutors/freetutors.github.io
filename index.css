@@ -136,19 +136,35 @@
 }
 
 .qotw-title {
-    color: white;
+    color: var(--text-color);
     text-align: center;
     text-decoration: underline;
-    margin-top: 7px;
-}
-
-.qotw-content {
-    color: white;
-    text-align: center;
-    margin-top: 20px;
+    margin-top: 13px;
     font-size: 13px;
 }
 
+.qotw-content {
+    color: var(--text-color);
+    text-align: left;
+    margin-top: 15px;
+    font-size: 17px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.qotw-info{
+    color: var(--text-color);
+    margin-top: 0;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 3px;
+}
+.qotw-info :last-child{
+    color: var(--text-color);
+    margin-top: 0;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 0;
+}
 .qt-title {
     color: var(--text-color);
     font-size: 15px;
