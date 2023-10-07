@@ -13,20 +13,24 @@
 }
 
 
-
-.home {
-    overflow-x: hidden;
-    height: 100%;
-    max-height: calc(100vh - 30px);
+.box {
+    /* Setting generic box details */
+    background-color: var(--primary-color);
+    border-radius: 22px;
+}
+.home-box{
+    display: flex;
+    justify-content: center;
+    height: calc(100vh - 43px);
 }
 
-.home::-webkit-scrollbar {
+body::-webkit-scrollbar {
     /* Custom scroll bar width */
     width: 13px;
     /* Adjust the width as needed */
 }
 
-.home::-webkit-scrollbar-thumb {
+body::-webkit-scrollbar-thumb {
     /* Custom scroll bar thumb (the scrolling thing) */
     width: 12px;
     /* Set the width of the thumb to 12px */
@@ -36,15 +40,7 @@
     border-radius: 2px;
 }
 
-.box {
-    /* Setting generic box details */
-    background-color: var(--primary-color);
-    border-radius: 22px;
-}
-.home-box{
-    display: flex;
-    justify-content: center;
-}
+
 .right-box{
     display: flex;
     flex-direction: column;
@@ -59,6 +55,7 @@
     width: calc(var(--question_list_width) - 30px);
     display: flex;
     flex-direction: column;
+
 }
 
 .qt-title {
@@ -215,17 +212,17 @@
     padding-right: 7px;
     padding-top: 2px;
     padding-bottom: 2px;
-    width: calc(100% - 15px);
+    width: calc(100% - 5px);
     height: 30px;
     background-color: var(--text-box-bar-color);
     border: 1.5px solid var(--border-color);
     margin-top: 15px;
     display: flex;
-    margin-left: -1.5px;
+    margin-left: -11.5px;
 }
 
 .subject-list {
-    z-index: 10;
+    z-index: 5;
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -259,6 +256,7 @@
     padding-right: 25px;
     padding-left: 25px;
     display: inline-block;
+    z-index: 6
 }
 
 .subject a {
@@ -364,8 +362,9 @@
 
 .questions_list {
     /* Scroll area with questions. It is invisible */
-    width: calc(100% + 10px);
+    width: calc(100% + 20px);
     margin: auto;
+    margin-left: -10px;
     margin-top: 15px;
     scrollbar-color: var(--text-box-bar-color) var(--background-color);
 }
@@ -599,10 +598,6 @@
 
     .questions {
         width: calc(100% - 67.5px);
-    }
-
-    .ask-question-button {
-        display: none;
     }
 
     .arrows {
