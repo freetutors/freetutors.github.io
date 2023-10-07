@@ -17,7 +17,7 @@
 .home {
     overflow-x: hidden;
     height: 100%;
-
+    max-height: calc(100vh - 30px);
 }
 
 .home::-webkit-scrollbar {
@@ -56,7 +56,6 @@
 }
 .questions {
     margin-left: 40px;
-    max-height: calc(100vh - 142.5px);
     width: calc(var(--question_list_width) - 30px);
     display: flex;
     flex-direction: column;
@@ -87,7 +86,7 @@
 
 .top-questions-box {
     margin-right: 0;
-    margin-top: 30px;
+    margin-top: 20px;
     width: 347px;
     padding-bottom: 10px;
     background-color: rgba(13, 36, 73, 255);
@@ -216,13 +215,13 @@
     padding-right: 7px;
     padding-top: 2px;
     padding-bottom: 2px;
-    width: 100%;
+    width: calc(100% - 15px);
     height: 30px;
     background-color: var(--text-box-bar-color);
     border: 1.5px solid var(--border-color);
     margin-top: 15px;
     display: flex;
-    margin-left: -20px;
+    margin-left: -1.5px;
 }
 
 .subject-list {
@@ -365,13 +364,9 @@
 
 .questions_list {
     /* Scroll area with questions. It is invisible */
-    overflow-y: scroll;
-    overflow-x: hidden;
-    max-height: calc(100vh - 142.5px);
-    width: 100%;
+    width: calc(100% + 10px);
     margin: auto;
     margin-top: 15px;
-    margin-right: 10px;
     scrollbar-color: var(--text-box-bar-color) var(--background-color);
 }
 
