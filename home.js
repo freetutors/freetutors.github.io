@@ -1,6 +1,6 @@
 // Import configuration from external file
 import config from "./config.js";
-const qotwId = '0b2ca0c0-8477-03ba-4233-5e9c0fbf5717' //put the id of the weekly question
+const qotwId = 'bcbb4292-68a9-90f3-a129-9a40e6994471' //put the id of the weekly question
 // Extract API URLs from configuration
 const apiUrlget = config.apiUrlget;
 const apiUrlgetUser = config.apiUrlgetUser;
@@ -130,15 +130,24 @@ async function topQuestions(){
     var qotw = await getQuestionListId(qotwId) //question of the week = qotw
     qotw = qotw[0]
     console.log(qotw)
-    document.querySelector(".top-questions-box").innerHTML += //making top question the qotw
-    `<div class = "top-question qotw" onclick = "window.location = '/viewQuestion?questionId=${qotw.questionId}&title=${qotw.title}'">
-    <p class="qt-title">Question of the Week:</p>
-    <p class="tp-title" >${qotw.title}</p>
-    <p class="tp-info">${qotw.answers} Answers &#8226 ${qotw.views} Views &#8226 ${qotw.rating} Rating </p>
-  </div>`
+    let answers
+    if (qotw.answersInfo){
+        answers = qotw.answersInfo.length
+    }else{
+        answers=0
+    }
+    document.querySelector(".qotw_box").addEventListener("click", () => {
+        window.location = `/viewQuestion?questionId=${qotwId}`
+    })
+    document.querySelector(".qotw_box").innerHTML = //making top question the qotw
+    `  <div class="qotw-title">Question of the Week</div>
+    <h3 class="qotw-content">${qotw.title}</h3>
+    <p class = "qotw-info">Answers ${answers}</p>
+    <p class = "qotw-info">Views ${qotw.views}</p>
+    <p class = "qotw-info">Rating ${qotw.rating}</p>`
     const questions = await getQuestionListViews("top") //getting all questions
     questions.sort((a, b) => b.views - a.views); //getting top five views b/c bakcend cant do this for some reason
-    const top5Questions = questions.slice(0, 4);
+    const top5Questions = questions.slice(0, 5);
     for (const i in top5Questions){
         const question = questions[i] //for each question it'll add to the section
         document.querySelector(".top-questions-box").innerHTML += 

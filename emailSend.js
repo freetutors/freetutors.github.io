@@ -22,7 +22,7 @@ var cognito = new AWS.CognitoIdentityServiceProvider(); //connection to cognito 
 document.getElementById('username-send').addEventListener('click', function(event) {
     // event.preventDefafult();
     const username = document.getElementById('resetUsername').value;
-    if(username == null){
+    if(username == null || username == ""){
       alert("Please enter your Username")
     }
     else{
@@ -40,7 +40,7 @@ document.getElementById('username-send').addEventListener('click', function(even
         }
       });
       localStorage.setItem("Username", username)
-      window.location = "resetpwd"
+      window.location = "/resetpwd"
     }
     // Create a CognitoIdentityServiceProvider object
     // Parameters for the forgotPassword API call

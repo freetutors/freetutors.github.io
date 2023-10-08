@@ -1,3 +1,4 @@
+
 import config from './config.js';
 
 var path = window.location.pathname;
@@ -119,7 +120,7 @@ async function updateOnAnswer() {
   const questionAuthor = document.querySelector("#question-wrapper > div.question > div.pfpRow > div > div > p").textContent
   const questionUser = await getUser(questionAuthor)
   const messages = questionUser.user[0].InboxList
-  messages.push(['Your ' + '<a style="color: #0000EE;" href=' + window.location.href + '>question</a>' + ' has been answered', getTimestamp()])
+  messages.push(['Your ' + '<a href=' + window.location.href + '>question</a>' + ' has been answered', getTimestamp()])
   await updateListAttribute('Freetutor-Users', { username: questionAuthor }, 'InboxList', messages);
   await updateBooleanAttribute('Freetutor-Users', { username: questionAuthor }, 'isRead', false);
 }
@@ -171,21 +172,12 @@ async function updateBooleanAttribute(tableName, key, attributeName, attributeVa
   const messages = user.user[0].InboxList.reverse()
 
   for (const message of messages) {
-    if (messages.indexOf(message) == 0) {
-      document.querySelector(".inbox").innerHTML +=
-      `
-        <div class="inboxLetters">${message[0]}</div>
-        <div class="inboxTime">${getTimeDifference(message[1])}</div>
-      `
-    }
-    else{
-      document.querySelector(".inbox").innerHTML +=
-      `
-        <hr class="inboxLine">
-        <div class="inboxLetters">${message[0]}</div>
-        <div class="inboxTime">${getTimeDifference(message[1])}</div>
-      `
-    }
+    document.querySelector(".inbox").innerHTML +=
+    `
+      <div class="inboxLetters">${message[0]}</div>
+      <div class="inboxTime">${getTimeDifference(message[1])}</div>
+      <hr class="inboxLine">
+    `
   }
 
   document.querySelector(".inboxButton").addEventListener("click", inboxDisplay)
@@ -207,7 +199,4 @@ if (username !== null) {
 }
 
 })();
-
-
-
 

@@ -20,72 +20,6 @@ if (usernameBandPSC == null) {
     askQuestionButton.style.marginLeft = 'calc(100vw - 345px)';
 }
 
-function checkVSChrome() {
-
-    if (window.innerWidth > document.body.clientWidth) {
-        askQuestionButton.style.transform = `translateX(-15px)`;
-    } else {
-        askQuestionButton.style.transform = `translateX(0px)`;
-    }
-
-}
-
-function checkVSBrave() {
-
-    if (window.innerWidth > document.body.clientWidth) {
-        askQuestionButton.style.transform = `translateX(-15px)`;
-    } else {
-        askQuestionButton.style.transform = `translateX(0px)`;
-    }
-
-}
-
-function checkVSSafari() {
-
-    if ((window.innerWidth > document.body.clientWidth) && (window.innerWidth <= 740)) {
-        askQuestionButton.style.transform = `translateX(-15px)`;
-    } else if (window.innerWidth > document.body.clientWidth) {
-        askQuestionButton.style.transform = `translateX(-19px)`;
-    } else if ((window.innerWidth <= document.body.clientWidth) && (window.innerWidth <= 740)) {
-        askQuestionButton.style.transform = `translateX(0px)`;
-    } else if (window.innerWidth <= document.body.clientWidth) {
-        askQuestionButton.style.transform = `translateX(-4px)`;
-    }
-
-}
-
-function checkVSMicrosoftEdge() {
-
-    if (window.innerWidth > document.body.clientWidth) {
-        askQuestionButton.style.transform = `translateX(-15px)`;
-    } else {
-        askQuestionButton.style.transform = `translateX(0px)`;
-    }
-
-}
-
-function checkVSFirefox() {
-
-    if (window.innerWidth > document.body.clientWidth) {
-        askQuestionButton.style.transform = `translateX(-15px)`;
-    } else {
-        askQuestionButton.style.transform = `translateX(0px)`;
-    }
-}
-
-if (browserName == "Chrome"){
-
-    window.addEventListener('load', checkVSChrome);
-    window.addEventListener('resize', checkVSChrome);
-
-}
-
-if (browserName == "Brave"){
-
-    window.addEventListener('load', checkVSBrave);
-    window.addEventListener('resize', checkVSBrave);
-
-}
 
 if (browserName == "Safari") {
 
@@ -95,14 +29,6 @@ if (browserName == "Safari") {
 
     searchBar.style.fontSize = '13px';
     profileButton.style.width = '180px';
-    window.addEventListener('load', checkVSSafari);
-    window.addEventListener('resize', checkVSSafari);
-}
-
-if (browserName == "Microsoft Edge") {
-
-    window.addEventListener('load', checkVSMicrosoftEdge);
-    window.addEventListener('resize', checkVSMicrosoftEdge);
 }
 
 if (browserName == "Firefox") {
@@ -113,10 +39,6 @@ if (browserName == "Firefox") {
           element.style.width = '137.5px';
         });
     }
-
-    window.addEventListener('load', checkVSFirefox);
-    window.addEventListener('resize', checkVSFirefox);
-
 }
 
 askQuestionButton.addEventListener('mouseover', () => {
@@ -126,3 +48,40 @@ askQuestionButton.addEventListener('mouseover', () => {
 askQuestionButton.addEventListener('mouseout', () => {
   askQuestionButton.style.transform = 'scale(1)';
 });
+
+
+async function updateRightmostPosition() {
+    var elementWidth = searchBar.offsetWidth;
+    var elementLeftPosition = searchBar.offsetLeft;
+    var rightmostPosition = elementLeftPosition + elementWidth;
+    askQuestionButton.style.marginLeft = rightmostPosition - 128.5 + 'px';
+}
+
+for (let i = 0; i < 5; i++) {
+    setTimeout(function() {
+        updateRightmostPosition();
+    }, 100 * i);
+}
+window.addEventListener('resize', updateRightmostPosition);
+
+// Function to check if an element overflows its container
+function isOverflowing(element) {
+    return element.scrollWidth > element.clientWidth || element.scrollHeight > element.clientHeight;
+}
+
+// Function to find and log overflowing elements
+function logOverflowingElements() {
+    // Get all elements on the page
+    const allElements = document.querySelectorAll('*');
+
+    // Iterate through all elements
+    allElements.forEach(element => {
+        if (isOverflowing(element)) {
+            console.log('Overflowing Element:', element);
+        }
+    });
+}
+
+// Call the function to log overflowing elements when needed
+// For example, you can call it on page load or user interaction
+logOverflowingElements();
