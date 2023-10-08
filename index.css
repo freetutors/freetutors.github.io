@@ -2,9 +2,11 @@
 .non-profit{
   bottom: 10;
   color: var(--text-color);
-  margin-top: 30px;
 }
-
+.home{
+    display: flex;
+    flex-direction: column;
+}
 .box {
     /* Setting generic box details */
     background-color: var(--primary-color);
@@ -13,7 +15,7 @@
 .home-box{
     display: flex;
     justify-content: center;
-    height: calc(100vh - 43px);
+    height: auto;
     margin-right: 40px;
 }
 
@@ -358,6 +360,7 @@ body::-webkit-scrollbar-thumb {
     margin: auto;
     margin-left: -10px;
     margin-top: 15px;
+    margin-bottom: 0;
     scrollbar-color: var(--text-box-bar-color) var(--background-color);
 }
 
