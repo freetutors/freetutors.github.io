@@ -67,12 +67,12 @@
   cursor: pointer;
 }
 
-#asked_by_line:hover {
+/* #asked_by_line:hover {
   text-decoration: underline;
   text-decoration-color: var(--secondary-color);
-  text-underline-offset: 0.2em; /* Adjust this value to control the distance */
+  text-underline-offset: 0.2em; 
   text-decoration-thickness: 3px;
-}
+} */
 #file{
   display: none;
   size: 0px;
@@ -112,10 +112,10 @@
 hr.pfp_line {
   position: absolute;
   width: 100%;
-  border-top: 9x solid var(--secondary-color);
-  border-bottom: 9px solid var(--secondary-color);
-  border-right: 9px solid var(--secondary-color);
-  border-left: 9px solid var(--secondary-color);
+  border-top: 9x solid var(--underline-color);
+  border-bottom: 9px solid var(--underline-color);
+  border-right: 9px solid var(--underline-color);
+  border-left: 9px solid var(--underline-color);
   top: 260px;
 }
 .username_container {
@@ -274,7 +274,7 @@ hr.pfp_line {
   left: calc(50% - 569px);
   width: 170px;
   height: auto;
-  background-color: var(--profile-box-color);
+  background-color: var(--header-color);
   opacity: 0.95;
   border-radius: .5rem;
   box-shadow: 0 1rem 3rem #000000;
@@ -289,7 +289,7 @@ hr.pfp_line {
   left: calc(50% - 569px);
   width: 170px;
   height: 380px;
-  background-color: var(--profile-box-color);
+  background-color: var(--header-color);
   opacity: 0.95;
   border-radius: .5rem;
   box-shadow: 0 1rem 3rem #000000;
@@ -344,7 +344,7 @@ hr.pfp_line {
 .info_input_group {
     background-color: transparent;
     border: none;
-    border-bottom: 2px solid var(--secondary-color);
+    border-bottom: 2px solid var(--underline-color);
     color: var(--text-color);
     font-size: 9pt;
     margin-left: -2.5px;

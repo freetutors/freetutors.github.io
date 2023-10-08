@@ -19,10 +19,15 @@
   --tutor-sign-up: black;
   --about-me-color:#6d6d6d59;
   --testing-color:rgb(132, 175, 255);
-  --tool-bar: #242424ff
+  --tool-bar: #242424ff;
+  --underline-color: #2842a0;
   --question_list_width: 1300px;
   --translate_len: -103px;
 
+}
+a{
+  color: var(--text-color);
+  text-decoration-color: var(--text-color);
 }
 .color-change-icon{
   cursor: pointer;
@@ -612,13 +617,7 @@ margin-left: 3px;
    margin-right: 18px;
    width: 200px;
 }
-}
 
-a {
-text-decoration: none;
-color: var(--text-color);
-
-}
 
 @media only screen and (max-width: 800px) {
     .menu {

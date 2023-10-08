@@ -17,6 +17,7 @@ const infoInputGroupElements = document.getElementsByClassName('info_input_group
 if (usernameBandPSC == null) {
   searchBar.style.marginRight = '10px';
 }else{
+    searchBar.style.marginRight = '200px';
     askQuestionButton.style.marginLeft = 'calc(100vw - 345px)';
 }
 

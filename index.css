@@ -14,6 +14,7 @@
     display: flex;
     justify-content: center;
     height: calc(100vh - 43px);
+    margin-right: 40px;
 }
 
 body::-webkit-scrollbar {
@@ -51,7 +52,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .qt-title {
-    color: rgba(255, 255, 255, 1);
+    color: var(--text-color);
     font-size: 15px;
     text-align: center;
     margin: 0;
@@ -60,7 +61,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .top-question-header {
-    color: white;
+    color: var(--text-color);
     text-align: center;
     font-size: 18pt;
     padding-top: 7px;
@@ -78,7 +79,7 @@ body::-webkit-scrollbar-thumb {
     margin-top: 20px;
     width: 347px;
     padding-bottom: 10px;
-    background-color: rgba(13, 36, 73, 255);
+    background-color: var(--primary-color);
     border-radius: 22px;
 }
 
@@ -95,8 +96,7 @@ body::-webkit-scrollbar-thumb {
 
 .top-question:hover {
     cursor: pointer;
-    background-color: rgba(230, 230, 255, 0.1);
-    border: rgb(119, 119, 167) solid;
+    background-color: var(--top-questions-hover);
     border-width: 0px;
 }
 
@@ -112,7 +112,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .qotw:hover {
-    background-color: rgba(163, 47, 128, 0.223);
+    background-color: var(--menu-hover-color);
     border: var(--secondary-color) solid;
     border-width: 3px;
 }
@@ -120,14 +120,14 @@ body::-webkit-scrollbar-thumb {
 .qotw_box {
     height: 237px;
     width: 157px;
-    background-color: rgba(13, 36, 73, 255);
+    background-color: var(--primary-color);
     border-radius: 22px;
     margin-left: 20px;
     border: var(--secondary-color) solid;
 }
 
 .qotw_box:hover {
-    background-color: rgba(163, 47, 128, 0.223);
+    background-color: var(--menu-hover-color);
     cursor: pointer;
 }
 
@@ -178,9 +178,9 @@ body::-webkit-scrollbar-thumb {
 }
 
 #sign_up_as_tutor_button {
-    color: white;
+    color: var(--text-color);
     font-family: Lexend;
-    background-color: black;
+    background-color: var(--sign-up-button);
     border: none;
     height: 35px;
     width: 140px;
@@ -253,7 +253,7 @@ body::-webkit-scrollbar-thumb {
 
 .subject a {
     display: block;
-    color: white;
+    color: var(--text-color);
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
@@ -262,7 +262,7 @@ body::-webkit-scrollbar-thumb {
 /* Change the link color to #111 (black) on hover */
 .subject:hover {
     cursor: pointer;
-    background-color: rgb(53, 53, 53);
+    background-color: var(--menu-hover-color);
     border-radius: 3px;
 }
 
@@ -271,7 +271,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .subject {
-    border-right: 1px solid #bbb;
+    border-right: 2px solid #bbb;
 }
 
 .subject:last-child {
@@ -282,7 +282,7 @@ body::-webkit-scrollbar-thumb {
     display: inline-block;
     border-top: 14px solid transparent;
     border-bottom: 14px solid transparent;
-    border-left: 12px solid white;
+    border-left: 12px solid var(--text-color);
     border-radius: 3px;
     box-shadow: -3px 0px 2px var(--header-color);
     z-index: 15;
@@ -292,7 +292,7 @@ body::-webkit-scrollbar-thumb {
     display: inline-block;
     border-top: 14px solid transparent;
     border-bottom: 14px solid transparent;
-    border-right: 12px solid white;
+    border-right: 12px solid var(--text-color);
     border-radius: 3px;
     box-shadow: 3px 0px 2px var(--header-color);
     z-index: 15;
@@ -315,7 +315,7 @@ body::-webkit-scrollbar-thumb {
 .important_box_num3 {
     display: flex;
     font-size: 22px;
-    color: white;
+    color: var(--text-color);
     position: relative;
     text-align: center;
     margin-top: 16px;
@@ -329,7 +329,7 @@ body::-webkit-scrollbar-thumb {
 .important_box_num3_digit {
     display: inline-block;
     font-size: 23px;
-    color: white;
+    color: var(--text-color);
     transition: transform 2s ease;
 }
 
@@ -339,7 +339,7 @@ body::-webkit-scrollbar-thumb {
 
 #important_box_nums {
     font-size: 22px;
-    color: white;
+    color: var(--text-color);
     position: relative;
     text-align: center;
     margin-top: 16px;
@@ -347,7 +347,7 @@ body::-webkit-scrollbar-thumb {
 
 #important_box_text {
     font-size: 12px;
-    color: white;
+    color: var(--text-color);
     position: relative;
     text-align: center;
 }
@@ -390,7 +390,7 @@ body::-webkit-scrollbar-thumb {
     top: 15px;
     left: 77px;
     font-size: 20px;
-    color: white;
+    color: var(--text-color);
     cursor: pointer;
     white-space: nowrap;
     overflow: hidden;
@@ -405,7 +405,7 @@ body::-webkit-scrollbar-thumb {
     position: absolute;
     top: 47px;
     left: 77px;
-    color: white;
+    color: var(--text-color);
     font-size: 13px;
 }
 
@@ -414,7 +414,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 #answered_by_line {
-    color: white;
+    color: var(--text-color);
     font-size: 14px;
     margin-top: 13px;
     margin-left: 25px;
@@ -422,7 +422,7 @@ body::-webkit-scrollbar-thumb {
 
 .question_stats {
     position: absolute;
-    color: white;
+    color: var(--text-color);
     font-size: 17px;
     right: 25px;
     top: 5px;
@@ -437,7 +437,7 @@ body::-webkit-scrollbar-thumb {
 .menu {
     list-style-type: none;
     cursor: pointer;
-    color: white;
+    color: var(--text-color);
     margin-top: -1px;
     width: 180px;
 }
@@ -458,7 +458,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .menu_item:hover {
-    background-color: rgba(163, 47, 128, 0.397);
+    background-color: var(--menu-hover-color);
 }
 
 .menu_item:hover::before {
@@ -497,7 +497,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .on-page:hover {
-    background-color: rgba(163, 47, 128, 0.397);
+    background-color: var(--menu-hover-color);
 }
 
 .on-page:hover::before {

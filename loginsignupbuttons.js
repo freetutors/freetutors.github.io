@@ -1,5 +1,25 @@
 import config from "./config.js";
+function checkCookieExists(cookieName) { //checking cookie
+  return document.cookie.split(';').some((cookie) => cookie.trim().startsWith(`${cookieName}=`));
+}
+// Function to set a cookie with a given name and value
+function setCookie(cookieName, cookieValue, expirationDays) { //creating cookie
+  const expirationDate = new Date();
+  expirationDate.setDate(expirationDate.getDate() + expirationDays);
 
+  const cookie = `${cookieName}=${cookieValue}; expires=${expirationDate.toUTCString()}; path=/`;
+  document.cookie = cookie;
+}
+function getCookie(name) {
+  var cookieArr = document.cookie.split(";");
+  for(var i = 0; i < cookieArr.length; i++) {
+      var cookiePair = cookieArr[i].split("=");
+      if(name == cookiePair[0].trim()) {
+          return decodeURIComponent(cookiePair[1]);
+      }
+  }
+  return null;
+}
 const apiUrlgetUser = config.apiUrlgetUser //getting data
 const username = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser");
 async function getUser(username){ //pulling user info
@@ -21,11 +41,11 @@ if (username != null) { //if nothing in localStorage
   const user = await getUser(username)
   const pfp = user.user[0].pfp
   const profileButton = document.createElement('div');
-  const theme = localStorage.getItem("theme")
+  const theme = getCookie("theme")
   let themeChange
   let themeChangeText
   if (!theme){
-    localStorage.setItem('theme', 'dark')
+    setCookie('theme', 'dark',500)
   }
   else if (theme=="dark"){
     themeChange = "light"
@@ -54,7 +74,7 @@ if (username != null) { //if nothing in localStorage
     </div>
   `;
   profileButton.querySelector("#theme-change").addEventListener("click", () =>{
-    localStorage.setItem("theme", themeChange)
+    setCookie("theme", themeChange,500)
     location.reload()
   })
   profileButton.querySelector("#sign-out").addEventListener("click",() => { //signout

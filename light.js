@@ -1,4 +1,26 @@
-const theme = localStorage.getItem("theme")
+function checkCookieExists(cookieName) { //checking cookie
+    return document.cookie.split(';').some((cookie) => cookie.trim().startsWith(`${cookieName}=`));
+  }
+  // Function to set a cookie with a given name and value
+function setCookie(cookieName, cookieValue, expirationDays) { //creating cookie
+const expirationDate = new Date();
+expirationDate.setDate(expirationDate.getDate() + expirationDays);
+
+const cookie = `${cookieName}=${cookieValue}; expires=${expirationDate.toUTCString()}; path=/`;
+document.cookie = cookie;
+}
+function getCookie(name) {
+var cookieArr = document.cookie.split(";");
+for(var i = 0; i < cookieArr.length; i++) {
+    var cookiePair = cookieArr[i].split("=");
+    if(name == cookiePair[0].trim()) {
+        return decodeURIComponent(cookiePair[1]);
+    }
+}
+return null;
+}
+
+const theme = getCookie("theme")
 var darkBlue = 'rgb(132, 175, 255)'
 console.log(theme)
 if (theme=="light"){
@@ -22,7 +44,7 @@ if (theme=="light"){
     document.documentElement.style.setProperty('--tool-bar', '#ffbf5f');
     document.documentElement.style.setProperty('--sign-up-button', darkBlue);
     document.documentElement.style.setProperty('--tutor-sign-up', darkBlue);
-
+    document.documentElement.style.setProperty('--underline-color', '#ffdaa2ff');
     ;
 }
 else{
