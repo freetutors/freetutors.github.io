@@ -135,7 +135,7 @@ if (username != null) { //if nothing in localStorage
     themeChangeText = "Dark Mode"
   }
   document.querySelector(".color-change-icon").addEventListener("click", () =>{
-    localStorage.setItem("theme", themeChange)
+    setCookie("theme", themeChange,500)
     location.reload()
   })
   document.querySelector(".login-button").addEventListener("click", () => {
