@@ -4,7 +4,7 @@
   position: absolute;
   cursor: pointer;
   left: 50;
-  color: white;
+  color: var(--text-color);
   margin-top: -1px;
   transform: translateX(calc(-1*var(--translate_len)));
   margin-left: 15px;
@@ -26,7 +26,7 @@
 }
 
 .menu_item:hover {
-  background-color: rgba(163, 47, 128, 0.397);
+  background-color: var(--menu-hover-color);
 }
 
 .menu_item:hover::before {
@@ -65,7 +65,7 @@
 }
 
 .on-page:hover {
-  background-color: rgba(163, 47, 128, 0.397);
+  background-color: var(--menu-hover-color);
 }
 
 .on-page:hover::before {
@@ -86,10 +86,10 @@ display: none;
  .question_box {
      font-family: 'Lexend';
      height: fit-content;
-     background-color: #363636ff;
+     background-color: var(--search-bar);
      border-radius: 6px;
      width: 100%;
-     color: white;
+     color: var(--text-color);
      border: 1.5px solid var(--border-color);
      padding: 10px;
      font-size: 17px;
@@ -98,7 +98,7 @@ display: none;
  }
 
  .instructions {
-    color: white;
+    color: var(--text-color);
     font-size: 22px;
     margin-left: calc(50% - 473px);
     margin-top: 15px;
@@ -107,7 +107,7 @@ display: none;
 
  .back_button {
     position: absolute;
-    color: white;
+    color: var(--text-color);
     top: 57px;
     left: calc(50% - 473px);
     cursor: pointer;
@@ -153,8 +153,8 @@ display: none;
 
 .dropbtn {
   font-family: 'Lexend';
-  background-color: #363636ff;
-  color: white;
+  background-color: var(--search-bar);
+  color: var(--text-color);
   padding: 10px;
   font-size: 10pt;
   cursor: pointer;
@@ -168,7 +168,7 @@ display: none;
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #363636ff;
+  background-color: var(--search-bar);
   width: 187.5;
   font-size: 8pt;
   box-shadow: 0px 8px 16px 0px var(--secondary-color);
@@ -184,7 +184,7 @@ display: none;
 }
 
 .dropdown-content a {
-  color: white;
+  color: var(--text-color);
   padding: 8.75px 16px;
   text-decoration: none;
   display: block;
@@ -213,14 +213,14 @@ display: none;
 .comments_box {
   font-family: 'Lexend';
   font-size: 15px;
-  color: white;
+  color: var(--text-color);
   width: 920px;
   height: 300px;
   margin-top: 15px;
   margin-left: calc(50% - 473px);
   border: 1.5px solid var(--border-color);
   border-radius: 6px;
-  background-color: #363636ff;
+  background-color: var(--search-bar);
   padding: 12px;
   padding-top: 9px;
   padding-bottom: 9px;

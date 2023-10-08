@@ -1,3 +1,4 @@
+
 import config from './config.js';
 
 var path = window.location.pathname;
@@ -198,7 +199,4 @@ if (username !== null) {
 }
 
 })();
-
-
-
 

@@ -4,7 +4,7 @@
   position: absolute;
   cursor: pointer;
   left: 50;
-  color: white;
+  color: var(--text-color);
   margin-top: -1px;
   transform: translateX(calc(-1*var(--translate_len)));
   margin-left: 15px;
@@ -26,7 +26,7 @@
 }
 
 .menu_item:hover {
-  background-color: rgba(163, 47, 128, 0.397);
+  background-color: var(--menu-hover-color);
 }
 
 .menu_item:hover::before {
@@ -65,7 +65,7 @@
 }
 
 .on-page:hover {
-  background-color: rgba(163, 47, 128, 0.397);
+  background-color: var(--menu-hover-color);
 }
 
 .on-page:hover::before {
@@ -87,14 +87,14 @@ display: none;
 }
 
 .title_text {
-    color: white;
+    color: var(--text-color);
     text-align: center;
     padding: 7px;
     margin-top: 40px;
     font-size: 60px;
 }
 .our_team_text {
-    color: white;
+    color: var(--text-color);
     padding: 7px;
     font-size: 40px;
     text-align: center;
@@ -110,7 +110,7 @@ display: none;
 
 details > summary {
   font-size: 23px;
-  color: white;
+  color: var(--text-color);
   padding: 9px;
   border: none;
   cursor: pointer;
@@ -121,7 +121,7 @@ details > summary {
 details > p {
   padding: 4px;
   margin: 0;
-  color: white;
+  color: var(--text-color);
 }
 
 
@@ -144,7 +144,7 @@ details summary::-webkit-details-marker {
     width: 65%;
     height: auto;
     margin: auto;
-    background-color: var(--header-color);
+    background-color: var(--profile-box-color);
     opacity: 0.95;
     margin-top: 50px;
     flex-direction: column;
@@ -160,7 +160,7 @@ details summary::-webkit-details-marker {
   padding: 0;
 }
 .sidenote {
-    color: white;
+    color: var(--text-color);
     text-align: center;
     margin-top: 40px;
 }

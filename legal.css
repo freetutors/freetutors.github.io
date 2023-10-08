@@ -1,18 +1,18 @@
 .title {
-  color: white;
+  color: var(--text-color);
   text-align: center;
   font-size: 50px;
 }
 
 .subtitle {
-  color: white;
+  color: var(--text-color);
   font-size: 23px;
   margin-left: calc(50% - 525px);
 }
 
 
 .paragraph {
-  color: white;
+  color: var(--text-color);
   justify-content: center;
   margin: auto;
   max-width: 1050px;
@@ -20,13 +20,13 @@
 }
 
 .directory {
-  color: white;
+  color: var(--text-color);
   list-style-type: none;
   margin-left: calc(50% - 540px);
 }
 
 .list {
-  color: white;
+  color: var(--text-color);
   margin-left: calc(50% - 520px);
   max-width: 1000px;
 }
@@ -47,13 +47,13 @@
   }
 
   .directory {
-  color: white;
+  color: var(--text-color);
   list-style-type: none;
   margin-left: 85px;
 }
 
 .subtitle {
-  color: white;
+  color: var(--text-color);
   font-size: 23px;
   margin-left: 100px;
 }

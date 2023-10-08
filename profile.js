@@ -247,7 +247,6 @@ if (username !== viewerUsername){
       document.querySelector(".about-me-field").readOnly = true; 
       document.getElementById("pfp_inner")
       document.querySelector(".updateAbout").style.display="none"
-  document.querySelector("#sign-out").style.display = "none"
 }
 var user = await getUser(username) //getting user
 await showQuestionColumn(user) //calling functinos
@@ -320,10 +319,3 @@ if (file !== null){
   })
 }
 
-document.getElementById("sign-out").addEventListener("click",() => { //signout
-  if (confirm("Do you want sign out?") == true){
-    localStorage.clear()
-    sessionStorage.clear()
-    window.location ='/'
-  }
-})

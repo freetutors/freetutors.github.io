@@ -38,14 +38,14 @@ margin-left: 9px;
   height:30.5px; /* Set height of search bar */
   background-color: #363636ff; /* Set background color of search bar to gray */
   border-radius: 6px;
-  color: white;
+  color: var(--text-color);
   padding-left: 13px;
   padding-right: 13px;
-  border: 1.5px solid var(--border-color); /* Add white border around search bar */
+  border: 1.5px solid var(--border-color); /* Add var(--text-color) border around search bar */
 }
 .search-bar::placeholder {
 font-family: 'Lexend'; /* Set font of placeholder text to Lexend */
-color: white;
+color: var(--text-color);
 }
 
 .search-bar::-webkit-search-cancel-button {
@@ -61,7 +61,7 @@ display: none;
 .button {/*setting main button object*/
 font-family: 'Lexend', sans-serif;
 border: none;
-color: white;
+color: var(--text-color);
 padding: 6.5px 17px;
 text-align: center;
 text-decoration: none;
@@ -86,7 +86,7 @@ background-color: var(--primary-color)
  width: 65vw;
  max-width: 700px;
  height: auto;
- background-color: var(--header-color);
+ background-color: var(--profile-box-color);
  opacity: 0.95;
  margin: auto;
  position: absolute;
@@ -159,7 +159,7 @@ background-color: var(--primary-color)
  background-color: var(--text-box-bar-color);
  border: .1rem solid var(--light-grey-color);
  font-size: 1.2rem;
- color: WHITE;
+ color: var(--text-color);
  letter-spacing: .1rem;
  border-radius: 0.5rem;
  transition: border 0.3;
@@ -172,7 +172,7 @@ background-color: var(--primary-color)
 
 .input-group label{
  font-size: 1.2vh;
- color: WHITE;
+ color: var(--text-color);
  font-weight: 600;
  text-transform: uppercase;
  letter-spacing: .1rem;
@@ -200,7 +200,7 @@ border-left: none;
 border-right: none;
 border-bottom: 4px solid var(--secondary-color);
 font-size: 1.07rem;
-color: white;
+color: var(--text-color);
 letter-spacing: .1rem;
 outline: none;
 }
@@ -208,7 +208,7 @@ outline: none;
 
 .input-group-new label {
 font-size: 1.8vh;
-color: white;
+color: var(--text-color);
 font-weight: 600;
 letter-spacing: .1rem;
 color: 150, 150, 150;
@@ -266,7 +266,7 @@ padding-top: -1rem;
 .forgotPwd{
 color: var(--text-color);
 cursor: pointer;
-transition: transform 0.3s
+transition: transform 0.3s;
 }
 .forgotPwd:hover{
 transform: scale(1.2)

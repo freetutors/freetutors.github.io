@@ -44,7 +44,7 @@
       top: 15px;
       left: 77px;
       font-size: 20px;
-      color: white;
+      color: var(--text-color);
       cursor: pointer;
       max-width: 40vw;
       white-space: nowrap;
@@ -57,7 +57,7 @@
     position: absolute;
     top: 47px;
     left: 77px;
-    color: white;
+    color: var(--text-color);
     font-size: 13px;
 }
 
@@ -67,7 +67,7 @@
 }
 
 #answered_by_line {
-    color: white;
+    color: var(--text-color);
     font-size: 14px;
     margin-top: 13px;
     margin-left: 25px;
@@ -75,7 +75,7 @@
 
 .question_stats {
     position: absolute;
-    color: white;
+    color: var(--text-color);
     font-size: 17px;
     right: 25px;
     top: 5px;
@@ -88,7 +88,7 @@
 }
 
 .question_header { /*divider based on subject*/
-   color: white;
+   color: var(--text-color);
    padding-left: 7px;
    padding-top: 4px;
    height: 25px;
