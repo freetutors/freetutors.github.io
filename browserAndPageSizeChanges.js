@@ -55,7 +55,7 @@ async function updateRightmostPosition() {
     askQuestionButton.style.marginLeft = rightmostPosition - 128.5 + 'px';
 }
 
-for (let i = 0; i < 5; i++) {
+for (let i = 0; i < 20; i++) {
     setTimeout(function() {
         updateRightmostPosition();
     }, 100 * i);
