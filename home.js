@@ -196,9 +196,11 @@ function showQuestionColumn(subject) {
                 `<div class="box text_box">
         <!-- pfp -->
         <img id="global_pfp" class = "pfp${author}" src="/placeholder_pfp.png" alt="user_pfp" onclick="window.location='/profile?username=${unformattedAuthor}'">
-        <div id="text_box_question_content">${title}</div>
-        <div id="asked_by_line"><a href="https://www.freetutors.net/profile?username=${unformattedAuthor}">asked by ${author}, ${timeAgo}</a></div>
-        <div id="answered_by_line">Add to the conversation!</div>
+        <div class="question-title-column">
+            <div id="text_box_question_content">${title}</div>
+            <div id="asked_by_line"><a href="https://www.freetutors.net/profile?username=${unformattedAuthor}">asked by ${author}, ${timeAgo}</a></div>
+            <div id="answered_by_line">Add to the conversation!</div>
+        </div>
         <div class="question_stats">
           <div id="question_stats_items">${answers} Answers</div>
           <div id="question_stats_items">${views} Views</div>
@@ -210,9 +212,11 @@ function showQuestionColumn(subject) {
                 `<div class="box text_box">
         <!-- pfp -->
         <img id="global_pfp" class = "pfp${author}" src="/placeholder_pfp.png" alt="user_pfp" onclick="window.location='/profile?username=${unformattedAuthor}'">
-        <div id="text_box_question_content">${title}</div>
-        <div id="asked_by_line"><a href="https://www.freetutors.net/profile?username=${unformattedAuthor}">asked by ${author}, ${timeAgo}</a></div>
-        <div id="answered_by_line">Be the first to answer!</div>
+        <div class="question-title-column">
+            <div id="text_box_question_content">${title}</div>
+            <div id="asked_by_line"><a href="https://www.freetutors.net/profile?username=${unformattedAuthor}">asked by ${author}, ${timeAgo}</a></div>
+            <div id="answered_by_line">Be the first to answer!</div>     
+        </div>    
         <div class="question_stats">
           <div id="question_stats_items">${answers} Answers</div>
           <div id="question_stats_items">${views} Views</div>
