@@ -193,7 +193,7 @@ function showQuestionColumn(subject) {
             author = author.replace(/\./g,"")
             if (answers != 0){
                 document.querySelector(".questions_list").innerHTML += //sending html info
-                `<div class="box text_box">
+                `<div class="box text_box" id = "${question.questionId}">
         <!-- pfp -->
         <img id="global_pfp" class = "pfp${author}" src="/placeholder_pfp.png" alt="user_pfp" onclick="window.location='/profile?username=${unformattedAuthor}'">
         <div class="question-title-column">
@@ -209,7 +209,7 @@ function showQuestionColumn(subject) {
             }
             else{
                 document.querySelector(".questions_list").innerHTML += //sending html info
-                `<div class="box text_box">
+                `<div class="box text_box"  id = "${question.questionId}">
         <!-- pfp -->
         <img id="global_pfp" class = "pfp${author}" src="/placeholder_pfp.png" alt="user_pfp" onclick="window.location='/profile?username=${unformattedAuthor}'">
         <div class="question-title-column">
@@ -223,8 +223,28 @@ function showQuestionColumn(subject) {
           <div id="question_stats_items">${rating} Rating</div>
         </div>`
         }
+        if (window.innerWidth <= 800){ //if mobile then get the element
+            const questionElement = document.getElementById(question.questionId)
+            const stats = questionElement.querySelector(".question_stats")
+            const profilePic = questionElement.querySelector("#global_pfp")
+            const boxHeight = questionElement.getBoundingClientRect().height
+            console.log(profilePic)
+            if (boxHeight == 150){
+                stats.style.marginTop = '-105px'
+                profilePic.style.transform = 'translateY(10px)' 
             }
+            else if (boxHeight == 130){
+                stats.style.marginTop = '-95px'
+                profilePic.style.transform = 'translateY(2.5px)' 
+            }
+            else if (boxHeight == 175){
+                stats.style.marginTop = '-125px'
+                profilePic.style.transform = 'translateY(25px)' 
+            }
+        }
 
+        
+        }
         const questionBoxes = document.querySelectorAll("#text_box_question_content");
         questionBoxes.forEach((box, index) => { //when click will go to view Question.html
             box.addEventListener("click", function() {
@@ -233,7 +253,9 @@ function showQuestionColumn(subject) {
                 localStorage.setItem("QuestionID", JSON.stringify(questionId));
                 window.location = `viewQuestion?questionId=${questionId}&title=${title}`;
             });
+
         });
+        
         for (const i in pfpsToGet){
             var author = pfpsToGet[i]
             const user = await getUser(author)
@@ -449,3 +471,4 @@ if (localUser !== null) {
 
 })();
 await topQuestions()
+

@@ -382,7 +382,10 @@ body::-webkit-scrollbar-thumb {
 
 .text_box {
     /* Question subclass of box */
-    height: 120px;
+
+    height: auto;
+    padding-top: 10px;
+    padding-bottom: 20px;
     margin-bottom: 15px;
     margin-right: 10px;
     position: relative;
@@ -425,9 +428,10 @@ body::-webkit-scrollbar-thumb {
 }
 
 .question_stats {
+    position: absolute;
     color: var(--text-color);
     font-size: 17px;
-    margin-left: calc(100% - 100px);
+    left: calc(100% - 100px);
     margin-top: -90px;
     text-align: left;
 }
@@ -600,9 +604,10 @@ body::-webkit-scrollbar-thumb {
         margin-left: 0px;
     }
     .text_box{ 
+        box-sizing: content-box;
         height: auto;
         min-height: 100px;
-        padding-bottom: 10px;
+        /* padding-bottom: 10px; */
     }
 
     .arrows {
@@ -611,8 +616,6 @@ body::-webkit-scrollbar-thumb {
     .question-title-column{
         display: flex;
         flex-direction: column;
-        height: auto;
-        margin-bottom: 20px;
     }
     #text_box_question_content {
         max-width: 60%; /* Adds ellipsis for overflowed text */
