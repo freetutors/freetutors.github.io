@@ -11,8 +11,10 @@
     --question_list_width: 1300px;
     --translate_len: -103px;
 }
-
-
+.non-profit{
+    color: var(--text-color);
+    margin-top: -100px;
+  }
 .box {
     /* Setting generic box details */
     background-color: var(--primary-color);
@@ -55,7 +57,8 @@ body::-webkit-scrollbar-thumb {
     width: calc(var(--question_list_width) - 30px);
     display: flex;
     flex-direction: column;
-
+margin-bottom: 0;
+height: auto;
 }
 
 .qt-title {
@@ -366,6 +369,7 @@ body::-webkit-scrollbar-thumb {
     margin: auto;
     margin-left: -10px;
     margin-top: 15px;
+    margin-bottom: 0;
     scrollbar-color: var(--text-box-bar-color) var(--background-color);
 }
 
