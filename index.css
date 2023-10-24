@@ -616,14 +616,21 @@ body::-webkit-scrollbar-thumb {
     .question-title-column{
         display: flex;
         flex-direction: column;
+
     }
     #text_box_question_content {
-        max-width: 60%; /* Adds ellipsis for overflowed text */
+        max-width: 50%; /* Adds ellipsis for overflowed text */
         white-space: wrap;
         overflow: wrap;
+        font-size: 17px;
     }
     .question_header{
         width: 100%;
     }
-
+    #asked_by_line{
+        font-size: 15px;
+    }
+    .question_stats{
+        font-size: 15px;
+    }
 }

@@ -229,17 +229,18 @@ function showQuestionColumn(subject) {
             const profilePic = questionElement.querySelector("#global_pfp")
             const boxHeight = questionElement.getBoundingClientRect().height
             console.log(profilePic)
-            if (boxHeight == 150){
+            if (boxHeight == 145){
                 stats.style.marginTop = '-105px'
-                profilePic.style.transform = 'translateY(10px)' 
+                profilePic.style.transform = 'translateY(7.5px)' 
             }
             else if (boxHeight == 130){
-                stats.style.marginTop = '-95px'
+                stats.style.marginTop = '-97.5px'
                 profilePic.style.transform = 'translateY(2.5px)' 
+                questionElement.querySelector("#answered_by_line").style.marginTop = '25px'
             }
-            else if (boxHeight == 175){
-                stats.style.marginTop = '-125px'
-                profilePic.style.transform = 'translateY(25px)' 
+            else if (boxHeight == 166){
+                stats.style.marginTop = '-115px'
+                profilePic.style.transform = 'translateY(17.5px)' 
             }
         }
 
