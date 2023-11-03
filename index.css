@@ -633,4 +633,13 @@ body::-webkit-scrollbar-thumb {
     .question_stats{
         font-size: 15px;
     }
+    #asked_by_line{
+        max-width: 45%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .body{
+        overflow-y: hidden;
+    }
 }

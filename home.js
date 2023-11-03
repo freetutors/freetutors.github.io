@@ -177,8 +177,11 @@ function showQuestionColumn(subject) {
                 var answers = question.answersInfo.length
             }
             var rating = question.rating
-            var timeAgo = getTimeDifference(question.timestamp)
+            var timeAgo = ", " + getTimeDifference(question.timestamp)
             var views = question.views
+            if (window.innerWidth <= 800){
+                timeAgo = ""
+            }
             // var user = await getUser(author)
             // var pfp = user.user[0].pfp
             // var displayedImage = ""
@@ -198,7 +201,7 @@ function showQuestionColumn(subject) {
         <img id="global_pfp" class = "pfp${author}" src="/placeholder_pfp.png" alt="user_pfp" onclick="window.location='/profile?username=${unformattedAuthor}'">
         <div class="question-title-column">
             <div id="text_box_question_content">${title}</div>
-            <div id="asked_by_line"><a href="https://www.freetutors.net/profile?username=${unformattedAuthor}">asked by ${author}, ${timeAgo}</a></div>
+            <div id="asked_by_line"><a href="https://www.freetutors.net/profile?username=${unformattedAuthor}">asked by ${author}${timeAgo}</a></div>
             <div id="answered_by_line">Add to the conversation!</div>
         </div>
         <div class="question_stats">
@@ -214,7 +217,7 @@ function showQuestionColumn(subject) {
         <img id="global_pfp" class = "pfp${author}" src="/placeholder_pfp.png" alt="user_pfp" onclick="window.location='/profile?username=${unformattedAuthor}'">
         <div class="question-title-column">
             <div id="text_box_question_content">${title}</div>
-            <div id="asked_by_line"><a href="https://www.freetutors.net/profile?username=${unformattedAuthor}">asked by ${author}, ${timeAgo}</a></div>
+            <div id="asked_by_line"><a href="https://www.freetutors.net/profile?username=${unformattedAuthor}">asked by ${author}${timeAgo}</a></div>
             <div id="answered_by_line">Be the first to answer!</div>     
         </div>    
         <div class="question_stats">
@@ -242,9 +245,13 @@ function showQuestionColumn(subject) {
                 stats.style.marginTop = '-115px'
                 profilePic.style.transform = 'translateY(17.5px)' 
             }
-        }
+            var textElement = document.querySelector('#text_box_question_content');
+            var maxLength = 53;
 
-        
+            if (textElement.textContent.length > maxLength) {
+                textElement.textContent = textElement.textContent.substring(0, maxLength) + '...';
+            }
+        }
         }
         const questionBoxes = document.querySelectorAll("#text_box_question_content");
         questionBoxes.forEach((box, index) => { //when click will go to view Question.html
