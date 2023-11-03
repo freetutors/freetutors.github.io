@@ -38,7 +38,7 @@
   <img id="logo" src="Logo.svg" alt="Logo" onclick="window.location='/'">
   <input type="search" class="search-bar" placeholder="Search..."
          onkeydown="if (event.keyCode == 13) handleSearchTrigger()">
-  <button class="button ask-question-button">Ask Question</button>
+  <button class="button ask-question-button" onclick="window.location='/createQuestion'">Ask Question</button>
   <div class="possibleSearchResultContainer"></div>
   <div id="loginSignupArea"></div>
 </div>
@@ -91,6 +91,7 @@
 
 <div class="signPopUp"></div>
 
+<script src="homeSizeChanges.js"></script>
 
 <script src="https://unpkg.com/bowser@2.7.0/es5.js"></script>
 <script src="browserAndPageSizeChanges.js"></script>
