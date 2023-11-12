@@ -50,7 +50,7 @@ body::-webkit-scrollbar-thumb {
     width: calc(var(--question_list_width) - 30px);
     display: flex;
     flex-direction: column;
-
+    align-items: left;
 }
 
 .qt-title {
@@ -597,11 +597,22 @@ body::-webkit-scrollbar-thumb {
     .menu {
         display: none;
     }
-
+    .top-questions-box {
+        display: block;
+        width: 94vw;
+        margin-left: -15px;
+    }
+    .top-question-header{
+        text-decoration: underline;
+    }
+    .right-box{
+        display:none
+    }
     .questions {
         width: 100%;
-        margin-right: -80px;
+        margin-right: -52.5px;
         margin-left: 0px;
+        
     }
     .text_box{ 
         box-sizing: content-box;
@@ -625,7 +636,7 @@ body::-webkit-scrollbar-thumb {
         font-size: 17px;
     }
     .question_header{
-        width: 100%;
+        width: 98%;
     }
     #asked_by_line{
         font-size: 15px;

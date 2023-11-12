@@ -15,6 +15,19 @@ if (window.innerWidth <= 800){
   <div class="possibleSearchResultContainer"></div>
 
   `
+  var questions = document.querySelector(".questions").innerHTML = 
+    `   <div class = "top-questions-box">
+        <p class= "top-question-header">Top Questions</p>
+        </div>
+        <div class="question_header">
+            <div id="arrow-left"></div>
+            <ul class="subject-list"></ul>
+            <div id="arrow-right"></div>
+        </div>
+        <div class="questions_list questions_list_profile"></div>
+  `
+  
+
     document.querySelector(".open-navbar-icon").
     addEventListener("click", () => {
     container.classList.add("change");
