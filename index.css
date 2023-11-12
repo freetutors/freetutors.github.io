@@ -594,6 +594,9 @@ body::-webkit-scrollbar-thumb {
 }
 
 @media only screen and (max-width: 800px) {
+    html, body {
+        max-width: 100%;
+    }
     .menu {
         display: none;
     }
@@ -608,12 +611,14 @@ body::-webkit-scrollbar-thumb {
     .right-box{
         display:none
     }
+    .home{
+        width: auto;
+        overflow-x: hidden;
+    }
     .questions {
         width: 100%;
         margin-right: -52.5px;
         margin-left: 0px;
-        overflow-x: hidden;
-        
     }
     .text_box{ 
         box-sizing: content-box;
