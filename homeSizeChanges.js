@@ -1,36 +1,4 @@
-console.log('adsaf')
 if (window.innerWidth <= 800){
-    console.log("hi")
-    var topbar = document.querySelector("#topbar").innerHTML = 
-    `
-    <div class="navbar-area">
-      <span class="open-navbar-icon navbar-icon center" >
-        <div class="line"></div>
-        <div class="line"></div>
-        <div class="line"></div>
-      </span>
-      <div class="navbar-wrapper">
-				<nav class="navbar">
-					<div class="close-navbar-icon navbar-icon center">
-						<div class="line line-1"></div>
-						<div class="line line-2"></div>
-					</div>
-					<div class="nav-list">
-						<a href="/index" class="nav-link option-1 center">Home</a>
-						<a href="/ourTeam" class="nav-link option-2 center">Our Team</a>
-						<a href="/contactUs" class="nav-link option-4 center">Contact Us</a>
-						<a href="/help" class="nav-link option-5 center">Help</a>
-					</div>
-				</nav>
-			</div>
-    </div>
-    <img id="logo" src="Logo.svg" alt="Logo" onclick="window.location='/'">
-  <input type="search" class="search-bar" placeholder="Search..."
-         onkeydown="if (event.keyCode == 13) handleSearchTrigger()">
-  <button class="button ask-question-button">Ask Question</button>
-  <div class="possibleSearchResultContainer"></div>
-
-  `
   var questions = document.querySelector(".questions").innerHTML = 
     `   
         <div class= "top-question-header2">Top Questions</div>
