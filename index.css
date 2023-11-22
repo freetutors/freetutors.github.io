@@ -644,6 +644,25 @@ body::-webkit-scrollbar-thumb {
     .question_header{
         width: 98%;
     }
+    .top-question-header2{
+        color: var(--text-color);
+        text-align: center;
+        padding-left: 7px;
+        padding-right: 7px;
+        padding-top: 4px;
+        padding-bottom: 2px;
+        font-size: 20px;
+        height: 30px;
+        background-color: var(--text-box-bar-color);
+        border: 1.5px solid var(--border-color);
+        margin-top: 50px;
+        margin-left: -11.5px;
+        width: 98%;
+    }
+    .top-questions-box{
+        margin-top: 15px;
+        padding-top: 20px;
+    }
     #asked_by_line{
         font-size: 15px;
     }
