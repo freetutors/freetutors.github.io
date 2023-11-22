@@ -17,9 +17,9 @@ if (window.innerWidth <= 800){
 					</div>
 					<div class="nav-list">
 						<a href="index.html#header" class="nav-link option-1 center">Home</a>
-						<a href="painting.html" class="nav-link option-2 center">Paintings</a>
-						<a href="cart.html" class="nav-link option-4 center">Cart</a>
-						<a href="index.html#contact" class="nav-link option-5 center">Contact</a>
+						<a href="painting.html" class="nav-link option-2 center">About Us</a>
+						<a href="cart.html" class="nav-link option-4 center">Contact Us</a>
+						<a href="index.html#contact" class="nav-link option-5 center">Help</a>
 					</div>
 				</nav>
 			</div>
