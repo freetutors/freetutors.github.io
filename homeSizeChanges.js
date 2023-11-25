@@ -11,24 +11,4 @@ if (window.innerWidth <= 800){
         </div>
         <div class="questions_list questions_list_profile"></div>
   `
-var navbar = document.querySelector(".navbar-area")
-  document.querySelector(".open-navbar-icon").
-addEventListener("click", () => {
-   navbar.classList.add("change");
-});
-
-document.querySelector(".close-navbar-icon").
-addEventListener("click",() => {
-   navbar.classList.remove("change");
-});
-
-document.querySelector('.nav-list').
-addEventListener("click", () => {
-    location.reload()
-});
-
-    document.querySelector(".open-navbar-icon").
-    addEventListener("click", () => {
-    navbar.classList.add("change");
-    });
 }

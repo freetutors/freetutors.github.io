@@ -37,7 +37,7 @@ window.onhashchange = function() {
   location.reload()
 };
 
-if (username != null) { //if nothing in localStorage
+if (username != null) { //if in localStorage
   const user = await getUser(username)
   const pfp = user.user[0].pfp
   const profileButton = document.createElement('div');
@@ -110,16 +110,21 @@ if (username != null) { //if nothing in localStorage
 
 
 } else {
+  if(window.innerWidth >= 800){//for desktop only
+    if (theme == "light"){
+      document.getElementById("loginSignupArea").innerHTML = //other wise it will show login and signup buttons
+      `<img class="color-change-icon" src="sunny.svg" width='30px' height='30px'></img>
+      <button class="button login-button">Log in</button>
+       <button class="button signup-button">Sign up</button>`;  
+    }else{
+      document.getElementById("loginSignupArea").innerHTML = //other wise it will show login and signup buttons
+      `<img class="color-change-icon" src="moon.svg" width='25px' height='25px' style='margin-top: 2.3px;'></img>
+      <button class="button login-button">Log in</button>
+       <button class="button signup-button">Sign up</button>`;  
+    }
+  }
   if (theme == "light"){
-    document.getElementById("loginSignupArea").innerHTML = //other wise it will show login and signup buttons
-    `<img class="color-change-icon" src="sunny.svg" width='30px' height='30px'></img>
-    <button class="button login-button">Log in</button>
-     <button class="button signup-button">Sign up</button>`;  
-  }else{
-    document.getElementById("loginSignupArea").innerHTML = //other wise it will show login and signup buttons
-    `<img class="color-change-icon" src="moon.svg" width='25px' height='25px' style='margin-top: 2.3px;'></img>
-    <button class="button login-button">Log in</button>
-     <button class="button signup-button">Sign up</button>`;  
+    document.querySelector('.color-change-icon').setAttribute('src', "sunny.svg")
   }
   let themeChange
   let themeChangeText
@@ -134,7 +139,10 @@ if (username != null) { //if nothing in localStorage
     themeChange = "dark"
     themeChangeText = "Dark Mode"
   }
+  console.log('hi')
+  console.log(document.querySelector(".color-change-icon"))
   document.querySelector(".color-change-icon").addEventListener("click", () =>{
+    console.log('fasdf')
     setCookie("theme", themeChange,500)
     location.reload()
   })

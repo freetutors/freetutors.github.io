@@ -22,6 +22,7 @@ if (window.innerWidth <= 800){
 					</div>
 				</nav>
 			</div>
+            <img class="color-change-icon" src="moon.svg" width='25px' height='25px' style='margin-top: 2.3px;'></img>
     </div>
     <img id="logo" src="Logo.svg" alt="Logo" onclick="window.location='/'">
   <input type="search" class="search-bar" placeholder="Search..."
@@ -29,6 +30,26 @@ if (window.innerWidth <= 800){
  
   <div class="possibleSearchResultContainer"></div>
  `
+ var navbar = document.querySelector(".navbar-area")
+  document.querySelector(".open-navbar-icon").
+addEventListener("click", () => {
+   navbar.classList.add("change");
+   document.querySelector('.color-change-icon').classList.add('change')
+});
+
+document.querySelector(".close-navbar-icon").
+addEventListener("click",() => {
+   navbar.classList.remove("change");
+});
+
+document.querySelector('.nav-list').
+addEventListener("click", () => {
+    location.reload()
+});
+    document.querySelector(".open-navbar-icon").
+    addEventListener("click", () => {
+    navbar.classList.add("change");
+    });
  // <button class="button ask-question-button">Ask Question</button> idk where to put this
 }
 var browser = browser.getParser(window.navigator.userAgent);
