@@ -258,5 +258,17 @@ p {
   width: calc(100% - 100px);
   left: -10px;
 }
-
+.title{
+  margin-top: 50px;
+  font-size: 30px;
+  width: 80%;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+.back_button{
+  display: none;
+}
+.answer-wrapper{
+  margin-top: 0;
+}
 }
