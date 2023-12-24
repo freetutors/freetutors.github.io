@@ -1,4 +1,3 @@
-
 if (window.innerWidth <= 800){
     var topbar = document.querySelector("#topbar").innerHTML = 
     `
