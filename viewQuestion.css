@@ -214,7 +214,6 @@ p {
 .rating-container {
   display: none;
 }
-
 .instructions {
     width: 800px;
     margin: auto;
@@ -237,13 +236,17 @@ p {
 
 .question {
   transform: translateY(-17.5px);
-  width: calc(100% - 100px);
+  width: calc(100% - 150px);
+  padding-left: 50px;
 }
 
 .questionSep {
     width: calc(100% - 50px);
 }
-
+.rating-container{
+  display: block;
+  left: 0px
+}
 .answer {
   transform: translateY(-17.5px);
   width: calc(100% - 100px);
