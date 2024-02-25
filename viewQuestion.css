@@ -236,7 +236,7 @@ p {
 
 .question {
   transform: translateY(-17.5px);
-  width: calc(100% - 150px);
+  width: calc(100% - 100px);
   padding-left: 50px;
 }
 
@@ -244,18 +244,20 @@ p {
     width: calc(100% - 50px);
 }
 .rating-container{
-  display: block;
+  display: flex;
   left: 0px
 }
 .answer {
   transform: translateY(-17.5px);
   width: calc(100% - 100px);
+  padding-left: 50px;
 }
 
 .instructions {
     width: calc(100% - 100px);
     margin: auto;
     margin-bottom: 22px;
+    margin-top: 22px;
 }
 
 .submit-buttons {
