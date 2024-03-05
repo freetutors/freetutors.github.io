@@ -55,6 +55,7 @@ async function createQuestion(questionData) {
     const author = questionData.author
     const subject = questionData.subject
     const pfp = questionData.pfp
+    const userRatings = []
     const timestamp = new Date().toISOString();
     do {
         questionId = randomizeUUIDv4();
@@ -83,7 +84,8 @@ async function createQuestion(questionData) {
                 answers: 0,
                 pfp: pfp,
                 timestamp: timestamp,
-                subject: subject
+                subject: subject,
+                userRatings: userRatings,
             }
             await saveQuestion(question)
             const response = {

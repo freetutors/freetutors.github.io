@@ -1,4 +1,57 @@
-var browser = bowser.getParser(window.navigator.userAgent);
+if (window.innerWidth <= 800){
+    var topbar = document.querySelector("#topbar").innerHTML = 
+    `
+    <div class="navbar-area">
+      <span class="open-navbar-icon navbar-icon center" >
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+      </span>
+      <div class="navbar-wrapper">
+				<nav class="navbar">
+					<div class="close-navbar-icon navbar-icon center">
+						<div class="line line-1"></div>
+						<div class="line line-2"></div>
+					</div>
+					<div class="nav-list">
+						<a href="/index" class="nav-link option-1 center">Home</a>
+						<a href="/ourTeam" class="nav-link option-2 center">Our Team</a>
+						<a href="/contactUs" class="nav-link option-4 center">Contact Us</a>
+						<a href="/help" class="nav-link option-5 center">Help</a>
+					</div>
+				</nav>
+			</div>
+            <img class="color-change-icon" src="moon.svg" width='25px' height='25px' style='margin-top: 2.3px;'></img>
+    </div>
+    <img id="logo" src="Logo.svg" alt="Logo" onclick="window.location='/'">
+  <input type="search" class="search-bar" placeholder="Search..."
+         onkeydown="if (event.keyCode == 13) handleSearchTrigger()">
+ 
+  <div class="possibleSearchResultContainer"></div>
+ `
+ var navbar = document.querySelector(".navbar-area")
+  document.querySelector(".open-navbar-icon").
+addEventListener("click", () => {
+   navbar.classList.add("change");
+   document.querySelector('.color-change-icon').classList.add('change')
+});
+
+document.querySelector(".close-navbar-icon").
+addEventListener("click",() => {
+   navbar.classList.remove("change");
+});
+
+document.querySelector('.nav-list').
+addEventListener("click", () => {
+    location.reload()
+});
+    document.querySelector(".open-navbar-icon").
+    addEventListener("click", () => {
+    navbar.classList.add("change");
+    });
+ // <button class="button ask-question-button">Ask Question</button> idk where to put this
+}
+var browser = browser.getParser(window.navigator.userAgent);
 var browserName = browser.parsedResult.browser.name;
 
 var path = window.location.pathname;
@@ -15,9 +68,11 @@ const banner = document.querySelector('.banner');
 const infoInputGroupElements = document.getElementsByClassName('info_input_group');
 
 if (usernameBandPSC == null) {
-  searchBar.style.marginRight = '30px';
+  searchBar.style.marginRight = '10px';
+}else{
+    searchBar.style.marginRight = '200px';
+    askQuestionButton.style.marginLeft = 'calc(100vw - 345px)';
 }
-
 
 if (browserName == "Safari") {
 
