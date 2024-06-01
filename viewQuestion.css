@@ -254,15 +254,16 @@ p {
 }
 
 .instructions {
-    width: calc(100% - 100px);
+    width: calc(100% - 50px);
     margin: auto;
     margin-bottom: 22px;
     margin-top: 22px;
+    padding-left: -15px;
 }
 
 .submit-buttons {
-  width: calc(100% - 100px);
-  left: -10px;
+  width: calc(100% - 50px);
+  left: -35px;
 }
 .title{
   margin-top: 50px;

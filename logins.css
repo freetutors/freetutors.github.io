@@ -308,8 +308,7 @@ transform: scale(1.2)
 @media only screen and (max-width: 870px) {
 
 .signup-container {
- margin-left: 70px;
- width: calc(100% - 170px);
+ width: calc(100% - 120px);
 }
 
 .login-send {
