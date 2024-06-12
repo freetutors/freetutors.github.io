@@ -49,12 +49,14 @@ async function showQuestionColumn(user){ //showing the questions the user asked
       author = author.replace(/\./g,"")
       if (answers != 0){
         document.querySelector(".questions_list").innerHTML += //sending html info
-              `<div class="box text_box">
+              `<div class="box text_box" id = "${question.questionId}">
       <!-- pfp -->
       <img id="global_pfp" class = "pfp${author}" src="${displayedImage}" alt="user_pfp" onclick="window.location='/profile?username=${unformattedAuthor}'">
-      <div id="text_box_question_content">${title}</div>
-      <div id="asked_by_line"><a href="https://www.freetutors.net/profile?username=${unformattedAuthor}">asked by ${author}, ${timeAgo}</a></div>
-      <div id="answered_by_line">Add to the conversation!</div>
+      <div class="question-title-column">
+        <div id="text_box_question_content">${title}</div>
+        <div id="asked_by_line"><a href="https://www.freetutors.net/profile?username=${unformattedAuthor}">asked by ${author}${timeAgo}</a></div>
+        <div id="answered_by_line">Add to the conversation!</div>     
+  </div>   
       <div class="question_stats">
         <div id="question_stats_items">${answers} Answers</div>
         <div id="question_stats_items">${views} Views</div>
@@ -63,18 +65,42 @@ async function showQuestionColumn(user){ //showing the questions the user asked
           }
           else{
               document.querySelector(".questions_list").innerHTML += //sending html info
-              `<div class="box text_box">
+              `<div class="box text_box" id = "${question.questionId}">
       <!-- pfp -->
       <img id="global_pfp" class = "pfp${author}" src="${displayedImage}" alt="user_pfp" onclick="window.location='/profile?username=${unformattedAuthor}'">
-      <div id="text_box_question_content">${title}</div>
-      <div id="asked_by_line"><a href="https://www.freetutors.net/profile?username=${unformattedAuthor}">asked by ${author}, ${timeAgo}</a></div>
-      <div id="answered_by_line">Be the first to answer!</div>
+      <div class="question-title-column">
+        <div id="text_box_question_content">${title}</div>
+        <div id="asked_by_line"><a href="https://www.freetutors.net/profile?username=${unformattedAuthor}">asked by ${author}${timeAgo}</a></div>
+        <div id="answered_by_line">Be the first to answer!</div>     
+      </div>   
       <div class="question_stats">
         <div id="question_stats_items">${answers} Answers</div>
         <div id="question_stats_items">${views} Views</div>
         <div id="question_stats_items">${rating} Rating</div>
       </div>`
       }
+      if (window.innerWidth <= 800){ //if mobile then get the element
+        const questionElement = document.getElementById(question.questionId)
+        const stats = questionElement.querySelector(".question_stats")
+        const profilePic = questionElement.querySelector("#global_pfp")
+        const boxHeight = questionElement.getBoundingClientRect().height
+        console.log(boxHeight)
+        if (boxHeight == 151){
+            stats.style.marginTop = '20px'
+            profilePic.style.transform = 'translateY(22px)' 
+        }
+        else if (boxHeight == 130){
+            stats.style.marginTop = '15px'
+            profilePic.style.transform = 'translateY(17.5px)' 
+            questionElement.querySelector("#answered_by_line").style.marginTop = '25px'
+        }
+        var textElement = document.querySelector('#text_box_question_content');
+        var maxLength = 53;
+  
+        if (textElement.textContent.length > maxLength) {
+            textElement.textContent = textElement.textContent.substring(0, maxLength) + '...';
+        }
+    }
     }
       const questionBoxes = document.querySelectorAll("#text_box_question_content");
       

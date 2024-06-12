@@ -636,6 +636,10 @@ body::-webkit-scrollbar-thumb {
 
     }
     #text_box_question_content {
+        position: static;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3; /* Number of lines to show */
         max-width: 50%; /* Adds ellipsis for overflowed text */
         white-space: wrap;
         overflow: wrap;
