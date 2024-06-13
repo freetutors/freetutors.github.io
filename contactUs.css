@@ -278,7 +278,9 @@ h1{
   }
   .submit-buttons{
     width: 90%;
-    margin-left: -5%;
+    margin-left: 5%;
+    margin-right: 5%;
+    left: 0;
   }
   .comments_box{
     width: 85%;
