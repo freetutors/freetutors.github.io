@@ -166,3 +166,10 @@ hr.line {
         margin-right: 100px;
     }
 }
+@media only screen and (max-width: 800px) {
+  .container {
+      width: calc(100% - 80px);
+      margin: auto;
+      margin-top: 15px;
+  }
+}
