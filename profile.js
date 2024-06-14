@@ -85,11 +85,11 @@ async function showQuestionColumn(user){ //showing the questions the user asked
         const profilePic = questionElement.querySelector("#global_pfp")
         const boxHeight = questionElement.getBoundingClientRect().height
         console.log(boxHeight)
-        if (boxHeight == 151){
+        if (boxHeight >= 141 && boxHeight <= 161){
             stats.style.marginTop = '20px'
             profilePic.style.transform = 'translateY(22px)' 
         }
-        else if (boxHeight == 130){
+        else if (boxHeight >= 120 && boxHeight <= 140){
             stats.style.marginTop = '15px'
             profilePic.style.transform = 'translateY(17.5px)' 
             questionElement.querySelector("#answered_by_line").style.marginTop = '25px'
