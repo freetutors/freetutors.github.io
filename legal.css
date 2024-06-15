@@ -64,3 +64,23 @@
 }
 
 }
+@media only screen and (max-width: 800px) {
+  .list{
+    margin-left: -5px;
+    margin-right: 25px;
+  }
+  .subtitle {
+    color: var(--text-color);
+    font-size: 23px;
+    margin-left: 25px;
+  }
+  .paragraph {
+    margin-left: 25px;
+    margin-right: 25px;
+  }
+  .directory {
+    color: var(--text-color);
+    list-style-type: none;
+    margin-left: 25px;
+  }
+}
