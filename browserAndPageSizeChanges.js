@@ -1,4 +1,12 @@
 if (window.innerWidth <= 800){
+    const username = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser");
+    var option_5 = 'Sign Up'
+    var link_5 = '/signup'
+    if (username != null) {
+        option_5 = 'Profile'
+        link_5 = `/profile?username=${username}`
+    }
+    console.log(option_5)
     var topbar = document.querySelector("#topbar").innerHTML = 
     `
     <div class="navbar-area">
@@ -16,8 +24,9 @@ if (window.innerWidth <= 800){
 					<div class="nav-list">
 						<a href="/index" class="nav-link option-1 center">Home</a>
 						<a href="/ourTeam" class="nav-link option-2 center">Our Team</a>
-						<a href="/contactUs" class="nav-link option-4 center">Contact Us</a>
-						<a href="/help" class="nav-link option-5 center">Help</a>
+						<a href="/contactUs" class="nav-link option-3 center">Contact Us</a>
+						<a href="/help" class="nav-link option-4 center">Help</a>
+                        <a href="${link_5}" class="nav-link option-5 center">${option_5}</a>
 					</div>
 				</nav>
 			</div>

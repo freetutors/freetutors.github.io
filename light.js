@@ -30,6 +30,10 @@ if (theme=="light"){
     document.documentElement.style.setProperty('--header-color', '#8dd8ffff');
     document.documentElement.style.setProperty('--text-box-bar-color', darkBlue);
     document.documentElement.style.setProperty('--secondary-color', '#8dd8ffff');
+    document.documentElement.style.setProperty('--tertiary-color', '#84CAEF');
+    document.documentElement.style.setProperty('--quatenary-color', '#4F92CA');
+    document.documentElement.style.setProperty('--quinary-color', '#3875BE');
+    document.documentElement.style.setProperty('--senary-color', '#295DB7');
     document.documentElement.style.setProperty('--border-color', 'rgba(0,0,0,1)');
     document.documentElement.style.setProperty('--text-color', '#3E3F4C');
     document.documentElement.style.setProperty('--ask-question-button', darkBlue);

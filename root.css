@@ -7,7 +7,8 @@
   --secondary-color:rgb(40, 66, 160);
   --tertiary-color:rgb(70, 96, 190);
   --quatenary-color:rgb(100, 126, 210);
-  --quintenary-color:rgb(130, 156, 240);
+  --quinary-color:rgb(130, 156, 240);
+  --senary-color:rgb(156, 173, 229);
   --border-color: #474b4eff;
   --text-color: white;
   --ask-question-button: #2c74b3ff;
@@ -738,15 +739,16 @@ margin-left: 3px;
     transition: 0.5s;
 }
 .nav-link{
-    height: 25%;
+    height: 26%;
     font-size: 3rem;
     font-weight: 700;
     color: var(--text-color);
-    width:100%;
+    width:100% !important;
     transition: all .3sec;
     position: relative;
     left:-100%;
     opacity: 1;
+    transform: scale(1.01);
 }
 .nav-link:nth-child(1){
   background-color: var(--secondary-color);
@@ -758,7 +760,10 @@ margin-left: 3px;
   background-color: var(--quatenary-color);
 }
 .nav-link:nth-child(4){
-  background-color: var(--quintenary-color);
+  background-color: var(--quinary-color);
+}
+.nav-link:nth-child(5){
+  background-color: var(--senary-color);
 }
 
 .change .nav-link{
@@ -802,6 +807,9 @@ margin-left: 3px;
 .change .color-change-icon{
   animation: fadeIn 1s ease-in;
   opacity: 1;
+}
+body{
+  max-height: 100%;
 }
 @keyframes fadeIn {  
   from {  

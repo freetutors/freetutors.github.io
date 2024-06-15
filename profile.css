@@ -559,7 +559,7 @@ hr.pfp_line {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3; /* Number of lines to show */
   text-overflow: ellipsis;
-  max-width: 50%; /* Adds ellipsis for overflowed text */
+  max-width: calc(100% - 180px);
   white-space: wrap;
   overflow: wrap;
   font-size: 17px;

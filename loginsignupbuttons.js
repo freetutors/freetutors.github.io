@@ -37,7 +37,7 @@ window.onhashchange = function() {
   location.reload()
 };
 
-if (username != null) { //if in localStorage
+if (username != null && window.innerWidth >= 800) { //if in localStorage
   const user = await getUser(username)
   const pfp = user.user[0].pfp
   const profileButton = document.createElement('div');
