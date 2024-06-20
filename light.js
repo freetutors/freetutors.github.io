@@ -25,7 +25,7 @@ var lightBlue = '#bfe9ffff'
 console.log(theme)
 if (theme=="light"){
     console.log(theme)
-    document.documentElement.style.setProperty('--primary-color', '#f5fbffff');
+    document.documentElement.style.setProperty('--primary-color', '#EBF7FFff');
     document.documentElement.style.setProperty('--background-color', '#ffffffff');
     document.documentElement.style.setProperty('--header-color', '#8dd8ffff');
     document.documentElement.style.setProperty('--text-box-bar-color', '#edf8ff');
