@@ -422,6 +422,10 @@ white-space: nowrap; /* Prevent text from wrapping */
 text-overflow: ellipsis; /* Truncate with ellipsis */
 }
 
+.possibleSearchResult:hover {
+    background-color: var(--search-bar);
+}
+
 .buttons{
 display: flex;
 margin-top: 10px;
