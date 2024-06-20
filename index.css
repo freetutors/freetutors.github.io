@@ -143,7 +143,7 @@ body::-webkit-scrollbar-thumb {
 
 .qotw-content {
     color: var(--text-color);
-    text-align: left;
+    text-align: center;
     margin-top: 15px;
     font-size: 17px;
     margin-left: 10px;
@@ -151,10 +151,12 @@ body::-webkit-scrollbar-thumb {
 }
 .qotw-info{
     color: var(--text-color);
+    font-size: 17px;
     margin-top: 0;
-    margin-left: 10px;
+    margin-left: 0px;
     margin-right: 10px;
     margin-bottom: 3px;
+    text-align: center;
 }
 .qotw-info :last-child{
     color: var(--text-color);
@@ -671,7 +673,8 @@ body::-webkit-scrollbar-thumb {
         font-size: 15px;
     }
     .question_stats{
-        font-size: 15px;
+        font-size: 17px;
+        margin-top: -87px;
     }
     #asked_by_line{
         max-width: 45%;

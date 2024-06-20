@@ -142,7 +142,7 @@ async function topQuestions(){
     document.querySelector(".qotw_box").innerHTML = //making top question the qotw
     `  <div class="qotw-title">Question of the Week</div>
     <h3 class="qotw-content">${qotw.title}</h3>
-    <p class = "qotw-info">Answers: ${answers}</p>
+    <p class = "qotw-info" >Answers: ${answers}</p>
     <p class = "qotw-info">Views: ${qotw.views}</p>
     <p class = "qotw-info">Rating: ${qotw.rating}</p>`
     const questions = await getQuestionListViews("top") //getting all questions
