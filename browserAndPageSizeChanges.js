@@ -1,3 +1,5 @@
+console.log("sadasdasd")
+
 if (window.innerWidth <= 800){
     const username = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser");
     var option_5 = 'Sign Up'
@@ -60,8 +62,7 @@ addEventListener("click", () => {
     });
  // <button class="button ask-question-button">Ask Question</button> idk where to put this
 }
-var browser = browser.getParser(window.navigator.userAgent);
-var browserName = browser.parsedResult.browser.name;
+
 
 var path = window.location.pathname;
 var pageName = path.split("/").pop();
@@ -77,11 +78,14 @@ const banner = document.querySelector('.banner');
 const infoInputGroupElements = document.getElementsByClassName('info_input_group');
 
 if (usernameBandPSC == null) {
-  searchBar.style.marginRight = '10px';
-}else{
+  searchBar.style.marginRight = '2px';
+} else{
     searchBar.style.marginRight = '200px';
-    askQuestionButton.style.marginLeft = 'calc(100vw - 345px)';
+    askQuestionButton.style.marginLeft = 'calc(100vw - 342px)';
 }
+
+const info = bowser.parse(window.navigator.userAgent)
+var browserName = info["browser"]["name"];
 
 if (browserName == "Safari") {
 

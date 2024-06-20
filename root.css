@@ -531,7 +531,6 @@ font-size: 35px;
 }
 
 .signPopUpLogin {
-
 position: absolute;
 color: var(--text-color);
 inset: 0;
@@ -545,6 +544,7 @@ background: var(--primary-color);
 text-align: center;
 border-radius: 4px;
 cursor: pointer;
+opacity: 0;
 }
 
 .signPopUpSignup {
