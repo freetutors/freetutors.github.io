@@ -743,12 +743,13 @@ margin-left: 3px;
     font-size: 3rem;
     font-weight: 700;
     color: var(--text-color);
-    width:100% !important;
+    width:100vw !important;
     transition: all .3sec;
     position: relative;
     left:-100%;
     opacity: 1;
     transform: scale(1.01);
+    margin: 0 !important;
 }
 .nav-link:nth-child(1){
   background-color: var(--secondary-color);
