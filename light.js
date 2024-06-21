@@ -25,11 +25,11 @@ var lightBlue = '#bfe9ffff'
 console.log(theme)
 if (theme=="light"){
     console.log(theme)
-    document.documentElement.style.setProperty('--primary-color', '#EBF7FFff');
+    document.documentElement.style.setProperty('--primary-color', '#CEEBFF');
     document.documentElement.style.setProperty('--background-color', '#ffffffff');
     document.documentElement.style.setProperty('--header-color', '#8dd8ffff');
     document.documentElement.style.setProperty('--text-box-bar-color', '#edf8ff');
-    document.documentElement.style.setProperty('--secondary-color', '#ebf7ff');
+    document.documentElement.style.setProperty('--secondary-color', '#CEEBFF');
     document.documentElement.style.setProperty('--tertiary-color', '#f4ffeb');
     document.documentElement.style.setProperty('--quatenary-color', '#f4ffeb');
     document.documentElement.style.setProperty('--quinary-color', '#3875BE');
