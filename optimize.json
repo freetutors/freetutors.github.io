@@ -1,5 +1,5 @@
 {
-    "apiUrlcreate" : "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/create",
+    "apiUrlcreate" : "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/testing/create",
     "apiUrlget"  : "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/getquestion",
     "health"  : "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/health",
     "apiUrlupdate"  : "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/updatequestion",
