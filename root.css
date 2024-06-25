@@ -214,6 +214,9 @@ body {
   text-overflow: ellipsis;
   word-wrap:none;
   cursor: pointer;
+  white-space: nowrap;
+max-width: 100px;
+  word-break: keep-all;
 }
 
 .profilePicHome{

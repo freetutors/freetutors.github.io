@@ -124,6 +124,7 @@ hr.pfp_line {
   transform: translateY(-50%); /* Vertically center the container */
   color: var(--text-color);
   font-size: 24px;
+
 }
 
 #username_txt {
@@ -134,6 +135,9 @@ hr.pfp_line {
   font-size: 80px;
   margin-top: 135px;
   z-index: 11;
+  white-space: nowrap;
+  width: 80%;
+  word-break: keep-all;
 }
 
 /* for your questions part*/
