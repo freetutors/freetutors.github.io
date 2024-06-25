@@ -73,6 +73,7 @@ async function updateQuestionRatingWithUser(questionId, user, rating){
   }).then(response => response.json());
 }
 async function updateAnswerRatingWithUser(questionId, answerId, user, rating){
+  console.log('called')
   const url = new URL(`${apiUrlupdateAnswerRating}?user=${user}&rating=${rating}&questionId=${questionId}&answerId=${answerId}`);
   const response = await fetch(url,  {
       mode: "cors",
@@ -677,6 +678,7 @@ async function ratingButtons(questionList){ //same as above, but updates questio
           document.querySelector(".downvote").style.borderTop = '15px solid var(--secondary-color)'
           downclick = true
           ratingUpdate = -1
+          console.log(ratingUpdate)
           voteStatus = 'downvote'
         newRating += parseInt(ratingUpdate)
         // updateQuestionRatingWithUser(questionId,user,"downvote")

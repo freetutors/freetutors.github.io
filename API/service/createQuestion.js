@@ -148,7 +148,8 @@ async function createQuestion(questionData) {
                 timestamp: timestamp,
                 subject: subject,
                 userRatings: userRatings,
-                answersInfo: []
+                answersInfo: [],
+                answerRating: [],
             }
             await saveQuestion(question)
             const response = {
