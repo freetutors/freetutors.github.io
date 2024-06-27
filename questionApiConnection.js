@@ -299,7 +299,7 @@ async function displayQuestion(){ //displays on view question.html
         var rating = answer.rating
         var time = formatDate(answer.timestamp) //formating date
         if (!pfpsToGet.includes(author)) {
-          pfpsToGet.push(author);
+          pfpsToGet.push(author.toLocaleLowerCase());
         }
         author = author.replace(/\./g,"")
         document.querySelector(".answer-wrapper").insertAdjacentHTML(
@@ -307,7 +307,7 @@ async function displayQuestion(){ //displays on view question.html
           `
           <div class="answer">
           <div class ="pfpRow">
-          <img src="/placeholder_pfp.png" class="global_pfp pfp${author}" onclick="window.location = 'profile?username=${unformattedAuthor}'">
+          <img src="/placeholder_pfp.png" class="global_pfp pfp${author.toLocaleLowerCase()}" onclick="window.location = 'profile?username=${unformattedAuthor}'">
           <div class="contributorStats">
           <div class ="title-box title${author}">
             <p class="username" onclick="window.location='/profile?username=${unformattedAuthor}'">${author}</p>
@@ -369,10 +369,12 @@ async function displayQuestion(){ //displays on view question.html
   }
   answerArea(questionList, quill)
   for (const i in pfpsToGet){ //everything that requires us to get user from database is at the end for optimization
-    const author = pfpsToGet[i] //for every user on the page it will replace pfp and icon if needed
+    const author = pfpsToGet[i]
+    console.log(author) //for every user on the page it will replace pfp and icon if needed
     const user = await getUser(author) //pulling here
+    console.log(user)
     const pfp = user.user[0].pfp //getting pfp
-    
+    console.log(pfp)
     let displayedImage//setting empty global(in function) variable
     if (pfp == null){ //if author has no pfp it will give a defaul
     displayedImage = "placeholder_pfp.png"
