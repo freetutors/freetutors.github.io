@@ -370,11 +370,8 @@ async function displayQuestion(){ //displays on view question.html
   answerArea(questionList, quill)
   for (const i in pfpsToGet){ //everything that requires us to get user from database is at the end for optimization
     const author = pfpsToGet[i]
-    console.log(author) //for every user on the page it will replace pfp and icon if needed
     const user = await getUser(author) //pulling here
-    console.log(user)
     const pfp = user.user[0].pfp //getting pfp
-    console.log(pfp)
     let displayedImage//setting empty global(in function) variable
     if (pfp == null){ //if author has no pfp it will give a defaul
     displayedImage = "placeholder_pfp.png"

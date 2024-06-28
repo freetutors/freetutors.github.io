@@ -98,7 +98,7 @@
 <!-- for dropdown -->
 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
+    //document.addEventListener("DOMContentLoaded", function() {
         var dropdown = document.querySelector(".dropdown");
         var dropdownContent = document.querySelector(".dropdown-content");
         var dropbtn = document.querySelector(".dropbtn");
@@ -108,12 +108,13 @@
         });
 
         dropdownContent.addEventListener("click", function(event) {
+          event.preventDefault(); // Prevent the default action if needed
           if (event.target.classList.contains("subject")) {
             dropbtn.textContent = event.target.textContent;
             dropdownContent.style.display = "none"; // Always hide content after selecting an item
           }
         });
-      });
+      // });
 
 
 

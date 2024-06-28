@@ -168,6 +168,7 @@
         });
 
         dropdownContent.addEventListener("click", function(event) {
+          event.preventDefault(); // Prevent the default action if needed          
           if (event.target.classList.contains("subject")) {
             dropbtn.textContent = event.target.textContent;
             dropdownContent.style.display = "none"; // Always hide content after selecting an item
