@@ -252,7 +252,7 @@ async function displayQuestion(){ //displays on view question.html
     // const users = [question.author, question.answersInfo.map(answer => answer.author)]
     // console.log(users)
     var title = question.title
-    let body = question.body
+    let body = question.body.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
     var author = question.author
     console.log(author)
     if (!pfpsToGet.includes(author)) {
@@ -294,6 +294,10 @@ async function displayQuestion(){ //displays on view question.html
       for(const answer of answerInfo) {  //pulling info from each answer
         var abody = answer.body
         var author = answer.author
+        if (author="Robo-Tutor"){
+          abody = abody.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+          abody = abody.replace(/\*/g, '<br>')
+        }
         var unformattedAuthor = answer.author
         var answerId = answer.answerId
         var rating = answer.rating

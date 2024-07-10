@@ -17,11 +17,8 @@ async function generateAIResponse(body) {
     const prompt = body
     console.log('geminicalled')
     const result = await model.generateContent(prompt);
-    console.log(result)
     const response = await result.response;
-    console.log(response)
     const responseText = await response.text();
-    console.log(responseText);
     return responseText
 }
 
