@@ -137,10 +137,10 @@ var query = urlParams.get('query');
                 document.querySelector(".questions_list").innerHTML += //sending html info
                       `<div class="box text_box" id = "${question.questionId}">
               <!-- pfp -->
-              <img id="global_pfp" class = "pfp${author}" src="${displayedImage}" alt="user_pfp" onclick="window.location='/profile?username=${unformattedAuthor}'">
+              <img id="global_pfp" class = "pfp${author}" alt="${question.author}" src="${displayedImage}"  onclick="window.location='/profile?username=${unformattedAuthor}'">
               <div class="question-title-column">
-                <div id="text_box_question_content">${title}</div>
-                <div id="asked_by_line"><a href="https://www.freetutors.net/profile?username=${unformattedAuthor}">asked by ${author}${timeAgo}</a></div>
+                <div id="text_box_question_content" alt="${question.questionId}">${title}</div>
+                <div id="asked_by_line" alt="${question.author}"><a href="https://www.freetutors.net/profile?username=${unformattedAuthor}">asked by ${author}, ${timeAgo}</a></div>
                 <div id="answered_by_line">Add to the conversation!</div>     
           </div>   
               <div class="question_stats">
@@ -156,7 +156,7 @@ var query = urlParams.get('query');
               <img id="global_pfp" class = "pfp${author}" src="${displayedImage}" alt="user_pfp" onclick="window.location='/profile?username=${unformattedAuthor}'">
               <div class="question-title-column">
                 <div id="text_box_question_content">${title}</div>
-                <div id="asked_by_line"><a href="https://www.freetutors.net/profile?username=${unformattedAuthor}">asked by ${author}${timeAgo}</a></div>
+                <div id="asked_by_line"><a href="https://www.freetutors.net/profile?username=${unformattedAuthor}">asked by ${author}, ${timeAgo}</a></div>
                 <div id="answered_by_line">Be the first to answer!</div>     
               </div>   
               <div class="question_stats">
