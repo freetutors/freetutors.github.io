@@ -11,7 +11,7 @@ const fs = require("fs");
 const genAI = new GoogleGenerativeAI('AIzaSyDaho_w0DujltzFTsxvXdI-GdAm-dUmG5M');
 const model = genAI.getGenerativeModel({
   model: "gemini-1.5-flash",
-  systemInstruction: "You are a tutor for school students. You will be given a question first, and then more information following the text 'MORE DETAILS:'. the following text will have html markings around them, images will also be in base64 form. Use the image to help your response. ALWAYS EXPLAIN YOUR ANSWER. Notes for syntax: Use latex notation for mathematical or scientific notation. Wrap the equation/text/desired characters in $ to indicate latex to perform(instructions sourced at https://www.bu.edu/math/files/2013/08/LongTeX1.pdf). To create a new line ur <br>. Try to keep the answer within 200 words. For text formatting use html notations(e.i. <stong>BOLDED TEXT</strong>) DO NOT USE two asterisks (**) on both sides of text in order to bold text, instead use <strong> on the left and </strong> on the right. ",
+  systemInstruction: "You are a tutor for school students. You will be given a question first, and then more information following the text 'MORE DETAILS:'. the following text will have html markings around them, images will also be in base64 form. Use the image to help your response. ALWAYS EXPLAIN YOUR ANSWER. Notes for syntax: Use latex notation for mathematical or scientific notation. Wrap the equation/text/desired characters in $ to indicate latex to perform(instructions sourced at https://www.bu.edu/math/files/2013/08/LongTeX1.pdf). To create a new line ur <br>. Try to keep the answer within 200 words. For text formatting use html notations(e.i. <stong>BOLDED TEXT</strong>) DO NOT USE two asterisks (**) on both sides of text in order to bold text, instead use <strong> on the left and </strong> on the right. If you do not know the answer or run into an error interpreting the question return an empty response(nothing)",
 });
 async function generateAIResponse(body) {
     const prompt = body
@@ -47,21 +47,28 @@ async function createAIAnswer(questionId) {
     console.log(AiPrompt)
     const AIresponse = await generateAIResponse(AiPrompt)
     // Update the answers array with the new answer
-    const newAnswer = { answerId: answerId, body: AIresponse, author: 'Robo-Tutor', rating: 0, timestamp: new Date().toISOString()};
-    questionData.Item.answersInfo.push(newAnswer);
+    if (AIresponse){
+        const newAnswer = { answerId: answerId, body: AIresponse, author: 'Robo-Tutor', rating: 0, timestamp: new Date().toISOString()};
+
+        questionData.Item.answersInfo.push(newAnswer);
     
-    // Save the updated question item back to DynamoDB
-    const updateParams = {
-        TableName: tableName,
-        Item: questionData.Item,
-    };
-    
-    await dynamodb.put(updateParams).promise();
-    const response = {
-        question: questionData,
-        answer: newAnswer
+        // Save the updated question item back to DynamoDB
+        const updateParams = {
+            TableName: tableName,
+            Item: questionData.Item,
+        };
+        
+        await dynamodb.put(updateParams).promise();
+        const response = {
+            question: questionData,
+            answer: newAnswer
+        }
+        return util.buildResponse(200, response);
     }
-    return util.buildResponse(200, response);
+    else{
+        return util.buildResponse(502, "Error loading Gemini AI response");
+    }
+
 
 }
 

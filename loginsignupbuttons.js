@@ -66,13 +66,17 @@ if (username != null && window.innerWidth >= 800) { //if in localStorage
       <p class="usernameOnProfileButton">${username}</p>
       <div class="dropdown-profile">
       <div class="dropdown-content-profile">
-        <a href="#" class="option" onclick = "window.location='/profile?username=${username}'">Profile</a>
+        <a href="#" class="option go-to-profile">Profile</a>
         <a href="#" class="option" id="theme-change">${themeChangeText}</a>
         <a href="#" id="sign-out" class="option">Log Out</a>
       </div>
       </div>
     </div>
   `;
+  profileButton.querySelector('.go-to-profile').addEventListener("click", function(event){
+    event.preventDefault(); // Prevent the default action if needed
+    window.location = `/profile?username=${username}`
+  })
   profileButton.querySelector("#theme-change").addEventListener("click", () =>{
     setCookie("theme", themeChange,500)
     location.reload()
