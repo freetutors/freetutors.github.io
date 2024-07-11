@@ -148,7 +148,7 @@ body {
   border-bottom: none;
 }
 .dropdown-content-profile a:hover {
-  background-color: #5e5e5eff;
+  background-color: var(--border-color);
 }
 
 .dropbtn-profile::after {
