@@ -149,7 +149,7 @@ async function createQuestion(questionData) {
                 subject: subject,
                 userRatings: userRatings,
                 answersInfo: [],
-                answerRating: [],
+                answerRatings: [],
             }
             await saveQuestion(question)
             const response = {
