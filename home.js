@@ -142,9 +142,9 @@ async function topQuestions(){
     document.querySelector(".qotw_box").innerHTML = //making top question the qotw
     `  <div class="qotw-title">Question of the Week</div>
     <h3 class="qotw-content">${qotw.title}</h3>
-    <p class = "qotw-info">Answers ${answers}</p>
-    <p class = "qotw-info">Views ${qotw.views}</p>
-    <p class = "qotw-info">Rating ${qotw.rating}</p>`
+    <p class = "qotw-info" >Answers: ${answers}</p>
+    <p class = "qotw-info">Views: ${qotw.views}</p>
+    <p class = "qotw-info">Rating: ${qotw.rating}</p>`
     const questions = await getQuestionListViews("top") //getting all questions
     questions.sort((a, b) => b.views - a.views); //getting top five views b/c bakcend cant do this for some reason
     const top5Questions = questions.slice(0, 5);
@@ -177,8 +177,11 @@ function showQuestionColumn(subject) {
                 var answers = question.answersInfo.length
             }
             var rating = question.rating
-            var timeAgo = getTimeDifference(question.timestamp)
+            var timeAgo = ", " + getTimeDifference(question.timestamp)
             var views = question.views
+            if (window.innerWidth <= 800){
+                timeAgo = ""
+            }
             // var user = await getUser(author)
             // var pfp = user.user[0].pfp
             // var displayedImage = ""
@@ -193,12 +196,14 @@ function showQuestionColumn(subject) {
             author = author.replace(/\./g,"")
             if (answers != 0){
                 document.querySelector(".questions_list").innerHTML += //sending html info
-                `<div class="box text_box">
+                `<div class="box text_box" id = "${question.questionId}">
         <!-- pfp -->
         <img id="global_pfp" class = "pfp${author}" src="/placeholder_pfp.png" alt="user_pfp" onclick="window.location='/profile?username=${unformattedAuthor}'">
-        <div id="text_box_question_content">${title}</div>
-        <div id="asked_by_line"><a href="https://www.freetutors.net/profile?username=${unformattedAuthor}">asked by ${author}, ${timeAgo}</a></div>
-        <div id="answered_by_line">Add to the conversation!</div>
+        <div class="question-title-column">
+            <div id="text_box_question_content">${title}</div>
+            <div id="asked_by_line"><a href="https://www.freetutors.net/profile?username=${unformattedAuthor}">asked by ${author}${timeAgo}</a></div>
+            <div id="answered_by_line">Add to the conversation!</div>
+        </div>
         <div class="question_stats">
           <div id="question_stats_items">${answers} Answers</div>
           <div id="question_stats_items">${views} Views</div>
@@ -207,20 +212,47 @@ function showQuestionColumn(subject) {
             }
             else{
                 document.querySelector(".questions_list").innerHTML += //sending html info
-                `<div class="box text_box">
+                `<div class="box text_box"  id = "${question.questionId}">
         <!-- pfp -->
         <img id="global_pfp" class = "pfp${author}" src="/placeholder_pfp.png" alt="user_pfp" onclick="window.location='/profile?username=${unformattedAuthor}'">
-        <div id="text_box_question_content">${title}</div>
-        <div id="asked_by_line"><a href="https://www.freetutors.net/profile?username=${unformattedAuthor}">asked by ${author}, ${timeAgo}</a></div>
-        <div id="answered_by_line">Be the first to answer!</div>
+        <div class="question-title-column">
+            <div id="text_box_question_content">${title}</div>
+            <div id="asked_by_line"><a href="https://www.freetutors.net/profile?username=${unformattedAuthor}">asked by ${author}${timeAgo}</a></div>
+            <div id="answered_by_line">Be the first to answer!</div>     
+        </div>    
         <div class="question_stats">
           <div id="question_stats_items">${answers} Answers</div>
           <div id="question_stats_items">${views} Views</div>
           <div id="question_stats_items">${rating} Rating</div>
         </div>`
         }
+        if (window.innerWidth <= 800){ //if mobile then get the element
+            const questionElement = document.getElementById(question.questionId)
+            const stats = questionElement.querySelector(".question_stats")
+            const profilePic = questionElement.querySelector("#global_pfp")
+            const boxHeight = questionElement.getBoundingClientRect().height
+            console.log(profilePic)
+            if (boxHeight == 145){
+                stats.style.marginTop = '-105px'
+                profilePic.style.transform = 'translateY(7.5px)' 
             }
+            else if (boxHeight == 130){
+                stats.style.marginTop = '-97.5px'
+                profilePic.style.transform = 'translateY(2.5px)' 
+                questionElement.querySelector("#answered_by_line").style.marginTop = '25px'
+            }
+            else if (boxHeight == 166){
+                stats.style.marginTop = '-115px'
+                profilePic.style.transform = 'translateY(17.5px)' 
+            }
+            var textElement = document.querySelector('#text_box_question_content');
+            var maxLength = 53;
 
+            if (textElement.textContent.length > maxLength) {
+                textElement.textContent = textElement.textContent.substring(0, maxLength) + '...';
+            }
+        }
+        }
         const questionBoxes = document.querySelectorAll("#text_box_question_content");
         questionBoxes.forEach((box, index) => { //when click will go to view Question.html
             box.addEventListener("click", function() {
@@ -229,7 +261,9 @@ function showQuestionColumn(subject) {
                 localStorage.setItem("QuestionID", JSON.stringify(questionId));
                 window.location = `viewQuestion?questionId=${questionId}&title=${title}`;
             });
+
         });
+        
         for (const i in pfpsToGet){
             var author = pfpsToGet[i]
             const user = await getUser(author)
@@ -445,3 +479,4 @@ if (localUser !== null) {
 
 })();
 await topQuestions()
+

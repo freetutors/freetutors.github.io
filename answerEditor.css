@@ -10,7 +10,7 @@
   margin: auto;
   border: 1.5px solid var(--border-color);
   border-radius: 0 0 6px 6px;
-  background-color: #363636ff;
+  background-color: var(--search-bar);
   padding-left: 12px;
 }
 
@@ -18,7 +18,7 @@
 .ql-editor p {
   font-family: 'Lexend';
   font-size: 15px;
-  color: white;
+  color: var(--text-color);
 }
 
 .ql-toolbar {
@@ -27,7 +27,7 @@
   height: fit-content;
   inset: 0;
   margin: auto;
-  background-color: #242424ff;
+  background-color: var(--tool-bar);
   border-radius: 6px 6px 0 0;
 }
 
@@ -38,16 +38,16 @@
 
 .ql-toolbar .ql-stroke {
     fill: none;
-    stroke: #fff !important;
+    stroke: var(--text-color) !important;
 }
 
 .ql-toolbar .ql-fill {
-    fill: #fff !important;
+    fill: var(--text-color) !important;
     stroke: none;
 }
 
 .ql-toolbar .ql-picker {
-    color: #fff !important;
+    color: var(--text-color) !important;
 }
 
 .ql-editor.ql-blank::before {
@@ -63,7 +63,7 @@
 }
 
 #preview-container {
-  color: white;
+  color: var(--text-color);
   position: relative;
   width: 920px;
   height: fit-content;
@@ -103,19 +103,19 @@
 @media only screen and (max-width: 900px) {
 
 .ql-toolbar {
-    width: calc(100% - 100px);
+    width: calc(100% - 50px);
     margin: auto;
     margin-top: 22px;
 }
 
 .ql-editor {
-    width: calc(100% - 100px);
+    width: calc(100% - 50px);
     margin: auto;
     margin-bottom: 22px;
 }
 
 #preview-container {
-    width: calc(100% - 100px);
+    width: calc(100% - 50px);
     margin: auto;
 }
 

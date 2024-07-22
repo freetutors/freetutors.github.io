@@ -1,18 +1,18 @@
 .title {
-  color: white;
+  color: var(--text-color);
   text-align: center;
   font-size: 50px;
 }
 
 .subtitle {
-  color: white;
+  color: var(--text-color);
   font-size: 23px;
   margin-left: calc(50% - 525px);
 }
 
 
 .paragraph {
-  color: white;
+  color: var(--text-color);
   justify-content: center;
   margin: auto;
   max-width: 1050px;
@@ -20,13 +20,13 @@
 }
 
 .directory {
-  color: white;
+  color: var(--text-color);
   list-style-type: none;
   margin-left: calc(50% - 540px);
 }
 
 .list {
-  color: white;
+  color: var(--text-color);
   margin-left: calc(50% - 520px);
   max-width: 1000px;
 }
@@ -47,13 +47,13 @@
   }
 
   .directory {
-  color: white;
+  color: var(--text-color);
   list-style-type: none;
   margin-left: 85px;
 }
 
 .subtitle {
-  color: white;
+  color: var(--text-color);
   font-size: 23px;
   margin-left: 100px;
 }
@@ -63,4 +63,24 @@
   margin-right: 100px;
 }
 
+}
+@media only screen and (max-width: 800px) {
+  .list{
+    margin-left: -5px;
+    margin-right: 25px;
+  }
+  .subtitle {
+    color: var(--text-color);
+    font-size: 23px;
+    margin-left: 25px;
+  }
+  .paragraph {
+    margin-left: 25px;
+    margin-right: 25px;
+  }
+  .directory {
+    color: var(--text-color);
+    list-style-type: none;
+    margin-left: 25px;
+  }
 }

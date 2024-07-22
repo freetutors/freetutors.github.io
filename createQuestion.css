@@ -3,9 +3,9 @@
      position: absolute;
      height: fit-content;
      width: 897px;
-     background-color: #363636ff;
+     background-color: var(--search-bar);
      border-radius: 6px;
-     color: white;
+     color: var(--text-color);
      border: 1.5px solid var(--border-color);
      padding: 10px;
      font-size: 17px;
@@ -16,7 +16,7 @@
  }
 
  .instructions {
-    color: white;
+    color: var(--text-color);
     font-size: 22px;
     position: absolute;
     top: 90px;
@@ -25,7 +25,7 @@
 
  .back_button {
     position: absolute;
-    color: white;
+    color: var(--text-color);
     top: 57px;
     left: 18px;
     cursor: pointer;
@@ -70,8 +70,8 @@
 
 .dropbtn {
   font-family: 'Lexend';
-  background-color: #363636ff;
-  color: white;
+  background-color: var(--search-bar);
+  color: var(--text-color);
   padding: 10px;
   font-size: 12.5pt;
   cursor: pointer;
@@ -85,7 +85,7 @@
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #363636ff;
+  background-color: var(--search-bar);
   width: 187.5;
   font-size: 8pt;
   box-shadow: 0px 8px 16px 0px var(--secondary-color);
@@ -101,7 +101,7 @@
 }
 
 .dropdown-content a {
-  color: white;
+  color: var(--text-color);
   padding: 8.75px 16px;
   text-decoration: none;
   display: block;

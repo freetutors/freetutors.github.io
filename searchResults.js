@@ -114,6 +114,9 @@ var query = urlParams.get('query');
         for (const question of items) {
             const user = await getUser(question.author)
             const pfp = user.user[0].pfp
+            var title = question.title //getting question data
+            var author = question.author
+            var unformattedAuthor = question.author
             var displayedImage = ""
             if (pfp == null){ //getting pfp, if pfp is none it will user default
                 displayedImage = "placeholder_pfp.png"
@@ -123,21 +126,67 @@ var query = urlParams.get('query');
             }
             if (!question.answersInfo){
                 var answers = 0
-
             }else{
                 var answers = question.answersInfo.length
             }
-            questionsList.innerHTML +=
-                `<div class="box text_box">
-             <img id="text_box_pfp" alt="${question.author}" src="${displayedImage}">
-             <div id="text_box_question_content" alt="${question.questionId}">${question.title}</div>
-             <div id="asked_by_line" alt="${question.author}">asked by ${question.author}, ${getTimeDifference(question.timestamp)}</div>
-             <div id="answered_by_line">Be the first to answer!</div>
-             <div class="question_stats">
-             <div id="question_stats_items">${answers} Answers</div>
-             <div id="question_stats_items">${question.views} views</div>
-             <div id="question_stats_items">${question.rating} rating</div>
-          </div>`
+            var rating = question.rating
+            var timeAgo = getTimeDifference(question.timestamp)
+            var views = question.views
+            author = author.replace(/\./g,"")
+            if (answers != 0){
+                document.querySelector(".questions_list").innerHTML += //sending html info
+                      `<div class="box text_box" id = "${question.questionId}">
+              <!-- pfp -->
+              <img id="global_pfp" class = "pfp${author}" alt="${question.author}" src="${displayedImage}"  onclick="window.location='/profile?username=${unformattedAuthor}'">
+              <div class="question-title-column">
+                <div id="text_box_question_content" alt="${question.questionId}">${title}</div>
+                <div id="asked_by_line" alt="${question.author}"><a href="https://www.freetutors.net/profile?username=${unformattedAuthor}">asked by ${author}, ${timeAgo}</a></div>
+                <div id="answered_by_line">Add to the conversation!</div>     
+          </div>   
+              <div class="question_stats">
+                <div id="question_stats_items">${answers} Answers</div>
+                <div id="question_stats_items">${views} Views</div>
+                <div id="question_stats_items">${rating} Rating</div>
+              </div>`
+                  }
+                  else{
+                      document.querySelector(".questions_list").innerHTML += //sending html info
+                      `<div class="box text_box" id = "${question.questionId}">
+              <!-- pfp -->
+              <img id="global_pfp" class = "pfp${author}" src="${displayedImage}" alt="user_pfp" onclick="window.location='/profile?username=${unformattedAuthor}'">
+              <div class="question-title-column">
+                <div id="text_box_question_content">${title}</div>
+                <div id="asked_by_line"><a href="https://www.freetutors.net/profile?username=${unformattedAuthor}">asked by ${author}, ${timeAgo}</a></div>
+                <div id="answered_by_line">Be the first to answer!</div>     
+              </div>   
+              <div class="question_stats">
+                <div id="question_stats_items">${answers} Answers</div>
+                <div id="question_stats_items">${views} Views</div>
+                <div id="question_stats_items">${rating} Rating</div>
+              </div>`
+              }
+              if (window.innerWidth <= 800){ //if mobile then get the element
+                const questionElement = document.getElementById(question.questionId)
+                const stats = questionElement.querySelector(".question_stats")
+                const profilePic = questionElement.querySelector("#global_pfp")
+                const boxHeight = questionElement.getBoundingClientRect().height
+                console.log(boxHeight)
+                if (boxHeight >= 141 && boxHeight <= 161){
+                    stats.style.marginTop = '20px'
+                    profilePic.style.transform = 'translateY(22px)' 
+                }
+                else if (boxHeight >= 120 && boxHeight <= 140){
+                    stats.style.marginTop = '15px'
+                    profilePic.style.transform = 'translateY(17.5px)' 
+                    questionElement.querySelector("#answered_by_line").style.marginTop = '25px'
+                }
+                var textElement = document.querySelector('#text_box_question_content');
+                var maxLength = 53;
+          
+                if (textElement.textContent.length > maxLength) {
+                    textElement.textContent = textElement.textContent.substring(0, maxLength) + '...';
+                }
+              }
         }
     }
 

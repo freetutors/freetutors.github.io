@@ -1,5 +1,5 @@
 {
-    "apiUrlcreate" : "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/create",
+    "apiUrlcreate" : "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/testing/create",
     "apiUrlget"  : "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/getquestion",
     "health"  : "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/health",
     "apiUrlupdate"  : "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/beta/updatequestion",
@@ -14,6 +14,8 @@
     "apiUrlCreateUser": "https://d487bezzog.execute-api.us-west-1.amazonaws.com/beta/create",
     "apiUrlupdateUser": "https://d487bezzog.execute-api.us-west-1.amazonaws.com/beta/update",
     "apiUrlupdateUserAnswer": "https://d487bezzog.execute-api.us-west-1.amazonaws.com/beta/updateanswer",
+    "apiUrlupdateUserRating": "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/testing/questionrated",
+    "apiUrlupdateAnswerRating": "https://k4zqq0cm8d.execute-api.us-west-1.amazonaws.com/testing/answerrated",
     "searchHost": "https://x75687kx49.execute-api.us-west-1.amazonaws.com/",
     "searchKey": "ZWE3ZGM2YmFmN2JkMjU0ZTBhZWViY2Jm"
 }
