@@ -34,11 +34,13 @@ if (window.innerWidth <= 800){
 			</div>
             <img class="color-change-icon" src="moon.svg" width='25px' height='25px' style='margin-top: 2.3px;'></img>
     </div>
-    <img id="logo" src="Logo.svg" alt="Logo" onclick="window.location='/'">
+    <img id="logo" src="LogoWithoutName.png" alt="Logo" onclick="window.location='/'"   >
   <input type="search" class="search-bar" placeholder="Search..."
          onkeydown="if (event.keyCode == 13) handleSearchTrigger()">
- 
   <div class="possibleSearchResultContainer"></div>
+    <img id="MobileAskQuestion" src="MobileAskQuestion.png" alt="Logo" onclick="window.location='/createQuestion'"   >
+
+
  `
  var navbar = document.querySelector(".navbar-area")
   document.querySelector(".open-navbar-icon").
