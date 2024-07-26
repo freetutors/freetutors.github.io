@@ -38,7 +38,7 @@ if (window.innerWidth <= 800){
   <input type="search" class="search-bar" placeholder="Search..."
          onkeydown="if (event.keyCode == 13) handleSearchTrigger()">
   <div class="possibleSearchResultContainer"></div>
-    <img id="MobileAskQuestion" src="MobileAskQuestion.png" alt="Logo" onclick="window.location='/createQuestion'"   >
+    <img id="MobileAskQuestion" src="MobileAskQuestion.png"  onclick="window.location='/createQuestion'"   >
 
 
  `
