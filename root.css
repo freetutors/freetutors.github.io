@@ -671,9 +671,17 @@ margin-left: 3px;
     #MobileAskQuestion{
       width: 30px;
       height: 30px;
-      margin-left: 5px;
-      margin-right: 5px;
+      padding-left: 5px;
+      padding-right: 5px;
     }
+    #MobileAskQuestion::before {
+      content: "";
+      position: absolute;
+      top: -10px; /* Adjust these values to increase the clickable area */
+      bottom: -10px;
+      left: -10px;
+      right: -10px;
+  }
       #logo:hover {
           transform: scale(0.8)!important;
       }
@@ -790,19 +798,19 @@ margin-left: 3px;
 }
 
 .change .nav-link:nth-child(1){
-    transition: left 0.7s .2s, opacity 0.3s, color .3s;
+    transition: left 0.6s 0s, opacity 0.3s, color .3s;
 }
 .change .nav-link:nth-child(2){
-    transition: left 0.7s .4s, opacity 0.3s, color .3s;
+    transition: left 0.6s .2s, opacity 0.3s, color .3s;
 }
 .change .nav-link:nth-child(3){
-    transition: left 0.7s .6s, opacity 0.3s, color .3s;
+    transition: left 0.6s .4s, opacity 0.3s, color .3s;
 }
 .change .nav-link:nth-child(4){
-    transition: left 0.7s 0.8s, opacity 0.3s, color .3s;
+    transition: left 0.6s 0.6s, opacity 0.3s, color .3s;
 }
 .change .nav-link:nth-child(5){
-    transition: left 0.7s 1s, opacity 0.3s, color .3s;
+    transition: left 0.6s 0.8s, opacity 0.3s, color .3s;
 }
 .nav-link:hover{
     color: var(--top-questions-hover);
@@ -816,13 +824,16 @@ margin-left: 3px;
 .color-change-icon{
   position: absolute;
   opacity: 0;
-  right: 10px;
-  top: 5px;
-  z-index: 1001;
+  right: 100000px;
+  top: 1000000px;
+  z-index: 0;
 }
 .change .color-change-icon{
+  right: 10px;
+  top: 5px;
   animation: fadeIn 1s ease-in;
   opacity: 1;
+  z-index: 1001;
 }
 body{
   max-height: 100%;
@@ -836,7 +847,7 @@ body{
       opacity:1;  
   }  
 }
-    .possibleSearchResultContainer {
+.possibleSearchResultContainer {
         display: block;
         position: absolute;
         top: 37px;
