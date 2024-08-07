@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z9E3QD9J4Y"></script>
   <script>
@@ -34,6 +35,8 @@
   <link href='https://fonts.googleapis.com/css?family=Lexend' rel='stylesheet'>
   <link rel="stylesheet" href="logins.css"/>
   <link rel="stylesheet" href="root.css"/>
+  
+  <script src="light.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/amazon-cognito-identity-js/dist/amazon-cognito-identity.min.js"></script>
   <script src="https://sdk.amazonaws.com/js/aws-sdk-2.932.0.min.js"></script>
@@ -85,9 +88,9 @@
            placeholder="Enter Your Passcode ">
     <!-- Copy Paste sections to add more -->
   </div>
+  <a class="forgotPwd" onclick="window.location='login'">Already have an account? Log In.</a>
   <button class="button signup-send"><p class = "label-signup">Sign Up</p></button>
 </div>
-<div style="height: 200px"></div>
 
 <!-- Add rest of content here -->
 <script type="module" src="questionApiConnection.js"></script>

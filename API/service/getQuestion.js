@@ -81,11 +81,14 @@ async function getQuestionBySubject(subject) { //getting user info to check if t
     ExpressionAttributeValues: {
       ":subject": subject
     },
+    ScanIndexForward: false,  // Descending order
     Limit: 20
   };
 
     // Query DynamoDB for the questions.
+    
     const result = await dynamodb.query(params).promise();
+    
 // Return the questions.
     return result.Items;
 }

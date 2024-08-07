@@ -23,7 +23,7 @@ AWS.config.update({ //getting conection to IAM user
 
 var cognito = new AWS.CognitoIdentityServiceProvider(); //connection to cognito identiy
 
-const sendEmailButton = document.querySelector(".buttons");
+const sendEmailButton = document.querySelector(".submit-buttons");
 
 const functionName = 'sendEmail';
 
@@ -45,10 +45,14 @@ async function getUserCognito(username) { //getting email and name from cognito
 }
 
 sendEmailButton.addEventListener("click", async () => {
+  console.log('asdf')
   if (username == null){
     if(window.confirm("Please Log In to Contact Us"));{
       window.location = "/login"
     }
+  }
+  else if(!questionBox.value.trim() || !commentsBox.value.trim()){
+    alert("Please Fill Out All the Boxes")
   }
   else{
     if (window.location.pathname.indexOf("/contactUs") !== -1) {
@@ -78,12 +82,15 @@ const email = "          Account Email:" + user.UserAttributes[4].Value //lettin
     lambda.invoke(params, (err, data) => {
       if (err) {
         console.error('Error calling the Lambda function:', err);
+        alert("Suggestion Sent")
+        window.location = '/'
       } else {
         console.log('Response from Lambda:', data.Payload);
+        alert("Error sending suggestion, try again later.")
       }
     });
-    alert("Suggestion Sent")
-    window.location = '/'
+
+
   }
 
 });

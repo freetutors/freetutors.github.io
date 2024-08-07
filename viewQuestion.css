@@ -1,6 +1,6 @@
 .back_button {
     position: absolute;
-    color: white;
+    color: var(--text-color);
     top: 57px;
     left: 18px;
     cursor: pointer;
@@ -20,7 +20,7 @@
 }
 
 .title {
-    color: white;
+    color: var(--text-color);
     font-size: 35px;
     padding-top: 10px;
     padding-bottom: 5px;
@@ -60,7 +60,7 @@
   padding-top: 15px;
 }
 .questionBody {
-  color: white;
+  color: var(--text-color);
   max-width: 800px;
   inset: 0;
   margin: auto;
@@ -73,7 +73,7 @@
 }
 
 .comment {
-  color: white;
+  color: var(--text-color);
   width: 800px;
   inset: 0;
   margin: auto;
@@ -90,7 +90,7 @@
   flex-direction: column;
   font-family: Arial, sans-serif;
   font-size: 20px;
-  color: white;
+  color: var(--text-color);
 }
 
 .upvote {
@@ -99,7 +99,7 @@
   height: 0;
   border-left: 15px solid transparent;
   border-right: 15px solid transparent;
-  border-bottom: 15px solid white;
+  border-bottom: 15px solid var(--text-color);
   cursor: pointer;
 }
 
@@ -109,7 +109,7 @@
   height: 0;
   border-left: 15px solid transparent;
   border-right: 15px solid transparent;
-  border-top: 15px solid white;
+  border-top: 15px solid var(--text-color);
   cursor: pointer;
   margin-bottom: 50px;
 }
@@ -141,7 +141,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  color: white;
+  color: var(--text-color);
 }
 .title-box{
   display:flex;
@@ -171,14 +171,15 @@
 }
 
 p {
-  color: white;
+  color: var(--text-color);
   font-family: Lexend;
   line-height: 27.5px;
+  font-size: 17px;
 }
 
 .answerBody {
   font-family: Lexend;
-  color: white;
+  color: var(--text-color);
   line-height: 27.5px;
 }
 
@@ -190,7 +191,7 @@ p {
 }
 
  .instructions {
-    color: white;
+    color: var(--text-color);
     font-size: 22px;
     margin-left: calc(50% - 460px);
  }
@@ -213,7 +214,6 @@ p {
 .rating-container {
   display: none;
 }
-
 .instructions {
     width: 800px;
     margin: auto;
@@ -237,26 +237,45 @@ p {
 .question {
   transform: translateY(-17.5px);
   width: calc(100% - 100px);
+  padding-left: 50px;
 }
 
 .questionSep {
     width: calc(100% - 50px);
 }
-
+.rating-container{
+  display: flex;
+  left: 0px
+}
 .answer {
   transform: translateY(-17.5px);
   width: calc(100% - 100px);
+  padding-left: 50px;
 }
 
 .instructions {
-    width: calc(100% - 100px);
+    width: calc(100% - 50px);
     margin: auto;
     margin-bottom: 22px;
+    margin-top: 22px;
+    padding-left: -15px;
 }
 
 .submit-buttons {
-  width: calc(100% - 100px);
-  left: -10px;
+  width: calc(100% - 50px);
+  left: -35px;
 }
-
+.title{
+  margin-top: 50px;
+  font-size: 30px;
+  width: 80%;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+.back_button{
+  display: none;
+}
+.answer-wrapper{
+  margin-top: 0;
+}
 }

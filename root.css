@@ -1,13 +1,42 @@
 /* this stuff will stay common from page to page */
 :root{ /*setting color variables incase we want to switch color scheme*/
-  --primary-color:#113265ff;
+  --primary-color:rgba(17, 51, 101, 0.707);
   --background-color:#08162bff;
   --header-color:#242424ff;
-  --text-box-bar-color: #424242ff;
-  --secondary-color:#a32f80ff;
+  --text-box-bar-color: #3f539b;/*#424242ff*/
+  --secondary-color:#2842a0;
+  --tertiary-color:rgb(70, 96, 190);
+  --quatenary-color:rgb(100, 126, 210);
+  --quinary-color:rgb(130, 156, 240);
+  --senary-color:rgb(156, 173, 229);
   --border-color: #474b4eff;
-  --text-color:white;
+  --text-color: white;
   --ask-question-button: #2c74b3ff;
+  --search-bar: #363636ff;
+  --subject-hover-color: rgb(53, 53, 53);
+  --menu-hover-color:rgba(17, 51, 101, 0.541);
+  --profile-box-color:#242424ff;
+  --top-questions-box:rgba(17, 51, 101, 0.507);
+  --qotw-hover-color:rgba(51, 88, 139, 0.342);
+  --top-questions-hover:rgba(230, 230, 255, 0.1);
+  --sign-up-button: #2842a0;
+  --tutor-sign-up: black;
+  --about-me-color:#6d6d6d59;
+  --testing-color:rgb(132, 175, 255);
+  --tool-bar: #242424ff;
+  --underline-color: #2842a0;
+  --question_list_width: 1300px;
+  --translate_len: -103px;
+
+}
+a{
+  color: var(--text-color);
+  text-decoration-color: var(--text-color);
+}
+.color-change-icon{
+  cursor: pointer;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 .button {/*setting main button object*/
 font-family: 'Lexend', sans-serif;
@@ -21,78 +50,157 @@ display: inline-block;
 font-size: 14px;
 cursor: pointer;
 border-radius: 6px;
+
 }
+
 /* Creates a standard for an object being centered */
-.center{
-   display: flex;
-   justify-content: center;
-   align-items: center;
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 body {
- font-family: 'Lexend', sans-serif;
- background-color: var(--background-color);
- margin: 0;
- padding: 0;
- overflow-x: hidden;
+    font-family: 'Lexend', sans-serif;
+    background-color: var(--background-color);
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
 }
-#global_pfp{
-  height: 50px;
-  width: 50px;
-  margin-top: 15px;
-  margin-left: 15px;
-  cursor: pointer;
-  overflow: hidden;
-  align-self: center;
-  z-index: 20;
-  /* border: solid var(--secondary-color);
-  border-width: 3px; */
+
+#global_pfp {
+    height: 50px;
+    width: 50px;
+    margin-top: 15px;
+    margin-left: 15px;
+    cursor: pointer;
+    overflow: hidden;
+    align-self: center;
+    z-index: 20;
+    /* border: solid var(--secondary-color);
+    border-width: 3px; */
 
 }
-.global_pfp{
-height: 50px;
-width: 50px;
-margin-top: 15px;
-margin-left: 15px;
-cursor: pointer;
-overflow: hidden;
-align-self: center;
-z-index: 20;
-border: var(--secondary-color);
-border-width: 2px;
+
+.global_pfp {
+    height: 50px;
+    width: 50px;
+    margin-top: 15px;
+    margin-left: 15px;
+    cursor: pointer;
+    overflow: hidden;
+    align-self: center;
+    z-index: 20;
+    border: var(--secondary-color);
+    border-width: 2px;
+}
+
+/*Dropdowns on profile*/
+.dropdown-profile {
+  width: 150px;
+  z-index: 5;
+}
+
+.dropbtn-profile {
+  font-family: 'Lexend';
+  background-color: #363636ff;
+  color: var(--text-color);
+  padding: 10px;
+  font-size: 12.5pt;
+  cursor: pointer;
+  border: 1.5px solid var(--border-color);
+  border-radius: 5px;
+  height: 44px;
+  transition: 0.2s;
+  width: 200.5;  /* margin-top: 15px; */
+}
+
+.dropdown-content-profile {
+  display: none;
+  position: absolute;
+  background-color: var(--header-color);
+  width: 100%;
+  font-size: 8pt;
+  z-index: 1;
+  border-radius: 0 0 5px 5px;
+  left: 0;
+  transform: translateY(1px);
+  margin-top: -8px;
+}
+.dropdown-content-profile.block-above {
+  bottom: 100%;
+}
+
+.dropdown-content-profile a {
+  color: var(--text-color);
+  padding: 8.75px 16px;
+  text-decoration: none;
+  display: block;
+  font-size: 9.5pt;
+  border-bottom: var(--border-color) solid;
+}
+.dropdown-content-profile a:last-child {
+  color: var(--text-color);
+  padding: 8.75px 16px;
+  text-decoration: none;
+  display: block;
+  font-size: 9.5pt;
+  border-bottom: none;
+}
+.dropdown-content-profile a:hover {
+  background-color: var(--border-color);
+}
+
+.dropbtn-profile::after {
+    margin-left: 7px;
+    content: '\203A';
+    font-size: 22px;
+    transform: translateY(-1.5px);
+}
+
+.rotate-after-profile::after {
+    transform: rotate(90deg) translateY(-4px) translateX(1px);
+}
+.rotate-after-profile::after {
+    transform: rotate(90deg) translateY(-4px) translateX(1px);
+}
+.option{
+  border-bottom: var(--border-color);
 }
 .title-box {
-display: flex; /* Use flexbox to create a horizontal layout */
-align-items: center;
-float: right;
- /* Align items vertically in the center */
+    display: flex; /* Use flexbox to create a horizontal layout */
+    align-items: center;
+    float: right;
+    /* Align items vertically in the center */
 }
 
-.tutor-icon{
-margin-top: 27px;
-margin-left: 10px;
+.tutor-icon {
+    margin-top: 27px;
+    margin-left: 10px;
 }
-.staff-icon{
-scale: 1.5;
-margin-top: 18px;
-margin-left: 20px;
+
+.staff-icon {
+    scale: 1.5;
+    margin-top: 18px;
+    margin-left: 20px;
 }
-.profileButton{
-  width: 175px;
-  height: 30.5px;
-  align-items:center;
-  position: absolute;
-  z-index: 100;
-  float: right;
-  margin-top: -15px;
-  transform: translateX(-173px);
+
+.profileButton {
+    width: 175px;
+    height: 30.5px;
+    align-items: center;
+    position: absolute;
+    z-index: 100;
+    float: right;
+    margin-top: -15px;
+    transform: translateX(-173px);
 }
 
 .userInfoContainerHome {
+ 
   position: absolute;
   margin-left: 35px;
   max-width: 110px;
-  transition: transform 0.3s ease-in-out;
 
 }
 
@@ -106,6 +214,9 @@ margin-left: 20px;
   text-overflow: ellipsis;
   word-wrap:none;
   cursor: pointer;
+  white-space: nowrap;
+max-width: 100px;
+  word-break: keep-all;
 }
 
 .profilePicHome{
@@ -132,21 +243,33 @@ margin-left: 20px;
 }
 
 .inbox {
-  max-height: 500px;
-  overflow-y: scroll;
-  display: none;
-  position: absolute;
-  left: calc(100% - 320px);
-  width: 300px;
-  margin-top: 42.5px;
-  height: fit-content;
-  background-color: var(--header-color);
-  border: 1px solid var(--border-color);
-  z-index: 10;
-}
+    max-height: 500px;
+    scrollbar-color: var(--text-box-bar-color) var(--background-color);
+    overflow-y: scroll;
+    display: none;
+    position: absolute;
+    left: calc(100% - 320px);
+    width: 300px;
+    margin-top: 42.5px;
+    height: fit-content;
+    background-color: var(--header-color);
+    border: 1px solid var(--border-color);
+    z-index: 10;
+
+  }
+  .inbox::-webkit-scrollbar {/*custom scroll bar width*/
+    width: 8px; /* Adjust the width as needed */
+ }
+
+ .inbox::-webkit-scrollbar-thumb {/*custom scroll bar thumb(the scrolling thing)*/
+    width: 8px; /* Set the width of the thumb to 12px */
+    min-width: 8px; /* Ensure the minimum width of the thumb */
+    background-color: var(--text-box-bar-color);
+    border-radius: 2px;
+ }
 
 .inboxLetters {
-  color: white;
+  color: var(--text-color);
   padding: 5px 10px 5px 10px;
   font-size: 13px;
   word-wrap: break-word;
@@ -154,100 +277,118 @@ margin-left: 20px;
 
 .inboxTime {
   color: blue;
-  padding: 0px 10px 2px 10px;
+  padding: 0px 10px 5px 10px;
   font-size: 11px;
   color: var(--ask-question-button);
+
 }
+
 
 hr.inboxLine {
-  overflow-y: scroll;
-  border: 0.5px solid var(--secondary-color);
-  margin: 0 5px 0 5px;
+    overflow-y: scroll;
+    border: 0.5px solid var(--secondary-color);
+    margin: 0 5px 0 5px;
 }
 
-.userInfoContainerHome:hover{
-  transform: scale(1.06);
+.inboxScroll {
+  width: 0px;
+}
+  /* Will be used in order to set up custom scroll bar for inbox */
+.userInfoContainerHome:hover {
+    transform: scale(1.06);
 }
 
-.inboxHome:hover{
-  transform: scale(1.06);
+.inboxHome:hover {
+    transform: scale(1.06);
 }
 
-.center{
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #topbar {
- background-color: var(--header-color);
- width: 100%;
- height: 43px;
- display: flex; /* Use flexbox to position elements within #topbar */
- align-items: center; /* Vertically center elements within #topbar */
-}
+    position: relative;
+    top: 0;
+    background-color: var(--header-color);
+    width: 100%;
+    height: 43px;
+    display: flex; /* Use flexbox to position elements within #topbar */
+    align-items: center; /* Vertically center elements within #topbar */
+
+  }
 
 
 #logo {
-height: 115%;
-margin-top: -1px;
-margin-left: 9px;
-cursor: pointer;
-transition: transform 0.3s ease-in-out;
+    height: 115%;
+    margin-top: -1px;
+    margin-left: 9px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
 }
 
 #logo:hover {
-  transform: scale(1.06);
+    transform: scale(1.06);
 }
+#loginSignupArea{
+  display: flex;
+}
+
 
 .login-button {/*sub-class of button*/
  margin-right: 8px;
+ margin-left: 5px;
  background-color: var(--primary-color);
  transition: transform 0.3s ease-in-out;
+
 }
 
 .login-button:hover {
-  transform: scale(1.06);
+    transform: scale(1.06);
 }
 
 .signup-button {
+
   margin-right: 12px;
-  background-color: var(--secondary-color);
+  background-color: var(--sign-up-button);
   transition: transform 0.3s ease-in-out;
 }
 
 .signup-button:hover {
-  transform: scale(1.06);
+    transform: scale(1.06);
 }
 
 .search-bar {
+
    font-family: 'Lexend';
    flex-grow: 1;
    margin-left: -10px;
    margin-right: 215px;
    height: 30.5px;
-   background-color: #363636ff;
+   background-color: var(--search-bar);
    border-radius: 6px;
-   color: white;
+   color: var(--text-color);
    padding-left: 13px;
-   padding-right: 140px;
    border: 1.5px solid var(--border-color);
 }
 
 .search-bar::placeholder {
  font-family: 'Lexend';
- color: white;
+ color: var(--text-color);
 }
+
 .search-bar::-webkit-search-cancel-button {
- display: none;
+    display: none;
 }
 
 .search-bar:focus {
-   outline: none;
+    outline: none;
 }
 
 .ask-question-button {
-margin-left: calc(100vw - 345px);
+
+margin-left: calc(100vw - 365px);
 height: 20px;
 width: 124px;
 background-color: var(--ask-question-button);
@@ -268,7 +409,7 @@ height: fit-content;
 width: calc(100% - 409px);
 background-color: var(--header-color);
 border-radius: 6px;
-z-index: 10;
+z-index: 20;
 }
 
 .possibleSearchResult {
@@ -276,12 +417,16 @@ height: 37.5px;
 padding-left: 10px;
 vertical-align: middle;
 line-height: 35px;
-color: white;
+color: var(--text-color);
 font-size: 15px;
 cursor: pointer;
 overflow: hidden;
 white-space: nowrap; /* Prevent text from wrapping */
 text-overflow: ellipsis; /* Truncate with ellipsis */
+}
+
+.possibleSearchResult:hover {
+    background-color: var(--search-bar);
 }
 
 .buttons{
@@ -300,62 +445,71 @@ width: 190px;
 height: 23.5px;
 font-size: 20px;
 transition: transform 0.3s ease-in-out;
+
 }
 
 .contact-button:hover {
- transform: scale(1.06);
+    transform: scale(1.06);
 }
 
-.about-button{
-width: 190px;
-height: 23.5px;
-font-size: 20px;
-margin-top: 10px;
-transition: transform 0.3s ease-in-out;
+.about-button {
+    width: 190px;
+    height: 23.5px;
+    font-size: 20px;
+    margin-top: 10px;
+    transition: transform 0.3s ease-in-out;
 }
-.about-button:hover{
-transform: scale(1.06);
+
+.about-button:hover {
+    transform: scale(1.06);
 }
+
 .sign-up-button{
 width: 190px;
 height: 60px;
 padding: 5px;
 padding-top: 17px;
-background-color: var(--secondary-color);
+background-color: var(--sign-up-button);
 color: var(--text-color);
 font-size: 30px;
 transition: transform 0.3s ease-in-out;
+
 }
+
 .sign-up-button:hover {
-transform: scale(1.06);
+    transform: scale(1.06);
 }
-#signPopUp{
-display: none;
-position: absolute;
-height: fit-content;
-inset: 0;
-/* max-height: 500px; */
-min-height: 200px;
-background-color: var(--header-color);
-border-radius: 12.5px; 
-padding-bottom: 20px;
-/* width: 5000px; */
-margin: auto;
-text-align: center;
+
+#signPopUp {
+    display: none;
+    position: absolute;
+    height: fit-content;
+    inset: 0;
+    /* max-height: 500px; */
+    min-height: 200px;
+    background-color: var(--header-color);
+    border-radius: 12.5px;
+    padding-bottom: 20px;
+    /* width: 5000px; */
+    margin: auto;
+    text-align: center;
 }
-.insta:hover{
-text-decoration: underline;
-text-decoration-color: var(--text-color);
-cursor: pointer;
+
+.insta:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--text-color);
+    cursor: pointer;
 }
+
 .popup-link{
-color: rgba(255,255,255,0.7);
+color: var(--text-color);
 }
 
 
 .signPopUpText {
+
 position: absolute;
-color: white;
+color: var(--text-color);
 inset: 0;
 margin: auto;
 margin-top: 25px;
@@ -365,7 +519,7 @@ font-size: 20px;
 }
 
 .welcomeText {
-color: white;
+color: var(--text-color);
 text-align: center;
 max-width: 475px;
 font-size: 17px;
@@ -376,13 +530,16 @@ margin: 10px;
 margin-top: 20px;
 margin-bottom: 10px;
 margin-left: 10px;
+font-weight: normal;
 }
 .welcome{
 font-size: 35px;
+
 }
+
 .signPopUpLogin {
 position: absolute;
-color: white;
+color: var(--text-color);
 inset: 0;
 margin-top: 80px;
 margin-left: 55px;
@@ -394,11 +551,12 @@ background: var(--primary-color);
 text-align: center;
 border-radius: 4px;
 cursor: pointer;
+opacity: 0;
 }
 
 .signPopUpSignup {
 position: absolute;
-color: white;
+color: var(--text-color);
 inset: 0;
 margin-top: 127.5px;
 margin-left: 55px;
@@ -406,7 +564,7 @@ margin-right: 55px;
 height: 32.5px;
 line-height: 30px;
 font-size: 16px;
-background: var(--secondary-color);
+background: var(--sign-up-button);
 text-align: center;
 border-radius: 4px;
 cursor: pointer;
@@ -414,7 +572,7 @@ cursor: pointer;
 
 .signPopUpX::before {
 position: absolute;
-color: white;
+color: var(--text-color);
 content: '\2715';
 font-size: 17px;
 top: 3px;
@@ -432,298 +590,54 @@ margin-left: 3px;
   font-size:24px; 
   overflow-wrap:break-word; 
   word-wrap:break-word;
+
 }
+
 .notif {
-display: none;
-position: absolute;
-background-color: var(--secondary-color);
-width: 10px;
-height: 10px;
-border-radius: 5px;
-z-index: 11;
-margin-left: 8.5px;
+    display: none;
+    position: absolute;
+    background-color: var(--secondary-color);
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    z-index: 11;
+    margin-left: 8.5px;
 }
 
-
-
-:root{ /*setting color variables incase we want to switch color scheme*/
-  --primary-color:#113265ff;
-  --background-color:#08162bff;
-  --header-color:#242424ff;
-  --text-box-bar-color: #424242ff;
-  --secondary-color:#a32f80ff;
-  --border-color: #474b4eff;
-  --text-color:white;
-  --ask-question-button: #2c74b3ff;
-}
-/* Creates a standard for an object being centered */
-.center{
-   display: flex;
-   justify-content: center;
-   align-items: center;
-}
-
-body {
- font-family: 'Lexend', sans-serif;
- background-color: var(--background-color);
- margin: 0;
- padding: 0;
- overflow-x: hidden;
-}
-#global_pfp{
-  height: 50px;
-  width: 50px;
-  margin-top: 15px;
-  margin-left: 15px;
-  cursor: pointer;
-  overflow: hidden;
-  align-self: center;
-  z-index: 20;
-}
-.global_pfp{
-height: 50px;
-width: 50px;
-margin-top: 15px;
-margin-left: 15px;
-cursor: pointer;
-overflow: hidden;
-align-self: center;
-z-index: 20;
-}
 .title-box {
-display: flex; /* Use flexbox to create a horizontal layout */
-align-items: center;
-float: right;
- /* Align items vertically in the center */
+    display: flex; /* Use flexbox to create a horizontal layout */
+    align-items: center;
+    float: right;
+    /* Align items vertically in the center */
 }
-.tutor-icon{
-margin-top: 27px;
-margin-left: 10px;
-}
-.staff-icon{
-scale: 1.5;
-margin-top: 18px;
-margin-left: 20px;
-}
-.profileButton{
-  width: 175px;
-  height: 30.5px;
-  align-items:center;
-  position: absolute;
-  z-index: 100;
-  float: right;
-  margin-top: -15px;
-  transform: translateX(-173px);
-}
-
-.userInfoContainerHome {
-  position: absolute;
-  margin-left: 35px;
-  max-width: 110px;
-  transition: transform 0.3s ease-in-out;
-
-}
-
-.usernameOnProfileButton{
-  font-size: 17.5px;
-  margin-top: -28px;
-  margin-left: 31px;
-  text-align: top;
-  color: var(--text-color);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  word-wrap:none;
-  cursor: pointer;
-}
-
-.profilePicHome{
-  margin-top: 3px;
-  width: 25px;
-  height: 25px;
-  align-items: center;
-  border-radius: 3px;
-  cursor: pointer;
-}
-
-.inboxButton{
-  position: absolute;
-  margin-top: 2.5px;
-  margin-left: -7.5px;
-  margin-right: 130px;
-  width: 25px;
-  height: 25px;
-  align-items: center;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: transform 0.3s ease-in-out;
-  z-index: 10;
-}
-
-.inbox {
-  max-height: 500px;
-  overflow-y: scroll;
-  display: none;
-  position: absolute;
-  left: calc(100% - 320px);
-  width: 300px;
-  margin-top: 42.5px;
-  height: fit-content;
-  background-color: var(--header-color);
-  border: 1px solid var(--border-color);
-  z-index: 10;
-}
-
 .inboxLetters {
-  color: white;
-  padding: 5px 10px 5px 10px;
-  font-size: 13px;
-  word-wrap: break-word;
+    color: white;
+    padding: 5px 10px 5px 10px;
+    font-size: 13px;
+    word-wrap: break-word;
 }
 
-.inboxTime {
-  color: blue;
-  padding: 0px 10px 2px 10px;
-  font-size: 11px;
-  color: var(--ask-question-button);
+.inboxLetters a:link {
+    color: royalblue;
 }
 
-hr.inboxLine {
-  overflow-y: scroll;
-  border: 0.5px solid var(--secondary-color);
-  margin: 0 5px 0 5px;
+/* visited link */
+.inboxLetters a:visited {
+    color: royalblue;
 }
 
-.userInfoContainerHome:hover{
-  transform: scale(1.06);
-}
-
-.inboxHome:hover{
-  transform: scale(1.06);
-}
-
-.center{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-a {
-text-decoration: none;
-color: white;
-}
-#topbar {
- background-color: var(--header-color);
- width: 100%;
- height: 43px;
- display: flex; /* Use flexbox to position elements within #topbar */
- align-items: center; /* Vertically center elements within #topbar */
-}
-
-
-#logo {
-height: 115%;
-margin-top: -1px;
-margin-left: 9px;
-cursor: pointer;
-transition: transform 0.3s ease-in-out;
-}
-.welcomeLogo {
-height: 115%;
-margin-top: -1px;
-margin-left: 9px;
-padding-left: 3lvb;
-}
-
-#logo:hover {
-  transform: scale(1.06);
-}
-
-
-
-.login-button {/*sub-class of button*/
- margin-right: 8px;
- background-color: var(--primary-color);
- transition: transform 0.3s ease-in-out;
-}
-
-.login-button:hover {
-  transform: scale(1.06);
-}
-
-.signup-button {
-  margin-right: 12px;
-  background-color: var(--secondary-color);
-  transition: transform 0.3s ease-in-out;
-}
-
-.signup-button:hover {
-  transform: scale(1.06);
-}
 
 .search-bar {
-   font-family: 'Lexend';
-   flex-grow: 1;
-   margin-left: -10px;
-   margin-right: 215px;
-   height: 30.5px;
-   background-color: #363636ff;
-   border-radius: 6px;
-   color: white;
-   padding-left: 13px;
-   padding-right: 140px;
-   border: 1.5px solid var(--border-color);
+   margin-right: 18px;
+   width: 200px;
 }
 
-.search-bar::placeholder {
- font-family: 'Lexend';
- color: white;
-}
-.search-bar::-webkit-search-cancel-button {
- display: none;
-}
-
-.search-bar:focus {
-   outline: none;
-}
-
-.ask-question-button {
-margin-left: calc(100vw - 345px);
-height: 20px;
-width: 124px;
-background-color: var(--ask-question-button);
-position: absolute;
-font-size: 13px;
-display: flex;
-align-items: center;
-justify-content: center;
-transition: transform 0.3s ease-in-out;
-}
-
-.possibleSearchResultContainer {
-display: block;
-position: absolute;
-top: 37px;
-left: 192px;
-height: fit-content;
-width: calc(100% - 409px);
-background-color: var(--header-color);
-border-radius: 6px;
-z-index: 10;
-}
-
-.possibleSearchResult {
-    height: 37.5px;
-    padding-left: 10px;
-    vertical-align: middle;
-    line-height: 35px;
-    color: white;
-    font-size: 15px;
-    cursor: pointer;
-}
 
 @media only screen and (max-width: 800px) {
     .menu {
         display: none;
     }
+
     .login-button {
         display: none;
     }
@@ -732,32 +646,216 @@ z-index: 10;
         display: none;
     }
 
-    .profileButton{
+    .profileButton {
         display: none;
     }
 
-    .inbox{
+    .inbox {
         display: none;
     }
 
     .search-bar {
-        margin-right: 18px;
-        width: 200px;
+        margin-left: -35px;
+    }
+    #topbar{
+      position: fixed;
+      z-index: 100;
+    }
+    #logo{
+      transform: scale(0.7) translateY(3px);
+      transform-origin: center;
+      margin-left: -5px;
+      margin-right: 30px;
+      transition: transform 0.3s ease-in-out;
+      }
+    #MobileAskQuestion{
+      width: 30px;
+      height: 30px;
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+    #MobileAskQuestion::before {
+      content: "";
+      position: absolute;
+      top: -10px; /* Adjust these values to increase the clickable area */
+      bottom: -10px;
+      left: -10px;
+      right: -10px;
+  }
+      #logo:hover {
+          transform: scale(0.8)!important;
+      }
+      .navbar-icon{
+        height: 30px;
+        background-color: var(--text-color);
+        border-radius: 50%;
+        cursor: pointer;
+        flex-direction: column;
+        background-color: var(--text-box-bar-color);
+        margin-top: calc((100%-30px)/2);
+        margin-left: 10px;
+        width: 30px!important;
+        min-width: 30px;
+    }
+    .line{
+        width: 50%;
+        height: 2px;
+        background-color: var(--text-color);
     }
 
-    .ask-question-button {
-        display: none;
+    .open-navbar-icon .line{
+        margin: 1.5px 0;
     }
 
-    .possibleSearchResultContainer {
+    .navbar-wrapper{
+        padding: 0;
+        width: 100vw;
+        height: 100%;
+        position: fixed;
+        left: 0;
+        bottom: -100%;
+        opacity: 0;
+        z-index: 0;
+    }
+    .change .navbar-wrapper{
+      bottom: 0;
+      opacity: 1;
+      z-index: 300;
+  }
+  .navbar{
+      width: 100%;
+      height: 101%;
+      background-size: cover;
+      position: relative;
+      overflow-y: hidden;
+  }
+  
+  .open-navbar-icon{
+      z-index: 200;
+  }
+  .close-navbar-icon{
+    position: absolute;
+    height: 30px;
+    background-color: var(--text-color);
+    border-radius: 50%;
+    cursor: pointer;
+    flex-direction: column;
+    background-color: var(--text-box-bar-color);
+    transform: translateY(6px);
+    margin-left: 10px;
+    width: 30px!important;
+    min-width: 30px;
+    z-index: 0;
+}
+.change .close-navbar-icon{
+    z-index: 500;
+}
+.close-navbar-icon .line{
+    position: absolute;
+}
+.line-1{
+    transform: rotate(45deg);
+    transition: 0.5s;
+}
+.line-2{
+    transform: rotate(-45deg);
+    transition: 0.5s;
+}
+.nav-link{
+    height: 26%;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--text-color);
+    width:100vw !important;
+    transition: all .3sec;
+    position: relative;
+    left:-100%;
+    opacity: 1;
+    transform: scale(1.01);
+    margin: 0 !important;
+}
+.nav-link:nth-child(1){
+  background-color: var(--secondary-color);
+}
+.nav-link:nth-child(2){
+  background-color: var(--tertiary-color);
+}
+.nav-link:nth-child(3){
+  background-color: var(--quatenary-color);
+}
+.nav-link:nth-child(4){
+  background-color: var(--quinary-color);
+}
+.nav-link:nth-child(5){
+  background-color: var(--senary-color);
+}
+
+.change .nav-link{
+    left: 0;
+    top: 0;
+    /* opacity: 1; */
+    z-index: 0;
+}
+
+.change .nav-link:nth-child(1){
+    transition: left 0.6s 0s, opacity 0.3s, color .3s;
+}
+.change .nav-link:nth-child(2){
+    transition: left 0.6s .2s, opacity 0.3s, color .3s;
+}
+.change .nav-link:nth-child(3){
+    transition: left 0.6s .4s, opacity 0.3s, color .3s;
+}
+.change .nav-link:nth-child(4){
+    transition: left 0.6s 0.6s, opacity 0.3s, color .3s;
+}
+.change .nav-link:nth-child(5){
+    transition: left 0.6s 0.8s, opacity 0.3s, color .3s;
+}
+.nav-link:hover{
+    color: var(--top-questions-hover);
+    text-decoration-color: var(--top-questions-hover);
+}
+.nav-list{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.color-change-icon{
+  position: absolute;
+  opacity: 0;
+  right: 100000px;
+  top: 1000000px;
+  z-index: 0;
+}
+.change .color-change-icon{
+  right: 10px;
+  top: 5px;
+  animation: fadeIn 1s ease-in;
+  opacity: 1;
+  z-index: 1001;
+}
+body{
+  max-height: 100%;
+}
+@keyframes fadeIn {  
+  from {  
+      opacity:0;  
+  }  
+
+  to {  
+      opacity:1;  
+  }  
+}
+.possibleSearchResultContainer {
         display: block;
         position: absolute;
         top: 37px;
-        left: 192px;
+        left: 105px;
         height: fit-content;
-        width: calc(100% - 222.5px);
+        width: calc(100% - 147px);
         background-color: var(--header-color);
         border-radius: 6px;
-        z-index: 10;
+        z-index: 100;
     }
 }

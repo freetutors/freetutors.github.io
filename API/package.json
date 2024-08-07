@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@google/generative-ai": "^0.13.0",
+    "aws-sdk": "^2.1646.0",
+    "google": "^2.1.0",
+    "uuid": "^10.0.0"
+  }
+}

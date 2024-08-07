@@ -1,3 +1,4 @@
+
 import config from './config.js';
 
 var path = window.location.pathname;
@@ -119,7 +120,7 @@ async function updateOnAnswer() {
   const questionAuthor = document.querySelector("#question-wrapper > div.question > div.pfpRow > div > div > p").textContent
   const questionUser = await getUser(questionAuthor)
   const messages = questionUser.user[0].InboxList
-  messages.push(['Your ' + '<a style="color: #0000EE;" href=' + window.location.href + '>question</a>' + ' has been answered', getTimestamp()])
+  messages.push(['Your ' + '<a href=' + window.location.href + '>question</a>' + ' has been answered', getTimestamp()])
   await updateListAttribute('Freetutor-Users', { username: questionAuthor }, 'InboxList', messages);
   await updateBooleanAttribute('Freetutor-Users', { username: questionAuthor }, 'isRead', false);
 }
@@ -198,7 +199,4 @@ if (username !== null) {
 }
 
 })();
-
-
-
 
