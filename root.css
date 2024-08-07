@@ -851,9 +851,9 @@ body{
         display: block;
         position: absolute;
         top: 37px;
-        left: 192px;
+        left: 105px;
         height: fit-content;
-        width: calc(100% - 222.5px);
+        width: calc(100% - 147px);
         background-color: var(--header-color);
         border-radius: 6px;
         z-index: 100;
