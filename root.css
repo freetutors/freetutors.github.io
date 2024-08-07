@@ -671,9 +671,17 @@ margin-left: 3px;
     #MobileAskQuestion{
       width: 30px;
       height: 30px;
-      margin-left: 5px;
-      margin-right: 5px;
+      padding-left: 5px;
+      padding-right: 5px;
     }
+    #MobileAskQuestion::before {
+      content: "";
+      position: absolute;
+      top: -10px; /* Adjust these values to increase the clickable area */
+      bottom: -10px;
+      left: -10px;
+      right: -10px;
+  }
       #logo:hover {
           transform: scale(0.8)!important;
       }
@@ -816,13 +824,16 @@ margin-left: 3px;
 .color-change-icon{
   position: absolute;
   opacity: 0;
-  right: 10px;
-  top: 5px;
-  z-index: 1001;
+  right: 100000px;
+  top: 1000000px;
+  z-index: 0;
 }
 .change .color-change-icon{
+  right: 10px;
+  top: 5px;
   animation: fadeIn 1s ease-in;
   opacity: 1;
+  z-index: 1001;
 }
 body{
   max-height: 100%;
