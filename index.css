@@ -349,13 +349,22 @@ body::-webkit-scrollbar-thumb {
     margin-top: 16px;
 }
 
-#important_box_text {
+/* #important_box_text {
     font-size: 12px;
     color: var(--text-color);
     position: relative;
     text-align: center;
+} */
+#important_box_text {
+    font-size: 15px;
+    color: var(--text-color);
+    position: relative;
+    text-align: center;
+    padding: 10px;
 }
-
+#important_box_text:first-child{
+    margin-top: 10px;
+}
 .questions_list {
     /* Scroll area with questions. It is invisible */
     width: calc(100% + 20px);
