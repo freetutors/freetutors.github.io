@@ -38,27 +38,33 @@ async function getUser(username){ //getting user info from dynamo
     return user
 }
 function getTimeDifference(timestamp) {
-    const currentTime = new Date();
-    const previousTime = new Date(timestamp);
-    const timeDiff = currentTime.getTime() - previousTime.getTime();
+    const currentTime = Date.now();
+    const previousTime = new Date(timestamp).getTime();
+    const timeDiff = currentTime - previousTime;
 
-    // Calculate time differences in seconds, minutes, hours, days, and weeks
     const seconds = Math.floor(timeDiff / 1000);
     const minutes = Math.floor(seconds / 60);
     const hours = Math.floor(minutes / 60);
     const days = Math.floor(hours / 24);
     const weeks = Math.floor(days / 7);
-
-    if (weeks > 0) {
-        return `${weeks} week${weeks > 1 ? 's' : ''} ago`;
-    } else if (days > 0) {
-        return `${days} day${days > 1 ? 's' : ''} ago`;
-    } else if (hours > 0) {
-        return `${hours} hour${hours > 1 ? 's' : ''} ago`;
-    } else if (minutes > 0) {
-        return `${minutes} minute${minutes > 1 ? 's' : ''} ago`;
-    } else {
-        return `${seconds} second${seconds !== 1 ? 's' : ''} ago`;
+    const months = Math.floor(days / 30);
+    if (window.innerWidth > 800){
+        if (months > 0) {
+            return `, ${months} month${months > 1 ? 's' : ''} ago`;
+        } else if (weeks > 0) {
+            return `, ${weeks} week${weeks > 1 ? 's' : ''} ago`;
+        } else if (days > 0) {
+            return `, ${days} day${days > 1 ? 's' : ''} ago`;
+        } else if (hours > 0) {
+            return `, ${hours} hour${hours > 1 ? 's' : ''} ago`;
+        } else if (minutes > 0) {
+            return `, ${minutes} minute${minutes > 1 ? 's' : ''} ago`;
+        } else {
+            return `, ${seconds} second${seconds !== 1 ? 's' : ''} ago`;
+        }
+    }
+    else{
+        return ''
     }
 }
 
@@ -140,7 +146,7 @@ var query = urlParams.get('query');
               <img id="global_pfp" class = "pfp${author}" alt="${question.author}" src="${displayedImage}"  onclick="window.location='/profile?username=${unformattedAuthor}'">
               <div class="question-title-column">
                 <div id="text_box_question_content" alt="${question.questionId}">${title}</div>
-                <div id="asked_by_line" alt="${question.author}"><a href="https://www.freetutors.net/profile?username=${unformattedAuthor}">asked by ${author}, ${timeAgo}</a></div>
+                <div id="asked_by_line" alt="${question.author}"><a href="https://www.freetutors.net/profile?username=${unformattedAuthor}">asked by ${author}${timeAgo}</a></div>
                 <div id="answered_by_line">Add to the conversation!</div>     
           </div>   
               <div class="question_stats">
@@ -156,7 +162,7 @@ var query = urlParams.get('query');
               <img id="global_pfp" class = "pfp${author}" src="${displayedImage}" alt="user_pfp" onclick="window.location='/profile?username=${unformattedAuthor}'">
               <div class="question-title-column">
                 <div id="text_box_question_content">${title}</div>
-                <div id="asked_by_line"><a href="https://www.freetutors.net/profile?username=${unformattedAuthor}">asked by ${author}, ${timeAgo}</a></div>
+                <div id="asked_by_line"><a href="https://www.freetutors.net/profile?username=${unformattedAuthor}">asked by ${author}${timeAgo}</a></div>
                 <div id="answered_by_line">Be the first to answer!</div>     
               </div>   
               <div class="question_stats">
