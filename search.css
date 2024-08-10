@@ -116,12 +116,12 @@
 @media only screen and (max-width: 1400px) {
 
    .question_header {
-        width: calc(100% - 410px);
+        width: calc(100% - 185px);
         margin-left: 200px;
    }
 
   .questions_list {
-        width: calc(100% - 400px);
+        width: calc(100% - 150px);
         margin-left: 200px;
   }
   #text_box_question_content{
@@ -133,12 +133,12 @@
 @media only screen and (max-width: 1000px) {
 
    .question_header {
-        width: calc(100% - 235px);
+        width: calc(100% - 245px);
         margin-right: 20px;
  }
 
   .questions_list {
-        width: calc(100% - 225px);
+        width: calc(100% - 205px);
         margin-right: 20px;
     }
     #text_box_question_content{
