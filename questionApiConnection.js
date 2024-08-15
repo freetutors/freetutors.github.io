@@ -294,10 +294,12 @@ async function displayQuestion(){ //displays on view question.html
       for(const answer of answerInfo) {  //pulling info from each answer
         var abody = answer.body
         var author = answer.author
-        if (author="Robo-Tutor"){
+        console.log(author)
+        if (author == "Robo-Tutor"){
           abody = abody.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
           abody = abody.replace(/\*/g, '<br>')
         }
+        console.log(author)
         var unformattedAuthor = answer.author
         var answerId = answer.answerId
         var rating = answer.rating
