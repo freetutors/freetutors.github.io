@@ -1,6 +1,9 @@
 function checkCookieExists(cookieName) { //checking cookie
     return document.cookie.split(';').some((cookie) => cookie.trim().startsWith(`${cookieName}=`));
   }
+if (checkCookieExists("theme") !== true){
+    setCookie("theme", "light", 1000000000)
+}
   // Function to set a cookie with a given name and value
 function setCookie(cookieName, cookieValue, expirationDays) { //creating cookie
 const expirationDate = new Date();
