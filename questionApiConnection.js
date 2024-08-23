@@ -859,12 +859,18 @@ function deleteCookie(cookieName) {
   document.cookie = cookieName + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 }
 if (window.location.pathname.indexOf("/viewQuestion") !== -1) {
-  displayQuestion().then(() => {
-    // window.addEventListener('unload', function (event) {
-    //   // sendUpdate(questionId, answers, updatedViews, newRating);
-    //   localStorage.setItem("test", "yes");
-    // });
-  });
+  try{
+    displayQuestion().then(() => {
+      // window.addEventListener('unload', function (event) {
+      //   // sendUpdate(questionId, answers, updatedViews, newRating);
+      //   localStorage.setItem("test", "yes");
+      // });
+    });
+  } catch(error){
+    console.error("An error occurred:", error.message); // Logs the error to the console
+    alert("An error occurred: " + error.message); 
+  }
+
 }
 else if (window.location.pathname === "/freetutors.github.io/createQuestion.html" || window.location.href ==="/createQuestion.html") {
 }
