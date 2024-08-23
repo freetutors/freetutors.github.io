@@ -127,30 +127,30 @@ async function updateRightmostPosition() {
 
 for (let i = 0; i < 20; i++) {
     setTimeout(function() {
-        updateRightmostPosition();
+        updateRightmostPosition()
     }, 100 * i);
 }
 window.addEventListener('resize', updateRightmostPosition);
 
 // Function to check if an element overflows its container
-function isOverflowing(element) {
-    return element.scrollWidth > element.clientWidth || element.scrollHeight > element.clientHeight;
-}
+// function isOverflowing(element) {
+//     return element.scrollWidth > element.clientWidth || element.scrollHeight > element.clientHeight;
+// }
 
-// Function to find and log overflowing elements
-function logOverflowingElements() {
-    // Get all elements on the page
-    const allElements = document.querySelectorAll('*');
+// // Function to find and log overflowing elements
+// function logOverflowingElements() {
+//     // Get all elements on the page
+//     const allElements = document.querySelectorAll('*');
 
-    // Iterate through all elements
-    allElements.forEach(element => {
-        if (isOverflowing(element)) {
-            console.log('Overflowing Element:', element);
-        }
-    });
-}
+//     // Iterate through all elements
+//     allElements.forEach(element => {
+//         if (isOverflowing(element)) {
+//             console.log('Overflowing Element:', element);
+//         }
+//     });
+// }
 
-// Call the function to log overflowing elements when needed
-// For example, you can call it on page load or user interaction
-logOverflowingElements();
+// // Call the function to log overflowing elements when needed
+// // For example, you can call it on page load or user interaction
+// logOverflowingElements();
 alert('2')
