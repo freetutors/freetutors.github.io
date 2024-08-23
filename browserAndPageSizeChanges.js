@@ -86,7 +86,7 @@ if (usernameBandPSC == null) {
     askQuestionButton.style.marginLeft = 'calc(100vw - 342px)';
 }
 
-const info = bowser.parse(window.navigator.userAgent)
+const info = browser.parse(window.navigator.userAgent)
 var browserName = info["browser"]["name"];
 
 if (browserName == "Safari") {
