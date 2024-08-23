@@ -79,58 +79,58 @@ const profileButton = document.querySelector('.profileButton');
 const banner = document.querySelector('.banner');
 const infoInputGroupElements = document.getElementsByClassName('info_input_group');
 alert('1')
-if (usernameBandPSC == null) {
-  searchBar.style.marginRight = '2px';
-} else{
-    searchBar.style.marginRight = '200px';
-    askQuestionButton.style.marginLeft = 'calc(100vw - 342px)';
-}
+// if (usernameBandPSC == null) {
+//   searchBar.style.marginRight = '2px';
+// } else{
+//     searchBar.style.marginRight = '200px';
+//     askQuestionButton.style.marginLeft = 'calc(100vw - 342px)';
+// }
 
-const info = bowser.parse(window.navigator.userAgent)
-var browserName = info["browser"]["name"];
+// const info = bowser.parse(window.navigator.userAgent)
+// var browserName = info["browser"]["name"];
 
-if (browserName == "Safari") {
+// if (browserName == "Safari") {
 
-    if (pageName == '') {
-        signUpAsTutorButton.style.fontSize = '13px';
-    }
+//     if (pageName == '') {
+//         signUpAsTutorButton.style.fontSize = '13px';
+//     }
 
-    searchBar.style.fontSize = '13px';
-    profileButton.style.width = '180px';
-}
+//     searchBar.style.fontSize = '13px';
+//     profileButton.style.width = '180px';
+// }
 
-if (browserName == "Firefox") {
+// if (browserName == "Firefox") {
 
-    if (pageName == 'profile') {
-        banner.style.left = '0';
-        Array.from(infoInputGroupElements).forEach(element => {
-          element.style.width = '137.5px';
-        });
-    }
-}
+//     if (pageName == 'profile') {
+//         banner.style.left = '0';
+//         Array.from(infoInputGroupElements).forEach(element => {
+//           element.style.width = '137.5px';
+//         });
+//     }
+// }
 
-askQuestionButton.addEventListener('mouseover', () => {
-  askQuestionButton.style.transform = 'scale(1.06)';
-});
+// askQuestionButton.addEventListener('mouseover', () => {
+//   askQuestionButton.style.transform = 'scale(1.06)';
+// });
 
-askQuestionButton.addEventListener('mouseout', () => {
-  askQuestionButton.style.transform = 'scale(1)';
-});
+// askQuestionButton.addEventListener('mouseout', () => {
+//   askQuestionButton.style.transform = 'scale(1)';
+// });
 
 
-async function updateRightmostPosition() {
-    var elementWidth = searchBar.offsetWidth;
-    var elementLeftPosition = searchBar.offsetLeft;
-    var rightmostPosition = elementLeftPosition + elementWidth;
-    askQuestionButton.style.marginLeft = rightmostPosition - 128.5 + 'px';
-}
+// async function updateRightmostPosition() {
+//     var elementWidth = searchBar.offsetWidth;
+//     var elementLeftPosition = searchBar.offsetLeft;
+//     var rightmostPosition = elementLeftPosition + elementWidth;
+//     askQuestionButton.style.marginLeft = rightmostPosition - 128.5 + 'px';
+// }
 
-for (let i = 0; i < 20; i++) {
-    setTimeout(function() {
-        updateRightmostPosition()
-    }, 100 * i);
-}
-window.addEventListener('resize', updateRightmostPosition);
+// for (let i = 0; i < 20; i++) {
+//     setTimeout(function() {
+//         updateRightmostPosition()
+//     }, 100 * i);
+// }
+// window.addEventListener('resize', updateRightmostPosition);
 
 // Function to check if an element overflows its container
 // function isOverflowing(element) {
