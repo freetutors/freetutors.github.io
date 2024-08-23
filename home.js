@@ -1,6 +1,6 @@
-alert('8')
 // Import configuration from external file
 // import config from "./config.js";
+//manually importing config data because ios errors from importing from js =(
 let data
 async function getOptimizeConfig() {
     try {
@@ -57,11 +57,9 @@ const secretKey = config.secretKey
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
-alert('4')
 while (typeof AWS == 'undefined') {
     await sleep(10)
 }
-alert('5')
 AWS.config.region = region; //telling what region to search
   AWS.config.credentials = new AWS.CognitoIdentityCredentials({ //COnnecting to pool
     IdentityPoolId: poolId
@@ -332,12 +330,9 @@ function showQuestionColumn(subject) {
         isEventListenerActive = true;
     })();
 }
-alert('1')
 try{
-    alert('2')
     showQuestionColumn("math");
 } catch (error){
-    alert('3')
     console.error("An error occurred:", error.message); // Logs the error to the console
     alert("An error occurred: " + error.message); 
 }

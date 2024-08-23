@@ -1,4 +1,3 @@
-alert('6')
 if (window.innerWidth <= 800){
   var questions = document.querySelector(".questions").innerHTML = 
     `   
@@ -13,4 +12,3 @@ if (window.innerWidth <= 800){
         <div class="questions_list questions_list_profile"></div>
   `
 }
-alert('7')
