@@ -368,9 +368,9 @@ if (file !== null){
           canvas.height = squareSize;
           alert(canvas.width, canvas.height)
           const context = canvas.getContext('2d');
-          const offsetX = (width - squareSize) / 2; //centr the square
-          const offsetY = (height - squareSize) / 2;
-          context.drawImage(img,0,0, squareSize, squareSize, 0, 0, squareSize, squareSize);
+          const offsetX = (squareSize - width) / 2; //centr the square
+          const offsetY = (squareSize - height) / 2;
+          context.drawImage(img, offsetX, offsetY, squareSize, squareSize);
   
           const squarifiedDataUrl = canvas.toDataURL('image/jpeg', 0.9);//dowgrades to max
           profileImg.setAttribute('src', squarifiedDataUrl); //updates screen circle
