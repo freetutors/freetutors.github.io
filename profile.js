@@ -347,7 +347,7 @@ if (file !== null){
             var maxDimensions = 80
           }
           alert(maxDimensions)
-          const squareSize = Math.min(img.width, img.height); //finds the smaller dismension, width or height
+          //finds the smaller dismension, width or height
   
           // Check if the image dimensions exceed the maximum dimensions
           let width = img.width;
@@ -362,14 +362,14 @@ if (file !== null){
               height = maxDimensions;
             } //basically this makes it the max quality our database can handle
           }
-  
+          const squareSize = Math.min(width, height);
           const canvas = document.createElement('canvas');
           canvas.width = squareSize; //this canvas code is for squaring
           canvas.height = squareSize;
           alert(canvas.width, canvas.height)
           const context = canvas.getContext('2d');
-          const offsetX = (squareSize - width) / 2; //centr the square
-          const offsetY = (squareSize - height) / 2;
+          const offsetX = (width - squareSize) / 2; //centr the square
+          const offsetY = (height - squareSize) / 2;
           context.drawImage(img, offsetX, offsetY, squareSize, squareSize);
   
           const squarifiedDataUrl = canvas.toDataURL('image/jpeg', 0.9);//dowgrades to max
