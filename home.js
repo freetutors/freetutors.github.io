@@ -11,11 +11,11 @@ const secretKey = config.secretKey
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
-
+alert('4')
 while (typeof AWS == 'undefined') {
     await sleep(10)
 }
-
+alert('5')
 AWS.config.region = region; //telling what region to search
   AWS.config.credentials = new AWS.CognitoIdentityCredentials({ //COnnecting to pool
     IdentityPoolId: poolId
