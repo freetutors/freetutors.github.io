@@ -341,7 +341,12 @@ if (file !== null){
         img.src = reader.result;
   
         img.onload = async function() {
-          const maxDimensions = 144;
+          if (window.innerWidth > 800){
+            var maxDimensions = 144;
+          } else{
+            var maxDimensions = 80
+          }
+          alert(maxDimensions)
           const squareSize = Math.min(img.width, img.height); //finds the smaller dismension, width or height
   
           // Check if the image dimensions exceed the maximum dimensions
@@ -361,7 +366,7 @@ if (file !== null){
           const canvas = document.createElement('canvas');
           canvas.width = squareSize; //this canvas code is for squaring
           canvas.height = squareSize;
-  
+          alert(canvas.width, canvas.height)
           const context = canvas.getContext('2d');
           const offsetX = (img.width - squareSize) / 2; //centr the square
           const offsetY = (img.height - squareSize) / 2;
@@ -384,6 +389,7 @@ if (file !== null){
             }, 3000);
           } catch (error) {
             console.error("Error updating profile picture:", error);
+            alert(error)
           }
         };
       });
