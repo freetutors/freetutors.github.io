@@ -342,9 +342,9 @@ if (file !== null){
   
         img.onload = async function() {
           if (window.innerWidth > 800){
-            var maxDimensions = 144;
+            var maxDimensions = 288;
           } else{
-            var maxDimensions = 80
+            var maxDimensions = 144
           }
           alert(maxDimensions)
           //finds the smaller dismension, width or height
@@ -366,10 +366,10 @@ if (file !== null){
           const canvas = document.createElement('canvas');
           canvas.width = squareSize; //this canvas code is for squaring
           canvas.height = squareSize;
-          alert(canvas.width, canvas.height, "hi")
+          alert(canvas.width, canvas.height, "hadsfi")
           const context = canvas.getContext('2d');
           const offsetX = (width - squareSize) / 2; //centr the square
-          const offsetY = (height - squareSize) / 2;
+          const offsetY = (height - squareSize);
           context.drawImage(img, offsetX, offsetY, squareSize, squareSize);
   
           const squarifiedDataUrl = canvas.toDataURL('image/jpeg', 0.9);//dowgrades to max
