@@ -29,6 +29,7 @@
   --translate_len: -103px;
 
 }
+
 a{
   color: var(--text-color);
   text-decoration-color: var(--text-color);
@@ -817,7 +818,7 @@ margin-left: 3px;
     text-decoration-color: var(--top-questions-hover);
 }
 .nav-list{
-    height: 100%;
+    height: 100vh;
     display: flex;
     flex-direction: column;
 }
