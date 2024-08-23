@@ -1,5 +1,51 @@
 // Import configuration from external file
-import config from "./config.js";
+// import config from "./config.js";
+//manually importing config data because ios errors from importing from js =(
+let data
+async function getOptimizeConfig() {
+    try {
+        const response = await fetch('./optimize.json');
+        const json = await response.json();
+        data = processJSONData(json);
+
+    } catch (error) {
+      console.log(error);
+    }
+    return data;
+}
+function processJSONData(data) {
+    var data = {
+        apiUrlcreate : data.apiUrlcreate,
+        apiUrlget  : data.apiUrlget,
+        health  : data.health,
+        apiUrlupdate  : data.apiUrlupdate,
+        apiUrlanswer  : data.apiUrlanswer,
+        apiUrlanswerUpdate  : data.apiUrlanswerUpdate,
+        apiUrlgetUser  : data.apiUrlgetUser,
+        apiUrlupdateUserRating: data.apiUrlupdateUserRating,
+        apiUrlupdateAnswerRating: data.apiUrlupdateAnswerRating,
+        // Import the necessary AWS SDK components
+        poolId  : data.poolId, //getting info from cognito
+        clientId  :data.clientId,
+        region  : data.region,
+        accessKey  : data.accessKey,
+        secretKey  : data.secretKey,
+    
+        apiUrlCreateUser: data.apiUrlCreateUser,
+        apiUrlupdateUser: data.apiUrlupdateUser,
+        apiUrlupdateUserAnswer: data.apiUrlupdateUserAnswer,
+    
+        searchHost: data.searchHost,
+        searchKey: data.searchKey
+    }
+    return data
+}
+var range=[0]
+let old
+for (const i in range){
+    old = await getOptimizeConfig()
+}
+var config = old
 const qotwId = 'bcbb4292-68a9-90f3-a129-9a40e6994471' //put the id of the weekly question
 // Extract API URLs from configuration
 const apiUrlget = config.apiUrlget;
@@ -11,11 +57,9 @@ const secretKey = config.secretKey
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
-
 while (typeof AWS == 'undefined') {
     await sleep(10)
 }
-
 AWS.config.region = region; //telling what region to search
   AWS.config.credentials = new AWS.CognitoIdentityCredentials({ //COnnecting to pool
     IdentityPoolId: poolId
@@ -88,7 +132,6 @@ async function getUser(username) {
 function getTimeDifference(timestamp) {
     const currentTime = Date.now();
     const previousTime = new Date(timestamp).getTime();
-    1
     const timeDiff = currentTime - previousTime;
 
     const seconds = Math.floor(timeDiff / 1000);
@@ -96,8 +139,11 @@ function getTimeDifference(timestamp) {
     const hours = Math.floor(minutes / 60);
     const days = Math.floor(hours / 24);
     const weeks = Math.floor(days / 7);
+    const months = Math.floor(days / 30);
 
-    if (weeks > 0) {
+    if (months > 0) {
+        return `${months} month${months > 1 ? 's' : ''} ago`;
+    } else if (weeks > 0) {
         return `${weeks} week${weeks > 1 ? 's' : ''} ago`;
     } else if (days > 0) {
         return `${days} day${days > 1 ? 's' : ''} ago`;
@@ -284,8 +330,13 @@ function showQuestionColumn(subject) {
         isEventListenerActive = true;
     })();
 }
+try{
+    showQuestionColumn("math");
+} catch (error){
+    console.error("An error occurred:", error.message); // Logs the error to the console
+    alert("An error occurred: " + error.message); 
+}
 
-showQuestionColumn("math");
 
 function openProfile(username) {
     window.location = `profile?username=${username}`;
@@ -473,9 +524,9 @@ if (localUser !== null) {
     while (numUsers == 0) {
       await sleep(10)
     }
-    animate(numQuestions, document.querySelector(".important_box_num1"), 'important_box_num1_digit')
-    animate(numAnswers, document.querySelector(".important_box_num2"), 'important_box_num2_digit')
-    animate(numUsers, document.querySelector(".important_box_num3"), 'important_box_num3_digit')
+    // animate(numQuestions, document.querySelector(".important_box_num1"), 'important_box_num1_digit')
+    // animate(numAnswers, document.querySelector(".important_box_num2"), 'important_box_num2_digit')
+    // animate(numUsers, document.querySelector(".important_box_num3"), 'important_box_num3_digit')
 
 })();
 await topQuestions()

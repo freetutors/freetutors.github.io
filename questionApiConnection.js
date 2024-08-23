@@ -1,4 +1,50 @@
-import config from "./config.js";
+// import config from "./config.js";
+//manually importing config data from json cause ios errors
+let data
+async function getOptimizeConfig() {
+    try {
+        const response = await fetch('./optimize.json');
+        const json = await response.json();
+        data = processJSONData(json);
+
+    } catch (error) {
+      console.log(error);
+    }
+    return data;
+}
+function processJSONData(data) {
+    var data = {
+        apiUrlcreate : data.apiUrlcreate,
+        apiUrlget  : data.apiUrlget,
+        health  : data.health,
+        apiUrlupdate  : data.apiUrlupdate,
+        apiUrlanswer  : data.apiUrlanswer,
+        apiUrlanswerUpdate  : data.apiUrlanswerUpdate,
+        apiUrlgetUser  : data.apiUrlgetUser,
+        apiUrlupdateUserRating: data.apiUrlupdateUserRating,
+        apiUrlupdateAnswerRating: data.apiUrlupdateAnswerRating,
+        // Import the necessary AWS SDK components
+        poolId  : data.poolId, //getting info from cognito
+        clientId  :data.clientId,
+        region  : data.region,
+        accessKey  : data.accessKey,
+        secretKey  : data.secretKey,
+    
+        apiUrlCreateUser: data.apiUrlCreateUser,
+        apiUrlupdateUser: data.apiUrlupdateUser,
+        apiUrlupdateUserAnswer: data.apiUrlupdateUserAnswer,
+    
+        searchHost: data.searchHost,
+        searchKey: data.searchKey
+    }
+    return data
+}
+var range=[0]
+let old
+for (const i in range){
+    old = await getOptimizeConfig()
+}
+var config = old
 //Creating question to database. Waiting on how yash inputs values
 const apiUrlcreate = config.apiUrlcreate
 const apiUrlget = config.apiUrlget;
@@ -294,10 +340,12 @@ async function displayQuestion(){ //displays on view question.html
       for(const answer of answerInfo) {  //pulling info from each answer
         var abody = answer.body
         var author = answer.author
-        if (author="Robo-Tutor"){
+        console.log(author)
+        if (author == "Robo-Tutor"){
           abody = abody.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
           abody = abody.replace(/\*/g, '<br>')
         }
+        console.log(author)
         var unformattedAuthor = answer.author
         var answerId = answer.answerId
         var rating = answer.rating
@@ -857,12 +905,18 @@ function deleteCookie(cookieName) {
   document.cookie = cookieName + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 }
 if (window.location.pathname.indexOf("/viewQuestion") !== -1) {
-  displayQuestion().then(() => {
-    // window.addEventListener('unload', function (event) {
-    //   // sendUpdate(questionId, answers, updatedViews, newRating);
-    //   localStorage.setItem("test", "yes");
-    // });
-  });
+  try{
+    displayQuestion().then(() => {
+      // window.addEventListener('unload', function (event) {
+      //   // sendUpdate(questionId, answers, updatedViews, newRating);
+      //   localStorage.setItem("test", "yes");
+      // });
+    });
+  } catch(error){
+    console.error("An error occurred:", error.message); // Logs the error to the console
+    alert("An error occurred: " + error.message); 
+  }
+
 }
 else if (window.location.pathname === "/freetutors.github.io/createQuestion.html" || window.location.href ==="/createQuestion.html") {
 }
