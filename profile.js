@@ -368,8 +368,8 @@ if (file !== null){
           canvas.height = squareSize;
           alert(canvas.width, canvas.height)
           const context = canvas.getContext('2d');
-          const offsetX = (img.width - squareSize) / 2; //centr the square
-          const offsetY = (img.height - squareSize) / 2;
+          const offsetX = (width - squareSize) / 2; //centr the square
+          const offsetY = (height - squareSize) / 2;
           context.drawImage(img, offsetX, offsetY, squareSize, squareSize, 0, 0, squareSize, squareSize);
   
           const squarifiedDataUrl = canvas.toDataURL('image/jpeg', 0.9);//dowgrades to max
