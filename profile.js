@@ -382,8 +382,9 @@ if (file !== null){
             user = await getUser(username);
             await changePageInfo(user.user[0]);
             await showQuestionColumn(user);
-
-            document.querySelector(".profilePicHome").setAttribute('src', `data:image/png;base64,${fileData}`);
+            if (document.querySelector(".profilePicHome") !== null){
+              document.querySelector(".profilePicHome").setAttribute('src', `data:image/png;base64,${fileData}`);
+            }
             setTimeout(function() {
 
             }, 3000);
