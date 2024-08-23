@@ -11,11 +11,9 @@ const secretKey = config.secretKey
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
-alert('4')
 while (typeof AWS == 'undefined') {
     await sleep(10)
 }
-alert('5')
 AWS.config.region = region; //telling what region to search
   AWS.config.credentials = new AWS.CognitoIdentityCredentials({ //COnnecting to pool
     IdentityPoolId: poolId
@@ -286,12 +284,9 @@ function showQuestionColumn(subject) {
         isEventListenerActive = true;
     })();
 }
-alert('1')
 try{
-    alert('2')
     showQuestionColumn("math");
 } catch (error){
-    alert('3')
     console.error("An error occurred:", error.message); // Logs the error to the console
     alert("An error occurred: " + error.message); 
 }
@@ -483,9 +478,9 @@ if (localUser !== null) {
     while (numUsers == 0) {
       await sleep(10)
     }
-    animate(numQuestions, document.querySelector(".important_box_num1"), 'important_box_num1_digit')
-    animate(numAnswers, document.querySelector(".important_box_num2"), 'important_box_num2_digit')
-    animate(numUsers, document.querySelector(".important_box_num3"), 'important_box_num3_digit')
+    // animate(numQuestions, document.querySelector(".important_box_num1"), 'important_box_num1_digit')
+    // animate(numAnswers, document.querySelector(".important_box_num2"), 'important_box_num2_digit')
+    // animate(numUsers, document.querySelector(".important_box_num3"), 'important_box_num3_digit')
 
 })();
 await topQuestions()

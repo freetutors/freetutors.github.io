@@ -78,7 +78,7 @@ const signUpAsTutorButton = document.querySelector('#sign_up_as_tutor_button');
 const profileButton = document.querySelector('.profileButton');
 const banner = document.querySelector('.banner');
 const infoInputGroupElements = document.getElementsByClassName('info_input_group');
-
+alert('1')
 if (usernameBandPSC == null) {
   searchBar.style.marginRight = '2px';
 } else{
@@ -86,7 +86,7 @@ if (usernameBandPSC == null) {
     askQuestionButton.style.marginLeft = 'calc(100vw - 342px)';
 }
 
-const info = browser.parse(window.navigator.userAgent)
+const info = bowser.parse(window.navigator.userAgent)
 var browserName = info["browser"]["name"];
 
 if (browserName == "Safari") {
@@ -153,3 +153,4 @@ function logOverflowingElements() {
 // Call the function to log overflowing elements when needed
 // For example, you can call it on page load or user interaction
 logOverflowingElements();
+alert('2')
