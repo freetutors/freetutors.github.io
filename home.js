@@ -1,3 +1,4 @@
+alert('8')
 // Import configuration from external file
 import config from "./config.js";
 const qotwId = 'bcbb4292-68a9-90f3-a129-9a40e6994471' //put the id of the weekly question
