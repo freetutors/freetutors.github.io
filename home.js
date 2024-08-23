@@ -286,8 +286,13 @@ function showQuestionColumn(subject) {
         isEventListenerActive = true;
     })();
 }
+try{
+    showQuestionColumn("math");
+} catch (error){
+    console.error("An error occurred:", error.message); // Logs the error to the console
+    alert("An error occurred: " + error.message); 
+}
 
-showQuestionColumn("math");
 
 function openProfile(username) {
     window.location = `profile?username=${username}`;
