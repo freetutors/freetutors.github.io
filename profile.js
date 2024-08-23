@@ -366,7 +366,7 @@ if (file !== null){
           const canvas = document.createElement('canvas');
           canvas.width = squareSize; //this canvas code is for squaring
           canvas.height = squareSize;
-          alert(canvas.width, canvas.height)
+          alert(canvas.width, canvas.height, "hi")
           const context = canvas.getContext('2d');
           const offsetX = (width - squareSize) / 2; //centr the square
           const offsetY = (height - squareSize) / 2;
