@@ -286,9 +286,12 @@ function showQuestionColumn(subject) {
         isEventListenerActive = true;
     })();
 }
+alert('1')
 try{
+    alert('2')
     showQuestionColumn("math");
 } catch (error){
+    alert('3')
     console.error("An error occurred:", error.message); // Logs the error to the console
     alert("An error occurred: " + error.message); 
 }
