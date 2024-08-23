@@ -341,13 +341,8 @@ if (file !== null){
         img.src = reader.result;
   
         img.onload = async function() {
-          if (window.innerWidth > 800){
-            var maxDimensions = 288;
-          } else{
-            var maxDimensions = 144
-          }
-          alert(maxDimensions)
-          //finds the smaller dismension, width or height
+          const maxDimensions = 144;
+          const squareSize = Math.min(img.width, img.height); //finds the smaller dismension, width or height
   
           // Check if the image dimensions exceed the maximum dimensions
           let width = img.width;
@@ -362,15 +357,15 @@ if (file !== null){
               height = maxDimensions;
             } //basically this makes it the max quality our database can handle
           }
-          const squareSize = Math.min(width, height);
+  
           const canvas = document.createElement('canvas');
           canvas.width = squareSize; //this canvas code is for squaring
           canvas.height = squareSize;
-          alert(canvas.width, canvas.height, "hadsfi")
+  
           const context = canvas.getContext('2d');
-          const offsetX = (width - squareSize) / 2; //centr the square
-          const offsetY = (height - squareSize);
-          context.drawImage(img, offsetX, offsetY, squareSize, squareSize);
+          const offsetX = (img.width - squareSize) / 2; //centr the square
+          const offsetY = (img.height - squareSize) / 2;
+          context.drawImage(img, offsetX, offsetY, squareSize, squareSize, 0, 0, squareSize, squareSize);
   
           const squarifiedDataUrl = canvas.toDataURL('image/jpeg', 0.9);//dowgrades to max
           profileImg.setAttribute('src', squarifiedDataUrl); //updates screen circle
