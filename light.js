@@ -58,3 +58,15 @@ if (theme=="light"){
 else{
     localStorage.setItem('theme', "dark")
 }
+
+var path = window.location.pathname;
+var page = path.split("/").pop();
+console.log(page);
+
+window.onload = function() {
+    if (page == "profile") {
+        var profileBanner = document.getElementById('profileBanner');
+        profileBanner.src = "haikei-gradient-light.png";
+    }
+};
+
