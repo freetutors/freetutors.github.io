@@ -1,5 +1,6 @@
 // import config from './config.js';
 //manually importing config data from json cause ios errors
+
 let data
 async function getOptimizeConfig() {
     try {
@@ -68,6 +69,8 @@ while (typeof AWS == 'undefined') {
     await sleep(10)
 }
 
+console.log("hi");
+
 AWS.config.region = region; //telling what region to search
   AWS.config.credentials = new AWS.CognitoIdentityCredentials({ //COnnecting to pool
     IdentityPoolId: poolId
@@ -100,6 +103,7 @@ async function getUser(username) {
     return null;
   }
 }
+
 
 async function updateListAttribute(tableName, key, listAttributeName, listAttributeValue) {
   const params = {
@@ -193,6 +197,7 @@ async function updateBooleanAttribute(tableName, key, attributeName, attributeVa
 (async () => {
 
   async function inboxDisplay() {
+    console.log("hiaaaa");
     const inbox = document.querySelector('.inbox');
 
     if ((inbox.style.display === "none") || (inbox.style.display === "")) {
@@ -204,10 +209,11 @@ async function updateBooleanAttribute(tableName, key, attributeName, attributeVa
     }
   }
 
+
   const inbox = document.querySelector(".inbox")
 
-
   if (username !== null) {
+    console.log("hi");
     if (user.user[0].InboxList == undefined) {
       await updateListAttribute('Freetutor-Users', { username: username }, 'InboxList', [["Welcome to FreeTutors!", getTimestamp()]]);
       await updateBooleanAttribute('Freetutor-Users', { username: username }, 'isRead', false);
