@@ -341,31 +341,48 @@ if (file !== null){
         img.src = reader.result;
   
         img.onload = async function() {
-          const maxDimensions = 144;
-          const squareSize = Math.min(img.width, img.height); //finds the smaller dismension, width or height
+          const maxDimensions = 720;
+           //finds the smaller dismension, width or height
   
           // Check if the image dimensions exceed the maximum dimensions
+          // let width = img.width;
+          // let height = img.height;
+
+          // if (width > maxDimensions || height > maxDimensions) {
+          //   if (width > height) {
+          //     height = (height / width) * maxDimensions;
+          //     width = maxDimensions;
+          //   } else {
+          //     width = (width / height) * maxDimensions;
+          //     height = maxDimensions;
+          //   } //basically this makes it the max quality our database can handle
+          // }
           let width = img.width;
           let height = img.height;
-
+          console.log(img.width)
+          // Calculate the aspect ratio
+          const aspectRatio = width / height;
+        
+          // Determine new dimensions based on the max width and height
           if (width > maxDimensions || height > maxDimensions) {
             if (width > height) {
-              height = (height / width) * maxDimensions;
               width = maxDimensions;
+              height = width / aspectRatio;
             } else {
-              width = (width / height) * maxDimensions;
               height = maxDimensions;
-            } //basically this makes it the max quality our database can handle
+              width = height * aspectRatio;
+            }
           }
-  
+          console.log(width, height)
+          const squareSize = Math.min(width, height);
           const canvas = document.createElement('canvas');
           canvas.width = squareSize; //this canvas code is for squaring
           canvas.height = squareSize;
   
           const context = canvas.getContext('2d');
-          const offsetX = (img.width - squareSize) / 2; //centr the square
-          const offsetY = (img.height - squareSize) / 2;
-          context.drawImage(img, offsetX, offsetY, squareSize, squareSize, 0, 0, squareSize, squareSize);
+          const offsetX = (canvas.width - width) / 2; //centr the square
+          const offsetY = (canvas.height - height) / 2;
+          context.drawImage(img, offsetX, offsetY, width, height);
   
           const squarifiedDataUrl = canvas.toDataURL('image/jpeg', 0.9);//dowgrades to max
           profileImg.setAttribute('src', squarifiedDataUrl); //updates screen circle
@@ -377,13 +394,15 @@ if (file !== null){
             user = await getUser(username);
             await changePageInfo(user.user[0]);
             await showQuestionColumn(user);
-
-            document.querySelector(".profilePicHome").setAttribute('src', `data:image/png;base64,${fileData}`);
+            if (document.querySelector(".profilePicHome") !== null){
+              document.querySelector(".profilePicHome").setAttribute('src', `data:image/png;base64,${fileData}`);
+            }
             setTimeout(function() {
 
             }, 3000);
           } catch (error) {
             console.error("Error updating profile picture:", error);
+            alert(error)
           }
         };
       });
