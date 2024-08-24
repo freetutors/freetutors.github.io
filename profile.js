@@ -374,15 +374,14 @@ if (file !== null){
             }
           }
           console.log(width, height)
-          const squareSize = Math.min(width, height);
           const canvas = document.createElement('canvas');
-          canvas.width = squareSize; //this canvas code is for squaring
-          canvas.height = squareSize;
+          canvas.width = maxDimensions; //this canvas code is for squaring
+          canvas.height = maxDimensions;
   
           const context = canvas.getContext('2d');
-          const offsetX = (img.width - squareSize) / 2; //centr the square
-          const offsetY = (img.height - squareSize) / 2;
-          context.drawImage(img, 0, 0, width, height);
+          const offsetX = (canvas.width - width) / 2; //centr the square
+          const offsetY = (canvas.height - height) / 2;
+          context.drawImage(img, offsetX, offsetY, width, height);
   
           const squarifiedDataUrl = canvas.toDataURL('image/jpeg', 0.9);//dowgrades to max
           profileImg.setAttribute('src', squarifiedDataUrl); //updates screen circle
