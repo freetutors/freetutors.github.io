@@ -374,9 +374,10 @@ if (file !== null){
             }
           }
           console.log(width, height)
+          const squareSize = Math.min(width, height);
           const canvas = document.createElement('canvas');
-          canvas.width = maxDimensions; //this canvas code is for squaring
-          canvas.height = maxDimensions;
+          canvas.width = squareSize; //this canvas code is for squaring
+          canvas.height = squareSize;
   
           const context = canvas.getContext('2d');
           const offsetX = (canvas.width - width) / 2; //centr the square
