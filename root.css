@@ -389,7 +389,7 @@ hr.inboxLine {
 
 .ask-question-button {
 
-margin-left: calc(100vw - 337.5px);
+margin-left: calc(100vw - 365px);
 height: 20px;
 width: 124px;
 background-color: var(--ask-question-button);
