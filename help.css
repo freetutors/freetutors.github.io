@@ -3,11 +3,8 @@
   list-style-type: none;
   position: absolute;
   cursor: pointer;
-  left: 50;
   color: var(--text-color);
-  margin-top: -1px;
-  transform: translateX(calc(-1*var(--translate_len)));
-  margin-left: 15px;
+  margin-top: -1px;margin-left: 15px;
 }
 
 .menu_item {
