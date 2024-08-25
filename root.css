@@ -727,6 +727,7 @@ margin-left: 3px;
       bottom: 0;
       opacity: 1;
       z-index: 300;
+      top: 0;
   }
   .navbar{
       width: 100%;
@@ -829,7 +830,6 @@ margin-left: 3px;
     max-height: 100vh;
     display: flex;
     flex-direction: column;
-  position: fixed;
 }
 .color-change-icon{
   position: absolute;
