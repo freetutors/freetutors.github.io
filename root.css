@@ -827,6 +827,9 @@ margin-left: 3px;
     display: flex;
     position: fixed !important;
     flex-direction: column;
+    top: 0; /* Ensures the list is positioned at the top of the viewport */
+    left: 0; /* Keeps the nav-list on the left side of the screen */
+    z-index: 1000; /* Ensures it's above other content */
 }
 .color-change-icon{
   position: absolute;
