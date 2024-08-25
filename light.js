@@ -66,7 +66,11 @@ console.log(page);
 window.onload = function() {
     if (page == "profile") {
         var profileBanner = document.getElementById('profileBanner');
-        profileBanner.src = "haikei-gradient-light.png";
+        if (theme == "light") {
+            profileBanner.src = "haikei-gradient-light.png";
+        } else {
+            profileBanner.src = "haikei-gradient.png";
+        }
     }
 };
 
