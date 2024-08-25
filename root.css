@@ -825,7 +825,7 @@ margin-left: 3px;
     height: 100%;
     max-height: 100vh;
     display: flex;
-    position: fixed;
+    position: fixed !important;
     flex-direction: column;
 }
 .color-change-icon{
