@@ -101,7 +101,7 @@ async function showQuestionColumn(user){ //showing the questions the user asked
       <img id="global_pfp" class = "pfp${author}" src="${displayedImage}" alt="user_pfp" onclick="window.location='/profile?username=${unformattedAuthor}'">
       <div class="question-title-column">
         <div id="text_box_question_content">${title}</div>
-        <div id="asked_by_line"><a href="https://www.freetutors.net/profile?username=${unformattedAuthor}">asked by ${author}${timeAgo}</a></div>
+        <div id="asked_by_line"><a href="https://www.freetutors.net/profile?username=${unformattedAuthor}">asked by ${author}$, {timeAgo}</a></div>
         <div id="answered_by_line">Add to the conversation!</div>     
   </div>   
       <div class="question_stats">
@@ -117,7 +117,7 @@ async function showQuestionColumn(user){ //showing the questions the user asked
       <img id="global_pfp" class = "pfp${author}" src="${displayedImage}" alt="user_pfp" onclick="window.location='/profile?username=${unformattedAuthor}'">
       <div class="question-title-column">
         <div id="text_box_question_content">${title}</div>
-        <div id="asked_by_line"><a href="https://www.freetutors.net/profile?username=${unformattedAuthor}">asked by ${author}${timeAgo}</a></div>
+        <div id="asked_by_line"><a href="https://www.freetutors.net/profile?username=${unformattedAuthor}">asked by ${author}, {timeAgo}</a></div>
         <div id="answered_by_line">Be the first to answer!</div>     
       </div>   
       <div class="question_stats">
@@ -181,19 +181,21 @@ async function getQuestionListUser(user) { //getting user's quetsions from dynam
     }).then(response => response.json());
     return questionList.questionList
     }
-function getTimeDifference(timestamp) { //giving time in terms of ago
-    const currentTime = new Date();
-    const previousTime = new Date(timestamp);
-    const timeDiff = currentTime.getTime() - previousTime.getTime();
-    
-    // Calculate time differences in seconds, minutes, hours, days, and weeks
+function getTimeDifference(timestamp) {
+    const currentTime = Date.now();
+    const previousTime = new Date(timestamp).getTime();
+    const timeDiff = currentTime - previousTime;
+
     const seconds = Math.floor(timeDiff / 1000);
     const minutes = Math.floor(seconds / 60);
     const hours = Math.floor(minutes / 60);
     const days = Math.floor(hours / 24);
     const weeks = Math.floor(days / 7);
-    
-    if (weeks > 0) {
+    const months = Math.floor(days / 30);
+
+    if (months > 0) {
+        return `${months} month${months > 1 ? 's' : ''} ago`;
+    } else if (weeks > 0) {
         return `${weeks} week${weeks > 1 ? 's' : ''} ago`;
     } else if (days > 0) {
         return `${days} day${days > 1 ? 's' : ''} ago`;
@@ -205,6 +207,7 @@ function getTimeDifference(timestamp) { //giving time in terms of ago
         return `${seconds} second${seconds !== 1 ? 's' : ''} ago`;
     }
 }
+
 async function changePageInfo(user){ //updating html values on page
   const cognitoInfo = await getUserCognito(user.username)
   document.querySelector(".about-me-field").innerText = user.about
