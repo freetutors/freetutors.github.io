@@ -732,6 +732,7 @@ margin-left: 3px;
   .navbar{
       width: 100%;
       height: 101%;
+      max-height: 100vh;
       background-size: cover;
       position: relative;
       overflow-y: hidden;
