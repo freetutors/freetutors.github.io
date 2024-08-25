@@ -194,7 +194,7 @@ body {
     z-index: 100;
     float: right;
     margin-top: -15px;
-    transform: translateX(-173px);
+    right: -25px;
 }
 
 .userInfoContainerHome {
@@ -389,7 +389,7 @@ hr.inboxLine {
 
 .ask-question-button {
 
-margin-left: calc(100vw - 327.5px);
+margin-left: calc(100vw - 310px);
 height: 20px;
 width: 124px;
 background-color: var(--ask-question-button);
