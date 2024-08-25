@@ -769,6 +769,7 @@ margin-left: 3px;
 }
 .nav-link{
     height: 26%;
+    max-height: 26vh;
     font-size: 3rem;
     font-weight: 700;
     color: var(--text-color);
@@ -806,23 +807,18 @@ margin-left: 3px;
 
 .change .nav-link:nth-child(1){
     transition: left 0.6s 0s, opacity 0.3s, color .3s;
-    position: fixed;
 }
 .change .nav-link:nth-child(2){
     transition: left 0.6s .2s, opacity 0.3s, color .3s;
-    position: fixed;
 }
 .change .nav-link:nth-child(3){
     transition: left 0.6s .4s, opacity 0.3s, color .3s;
-    position: fixed;
 }
 .change .nav-link:nth-child(4){
     transition: left 0.6s 0.6s, opacity 0.3s, color .3s;
-    position: fixed;
 }
 .change .nav-link:nth-child(5){
     transition: left 0.6s 0.8s, opacity 0.3s, color .3s;
-    position: fixed;
 }
 .nav-link:hover{
     color: var(--top-questions-hover);
@@ -833,7 +829,7 @@ margin-left: 3px;
     max-height: 100vh;
     display: flex;
     flex-direction: column;
-
+  position: fixed;
 }
 .color-change-icon{
   position: absolute;
