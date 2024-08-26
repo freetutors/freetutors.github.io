@@ -230,7 +230,7 @@ p {
 
 @media only screen and (max-width: 900px) {
   img{
-    max-width: 80vw;
+    max-width: calc(100% - 0px);
     height: auto;
   }
 .user_pfp {
