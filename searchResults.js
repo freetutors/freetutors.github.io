@@ -73,6 +73,8 @@ document.addEventListener('click', function(e) {
     }
 }, false);
 
+console.log("hi");
+
 const urlParams = new URLSearchParams(window.location.search)
 async function getUser(username){ //getting user info from dynamo
     const url = new URL(`${apiUrlgetUser}?username=${username}`);

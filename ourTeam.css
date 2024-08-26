@@ -3,10 +3,8 @@
   list-style-type: none;
   position: absolute;
   cursor: pointer;
-  left: 50;
   color: var(--text-color);
   margin-top: -1px;
-  transform: translateX(calc(-1*var(--translate_len)));
   margin-left: 15px;
 }
 
@@ -80,7 +78,7 @@
 .aboutUsText{
   margin-left: calc(50vw - 30vw);
 }
-@media only screen and (max-width: 1400px){
+@media only screen and (max-width: 1000px){
    .menu {
 display: none;   
 }

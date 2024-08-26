@@ -1,5 +1,6 @@
 // import config from './config.js';
 //manually importing config data from json cause ios errors
+
 let data
 async function getOptimizeConfig() {
     try {
@@ -101,6 +102,7 @@ async function getUser(username) {
   }
 }
 
+
 async function updateListAttribute(tableName, key, listAttributeName, listAttributeValue) {
   const params = {
     TableName: tableName,
@@ -137,17 +139,20 @@ function getTimestamp() {
 }
 
 function getTimeDifference(timestamp) {
-  const currentTime = new Date();
-  const previousTime = new Date(timestamp);
-  const timeDiff = currentTime.getTime() - previousTime.getTime();
+  const currentTime = Date.now();
+  const previousTime = new Date(timestamp).getTime();
+  const timeDiff = currentTime - previousTime;
 
   const seconds = Math.floor(timeDiff / 1000);
   const minutes = Math.floor(seconds / 60);
   const hours = Math.floor(minutes / 60);
   const days = Math.floor(hours / 24);
   const weeks = Math.floor(days / 7);
+  const months = Math.floor(days / 30);
 
-  if (weeks > 0) {
+  if (months > 0) {
+    return `${months} month${months > 1 ? 's' : ''} ago`;
+  } else if (weeks > 0) {
     return `${weeks} week${weeks > 1 ? 's' : ''} ago`;
   } else if (days > 0) {
     return `${days} day${days > 1 ? 's' : ''} ago`;
@@ -193,6 +198,7 @@ async function updateBooleanAttribute(tableName, key, attributeName, attributeVa
 (async () => {
 
   async function inboxDisplay() {
+    console.log("hiaaaa");
     const inbox = document.querySelector('.inbox');
 
     if ((inbox.style.display === "none") || (inbox.style.display === "")) {
@@ -204,10 +210,11 @@ async function updateBooleanAttribute(tableName, key, attributeName, attributeVa
     }
   }
 
+
   const inbox = document.querySelector(".inbox")
 
-
   if (username !== null) {
+    console.log("hi");
     if (user.user[0].InboxList == undefined) {
       await updateListAttribute('Freetutor-Users', { username: username }, 'InboxList', [["Welcome to FreeTutors!", getTimestamp()]]);
       await updateBooleanAttribute('Freetutor-Users', { username: username }, 'isRead', false);
