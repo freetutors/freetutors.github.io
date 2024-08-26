@@ -229,7 +229,10 @@ p {
 }
 
 @media only screen and (max-width: 900px) {
-
+  img{
+    max-width: 80vw;
+    height: auto;
+  }
 .user_pfp {
   margin-left: 0px;
 }
