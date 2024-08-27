@@ -64,30 +64,53 @@ AWS.config.update({ //updating info
 });
 
 var cognito = new AWS.CognitoIdentityServiceProvider(); //connection to cognito identiy
+async function checkExistingUser(email) { //checking for a duplicate email because thats the only one config doesnt autocheck
+  const params = { //This is telling what the code should look for(used later)
+    AttributesToGet: [ "email" ],
+    Filter: `email = "${email}"`, //Pulling users from database based on email adress
+    UserPoolId: poolId
+ }
+
+ const users = await cognito.listUsers(params).promise(); //this calls the above params and looks for accounts with the same email as the provided one
+
+ if (users && users.Users.length > 0) { //Checks if there are more the zero of said accounts
+  const userExists = users.Users[0].Username; 
+  return userExists; 
+} else {
+  return false; //allows for new account
+}};
 
 document.getElementById('username-send').addEventListener('click', function(event) {
     // event.preventDefafult();
-    const username = document.getElementById('resetUsername').value;
-    if(username == null || username == ""){
-      alert("Please enter your Username")
+    const email = document.getElementById('resetUsername').value;
+    if(email == null || email == ""){
+      alert("Please enter your email address")
     }
     else{
-      const params = {
-        ClientId: clientId, // Replace with your Cognito App Client ID
-        Username: username
-      };
-  
-      // Call the forgotPassword API
-      cognito.forgotPassword(params, function(err, data) {
-        if (err) {
-          console.error('Error:', err.message);
-        } else {
-          console.log('Password reset email sent:', data);
-        }
-      });
-      localStorage.setItem("Username", username)
-      window.location = "/resetpwd"
-    }
+      checkExistingUser(email).then(username => {
+      if (username === false){
+        alert("This email is not in our database. Please sign up with a new account.")
+        window.location = "/SignUp"
+      } else {
+        console.log(username)
+        const params = {
+          ClientId: clientId, // Replace with your Cognito App Client ID
+          Username: username
+        };
+    
+        // Call the forgotPassword API
+        cognito.forgotPassword(params, function(err, data) {
+          if (err) {
+            console.error('Error:', err.message);
+          } else {
+            console.log('Password reset email sent:', data);
+          }
+        });
+        localStorage.setItem("Username", username)
+        // window.location = "/resetpwd"
+      }})
+}
+     
     // Create a CognitoIdentityServiceProvider object
     // Parameters for the forgotPassword API call
     
