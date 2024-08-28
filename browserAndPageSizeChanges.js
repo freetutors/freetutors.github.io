@@ -1,16 +1,18 @@
 console.log("sadasdasd")
 
-if (window.innerWidth <= 800){
-    const username = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser");
-    var option_5 = 'Sign Up'
-    var link_5 = '/signup'
-    if (username != null) {
-        option_5 = 'Profile'
-        link_5 = `/profile?username=${username}`
-    }
-    console.log(option_5)
-    var topbar = document.querySelector("#topbar").innerHTML = 
-    `
+
+function checkWindowSize() {
+    if (window.innerWidth <= 800){
+        const username = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser");
+        var option_5 = 'Sign Up'
+        var link_5 = '/signup'
+        if (username != null) {
+            option_5 = 'Profile'
+            link_5 = `/profile?username=${username}`
+        }
+        console.log(option_5)
+        var topbar = document.querySelector("#topbar").innerHTML =
+            `
     <div class="navbar-area">
       <span class="open-navbar-icon navbar-icon center" >
         <div class="line"></div>
@@ -42,28 +44,38 @@ if (window.innerWidth <= 800){
 
 
  `
- var navbar = document.querySelector(".navbar-area")
-  document.querySelector(".open-navbar-icon").
-addEventListener("click", () => {
-   navbar.classList.add("change");
-   document.querySelector('.color-change-icon').classList.add('change')
-});
+        var navbar = document.querySelector(".navbar-area")
+        document.querySelector(".open-navbar-icon").
+        addEventListener("click", () => {
+            navbar.classList.add("change");
+            document.querySelector('.color-change-icon').classList.add('change')
+        });
 
-document.querySelector(".close-navbar-icon").
-addEventListener("click",() => {
-   navbar.classList.remove("change");
-});
+        document.querySelector(".close-navbar-icon").
+        addEventListener("click",() => {
+            navbar.classList.remove("change");
+        });
 
-document.querySelector('.nav-list').
-addEventListener("click", () => {
-    location.reload()
-});
-    document.querySelector(".open-navbar-icon").
-    addEventListener("click", () => {
-    navbar.classList.add("change");
-    });
- // <button class="button ask-question-button">Ask Question</button> idk where to put this
+        document.querySelector('.nav-list').
+        addEventListener("click", () => {
+            location.reload()
+        });
+        document.querySelector(".open-navbar-icon").
+        addEventListener("click", () => {
+            navbar.classList.add("change");
+        });
+        // <button class="button ask-question-button">Ask Question</button> idk where to put this
+    }
 }
+
+// Add event listener for window resize
+window.addEventListener('resize', checkWindowSize);
+
+// Run the function once to check the size on page load
+checkWindowSize();
+
+
+
 
 
 var path = window.location.pathname;
