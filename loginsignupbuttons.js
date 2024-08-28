@@ -80,6 +80,10 @@ async function getUser(username){ //pulling user info
   }).then(response => response.json());
   return user
 }
+const askQuestion = document.getElementsByClassName("ask-question-button")[0];
+if (username !== null) {
+        askQuestion.style.right = "170px";
+}
 window.onhashchange = function() {
   location.reload()
 };
@@ -140,7 +144,6 @@ if (username != null && window.innerWidth >= 800) { //if in localStorage
       var dropbtn = profileButton.querySelector(".userInfoContainerHome");
 
       dropbtn.addEventListener("click", function() {
-        console.log("hi")
         dropdownContent.style.display = dropdownContent.style.display === "block" ? "none" : "block"
       });
 
@@ -216,6 +219,10 @@ if (username !== null) {
   inbox.addEventListener('mouseout', () => {
     inbox.style.transform = 'scale(1)';
   });
+}
+
+if (username == null) {
+
 }
 
 
