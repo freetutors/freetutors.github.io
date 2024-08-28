@@ -244,11 +244,13 @@ max-width: 100px;
 }
 
 .inbox {
+    position: absolute;
     max-height: 500px;
     scrollbar-color: var(--text-box-bar-color) var(--background-color);
     overflow-y: scroll;
     display: none;
     left: calc(100% - 320px);
+    right: 1000px;
     width: 300px;
     margin-top: 42.5px;
     height: fit-content;
