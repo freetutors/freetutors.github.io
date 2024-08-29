@@ -193,10 +193,8 @@ if (username != null && window.innerWidth >= 800) { //if in localStorage
     themeChange = "dark"
     themeChangeText = "Dark Mode"
   }
-  console.log('hi')
   console.log(document.querySelector(".color-change-icon"))
   document.querySelector(".color-change-icon").addEventListener("click", () =>{
-    console.log('fasdf')
     setCookie("theme", themeChange,500)
     location.reload()
   })

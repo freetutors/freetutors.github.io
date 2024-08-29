@@ -10,7 +10,6 @@ function checkWindowSize() {
             option_5 = 'Profile'
             link_5 = `/profile?username=${username}`
         }
-        console.log(option_5)
         var topbar = document.querySelector("#topbar").innerHTML =
             `
     <div class="navbar-area">
@@ -65,6 +64,21 @@ function checkWindowSize() {
             navbar.classList.add("change");
         });
         // <button class="button ask-question-button">Ask Question</button> idk where to put this
+    } else {
+        console.log("cancoon");
+        var topbar = document.querySelector("#topbar").innerHTML =
+            `
+    <div id="topbar">
+  <img id="logo" src="Logo.svg" alt="Logo" onclick="window.location='/'">
+  <div id="searchCont">
+  <input type="search" class="search-bar" placeholder="Search..."
+         onkeydown="if (event.keyCode == 13) handleSearchTrigger()">
+  <button class="button ask-question-button" onclick="window.location='/createQuestion'">Ask Question</button>
+  <div class="possibleSearchResultContainer"></div>
+  </div>
+  <div id="loginSignupArea"></div>
+</div>
+ `
     }
 }
 
