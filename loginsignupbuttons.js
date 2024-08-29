@@ -162,7 +162,7 @@ if (username != null && window.innerWidth >= 800) { //if in localStorage
   document.getElementById("loginSignupArea").innerHTML = '';
   document.getElementById("loginSignupArea").appendChild(profileButton);
 
-
+    askQuestion.style.right = "190px";
 } else {
   if(window.innerWidth >= 800){//for desktop only
     if (theme == "light"){

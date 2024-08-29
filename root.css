@@ -187,14 +187,11 @@ body {
 }
 
 .profileButton {
-    width: 175px;
-    height: 30.5px;
-    align-items: center;
-    position: absolute;
-    z-index: 100;
-    float: right;
+    margin-right: 160px;
     margin-top: -15px;
-    right: -25px;
+    margin-left: 20px;
+    align-items: center;
+    z-index: 100;
 }
 
 .userInfoContainerHome {
