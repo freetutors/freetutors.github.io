@@ -12,6 +12,7 @@ async function getOptimizeConfig() {
     }
     return data;
 }
+
 function processJSONData(data) {
     var data = {
         apiUrlcreate : data.apiUrlcreate,
@@ -29,11 +30,11 @@ function processJSONData(data) {
         region  : data.region,
         accessKey  : data.accessKey,
         secretKey  : data.secretKey,
-    
+
         apiUrlCreateUser: data.apiUrlCreateUser,
         apiUrlupdateUser: data.apiUrlupdateUser,
         apiUrlupdateUserAnswer: data.apiUrlupdateUserAnswer,
-    
+
         searchHost: data.searchHost,
         searchKey: data.searchKey
     }
@@ -81,9 +82,7 @@ async function getUser(username){ //pulling user info
   return user
 }
 const askQuestion = document.getElementsByClassName("ask-question-button")[0];
-if (username !== null) {
-        askQuestion.style.right = "170px";
-}
+
 window.onhashchange = function() {
   location.reload()
 };
@@ -106,8 +105,7 @@ if (username != null && window.innerWidth >= 800) { //if in localStorage
     themeChange = "dark"
     themeChangeText = "Dark Mode"
   }
-  
-  console.log(theme, themeChange, themeChangeText)
+
   profileButton.classList.add('profileButton');//info for profile click button
   profileButton.innerHTML = `
     <div class="notif"></div>
@@ -219,8 +217,9 @@ if (username !== null) {
   });
 }
 
-if (username == null) {
-
+if (username !== null) {
+    const user = await getUser(username);
+    localStorage.setItem('userData', JSON.stringify(user)); // Store as JSON string
 }
 
 

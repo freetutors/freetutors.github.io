@@ -2,8 +2,8 @@ console.log("sadasdasd")
 
 
 function checkWindowSize() {
+    const username = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser");
     if (window.innerWidth <= 800){
-        const username = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser");
         var option_5 = 'Sign Up'
         var link_5 = '/signup'
         if (username != null) {
@@ -65,7 +65,6 @@ function checkWindowSize() {
         });
         // <button class="button ask-question-button">Ask Question</button> idk where to put this
     } else {
-        console.log("cancoon");
         var topbar = document.querySelector("#topbar").innerHTML =
             `
     <div id="topbar">
@@ -79,6 +78,93 @@ function checkWindowSize() {
   <div id="loginSignupArea"></div>
 </div>
  `
+        if (username == null) {
+            if (theme == "light"){
+                document.getElementById("loginSignupArea").innerHTML = //other wise it will show login and signup buttons
+                    `<img class="color-change-icon" src="sunny.svg" width='30px' height='30px'></img>
+      <button class="button login-button">Log in</button>
+       <button class="button signup-button">Sign up</button>`;
+            }else{
+                document.getElementById("loginSignupArea").innerHTML = //other wise it will show login and signup buttons
+                    `<img class="color-change-icon" src="moon.svg" width='25px' height='25px' style='margin-top: 2.3px;'></img>
+      <button class="button login-button">Log in</button>
+       <button class="button signup-button">Sign up</button>`;
+            }
+        } else {
+            document.getElementsByClassName("ask-question-button")[0].style.right = "190px";
+            const userData = localStorage.getItem('userData');
+            const user = JSON.parse(userData); // Parse it back into an object
+            const pfp = user.user[0].pfp
+            const profileButton = document.createElement('div');
+            const theme = getCookie("theme")
+            let themeChange
+            let themeChangeText
+            if (!theme){
+                setCookie('theme', 'dark',500)
+            }
+            else if (theme=="dark"){
+                themeChange = "light"
+                themeChangeText = "Light Mode"
+            }
+            else{
+                themeChange = "dark"
+                themeChangeText = "Dark Mode"
+            }
+
+            profileButton.classList.add('profileButton');//info for profile click button
+            profileButton.innerHTML = `
+    <div class="notif"></div>
+    <img class="inboxButton" src="inbox.png">
+    <div class="userInfoContainerHome">
+      <img class="profilePicHome" src="data:image/png;base64,${pfp}">
+      <p class="usernameOnProfileButton">${username}</p>
+      <div class="dropdown-profile">
+      <div class="dropdown-content-profile">
+        <a href="#" class="option go-to-profile">Profile</a>
+        <a href="#" class="option" id="theme-change">${themeChangeText}</a>
+        <a href="#" id="sign-out" class="option">Log Out</a>
+      </div>
+      </div>
+    </div>
+  `;
+            profileButton.querySelector('.go-to-profile').addEventListener("click", function(event){
+                event.preventDefault(); // Prevent the default action if needed
+                window.location = `/profile?username=${username}`
+            })
+            profileButton.querySelector("#theme-change").addEventListener("click", () =>{
+                setCookie("theme", themeChange,500)
+                location.reload()
+            })
+            profileButton.querySelector("#sign-out").addEventListener("click",() => { //signout
+                if (confirm("Do you want sign out?") == true){
+                    localStorage.clear()
+                    sessionStorage.clear()
+                    window.location ='/'
+                }
+            })
+            var dropdown = profileButton.querySelector(".dropdown-profile");
+            var dropdownContent = profileButton.querySelector(".dropdown-content-profile");
+            var dropbtn = profileButton.querySelector(".userInfoContainerHome");
+
+            dropbtn.addEventListener("click", function() {
+                dropdownContent.style.display = dropdownContent.style.display === "block" ? "none" : "block"
+            });
+
+            dropdownContent.addEventListener("click", function(event) {
+                if (event.target.classList.contains(".option")) {
+                    dropbtn.textContent = event.target.textContent;
+                    dropdownContent.style.display = "none"; // Always hide content after selecting an item
+                }
+            });
+
+            const inbox = document.createElement('div'); //showing inbox
+            inbox.classList.add('inbox');
+
+            profileButton.appendChild(inbox);
+
+            document.getElementById("loginSignupArea").innerHTML = '';
+            document.getElementById("loginSignupArea").appendChild(profileButton);
+        }
     }
 }
 
@@ -178,3 +264,4 @@ const infoInputGroupElements = document.getElementsByClassName('info_input_group
 // // Call the function to log overflowing elements when needed
 // // For example, you can call it on page load or user interaction
 // logOverflowingElements();
+
