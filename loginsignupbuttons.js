@@ -12,6 +12,7 @@ async function getOptimizeConfig() {
     }
     return data;
 }
+
 function processJSONData(data) {
     var data = {
         apiUrlcreate : data.apiUrlcreate,
@@ -29,11 +30,11 @@ function processJSONData(data) {
         region  : data.region,
         accessKey  : data.accessKey,
         secretKey  : data.secretKey,
-    
+
         apiUrlCreateUser: data.apiUrlCreateUser,
         apiUrlupdateUser: data.apiUrlupdateUser,
         apiUrlupdateUserAnswer: data.apiUrlupdateUserAnswer,
-    
+
         searchHost: data.searchHost,
         searchKey: data.searchKey
     }
@@ -80,6 +81,8 @@ async function getUser(username){ //pulling user info
   }).then(response => response.json());
   return user
 }
+const askQuestion = document.getElementsByClassName("ask-question-button")[0];
+
 window.onhashchange = function() {
   location.reload()
 };
@@ -102,8 +105,7 @@ if (username != null && window.innerWidth >= 800) { //if in localStorage
     themeChange = "dark"
     themeChangeText = "Dark Mode"
   }
-  
-  console.log(theme, themeChange, themeChangeText)
+
   profileButton.classList.add('profileButton');//info for profile click button
   profileButton.innerHTML = `
     <div class="notif"></div>
@@ -140,7 +142,6 @@ if (username != null && window.innerWidth >= 800) { //if in localStorage
       var dropbtn = profileButton.querySelector(".userInfoContainerHome");
 
       dropbtn.addEventListener("click", function() {
-        console.log("hi")
         dropdownContent.style.display = dropdownContent.style.display === "block" ? "none" : "block"
       });
 
@@ -159,7 +160,7 @@ if (username != null && window.innerWidth >= 800) { //if in localStorage
   document.getElementById("loginSignupArea").innerHTML = '';
   document.getElementById("loginSignupArea").appendChild(profileButton);
 
-
+    askQuestion.style.right = "190px";
 } else {
   if(window.innerWidth >= 800){//for desktop only
     if (theme == "light"){
@@ -190,10 +191,8 @@ if (username != null && window.innerWidth >= 800) { //if in localStorage
     themeChange = "dark"
     themeChangeText = "Dark Mode"
   }
-  console.log('hi')
   console.log(document.querySelector(".color-change-icon"))
   document.querySelector(".color-change-icon").addEventListener("click", () =>{
-    console.log('fasdf')
     setCookie("theme", themeChange,500)
     location.reload()
   })
@@ -216,6 +215,11 @@ if (username !== null) {
   inbox.addEventListener('mouseout', () => {
     inbox.style.transform = 'scale(1)';
   });
+}
+
+if (username !== null) {
+    const user = await getUser(username);
+    localStorage.setItem('userData', JSON.stringify(user)); // Store as JSON string
 }
 
 

@@ -198,9 +198,7 @@ async function updateBooleanAttribute(tableName, key, attributeName, attributeVa
 (async () => {
 
   async function inboxDisplay() {
-    console.log("hiaaaa");
     const inbox = document.querySelector('.inbox');
-
     if ((inbox.style.display === "none") || (inbox.style.display === "")) {
       inbox.style.display = "block";
       await updateBooleanAttribute('Freetutor-Users', { username: username }, 'isRead', true);

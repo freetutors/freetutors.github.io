@@ -37,10 +37,12 @@
 
 <div id="topbar">
   <img id="logo" src="Logo.svg" alt="Logo" onclick="window.location='/'">
+  <div id="searchCont">
   <input type="search" class="search-bar" placeholder="Search..."
          onkeydown="if (event.keyCode == 13) handleSearchTrigger()">
   <button class="button ask-question-button" onclick="window.location='/createQuestion'">Ask Question</button>
   <div class="possibleSearchResultContainer"></div>
+  </div>
   <div id="loginSignupArea"></div>
 </div>
 <div class="home">
@@ -98,7 +100,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bowser@2.5.3/es5.min.js"></script>
 <script src="https://unpkg.com/bowser@2.7.0/es5.js"></script>
 
-<script src="browserAndPageSizeChanges.js"></script>
+<script type="module" src="browserAndPageSizeChanges.js"></script>
 <script src="homeSizeChanges.js"></script>
 <script type='module' src="home.js"></script>
 

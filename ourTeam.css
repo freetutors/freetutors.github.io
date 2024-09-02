@@ -223,3 +223,13 @@ Commmenting this out for later use if necessary
         margin-right: 80px;
     }
 }
+
+@media only screen and (max-width: 1200px) {
+  .pic{
+    display: none;
+  }
+  .info{
+    width: 100%;
+    max-width: 100%;
+  }
+}

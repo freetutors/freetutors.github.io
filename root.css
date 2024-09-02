@@ -187,18 +187,15 @@ body {
 }
 
 .profileButton {
-    width: 175px;
-    height: 30.5px;
-    align-items: center;
-    position: absolute;
-    z-index: 100;
-    float: right;
+    margin-right: 160px;
     margin-top: -15px;
-    right: -25px;
+    margin-left: 20px;
+    align-items: center;
+    z-index: 100;
 }
 
 .userInfoContainerHome {
- 
+
   position: absolute;
   margin-left: 35px;
   max-width: 110px;
@@ -244,12 +241,13 @@ max-width: 100px;
 }
 
 .inbox {
+    position: absolute;
     max-height: 500px;
     scrollbar-color: var(--text-box-bar-color) var(--background-color);
     overflow-y: scroll;
     display: none;
-    position: absolute;
     left: calc(100% - 320px);
+    right: 1000px;
     width: 300px;
     margin-top: 42.5px;
     height: fit-content;
@@ -334,6 +332,7 @@ hr.inboxLine {
 }
 #loginSignupArea{
   display: flex;
+    position: relative;
 }
 
 
@@ -361,17 +360,20 @@ hr.inboxLine {
 }
 
 .search-bar {
-
    font-family: 'Lexend';
-   flex-grow: 1;
-   margin-left: -10px;
-   margin-right: 215px;
    height: 30.5px;
    background-color: var(--search-bar);
    border-radius: 6px;
    color: var(--text-color);
    padding-left: 13px;
    border: 1.5px solid var(--border-color);
+    width: 100%;
+}
+
+#searchCont {
+    flex: 1;
+    margin-left: -25px;
+    margin-right: 5px;
 }
 
 .search-bar::placeholder {
@@ -387,8 +389,10 @@ hr.inboxLine {
     outline: none;
 }
 
-.ask-question-button {
 
+
+.ask-question-button {
+position: absolute;
 margin-left: calc(100vw - 310px);
 height: 20px;
 width: 124px;
@@ -398,6 +402,9 @@ font-size: 13px;
 display: flex;
 align-items: center;
 justify-content: center;
+    top: 12px;
+    right: 232px;
+
 transition: transform 0.3s ease-in-out;
 }
 
@@ -555,6 +562,14 @@ cursor: pointer;
 opacity: 0;
 }
 
+#MobileAskQuestion {
+    display: none;
+}
+
+.nav-list {
+    display: none;
+}
+
 .signPopUpSignup {
 position: absolute;
 color: var(--text-color);
@@ -628,11 +643,6 @@ margin-left: 3px;
 }
 
 
-.search-bar {
-   margin-right: 18px;
-   width: 200px;
-}
-
 
 @media only screen and (max-width: 800px) {
     .menu {
@@ -661,6 +671,7 @@ margin-left: 3px;
 
     .search-bar {
         margin-left: -35px;
+        margin-right: 7px;
     }
     #topbar{
       position: fixed;
@@ -671,14 +682,18 @@ margin-left: 3px;
       transform: scale(0.7) translateY(3px);
       transform-origin: center;
       margin-left: -5px;
-      margin-right: 30px;
-      transition: transform 0.3s ease-in-out;
+      margin-right: 35px;
+        margin-left: 2px;
+        margin-top: -5px;
       }
+
     #MobileAskQuestion{
+        display: block;
       width: 30px;
       height: 30px;
       padding-left: 5px;
       padding-right: 5px;
+        margin-right: 7px;
     }
     #MobileAskQuestion::before {
       content: "";
@@ -688,10 +703,6 @@ margin-left: 3px;
       left: -10px;
       right: -10px;
   }
-
-      #logo:hover {
-          transform: scale(0.8)!important;
-      }
       .navbar-icon{
         height: 30px;
         background-color: var(--text-color);
