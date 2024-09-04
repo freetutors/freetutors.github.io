@@ -567,10 +567,13 @@ async function answerRating(answer, questionId){ //rating function
     existingAnswerIndex = answerRatings.findIndex(
       (entry) => entry.answerId === answerId && entry.user === user
       );
+      console.log(existingAnswerIndex)
+      var answerUserRating = answerRatings[existingAnswerIndex]
+      console.log(answerUserRating)
+  }else{
+    var answerUserRating = []
   }
-  console.log(existingAnswerIndex)
-  var answerUserRating = answerRatings[existingAnswerIndex]
-  console.log(answerUserRating)
+
   var voteStatus = 'no'
   if (!answerUserRating){
     upclick = false

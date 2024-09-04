@@ -188,12 +188,15 @@
 
   }
   #preview-container{
-    transform: translateX(-8%) translateY(30px);
+    transform: translateX(-8%) translateY(50px);
 
   }
   .dropdown{
     margin-left: 5%;
     margin-top: 140px;
+  }
+  img{
+    max-width: 100%;
   }
 }
 
