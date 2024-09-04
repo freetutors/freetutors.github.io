@@ -450,9 +450,11 @@ if (localUser !== null) {
 
   signUpTutor.innerHTML +=
       `
-        <button id="sign_up_as_tutor_button">Sign up as tutor</button>
+        <button id="sign_up_as_tutor_button" >Sign up as tutor</button>
       `;
-
+    document.querySelector("#sign_up_as_tutor_button").addEventListener('click', () => {
+        alert("Log In to Sign Up as A Tutor")
+    })
 }
 
 
