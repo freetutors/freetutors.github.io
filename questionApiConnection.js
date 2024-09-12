@@ -353,16 +353,23 @@ async function displayQuestion(){ //displays on view question.html
         if (!pfpsToGet.includes(author)) {
           pfpsToGet.push(author.toLocaleLowerCase());
         }
+        let pfpclick = ""
+        console.log(author)
+        if (author !== "Robo-Tutor"){
+          console.log('asd')
+          pfpclick = "window.location='/profile?username=${unformattedAuthor}'"
+        }
+        console.log(pfpclick)
         author = author.replace(/\./g,"")
         document.querySelector(".answer-wrapper").insertAdjacentHTML(
           "beforeend",
           `
           <div class="answer">
           <div class ="pfpRow">
-          <img src="/placeholder_pfp.png" class="global_pfp pfp${author.toLocaleLowerCase()}" onclick="window.location = 'profile?username=${unformattedAuthor}'">
+          <img src="/placeholder_pfp.png" class="global_pfp pfp${author.toLocaleLowerCase()}" onclick=${pfpclick}>
           <div class="contributorStats">
           <div class ="title-box title${author}">
-            <p class="username" onclick="window.location='/profile?username=${unformattedAuthor}'">${author}</p>
+            <p class="username" onclick="${pfpclick}">${author}</p>
             <img class="${user.user[0].status}-icon" src="Blank.svg" alt="Verified Tutor" width="25px" height="25px"></img>
           </div>
             <p class="time">${time}</p>

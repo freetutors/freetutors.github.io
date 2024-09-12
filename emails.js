@@ -128,11 +128,11 @@ const email = "          Account Email:" + user.UserAttributes[4].Value //lettin
     lambda.invoke(params, (err, data) => {
       if (err) {
         console.error('Error calling the Lambda function:', err);
-        alert("Suggestion Sent")
-        window.location = '/'
+        alert("Error sending suggestion, try again later.")
       } else {
         console.log('Response from Lambda:', data.Payload);
-        alert("Error sending suggestion, try again later.")
+        alert("Message Sent")
+        window.location = '/'
       }
     });
 
