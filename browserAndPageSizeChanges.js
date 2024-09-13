@@ -168,10 +168,19 @@ function checkWindowSize() {
     }
 }
 
-// Add event listener for window resize
+
 window.addEventListener('resize', checkWindowSize);
 
-// Run the function once to check the size on page load
+let resizeTimeout;
+
+window.addEventListener('resize', () => {
+    console.log("ooga booga");
+    clearTimeout(resizeTimeout);
+
+    resizeTimeout = setTimeout(() => {
+        location.reload();
+    }, 50); // You can adjust the delay (500 ms) as needed
+});
 checkWindowSize();
 
 
