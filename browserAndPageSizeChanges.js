@@ -1,6 +1,3 @@
-console.log("sadasdasd")
-
-
 function checkWindowSize() {
     const username = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser");
     if (window.innerWidth <= 800){
@@ -168,7 +165,6 @@ function checkWindowSize() {
     }
 }
 
-
 window.addEventListener('resize', checkWindowSize);
 
 let resizeTimeout;
@@ -190,8 +186,6 @@ checkWindowSize();
 var path = window.location.pathname;
 var pageName = path.split("/").pop();
 
-const usernameBandPSC = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser")
-
 
 const askQuestionButton = document.querySelector('.ask-question-button');
 const searchBar = document.querySelector('.search-bar');
@@ -199,6 +193,11 @@ const signUpAsTutorButton = document.querySelector('#sign_up_as_tutor_button');
 const profileButton = document.querySelector('.profileButton');
 const banner = document.querySelector('.banner');
 const infoInputGroupElements = document.getElementsByClassName('info_input_group');
+
+const usernameBandPSC = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser")
+if (usernameBandPSC === null && theme === "light") {
+    askQuestionButton.style.right = "237px";
+}
 // if (usernameBandPSC == null) {
 //   searchBar.style.marginRight = '2px';
 // } else{
@@ -273,4 +272,6 @@ const infoInputGroupElements = document.getElementsByClassName('info_input_group
 // // Call the function to log overflowing elements when needed
 // // For example, you can call it on page load or user interaction
 // logOverflowingElements();
+
+
 
