@@ -73,7 +73,7 @@ if (localStorage.getItem("signupUsername") === null){
     <label>Verification Number:</label>
     <p class="description">Check your email for a verification number</p>
     <input type="text" id="username" class="username login-input"
-    placeholder="Enter Your Username">
+    placeholder="Enter Your Email Address">
     <input type="number" id="vCode" class="vCode login-input"
     placeholder="Enter Your Verification Number">
     <a id = "resend-email" class="resend">Resend Email?</a>
@@ -101,14 +101,44 @@ function verifyUser(username, verificationCode) { //verified account
       }
     });
   }
+  async function checkExistingUser(email) { //checking for a duplicate email because thats the only one config doesnt autocheck
+    const params = { //This is telling what the code should look for(used later)
+      AttributesToGet: [ "email" ],
+      Filter: `email = "${email}"`, //Pulling users from database based on email adress
+      UserPoolId: poolId
+   }
+  
+   const users = await cognito.listUsers(params).promise(); //this calls the above params and looks for accounts with the same email as the provided one
+  
+   if (users && users.Users.length > 0) { //Checks if there are more the zero of said accounts
+    const userExists = users.Users[0].Username; 
+    return userExists; 
+  } else {
+    return false; //
+  }};
   document.getElementById('resend-email').addEventListener('click', function () {
     var username = "not yet set"; //setting arbitrary value for global variable
-    if (usingUsernameInput == true) {
-      username = document.getElementById("username").value;
+
+    if (usingUsernameInput == true) { //if user is not coming directly from the sign up page
+      console.log("a")
+      var email = document.getElementById("username").value; //it is called "username" just because cognito only reads that, it is actually an email
+      checkExistingUser(email).then(user => { //checks for email, in promise form because it isnt instant
+        if (user === false){
+          alert("Put the email address for your account in the email section first.")
+        } else {
+          username = user.trim()
+          console.log(username)
+        }
+        console.log(username) //this is a username
+        resendVerificationCode(username); 
+        });
     } else {
-      username = localStorage.getItem('signupUsername');
+      username = localStorage.getItem('signupUsername'); //if from sign up page then no need for email as the username is already known
+      resendVerificationCode(username);
     }
-    resendVerificationCode(username);
+    console.log(username)
+
+
   });
   function resendVerificationCode(username) {
     const params = {
@@ -119,7 +149,7 @@ function verifyUser(username, verificationCode) { //verified account
     cognito.resendConfirmationCode(params, function (err, data) {
       if (err) {
         console.log(err, err.stack);
-        alert('Failed to resend verification code. Please try again.');
+        alert('Failed to resend verification code. Please try again later.');
       } else {
         console.log(data);
         alert('Verification code resent successfully! Please check your email.');
