@@ -197,6 +197,10 @@ if (!window.mobileAndTabletCheck()) {
             location.reload();
         }, 50); // You can adjust the delay (500 ms) as needed
     });
+} else {
+    screen.orientation.addEventListener("change", function(e) {
+        window.location.reload()
+    });
 }
 
 
