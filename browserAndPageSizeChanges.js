@@ -169,14 +169,14 @@ window.addEventListener('resize', checkWindowSize);
 
 let resizeTimeout;
 
-window.addEventListener('resize', () => {
-    console.log("ooga booga");
-    clearTimeout(resizeTimeout);
+// window.addEventListener('resize', () => {
+//     console.log("ooga booga");
+//     clearTimeout(resizeTimeout);
 
-    resizeTimeout = setTimeout(() => {
-        location.reload();
-    }, 50); // You can adjust the delay (500 ms) as needed
-});
+//     resizeTimeout = setTimeout(() => {
+//         location.reload();
+//     }, 50); // You can adjust the delay (500 ms) as needed
+// });
 checkWindowSize();
 
 
