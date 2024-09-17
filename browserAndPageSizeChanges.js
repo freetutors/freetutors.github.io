@@ -220,6 +220,15 @@ const usernameBandPSC = localStorage.getItem("CognitoIdentityServiceProvider.lac
 if (usernameBandPSC === null && theme === "light") {
     askQuestionButton.style.right = "237px";
 }
+
+const possibleSearchResultContainer = document.getElementsByClassName("possibleSearchResultContainer")[0]
+
+if (usernameBandPSC !== null && window.innerWidth > 800) {
+    console.log("hilalala")
+    possibleSearchResultContainer.style.width = "calc(100% - 362.5px)";
+}
+
+
 // if (usernameBandPSC == null) {
 //   searchBar.style.marginRight = '2px';
 // } else{
