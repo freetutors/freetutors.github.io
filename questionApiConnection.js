@@ -336,8 +336,7 @@ async function displayQuestion(){ //displays on view question.html
     `
     document.querySelector(".answer-wrapper").innerHTML = "" //filling in answers
     if (answerInfo != null){ //wont run upon no answers
-      answerInfo.sort((a, b) => a.rating - b.rating)
-      console.log("bananana")
+      answerInfo.sort((a, b) => b.rating - a.rating)
       for(const answer of answerInfo) {
         //pulling info from each answer
         var abody = answer.body
