@@ -224,7 +224,6 @@ if (usernameBandPSC === null && theme === "light") {
 const possibleSearchResultContainer = document.getElementsByClassName("possibleSearchResultContainer")[0]
 
 if (usernameBandPSC !== null && window.innerWidth > 800) {
-    console.log("hilalala")
     possibleSearchResultContainer.style.width = "calc(100% - 362.5px)";
 }
 
