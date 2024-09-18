@@ -336,8 +336,10 @@ async function displayQuestion(){ //displays on view question.html
     `
     document.querySelector(".answer-wrapper").innerHTML = "" //filling in answers
     if (answerInfo != null){ //wont run upon no answers
-
-      for(const answer of answerInfo) {  //pulling info from each answer
+      answerInfo.sort((a, b) => b.rating - a.rating)
+      console.log("yanabana")
+      for(const answer of answerInfo) {
+        //pulling info from each answer
         var abody = answer.body
         var author = answer.author
         console.log(author)
