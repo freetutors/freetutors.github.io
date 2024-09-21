@@ -57,6 +57,7 @@ if (theme=="light"){
 }
 else{
     localStorage.setItem('theme', "dark")
+    changeColor = () => document.querySelectorAll('*').forEach((node) => node.style.color='white');
 }
 
 var path = window.location.pathname;
