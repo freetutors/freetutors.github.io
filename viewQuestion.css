@@ -30,7 +30,9 @@
     width: fit-content;
     margin: auto;
 }
-
+li{
+  color: var(--text-color);
+}
 .titleSep {
   border-top: 2x solid var(--secondary-color);
   border-bottom: 2px solid var(--secondary-color);
