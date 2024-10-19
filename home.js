@@ -216,15 +216,17 @@ function showQuestionColumn(subject) {
             var title = question.title //getting question data
             var unformattedAuthor = question.author
             var author = question.author
+            console.log(question)
             if (!question.answersInfo){
                 var answers = 0
-
-            }else{
-                if (question.answersInfo[0].author == "Robo-Tutor"){
-                    var answers = question.answersInfo.length - 1
+            }else if (question.answersInfo){ // fixes a bug after just posting a question
+                if (question.answersInfo[0].author == "Robo-Tutor" && question.answersInfo.length == 1){ //if robo-tutor is the only answer it will count as 0
+                    var answers = 0
                 } else{
                     var answers = question.answersInfo.length
                 }
+            } else{
+                var answers = 0
             }
             var rating = question.rating
             var timeAgo = ", " + getTimeDifference(question.timestamp)
