@@ -220,7 +220,11 @@ function showQuestionColumn(subject) {
                 var answers = 0
 
             }else{
-                var answers = question.answersInfo.length
+                if (question.answersInfo[0].author == "Robo-Tutor"){
+                    var answers = question.answersInfo.length - 1
+                } else{
+                    var answers = question.answersInfo.length
+                }
             }
             var rating = question.rating
             var timeAgo = ", " + getTimeDifference(question.timestamp)
