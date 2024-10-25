@@ -166,14 +166,14 @@ if (window.location.pathname.indexOf("createQuestion") !== -1) { //if on the cre
           if (isVerified) {
             submitQuestion() //submits to database
             addUserQuestions(userId) //updates user stats
-            alert("Question Submitted!")
+            alert("Question Submitted! Robo-Tutor will answer your question in a few seconds!")
             //this is creating a 100 second cooldown from creating questions to fix a overwriting bug
             var currentTime = new Date();
             var expirationTime = new Date(currentTime.getTime() + 300000); // 100000 milliseconds = 100seconds
             // Convert the expiration time to the appropriate format for cookies
             var expirationString = expirationTime.toUTCString();
             document.cookie = "createCooldown=NopeYouGottaAwait; expires=" + expirationString + "; path=/";
-            setTimeout(function() { //3 sceond delay for lag
+            setTimeout(function() { //0.5 sceond delay for lag
               window.location="/"
             }, 500);
           } else {

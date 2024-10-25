@@ -78,7 +78,9 @@ async function getUserCognito(username) { //getting cognito info
 const username = localStorage.getItem("CognitoIdentityServiceProvider.lact4vt8ge7lfjvjetu1d3sl7.LastAuthUser") //getting username
 const user = await getUserCognito(username) //getting user info with previous username
 const submit = document.getElementById("tutor-send");
-const email = "          Account Email:" + user.UserAttributes[4].Value //letting us know ur email
+const email = "          Account Email: " + user.UserAttributes[4].Value //letting us know ur email
+const name = "          Account Name: " + user.UserAttributes[2].Value //letting us know ur name
+
 const functionName = 'sendEmail';
 
 const lambda = new AWS.Lambda();
@@ -92,7 +94,7 @@ submit.addEventListener("click", () => {
     const school = "        School:" + document.getElementById("school").value.trim().replace(/\r?\n|\r/g, ' ').replace(/"/g, "‟").replace(/"/g, ' ⁄').replace(/\\/g, '＼');
     const grade = "        Grade:" + document.getElementById("grade").value.trim().replace(/\r?\n|\r/g, ' ').replace(/"/g, "‟").replace(/"/g, ' ⁄').replace(/\\/g, '＼');
     const info = "        Info:"+ document.getElementById("info").value.trim().replace(/\r?\n|\r/g, ' ').replace(/"/g, "‟").replace(/"/g, ' ⁄').replace(/\\/g, '＼');
-    var body = phone + subjects + classes + school + grade + email + info //all of the info from the html with any wierd characters cut
+    var body = phone + subjects + classes + school + grade + email + name + info //all of the info from the html with any wierd characters cut
     const payload = {
     "body": "{\"subject\": \"" + subject + "\", \"body\": \"" + body + "\"}" //data being sent to lambda
   };
