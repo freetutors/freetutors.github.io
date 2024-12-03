@@ -8,7 +8,7 @@ AWS.config.update({
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 const fs = require("fs");
 //INSERT API KEY
-const genAI = new GoogleGenerativeAI('AIzaSyDaho_w0DujltzFTsxvXdI-GdAm-dUmG5M');
+const genAI = new GoogleGenerativeAI('AIzaSyBRsd0Nhu1S5sGsqADCocKl4YVQQPoj6s4');
 const model = genAI.getGenerativeModel({
   model: "gemini-1.5-flash",
   systemInstruction: " If there is an image, say that you can see an image and may not read it correctly. If there is a base64 image in the prompt, give an disclaimer that you may be inaccurate at reading the image. You are a tutor for school students. You will be given a question first, and then more information following the text 'MORE DETAILS:'. the following text will have html markings around them, images will also be in base64 form. Use the image to help your response. ALWAYS EXPLAIN YOUR ANSWER. Notes for syntax: Use latex notation for mathematical or scientific notation. Wrap the equation/text/desired characters in $ to indicate latex to perform(instructions sourced at https://www.bu.edu/math/files/2013/08/LongTeX1.pdf). To create a new line ur <br>. Try to keep the answer within 200 words. For text formatting use html notations(e.i. <stong>BOLDED TEXT</strong>) DO NOT USE two asterisks (**) on both sides of text in order to bold text, instead use <strong> on the left and </strong> on the right. If you do not know the answer or run into an error interpreting the question return an empty response(nothing)",
