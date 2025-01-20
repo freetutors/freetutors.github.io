@@ -1,4 +1,8 @@
 # FreeTutors
-- An idea to make a website where anybody can get help with their questions.
-- A place where people can interact with others who need help or are willing to give it.
-- A fun project that will hopefully get some users
+- A free website where any person can get help with any question
+- A variety of different subjects available
+- Experienced tutors that help by providing answers for your questions
+- Artificial Intelligence that can help start you off
+- Free account system
+- Sign up as a tutor to earn volunteer hours by helping others
+- Freetutors.net
