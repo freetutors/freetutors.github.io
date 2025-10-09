@@ -8,11 +8,11 @@ AWS.config.update({
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 const fs = require("fs");
 //INSERT API KEY
-const genAI = new GoogleGenerativeAI('AIzaSyDY48B46HZ1W3nAf8OOllsj6qtYeRcyVGg');
-const model = genAI.getGenerativeModel({
-  model: "gemini-2.0-flash",
-  systemInstruction: "You are a tutor for school students. You will be given a question first, and then more information following the text 'MORE DETAILS:'. the following text will have html markings around them, images will also be in base64 form. Use the image to help your response. ALWAYS EXPLAIN YOUR ANSWER",
-});
+// const genAI = new GoogleGenerativeAI('AIzaSyDY48B46HZ1W3nAf8OOllsj6qtYeRcyVGg');
+// const model = genAI.getGenerativeModel({
+//   model: "gemini-2.0-flash",
+//   systemInstruction: "You are a tutor for school students. You will be given a question first, and then more information following the text 'MORE DETAILS:'. the following text will have html markings around them, images will also be in base64 form. Use the image to help your response. ALWAYS EXPLAIN YOUR ANSWER",
+// });
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 const tableName = 'Freetutor-Question' // connection to database and user table
 var questionId = randomizeUUIDv4()
