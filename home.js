@@ -221,7 +221,7 @@ function showQuestionColumn(subject) {
                 var answers = 0
             }else if (question.answersInfo[0].length !== null){ // fixes a bug after just posting a question
                 if (question.answersInfo[0].author == "Robo-Tutor" && question.answersInfo.length == 1){ //if robo-tutor is the only answer it will count as 0
-                    var answers = 0
+                    var answers = 1
                 } else{
                     var answers = question.answersInfo.length
                 }
