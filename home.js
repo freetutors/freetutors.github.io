@@ -132,7 +132,7 @@ async function getUser(username) {
 function getTimeDifference(timestamp) {
     const currentTime = Date.now();
     const previousTime = new Date(timestamp).getTime();
-    const timeDiff = currentTime - previousTime;
+    const timeDiff = (currentTime - previousTime)/20;
 
     const seconds = Math.floor(timeDiff / 1000);
     const minutes = Math.floor(seconds / 60);
