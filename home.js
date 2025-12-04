@@ -220,7 +220,7 @@ function showQuestionColumn(subject) {
             console.log(question)
             if (question.answersInfo && question.answersInfo.length > 0) {
                 if (question.answersInfo[0].author === "Robo-Tutor" && question.answersInfo.length === 1) {
-                    var answers = 0;
+                    var answers = 1;
                 } else {
                     var answers = question.answersInfo.length;
                 }
