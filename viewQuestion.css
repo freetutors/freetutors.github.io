@@ -122,6 +122,7 @@ li{
   margin-top: 50px;
   position: relative;
   z-index: 10;
+    color: var(--text-color);
 }
 .rating-value {
   font-family: Lexend;
